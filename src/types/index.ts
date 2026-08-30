@@ -97,6 +97,7 @@ export interface ArmorLayer {
   maxHp: number;
   penetrationThreshold: number;
   damageAbsorptionRatio: number;
+  stabilityResistance: number;
   broken: boolean;
 }
 
@@ -285,6 +286,7 @@ export interface Loadout {
   name: string;
   weaponId: number;
   secondaryWeaponId?: number | null;
+  selectedEnemyId?: number;
   perkIds: number[];
   constraints: OptimizerConstraints;
   objective: OptimizerObjective;

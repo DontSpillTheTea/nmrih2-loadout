@@ -104,7 +104,7 @@ export function getUsefulLegalActions(
     } else {
       // Non-damaging shove:
       // - NEVER allowed if target is already Downed (cannot improve Downed)
-      // - NEVER allowed if previous action was already a non-damaging control action (prevents repeated zero-damage shove spam)
+      // - NEVER allowed if previous action was already a non-damaging control action
       const canShove = !state.isDowned && state.lastAttackType !== 'shove' && state.lastAttackType !== 'kick';
       if (canShove) {
         actions.push({ input: { kind: 'shove' }, hitZone: 'body' });
@@ -311,21 +311,33 @@ export function rankRecipes(recipes: CombatRecipe[], objective: OptimizerObjecti
   const uniqueList = Array.from(uniqueMap.values());
 
   uniqueList.sort((a, b) => {
+    const isFirearm = a.weapon.category === 'firearm';
+
     switch (objective) {
       case 'fastest_kill':
         if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
+        if (isFirearm && a.totalAmmoSpent !== b.totalAmmoSpent) return a.totalAmmoSpent - b.totalAmmoSpent;
         if (a.totalActions !== b.totalActions) return a.totalActions - b.totalActions;
         return a.totalStaminaSpent - b.totalStaminaSpent;
 
-      case 'lowest_stamina':
-        if (a.totalStaminaSpent !== b.totalStaminaSpent) return a.totalStaminaSpent - b.totalStaminaSpent;
-        if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
-        return a.totalActions - b.totalActions;
+      case 'lowest_stamina': // "Efficient Kill"
+        if (isFirearm) {
+          // For firearms, lowest ammo (rounds) spent is the primary efficiency dimension!
+          if (a.totalAmmoSpent !== b.totalAmmoSpent) return a.totalAmmoSpent - b.totalAmmoSpent;
+          if (a.totalActions !== b.totalActions) return a.totalActions - b.totalActions;
+          if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
+          return a.totalStaminaSpent - b.totalStaminaSpent;
+        } else {
+          if (a.totalStaminaSpent !== b.totalStaminaSpent) return a.totalStaminaSpent - b.totalStaminaSpent;
+          if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
+          return a.totalActions - b.totalActions;
+        }
 
       case 'safest_kill': {
         const aCtrl = a.timeToFirstControlMs ?? 99999;
         const bCtrl = b.timeToFirstControlMs ?? 99999;
         if (aCtrl !== bCtrl) return aCtrl - bCtrl;
+        if (isFirearm && a.totalAmmoSpent !== b.totalAmmoSpent) return a.totalAmmoSpent - b.totalAmmoSpent;
         if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
         return a.totalActions - b.totalActions;
       }
@@ -334,19 +346,27 @@ export function rankRecipes(recipes: CombatRecipe[], objective: OptimizerObjecti
         const aCtrl = a.timeToFirstControlMs ?? 99999;
         const bCtrl = b.timeToFirstControlMs ?? 99999;
         if (aCtrl !== bCtrl) return aCtrl - bCtrl;
+        if (isFirearm && a.totalAmmoSpent !== b.totalAmmoSpent) return a.totalAmmoSpent - b.totalAmmoSpent;
         return a.totalStaminaSpent - b.totalStaminaSpent;
       }
 
       case 'fewest_attacks':
+        if (isFirearm && a.totalAmmoSpent !== b.totalAmmoSpent) return a.totalAmmoSpent - b.totalAmmoSpent;
         if (a.totalActions !== b.totalActions) return a.totalActions - b.totalActions;
         if (a.lethalImpactTimeMs !== b.lethalImpactTimeMs) return a.lethalImpactTimeMs - b.lethalImpactTimeMs;
         return a.totalStaminaSpent - b.totalStaminaSpent;
 
       case 'balanced':
       default: {
-        const scoreA = a.totalActions * 1.5 + (a.lethalImpactTimeMs / 500) + (a.totalStaminaSpent / 25);
-        const scoreB = b.totalActions * 1.5 + (b.lethalImpactTimeMs / 500) + (b.totalStaminaSpent / 25);
-        return scoreA - scoreB;
+        if (isFirearm) {
+          const scoreA = a.totalAmmoSpent * 20 + a.totalActions * 2 + (a.lethalImpactTimeMs / 500) + (a.totalStaminaSpent / 100);
+          const scoreB = b.totalAmmoSpent * 20 + b.totalActions * 2 + (b.lethalImpactTimeMs / 500) + (b.totalStaminaSpent / 100);
+          return scoreA - scoreB;
+        } else {
+          const scoreA = a.totalActions * 1.5 + (a.lethalImpactTimeMs / 500) + (a.totalStaminaSpent / 25);
+          const scoreB = b.totalActions * 1.5 + (b.lethalImpactTimeMs / 500) + (b.totalStaminaSpent / 25);
+          return scoreA - scoreB;
+        }
       }
     }
   });

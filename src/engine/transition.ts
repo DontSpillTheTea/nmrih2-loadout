@@ -37,6 +37,7 @@ export function createInitialCombatState(
     maxHp: a.maxHp ?? a.hp ?? 80,
     penetrationThreshold: a.penetrationThreshold ?? (a.name.toLowerCase().includes('ng') ? 3 : 2),
     damageAbsorptionRatio: a.damageResistance ?? (a.hp ? 1.0 : 0.5),
+    stabilityResistance: a.stabilityResistance ?? (a.gunStabilityResistance ?? (a.hitZone === 'head' ? 0.5 : 0.0)),
     broken: false
   }));
 

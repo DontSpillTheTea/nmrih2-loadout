@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { getWeaponById, getEnemyById, getPerkById, mechanics } from '../src/data/loader';
 import { solveCombat, getUsefulLegalActions } from '../src/solver';
-import { createInitialCombatState } from '../src/engine/transition';
+import { createInitialCombatState, transition } from '../src/engine/transition';
 import { formatActionSequence } from '../src/utils/format';
 import type { Perk, OptimizerConstraints } from '../src/types';
 
@@ -168,5 +168,49 @@ describe('Control Action Generation & Dominance Rules (Tests A-G)', () => {
     const formatted = formatActionSequence(recipes[0]);
     expect(formatted).toContain('→');
     expect(formatted).not.toContain('&rarr;');
+  });
+
+  // Firearms ammo efficiency ranking test
+  it('proves firearms under lowest_stamina ranks lowest rounds used (Kick + 2 rds > Shove + 3 rds)', () => {
+    const recipes = solveCombat({
+      weapon: gruber,
+      perks: [],
+      enemy: walker,
+      mechanics,
+      constraints: { ...defaultConstraints, safeOpener: true, requireFirstInterrupt: true, allowKick: true, allowShove: true },
+      objective: 'lowest_stamina',
+      maxActions: 5
+    });
+
+    expect(recipes.length).toBeGreaterThan(0);
+    const top = recipes[0];
+    // Top recipe for firearm should minimize totalAmmoSpent (2 rounds with Kick setup vs 3 rounds with direct/shove shots)
+    expect(top.totalAmmoSpent).toBe(2);
+    expect(top.actions[0].input.kind).toBe('kick');
+
+    // Recipes using 3 rounds must rank lower than 2-round recipes
+    const threeRoundRecipes = recipes.filter(r => r.totalAmmoSpent === 3);
+    if (threeRoundRecipes.length > 0) {
+      const topThreeRoundIdx = recipes.indexOf(threeRoundRecipes[0]);
+      expect(topThreeRoundIdx).toBeGreaterThan(0);
+    }
+  });
+
+  // Armor stability resistance test
+  it('proves helmeted enemies reduce incoming stability damage by armor stability resistance', () => {
+    const s = createInitialCombatState(nationalGuard, mechanics);
+    const ngHelmet = s.armorLayers.find(l => l.hitZone === 'head')!;
+    expect(ngHelmet.stabilityResistance).toBeGreaterThan(0);
+
+    // Pipe Quick Attack (base 25 stability)
+    const { log } = transition(s, {
+      weapon: pipe,
+      input: { kind: 'tap', side: 'left', hitZone: 'head' },
+      resolvedAttack: pipe.attacks[0],
+      hitZone: 'head'
+    }, { perks: [], enemy: nationalGuard, mechanics });
+
+    // Stability damage must be mitigated by helmet stability resistance (e.g. 50% resistance -> 13 stability)
+    expect(log.stabilityDamageDealt).toBeLessThan(25);
   });
 });
