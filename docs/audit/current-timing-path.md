@@ -1,32 +1,47 @@
-# Current Timing Path & Arithmetic Reconstruction (Checkpoint T-A)
+# Current Timing Arithmetic & Trace Report (Timing Checkpoint T-A & T-E)
 
-## 1. Trace of Current Timing Calculation
-1. **Raw Source**:
-   - `Melee_545299304.csv` specifies `Attack & Combo Play Rate` (e.g. `1.1x` for Cleaver, `1.1x` for Pipe Small) and `Charged Attack Play Rate` (e.g. `1.0x`).
-   - Source data does not embed raw unbaked frame notify timestamps.
-2. **Normalization (`scripts/normalize-data.py`)**:
-   - Quick attack total duration: `Math.round(800 / playRate)` ms (e.g. `800 / 1.1 = 727ms`).
-   - Quick startup/windup: `windupMs = Math.round(250 / playRate) = 227ms`.
-   - Quick active hit window: `activeMs = Math.round(150 / playRate) = 136ms`.
-   - Quick recovery: `recoveryMs = Math.round(400 / playRate) = 364ms`.
-   - Charged attack total duration: `Math.round(1800 / chargedPlayRate) = 1800ms`.
-   - Charged startup: `windupMs = 1200ms`, `activeMs = 200ms`, `recoveryMs = 400ms`.
-3. **Transition Engine (`src/engine/transition.ts`)**:
-   - Per-action impact timing: `impactElapsedMs = state.elapsedMs + windupMs + activeMs`.
-   - Next action ready timing: `readyElapsedMs = state.elapsedMs + totalMs`.
-4. **Solver & TTK Metrics (`src/solver/index.ts`)**:
-   - `lethalImpactTimeMs`: The `impactElapsedMs` of the final lethal hit that reduces target HP to 0.
-   - `readyAfterKillMs`: The `readyElapsedMs` including post-kill recovery.
+**Date**: 2026-08-30  
+**Target Game Version**: 1.0.4.0  
 
-## 2. Reconstructing the 1.70s / 1.44s Recipe
-* **Example Recipe: Kick (Knockdown) -> Charged Head Finisher**:
-  * Step 1 (Kick): Start at `t = 0ms`. Impact at `350ms`. Kick recovery ends at `t = 800ms`.
-  * Step 2 (Charged Head): Begins at `t = 800ms`. Charged windup + active window = `1400ms`. Impact at `800 + 1400 = 2200ms` (2.20s).
-  * With pre-charge opener (`preChargedOpener: true`):
-    * Charged hold occurs during approach outside threat range (`preparationMs = 1200ms`).
-    * Threat exposure on release = `200ms`.
-    * Lethal impact = `0.20s`!
+---
 
-## 3. Transparency & Gate T-A Status: PASS
-* The current timing derivation has been mapped function-by-function.
-* As required by Section T17, all timing displays are qualified with explicit `~` prefixes and `Derived from PlayRate` provenance confidence tags until frame notifies can be decrypted.
+## 1. Trace of Current Timing Arithmetic (Cleaver Example)
+
+### Step 1: Raw Compendium Inputs (`Melee_545299304.csv`)
+- Cleaver has:
+  - Attack & Combo Play Rate: `1.2x`
+  - Charged Attack Play Rate: `1.2x`
+
+### Step 2: Normalization (`scripts/normalize-data.py`)
+- Base synthetic templates:
+  - Quick base: `totalMs = 680`, `windupMs = 240`, `activeMs = 100`, `recoveryMs = 340`
+  - Charged base: `totalMs = 1400`, `windupMs = 680`, `activeMs = 150`, `recoveryMs = 570`
+- Scaled by `playRate = 1.2x`:
+  - Quick: `totalMs = 680 / 1.2 = 566ms`, `windupMs = 240 / 1.2 = 200ms`, `activeMs = 83ms`, `recoveryMs = 283ms`
+  - Charged: `totalMs = 1400 / 1.2 = 1166ms`, `windupMs = 680 / 1.2 = 566ms`, `activeMs = 125ms`, `recoveryMs = 475ms`
+
+### Step 3: Transition Engine Execution (`src/engine/transition.ts`)
+- **Hit 1 (Pre-Charged Opener)**:
+  - `isPreChargedFirstHit = true` $\rightarrow$ `actionStartupMs = 0ms` (held during approach)
+  - `impactDurationMs = 0 + 125 = 125ms`
+  - `recoveryDurationMs = 475ms`
+  - `actionDurationMs = 600ms`
+  - `impactElapsedMs = 0 + 125 = 125ms`
+  - `readyElapsedMs = 0 + 600 = 600ms`
+- **Hit 2 (Quick Follow-up)**:
+  - `actionStartupMs = 200ms`, `activeMs = 83ms`
+  - `impactDurationMs = 200 + 83 = 283ms`
+  - `impactElapsedMs = 600ms + 283ms = 883ms (~0.88s)`
+  - `readyElapsedMs = 600ms + 566ms = 1166ms (~1.17s)`
+
+### Step 4: UI Representation
+- Under `fastest_kill`, the lethal impact is displayed as `~0.88s` (Lethal Impact) and `Ready: ~1.17s`.
+- For standard uncharged Quick attacks:
+  - `Quick 1 (566ms total)` + `Quick 2 impact (283ms)` = `849ms` lethal impact.
+
+---
+
+## 2. Explanation of Timing Limitations (T-E)
+1. The raw input from the compendium provides only aggregate `playRate` multipliers (e.g. `1.2x`, `1.0x`, `0.85x`).
+2. Exact Unreal Engine `AnimNotify_MeleeDamage` frame timestamps and combo input buffer open/close windows require de-serializing UE5 IoStore `.ucas`/`.utoc` animation montages.
+3. Therefore, all displayed timing numbers are **PlayRate-Scaled Approximations**, not absolute hardware frame captures.

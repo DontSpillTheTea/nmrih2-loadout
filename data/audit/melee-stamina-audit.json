@@ -1,0 +1,30 @@
+{
+  "auditDate": "2026-08-30",
+  "targetVersion": "1.0.4.0",
+  "source": "data/raw/tabs/Melee_545299304.csv",
+  "universalActions": {
+    "shove": { "stamina": 15, "stability": 20, "provenance": "1.0 official patch notes (reduced from 20 to 15)" },
+    "kick": { "stamina": 50, "stability": 100, "provenance": "compendium:melee:unarmed" }
+  },
+  "weapons": {
+    "kitchen-knife": { "category": "bladed", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "cleaver": { "category": "bladed", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "hatchet": { "category": "bladed", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "machete": { "category": "bladed", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "shovel": { "category": "bladed", "handedness": "two-handed", "quick": 7, "strong": 13, "charged": 18 },
+    "fire-axe": { "category": "bladed", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 13 },
+    "treetrimmer": { "category": "bladed", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 },
+    "claw-hammer": { "category": "blunt", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "pipe-small": { "category": "blunt", "handedness": "one-handed", "quick": 7, "strong": 13, "charged": 15 },
+    "wrench-small": { "category": "blunt", "handedness": "one-handed", "quick": 7, "strong": 10, "charged": 13 },
+    "tire-iron": { "category": "blunt", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "mallet": { "category": "blunt", "handedness": "one-handed", "quick": 7, "strong": 10, "charged": 13 },
+    "crowbar": { "category": "blunt", "handedness": "one-handed", "quick": 5, "strong": 7, "charged": 13 },
+    "rebar": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 18 },
+    "wrench-large": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 },
+    "baseball-bat": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 },
+    "pipe-large": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 },
+    "sledge-hammer": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 },
+    "hockey-stick": { "category": "blunt", "handedness": "two-handed", "quick": 10, "strong": 13, "charged": 15 }
+  }
+}
