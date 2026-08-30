@@ -79,6 +79,7 @@ export interface Weapon {
 export interface Perk {
   id: number;
   slug: string;
+  baseSlug: string;
   name: string;
   tier: 'standard' | 'expert' | 'retired';
   unlockAccountLevel: number;
@@ -89,10 +90,22 @@ export interface Perk {
   provenanceRef: string;
 }
 
+export interface ArmorLayer {
+  name: string;
+  hitZone: HitZone;
+  hp: number;
+  maxHp: number;
+  penetrationThreshold: number;
+  damageAbsorptionRatio: number;
+  broken: boolean;
+}
+
 export interface ArmorProfile {
   name: string;
   hitZone: HitZone;
   hp?: number;
+  maxHp?: number;
+  penetrationThreshold?: number;
   damageResistance?: number;
   stabilityResistance?: number;
   gunDamageResistance?: number;
@@ -150,10 +163,13 @@ export interface CombatState {
   targetHp: number;
   maxHp: number;
   limbHp: Record<string, number>;
+  armorLayers: ArmorLayer[];
   posture: CombatPosture;
   accumulatedStability: number;
   playerStamina: number;
   elapsedMs: number;
+  preparationMs: number;
+  threatExposureMs: number;
   ammoRemaining?: number;
   isDowned: boolean;
   isStaminaStarved: boolean;
@@ -182,6 +198,10 @@ export interface TransitionLogStep {
   multiplicativeBonus: number;
   downedMultiplier: number;
   resistanceRatio: number;
+  armorDamage: number;
+  armorHpAfter: number;
+  armorBrokenNow: boolean;
+  penetratedArmor: boolean;
   finalDamage: number;
   stabilityDamageDealt: number;
   postureBefore: CombatPosture;
@@ -215,6 +235,8 @@ export type OptimizerObjective =
 
 export interface OptimizerConstraints {
   requireFirstInterrupt: boolean;
+  safeOpener?: boolean;
+  preChargedOpener?: boolean;
   requireKnockdownBeforeKill: boolean;
   minStaminaReserve: number;
   allowShove: boolean;
@@ -231,6 +253,8 @@ export interface CombatRecipe {
   actions: CombatActionInput[];
   totalActions: number;
   lethalImpactTimeMs: number;
+  threatExposureMs: number;
+  preparationMs: number;
   readyAfterKillMs: number;
   totalStaminaSpent: number;
   totalAmmoSpent: number;
@@ -238,6 +262,7 @@ export interface CombatRecipe {
   firstControlActionIndex: number | null;
   targetKilled: boolean;
   downedMultiplierUsed: boolean;
+  armorBroken: boolean;
   finalState: CombatState;
   logs: TransitionLogStep[];
   paretoRank?: number;

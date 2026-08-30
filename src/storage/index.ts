@@ -12,7 +12,9 @@ export function createDefaultLoadout(id: string = 'loadout-1', name: string = 'C
     secondaryWeaponId: undefined,
     perkIds: [31, 39], // Headhunter (31), Hitman (39)
     constraints: {
-      requireFirstInterrupt: false,
+      requireFirstInterrupt: true,
+      safeOpener: true,
+      preChargedOpener: true,
       requireKnockdownBeforeKill: false,
       minStaminaReserve: 0,
       allowShove: true,
@@ -22,7 +24,7 @@ export function createDefaultLoadout(id: string = 'loadout-1', name: string = 'C
       targetHitZone: 'head',
       difficulty: 'normal'
     },
-    objective: 'fewest_attacks'
+    objective: 'fastest_kill'
   };
 }
 
@@ -50,38 +52,35 @@ export function createInitialAppState(): AppState {
     responders: [defaultResp],
     settings: {
       enableAnalytics: false,
-      defaultObjective: 'fewest_attacks'
+      defaultObjective: 'fastest_kill'
     }
   };
 }
 
 export function loadAppState(): AppState {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
     if (!raw) {
-      const initial = createInitialAppState();
-      saveAppState(initial);
-      return initial;
+      return createInitialAppState();
     }
     const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.responders) || parsed.responders.length === 0) {
-      const initial = createInitialAppState();
-      saveAppState(initial);
-      return initial;
+    if (!parsed || !Array.isArray(parsed.responders) || parsed.responders.length === 0) {
+      return createInitialAppState();
     }
     return parsed as AppState;
   } catch (e) {
-    console.warn('Failed to load state from localStorage, falling back to defaults:', e);
-    const initial = createInitialAppState();
-    return initial;
+    console.warn('Failed to parse local application state, initializing defaults:', e);
+    return createInitialAppState();
   }
 }
 
 export function saveAppState(state: AppState): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
   } catch (e) {
-    console.error('Failed to save state to localStorage:', e);
+    console.error('Failed to save application state to localStorage:', e);
   }
 }
 

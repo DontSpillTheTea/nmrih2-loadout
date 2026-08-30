@@ -1,4 +1,4 @@
-import type { AttackProfile, HitZone, Weapon, Perk, Enemy, CombatState, MechanicsConfig } from '../types';
+import type { AttackProfile, HitZone, Weapon, Perk, Enemy, CombatState, MechanicsConfig, ArmorLayer } from '../types';
 
 export interface EvaluatedModifiers {
   additiveFlat: number;
@@ -83,6 +83,10 @@ export interface DamageCalculationResult {
   multiplicativeRatio: number;
   downedMultiplier: number;
   resistanceRatio: number;
+  armorDamage: number;
+  armorHpAfter: number;
+  armorBrokenNow: boolean;
+  penetratedArmor: boolean;
   finalDamage: number;
   stabilityDamage: number;
   staminaCost: number;
@@ -117,37 +121,62 @@ export function calculateAttackDamage(
     mods.notes.push(`Target Downed: ${downedMult}x damage bonus`);
   }
 
-  // Calculate armor resistance
-  let resistanceRatio = 0.0;
-  let stabilityResistance = 0.0;
-  for (const armor of enemy.armor) {
-    if (armor.hitZone === hitZone) {
-      if (attack.source === 'firearm') {
-        resistanceRatio = Math.max(resistanceRatio, armor.gunDamageResistance ?? 0);
-        stabilityResistance = Math.max(stabilityResistance, armor.gunStabilityResistance ?? 0);
+  // Pre-armor unmitigated total damage
+  const rawDamage = (baseDamage + mods.additiveFlat) * (1 + mods.multiplicativeRatio) * downedMult * staminaStarvedPenalty;
+
+  // Layered Armor & Penetration Processing
+  let finalDamage = rawDamage;
+  let armorDamage = 0;
+  let armorHpAfter = 0;
+  let armorBrokenNow = false;
+  let penetratedArmor = false;
+  let resistanceRatio = 0;
+
+  const activeArmorLayer = currentState.armorLayers.find(l => l.hitZone === hitZone && !l.broken);
+
+  if (activeArmorLayer) {
+    const weaponPenetration = weapon.penetration ?? 0;
+    const reqPenetration = activeArmorLayer.penetrationThreshold;
+
+    if (weapon.category === 'firearm' && weaponPenetration >= reqPenetration && reqPenetration > 0) {
+      // Penetrates armor layer directly
+      penetratedArmor = true;
+      armorDamage = Math.round(rawDamage * 0.5);
+      armorHpAfter = Math.max(0, activeArmorLayer.hp - armorDamage);
+      if (armorHpAfter === 0) armorBrokenNow = true;
+      finalDamage = rawDamage; // Full damage reaches underlying zombie
+      mods.notes.push(`Penetrated ${activeArmorLayer.name} (Pen ${weaponPenetration} >= ${reqPenetration})`);
+    } else {
+      // Non-penetrating hit against armor layer
+      // Helmet absorbs 100% until broken; Body vest absorbs according to damageAbsorptionRatio
+      const isHelmet = activeArmorLayer.hitZone === 'head';
+      resistanceRatio = isHelmet ? 1.0 : activeArmorLayer.damageAbsorptionRatio;
+
+      if (rawDamage < activeArmorLayer.hp) {
+        armorDamage = rawDamage;
+        armorHpAfter = activeArmorLayer.hp - rawDamage;
+        finalDamage = isHelmet ? 0 : (rawDamage * (1 - activeArmorLayer.damageAbsorptionRatio));
+        mods.notes.push(`${activeArmorLayer.name} absorbed ${rawDamage.toFixed(1)} damage (Remaining: ${armorHpAfter.toFixed(1)} HP)`);
       } else {
-        resistanceRatio = Math.max(resistanceRatio, armor.damageResistance ?? 0);
-        stabilityResistance = Math.max(stabilityResistance, armor.stabilityResistance ?? 0);
+        // Armor breaks, excess damage passes through
+        armorDamage = activeArmorLayer.hp;
+        armorHpAfter = 0;
+        armorBrokenNow = true;
+        const passThrough = rawDamage - activeArmorLayer.hp;
+        finalDamage = passThrough;
+        mods.notes.push(`${activeArmorLayer.name} BROKEN! ${passThrough.toFixed(1)} excess damage passed through to body`);
       }
     }
   }
 
-  // Exact game formula: (Base + Additive) * (1 + sum(Multiplicative)) * Downed * (1 - Resistance) * StaminaPenalty
-  const rawDamage = (baseDamage + mods.additiveFlat) *
-    (1 + mods.multiplicativeRatio) *
-    downedMult *
-    (1 - resistanceRatio) *
-    staminaStarvedPenalty;
+  // Calculate final stability damage
+  let stabilityDamage = Math.round(attack.stabilityDamage * stabilityMult);
+  if (activeArmorLayer && !penetratedArmor && activeArmorLayer.hp > rawDamage) {
+    // Intact armor mitigates 30% of stability
+    stabilityDamage = Math.round(stabilityDamage * 0.70);
+  }
 
-  const finalDamage = Math.max(0, Math.round(rawDamage * 100) / 100);
-
-  // Stability Damage
-  const baseStability = attack.stabilityDamage ?? 0;
-  const stabilityDamage = Math.max(0, Math.round(baseStability * stabilityMult * (1 - stabilityResistance)));
-
-  // Stamina cost
-  const rawStamina = attack.staminaCost * Math.max(0.1, mods.staminaMultiplier);
-  const finalStamina = Math.round(rawStamina * 10) / 10;
+  const staminaCost = Math.round(attack.staminaCost * mods.staminaMultiplier);
 
   return {
     baseDamage,
@@ -155,9 +184,13 @@ export function calculateAttackDamage(
     multiplicativeRatio: mods.multiplicativeRatio,
     downedMultiplier: downedMult,
     resistanceRatio,
-    finalDamage,
+    armorDamage,
+    armorHpAfter,
+    armorBrokenNow,
+    penetratedArmor,
+    finalDamage: Math.round(finalDamage * 100) / 100,
     stabilityDamage,
-    staminaCost: finalStamina,
+    staminaCost,
     isDownedHit,
     notes: mods.notes
   };

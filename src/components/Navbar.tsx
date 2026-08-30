@@ -1,13 +1,11 @@
 import React from 'react';
 import { CURRENT_GAME_VERSION } from '../data/loader';
 
-export type MainTab = 'combat' | 'builds';
-export type SubTab = 'optimize' | 'compare' | 'planner' | 'perk-picker' | 'data';
+export type MainTab = 'optimize' | 'compare' | 'builds';
 
 interface NavbarProps {
   mainTab: MainTab;
-  subTab: SubTab;
-  onSelectTab: (main: MainTab, sub: SubTab) => void;
+  onSelectTab: (tab: MainTab) => void;
   onOpenDataMethodology: () => void;
   onOpenSettings: () => void;
   onOpenImport: () => void;
@@ -15,7 +13,6 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({
   mainTab,
-  subTab,
   onSelectTab,
   onOpenDataMethodology,
   onOpenSettings,
@@ -28,43 +25,32 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           className="brand-badge"
           style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
-          title="Click to view Data Methodology & Provenance"
+          title="Click to inspect verified Patch Data & Provenance"
           onClick={onOpenDataMethodology}
         >
           Patch {CURRENT_GAME_VERSION} 📚
         </button>
       </div>
 
-      <nav style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-        <div className="nav-tabs">
-          <button
-            className={`nav-tab ${mainTab === 'combat' && subTab === 'optimize' ? 'active' : ''}`}
-            onClick={() => onSelectTab('combat', 'optimize')}
-          >
-            ⚔️ Optimize
-          </button>
-          <button
-            className={`nav-tab ${mainTab === 'combat' && subTab === 'compare' ? 'active' : ''}`}
-            onClick={() => onSelectTab('combat', 'compare')}
-          >
-            📊 Compare Matrix
-          </button>
-        </div>
-
-        <div className="nav-tabs">
-          <button
-            className={`nav-tab ${mainTab === 'builds' && subTab === 'planner' ? 'active' : ''}`}
-            onClick={() => onSelectTab('builds', 'planner')}
-          >
-            📋 Responders & Builds
-          </button>
-          <button
-            className={`nav-tab ${mainTab === 'builds' && subTab === 'perk-picker' ? 'active' : ''}`}
-            onClick={() => onSelectTab('builds', 'perk-picker')}
-          >
-            🎲 RNG Perk Picker
-          </button>
-        </div>
+      <nav className="nav-tabs">
+        <button
+          className={`nav-tab ${mainTab === 'optimize' ? 'active' : ''}`}
+          onClick={() => onSelectTab('optimize')}
+        >
+          ⚔️ Combat Optimizer
+        </button>
+        <button
+          className={`nav-tab ${mainTab === 'compare' ? 'active' : ''}`}
+          onClick={() => onSelectTab('compare')}
+        >
+          📊 Compare Matrix
+        </button>
+        <button
+          className={`nav-tab ${mainTab === 'builds' ? 'active' : ''}`}
+          onClick={() => onSelectTab('builds')}
+        >
+          📋 Builds & Responders
+        </button>
       </nav>
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>

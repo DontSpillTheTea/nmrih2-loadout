@@ -203,6 +203,7 @@ def normalize_melee():
         w_obj = {
             "id": weapon_id,
             "slug": slug,
+                "baseSlug": slug.replace("-expert", ""),
             "name": clean_name,
             "category": "melee",
             "meleeCategory": current_category.lower(),
@@ -321,6 +322,7 @@ def normalize_guns():
         g_obj = {
             "id": gun_id,
             "slug": slug,
+                "baseSlug": slug.replace("-expert", ""),
             "name": gname,
             "category": "firearm",
             "gunCategory": cat,
@@ -549,6 +551,7 @@ def normalize_perks():
         p_obj = {
             "id": perk_id,
             "slug": slug,
+                "baseSlug": slug.replace("-expert", ""),
             "name": name,
             "tier": tier,
             "unlockAccountLevel": int(unlock_lvl),

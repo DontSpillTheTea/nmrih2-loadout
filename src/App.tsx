@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, type MainTab, type SubTab } from './components/Navbar';
+import { Navbar, type MainTab } from './components/Navbar';
 import { OptimizerView } from './views/OptimizerView';
 import { BuildPlannerView } from './views/BuildPlannerView';
-import { PerkPickerView } from './views/PerkPickerView';
 import { CompareMatrixView } from './views/CompareMatrixView';
 import { DataMethodologyView } from './views/DataMethodologyView';
 import { SettingsModal } from './components/SettingsModal';
 import { ImportExportModal } from './components/ImportExportModal';
 import { loadAppState, saveAppState } from './storage';
+import { getLogicalPerkGroups } from './data/loader';
 import type { AppState, Responder, Loadout, CombatScenario } from './types';
 import './styles/app.css';
 
 export const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(() => loadAppState());
-  const [mainTab, setMainTab] = useState<MainTab>('combat');
-  const [subTab, setSubTab] = useState<SubTab>('optimize');
+  const [mainTab, setMainTab] = useState<MainTab>('optimize');
   const [isDataMethodologyOpen, setIsDataMethodologyOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [importExportModal, setImportExportModal] = useState<{
@@ -32,11 +31,6 @@ export const App: React.FC = () => {
 
   const activeResponder = appState.responders.find(r => r.id === appState.activeResponderId) || appState.responders[0];
   const activeLoadout = activeResponder.loadouts.find(l => l.id === activeResponder.activeLoadoutId) || activeResponder.loadouts[0];
-
-  const handleSelectTab = (main: MainTab, sub: SubTab) => {
-    setMainTab(main);
-    setSubTab(sub);
-  };
 
   const handleSelectResponder = (id: string) => {
     setAppState(prev => ({
@@ -72,17 +66,27 @@ export const App: React.FC = () => {
     });
   };
 
-  const handleToggleOptimizerPerk = (perkId: number) => {
-    const isEquipped = activeResponder.perkIds.includes(perkId);
-    let newPerkIds: number[];
-    if (isEquipped) {
-      newPerkIds = activeResponder.perkIds.filter(id => id !== perkId);
-    } else {
-      if (activeResponder.perkIds.length >= 10) {
+  const handleSetPerkTier = (baseSlug: string, tier: 'off' | 'standard' | 'expert') => {
+    const groups = getLogicalPerkGroups();
+    const group = groups.find(g => g.baseSlug === baseSlug);
+    if (!group) return;
+
+    // Collect IDs to remove for this logical perk
+    const idsToRemove = [group.standardPerk?.id, group.expertPerk?.id].filter(Boolean) as number[];
+    let newPerkIds = activeResponder.perkIds.filter(id => !idsToRemove.includes(id));
+
+    if (tier === 'standard' && group.standardPerk) {
+      if (newPerkIds.length >= 10) {
         alert('Maximum of 10 perk slots reached.');
         return;
       }
-      newPerkIds = [...activeResponder.perkIds, perkId];
+      newPerkIds.push(group.standardPerk.id);
+    } else if (tier === 'expert' && group.expertPerk) {
+      if (newPerkIds.length >= 10) {
+        alert('Maximum of 10 perk slots reached.');
+        return;
+      }
+      newPerkIds.push(group.expertPerk.id);
     }
 
     handleUpdateResponder({
@@ -121,26 +125,25 @@ export const App: React.FC = () => {
     <div className="app-root">
       <Navbar
         mainTab={mainTab}
-        subTab={subTab}
-        onSelectTab={handleSelectTab}
+        onSelectTab={setMainTab}
         onOpenDataMethodology={() => setIsDataMethodologyOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenImport={() => setImportExportModal({ isOpen: true, mode: 'import' })}
       />
 
       <main>
-        {mainTab === 'combat' && subTab === 'optimize' && (
+        {mainTab === 'optimize' && (
           <OptimizerView
             selectedPerkIds={activeResponder.perkIds}
-            onTogglePerk={handleToggleOptimizerPerk}
+            onSetPerkTier={handleSetPerkTier}
           />
         )}
 
-        {mainTab === 'combat' && subTab === 'compare' && (
+        {mainTab === 'compare' && (
           <CompareMatrixView selectedPerkIds={activeResponder.perkIds} />
         )}
 
-        {mainTab === 'builds' && subTab === 'planner' && (
+        {mainTab === 'builds' && (
           <BuildPlannerView
             responders={appState.responders}
             activeResponderId={appState.activeResponderId}
@@ -150,10 +153,6 @@ export const App: React.FC = () => {
             onDeleteResponder={handleDeleteResponder}
             onOpenExport={mode => setImportExportModal({ isOpen: true, mode })}
           />
-        )}
-
-        {mainTab === 'builds' && subTab === 'perk-picker' && (
-          <PerkPickerView activeResponder={activeResponder} />
         )}
       </main>
 

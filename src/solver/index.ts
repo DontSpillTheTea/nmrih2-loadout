@@ -32,9 +32,11 @@ interface SearchNode {
   actions: CombatActionInput[];
   logs: TransitionLogStep[];
   totalStaminaSpent: number;
+  totalAmmoSpent: number;
   timeToFirstControlMs: number | null;
   firstControlActionIndex: number | null;
   downedMultiplierUsed: boolean;
+  armorBroken: boolean;
 }
 
 export function solveCombat(options: SolverOptions): CombatRecipe[] {
@@ -48,9 +50,7 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
     maxActions = 6
   } = options;
 
-  const unarmed = getUniversalUnarmed();
-
-  // Legal Hit Zones
+  // Hit Zones
   const hitZones: HitZone[] = [];
   if (constraints.targetHitZone === 'head') {
     hitZones.push('head');
@@ -76,13 +76,13 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
       });
     }
   } else {
-    // Melee: directional inputs
+    // Melee: directional inputs (Left, Right)
     for (const hz of hitZones) {
       legalInputs.push({ input: { kind: 'tap', side: 'left', hitZone: hz }, hitZone: hz });
       legalInputs.push({ input: { kind: 'tap', side: 'right', hitZone: hz }, hitZone: hz });
       if (constraints.allowCharged) {
+        legalInputs.push({ input: { kind: 'hold', side: 'right', hitZone: hz }, hitZone: hz }); // ergonomic alternating preference
         legalInputs.push({ input: { kind: 'hold', side: 'left', hitZone: hz }, hitZone: hz });
-        legalInputs.push({ input: { kind: 'hold', side: 'right', hitZone: hz }, hitZone: hz });
       }
     }
   }
@@ -96,42 +96,49 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
   }
 
   const initialState = createInitialCombatState(enemy, mechanics, constraints.difficulty);
-  const context = { perks, enemy, mechanics };
+  const context = {
+    perks,
+    enemy,
+    mechanics,
+    preChargedOpener: constraints.preChargedOpener ?? true
+  };
 
   const startNode: SearchNode = {
     state: initialState,
     actions: [],
     logs: [],
     totalStaminaSpent: 0,
+    totalAmmoSpent: 0,
     timeToFirstControlMs: null,
     firstControlActionIndex: null,
-    downedMultiplierUsed: false
+    downedMultiplierUsed: false,
+    armorBroken: false
   };
 
   const queue: SearchNode[] = [startNode];
   const finishedRecipes: CombatRecipe[] = [];
 
-  // Pareto frontier tracking by discrete state key: [actions, lethalTimeMs, staminaSpent]
-  const visitedFrontiers = new Map<string, Array<[number, number, number]>>();
+  // Pareto frontier tracking by exact discrete state key: [actions, lethalTimeMs, staminaSpent, ammoSpent]
+  const visitedFrontiers = new Map<string, Array<[number, number, number, number]>>();
 
-  function isDominated(stateKey: string, actions: number, timeMs: number, stamina: number): boolean {
+  function isDominated(stateKey: string, actions: number, timeMs: number, stamina: number, ammo: number): boolean {
     const frontier = visitedFrontiers.get(stateKey);
     if (!frontier) return false;
-    for (const [fAct, fTime, fStam] of frontier) {
-      if (fAct <= actions && fTime <= timeMs && fStam <= stamina) {
+    for (const [fAct, fTime, fStam, fAmmo] of frontier) {
+      if (fAct <= actions && fTime <= timeMs && fStam <= stamina && fAmmo <= ammo) {
         return true;
       }
     }
     return false;
   }
 
-  function addToFrontier(stateKey: string, actions: number, timeMs: number, stamina: number) {
+  function addToFrontier(stateKey: string, actions: number, timeMs: number, stamina: number, ammo: number) {
     let frontier = visitedFrontiers.get(stateKey);
     if (!frontier) {
       frontier = [];
       visitedFrontiers.set(stateKey, frontier);
     }
-    frontier.push([actions, timeMs, stamina]);
+    frontier.push([actions, timeMs, stamina, ammo]);
   }
 
   while (queue.length > 0) {
@@ -153,13 +160,16 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
         actions: current.actions,
         totalActions: current.actions.length,
         lethalImpactTimeMs,
+        threatExposureMs: current.state.threatExposureMs,
+        preparationMs: current.state.preparationMs,
         readyAfterKillMs,
         totalStaminaSpent: Math.round(current.totalStaminaSpent * 10) / 10,
-        totalAmmoSpent: 0,
+        totalAmmoSpent: current.totalAmmoSpent,
         timeToFirstControlMs: current.timeToFirstControlMs,
         firstControlActionIndex: current.firstControlActionIndex,
         targetKilled: true,
         downedMultiplierUsed: current.downedMultiplierUsed,
+        armorBroken: current.armorBroken,
         finalState: current.state,
         logs: current.logs
       });
@@ -190,9 +200,12 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
         continue;
       }
 
-      // Check constraint: require first interrupt
-      if (isFirstAction && constraints.requireFirstInterrupt) {
-        if (!isControlPosture(nextState.posture)) {
+      // Check constraint: Safe Opener / Require First Interrupt (default ON)
+      const requireSafe = constraints.safeOpener ?? constraints.requireFirstInterrupt;
+      if (isFirstAction && requireSafe) {
+        // Safe opener satisfied if target dies in 1 hit or reaches control posture (interrupt/stagger/downed)
+        const isSafe = nextState.targetHp <= 0 || isControlPosture(nextState.posture);
+        if (!isSafe) {
           continue;
         }
       }
@@ -206,26 +219,31 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
       }
 
       const downedUsed = current.downedMultiplierUsed || log.isDownedHit;
+      const armorBrokenNow = current.armorBroken || log.armorBrokenNow;
       const staminaSpent = current.totalStaminaSpent + log.staminaCost;
+      const ammoSpent = current.totalAmmoSpent + (candidate.input.kind === 'firearm_shot' ? 1 : 0);
 
-      // State Key for Pareto Pruning MUST include combo state (lastMeleeSide)
+      // Exact State Equivalence Key (incorporates exact targetHp, exact stability, posture, combo side, and armor layers)
+      const armorKey = nextState.armorLayers.map(l => (l.broken ? '0' : Math.round(l.hp))).join(',');
       const stateKey = nextState.targetHp <= 0
         ? 'DEAD'
-        : `${Math.round(nextState.targetHp)}:${nextState.posture}:${nextState.lastMeleeSide || 'neutral'}:${nextState.playerStamina <= 0 ? 0 : 1}`;
+        : `${Math.round(nextState.targetHp)}:${Math.round(nextState.accumulatedStability)}:${nextState.posture}:${nextState.lastMeleeSide || 'neutral'}:${armorKey}`;
 
-      if (isDominated(stateKey, nextState.actionCount, nextState.elapsedMs, staminaSpent)) {
+      if (isDominated(stateKey, nextState.actionCount, nextState.elapsedMs, staminaSpent, ammoSpent)) {
         continue;
       }
-      addToFrontier(stateKey, nextState.actionCount, nextState.elapsedMs, staminaSpent);
+      addToFrontier(stateKey, nextState.actionCount, nextState.elapsedMs, staminaSpent, ammoSpent);
 
       queue.push({
         state: nextState,
         actions: [...current.actions, actionInput],
         logs: [...current.logs, log],
         totalStaminaSpent: staminaSpent,
+        totalAmmoSpent: ammoSpent,
         timeToFirstControlMs: firstControlTime,
         firstControlActionIndex: firstControlIdx,
-        downedMultiplierUsed: downedUsed
+        downedMultiplierUsed: downedUsed,
+        armorBroken: armorBrokenNow
       });
     }
   }

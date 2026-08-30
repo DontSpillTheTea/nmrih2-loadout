@@ -7,7 +7,8 @@ import type {
   TransitionResult,
   TransitionLogStep,
   CombatPosture,
-  PlayerInput
+  PlayerInput,
+  ArmorLayer
 } from '../types';
 import { calculateAttackDamage } from './damage';
 import { resolvePosture, isControlPosture } from './stability';
@@ -16,7 +17,8 @@ import { resolvePlayerInput } from './combo';
 export function createInitialCombatState(
   enemy: Enemy,
   mechanics: MechanicsConfig,
-  difficulty: string = 'normal'
+  difficulty: string = 'normal',
+  isPreCharged: boolean = false
 ): CombatState {
   const diffMod = mechanics.difficultyModifiers[difficulty] ?? { enemyHpMultiplier: 1.0 };
   const effectiveHp = Math.round(enemy.baseHp * diffMod.enemyHpMultiplier);
@@ -28,20 +30,33 @@ export function createInitialCombatState(
     }
   }
 
+  const armorLayers: ArmorLayer[] = (enemy.armor || []).map(a => ({
+    name: a.name,
+    hitZone: a.hitZone,
+    hp: a.hp ?? 80,
+    maxHp: a.maxHp ?? a.hp ?? 80,
+    penetrationThreshold: a.penetrationThreshold ?? (a.name.toLowerCase().includes('ng') ? 3 : 2),
+    damageAbsorptionRatio: a.damageResistance ?? (a.hp ? 1.0 : 0.5),
+    broken: false
+  }));
+
   return {
     targetHp: effectiveHp,
     maxHp: effectiveHp,
     limbHp,
+    armorLayers,
     posture: 'standing',
     accumulatedStability: 0,
     playerStamina: mechanics.basePlayerStamina,
     elapsedMs: 0,
+    preparationMs: isPreCharged ? 1200 : 0,
+    threatExposureMs: 0,
     isDowned: false,
     isStaminaStarved: false,
     actionCount: 0,
     controlAchievedAtMs: undefined,
     lastMeleeSide: null,
-    lastAttackType: null,
+    lastAttackType: isPreCharged ? 'charged' : null,
     flags: {}
   };
 }
@@ -50,6 +65,7 @@ export interface TransitionContext {
   perks: Perk[];
   enemy: Enemy;
   mechanics: MechanicsConfig;
+  preChargedOpener?: boolean;
 }
 
 export function transition(
@@ -60,7 +76,7 @@ export function transition(
   const { weapon, hitZone } = action;
   let input: PlayerInput = action.input;
 
-  // Fallback for direct attack objects or legacy inputs
+  // Fallback for direct attack objects or legacy test inputs
   if (!input) {
     const atk = action.resolvedAttack || action.attack;
     if (atk?.id === 'kick') {
@@ -76,18 +92,30 @@ export function transition(
     }
   }
 
-  const { perks, enemy, mechanics } = context;
+  const { perks, enemy, mechanics, preChargedOpener } = context;
 
   // Resolve player input to deterministic attack profile based on combo state
   const resolution = resolvePlayerInput(weapon, input, state);
   const resolvingWeapon = resolution.resolvingWeapon;
   const resolvedAttack = resolution.resolvedAttack;
 
-  // Calculate damage & effects
+  // Calculate damage & effects with layered armor
   const calc = calculateAttackDamage(resolvingWeapon, resolvedAttack, hitZone, perks, enemy, state, mechanics);
 
   const hpBefore = state.targetHp;
   const hpAfter = Math.max(0, Math.round((hpBefore - calc.finalDamage) * 100) / 100);
+
+  // Update Armor Layers
+  const updatedArmorLayers = state.armorLayers.map(layer => {
+    if (layer.hitZone === hitZone && !layer.broken) {
+      return {
+        ...layer,
+        hp: calc.armorHpAfter,
+        broken: calc.armorBrokenNow || calc.armorHpAfter <= 0
+      };
+    }
+    return layer;
+  });
 
   // Stability
   const newAccumulatedStability = state.accumulatedStability + calc.stabilityDamage;
@@ -100,26 +128,42 @@ export function transition(
   const staminaAfter = Math.max(0, Math.round((staminaBefore - calc.staminaCost) * 10) / 10);
   const nowStaminaStarved = staminaAfter === 0;
 
-  // Timing: startup + active hit window = impact time; full recovery = ready time
-  const impactDurationMs = resolvedAttack.windupMs + resolvedAttack.activeMs;
+  // Timing: Handle Pre-Charge Opener vs Standard Windup
+  const isFirstAction = state.actionCount === 0;
+  const isPreChargedFirstHit = isFirstAction && preChargedOpener && (input.kind === 'hold' || resolvedAttack.attackType === 'charged');
+
+  let actionStartupMs = resolvedAttack.windupMs;
+  let prepDeltaMs = 0;
+
+  if (isPreChargedFirstHit) {
+    prepDeltaMs = resolvedAttack.windupMs; // Windup happened during approach outside threat range
+    actionStartupMs = 0; // Release directly into active hit window
+  }
+
+  const impactDurationMs = actionStartupMs + resolvedAttack.activeMs;
   const recoveryDurationMs = resolvedAttack.recoveryMs;
-  const actionDurationMs = resolvedAttack.totalMs;
+  const actionDurationMs = impactDurationMs + recoveryDurationMs;
 
   const impactElapsedMs = state.elapsedMs + impactDurationMs;
   const readyElapsedMs = state.elapsedMs + actionDurationMs;
+  const newThreatExposureMs = state.threatExposureMs + impactDurationMs;
+  const newPreparationMs = state.preparationMs + prepDeltaMs;
 
   let controlAchievedAtMs = state.controlAchievedAtMs;
   if (controlAchievedAtMs === undefined && isControlPosture(postureAfter)) {
-    controlAchievedAtMs = state.elapsedMs + resolvedAttack.windupMs;
+    controlAchievedAtMs = state.elapsedMs + actionStartupMs;
   }
 
   const nextState: CombatState = {
     ...state,
     targetHp: hpAfter,
+    armorLayers: updatedArmorLayers,
     posture: postureAfter,
     accumulatedStability: newAccumulatedStability,
     playerStamina: staminaAfter,
     elapsedMs: readyElapsedMs,
+    preparationMs: newPreparationMs,
+    threatExposureMs: newThreatExposureMs,
     isDowned: nowDowned,
     isStaminaStarved: nowStaminaStarved,
     actionCount: state.actionCount + 1,
@@ -140,6 +184,10 @@ export function transition(
     multiplicativeBonus: calc.multiplicativeRatio,
     downedMultiplier: calc.downedMultiplier,
     resistanceRatio: calc.resistanceRatio,
+    armorDamage: calc.armorDamage,
+    armorHpAfter: calc.armorHpAfter,
+    armorBrokenNow: calc.armorBrokenNow,
+    penetratedArmor: calc.penetratedArmor,
     finalDamage: calc.finalDamage,
     stabilityDamageDealt: calc.stabilityDamage,
     postureBefore,

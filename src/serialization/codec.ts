@@ -74,15 +74,17 @@ export function computeShortChecksum(data: Uint8Array): string {
 
 // Zod schemas for runtime validation
 const ConstraintsSchema = z.object({
-  requireFirstInterrupt: z.boolean(),
-  requireKnockdownBeforeKill: z.boolean(),
-  minStaminaReserve: z.number(),
-  allowShove: z.boolean(),
-  allowKick: z.boolean(),
-  allowCharged: z.boolean(),
-  allowLimb: z.boolean(),
-  targetHitZone: z.enum(['auto', 'head', 'body', 'limb']),
-  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare'])
+  requireFirstInterrupt: z.boolean().default(true),
+  safeOpener: z.boolean().optional().default(true),
+  preChargedOpener: z.boolean().optional().default(true),
+  requireKnockdownBeforeKill: z.boolean().default(false),
+  minStaminaReserve: z.number().default(0),
+  allowShove: z.boolean().default(true),
+  allowKick: z.boolean().default(true),
+  allowCharged: z.boolean().default(true),
+  allowLimb: z.boolean().default(false),
+  targetHitZone: z.enum(['auto', 'head', 'body', 'limb']).default('head'),
+  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare']).default('normal')
 });
 
 const ObjectiveSchema = z.enum([
