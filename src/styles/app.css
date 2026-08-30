@@ -549,3 +549,45 @@ button, input, select, textarea {
   color: #60a5fa;
   border: 1px solid rgba(59, 130, 246, 0.4);
 }
+
+/* Sticky Matrix Table Header & Columns */
+.matrix-table-wrapper {
+  overflow: auto;
+  max-height: calc(100vh - 190px);
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: #0e1017;
+}
+
+.matrix-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.matrix-table th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #131722;
+  border-bottom: 2px solid var(--border-focus);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.matrix-table th:first-child,
+.matrix-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 6;
+  background-color: #131722;
+}
+
+.matrix-table th:first-child {
+  z-index: 15;
+  background-color: #10131d;
+}
+
+.matrix-table td:first-child {
+  border-right: 1px solid var(--border-color);
+}
