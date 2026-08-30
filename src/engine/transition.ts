@@ -6,10 +6,12 @@ import type {
   MechanicsConfig,
   TransitionResult,
   TransitionLogStep,
-  CombatPosture
+  CombatPosture,
+  PlayerInput
 } from '../types';
 import { calculateAttackDamage } from './damage';
 import { resolvePosture, isControlPosture } from './stability';
+import { resolvePlayerInput } from './combo';
 
 export function createInitialCombatState(
   enemy: Enemy,
@@ -38,6 +40,8 @@ export function createInitialCombatState(
     isStaminaStarved: false,
     actionCount: 0,
     controlAchievedAtMs: undefined,
+    lastMeleeSide: null,
+    lastAttackType: null,
     flags: {}
   };
 }
@@ -50,14 +54,37 @@ export interface TransitionContext {
 
 export function transition(
   state: CombatState,
-  action: CombatActionInput,
+  action: CombatActionInput | any,
   context: TransitionContext
 ): TransitionResult {
-  const { weapon, attack, hitZone } = action;
+  const { weapon, hitZone } = action;
+  let input: PlayerInput = action.input;
+
+  // Fallback for direct attack objects or legacy inputs
+  if (!input) {
+    const atk = action.resolvedAttack || action.attack;
+    if (atk?.id === 'kick') {
+      input = { kind: 'kick' };
+    } else if (atk?.id === 'shove') {
+      input = { kind: 'shove' };
+    } else if (atk?.id === 'charged' || atk?.attackType === 'charged') {
+      input = { kind: 'hold', side: 'left', hitZone };
+    } else if (atk?.id === 'strong' || atk?.attackType === 'strong') {
+      input = { kind: 'tap', side: state.lastMeleeSide || 'left', hitZone };
+    } else {
+      input = { kind: 'tap', side: 'left', hitZone };
+    }
+  }
+
   const { perks, enemy, mechanics } = context;
 
+  // Resolve player input to deterministic attack profile based on combo state
+  const resolution = resolvePlayerInput(weapon, input, state);
+  const resolvingWeapon = resolution.resolvingWeapon;
+  const resolvedAttack = resolution.resolvedAttack;
+
   // Calculate damage & effects
-  const calc = calculateAttackDamage(weapon, attack, hitZone, perks, enemy, state, mechanics);
+  const calc = calculateAttackDamage(resolvingWeapon, resolvedAttack, hitZone, perks, enemy, state, mechanics);
 
   const hpBefore = state.targetHp;
   const hpAfter = Math.max(0, Math.round((hpBefore - calc.finalDamage) * 100) / 100);
@@ -73,13 +100,17 @@ export function transition(
   const staminaAfter = Math.max(0, Math.round((staminaBefore - calc.staminaCost) * 10) / 10);
   const nowStaminaStarved = staminaAfter === 0;
 
-  // Timing
-  const actionDurationMs = attack.totalMs;
-  const timeElapsedMs = state.elapsedMs + actionDurationMs;
+  // Timing: startup + active hit window = impact time; full recovery = ready time
+  const impactDurationMs = resolvedAttack.windupMs + resolvedAttack.activeMs;
+  const recoveryDurationMs = resolvedAttack.recoveryMs;
+  const actionDurationMs = resolvedAttack.totalMs;
+
+  const impactElapsedMs = state.elapsedMs + impactDurationMs;
+  const readyElapsedMs = state.elapsedMs + actionDurationMs;
 
   let controlAchievedAtMs = state.controlAchievedAtMs;
   if (controlAchievedAtMs === undefined && isControlPosture(postureAfter)) {
-    controlAchievedAtMs = state.elapsedMs + attack.windupMs;
+    controlAchievedAtMs = state.elapsedMs + resolvedAttack.windupMs;
   }
 
   const nextState: CombatState = {
@@ -88,18 +119,21 @@ export function transition(
     posture: postureAfter,
     accumulatedStability: newAccumulatedStability,
     playerStamina: staminaAfter,
-    elapsedMs: timeElapsedMs,
+    elapsedMs: readyElapsedMs,
     isDowned: nowDowned,
     isStaminaStarved: nowStaminaStarved,
     actionCount: state.actionCount + 1,
     controlAchievedAtMs,
+    lastMeleeSide: resolution.nextMeleeSide,
+    lastAttackType: resolution.nextAttackType,
     flags: { ...state.flags }
   };
 
   const log: TransitionLogStep = {
     stepIndex: state.actionCount + 1,
-    actionName: attack.name,
-    weaponName: weapon.name,
+    inputDescription: resolution.inputDescription,
+    resolvedActionName: resolvedAttack.name,
+    weaponName: resolvingWeapon.name,
     hitZone,
     baseDamage: calc.baseDamage,
     additiveFlat: calc.additiveFlat,
@@ -115,8 +149,11 @@ export function transition(
     staminaCost: calc.staminaCost,
     staminaBefore,
     staminaAfter,
+    impactDurationMs,
+    recoveryDurationMs,
     actionDurationMs,
-    timeElapsedMs,
+    impactElapsedMs,
+    readyElapsedMs,
     isDownedHit: calc.isDownedHit,
     notes: calc.notes
   };

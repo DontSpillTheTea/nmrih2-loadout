@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { decodeCode, encodeBuild, encodeResponder } from '../serialization/codec';
-import type { Loadout, Responder, AppState } from '../types';
+import { decodeCode, encodeBuild, encodeResponder, encodeScenario } from '../serialization/codec';
+import type { Loadout, Responder, CombatScenario, AppState } from '../types';
 
 interface ImportExportModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'import' | 'export_build' | 'export_responder';
+  mode: 'import' | 'export_build' | 'export_responder' | 'export_scenario';
   activeLoadout?: Loadout;
   activeResponder?: Responder;
+  activeScenario?: CombatScenario;
   appState?: AppState;
   onImportSuccess: (result: any) => void;
 }
@@ -18,6 +19,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   mode,
   activeLoadout,
   activeResponder,
+  activeScenario,
   onImportSuccess
 }) => {
   const [importCode, setImportCode] = useState('');
@@ -32,6 +34,8 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
     exportCode = encodeBuild(activeLoadout);
   } else if (mode === 'export_responder' && activeResponder) {
     exportCode = encodeResponder(activeResponder);
+  } else if (mode === 'export_scenario' && activeScenario) {
+    exportCode = encodeScenario(activeScenario);
   }
 
   const handleCopy = () => {
@@ -60,7 +64,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>
-            {mode === 'import' ? 'Import Build / Responder' : 'Share & Export Code'}
+            {mode === 'import' ? 'Import Build / Responder / Scenario' : 'Share & Export Code'}
           </h3>
           <button className="close-btn" onClick={onClose}>&times;</button>
         </div>
@@ -87,12 +91,12 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
         ) : (
           <div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
-              Paste any valid NMRiH2 code (e.g. <code>N2B1-...</code> for Build, <code>N2C1-...</code> for Character, or <code>N2A1-...</code> for Backup):
+              Paste any valid NMRiH2 code (e.g. <code>N2B1-...</code> for Build, <code>N2C1-...</code> for Character, <code>N2S1-...</code> for Scenario, or <code>N2A1-...</code> for Backup):
             </p>
             <textarea
               className="form-input"
               rows={4}
-              placeholder="Paste code starting with N2B1-, N2C1-, or N2A1-..."
+              placeholder="Paste code starting with N2B1-, N2C1-, N2S1-, or N2A1-..."
               value={importCode}
               onChange={e => setImportCode(e.target.value)}
               style={{ fontFamily: 'monospace', fontSize: '0.8rem', wordBreak: 'break-all' }}

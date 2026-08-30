@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, type ActiveView } from './components/Navbar';
+import { Navbar, type MainTab, type SubTab } from './components/Navbar';
 import { OptimizerView } from './views/OptimizerView';
 import { BuildPlannerView } from './views/BuildPlannerView';
 import { PerkPickerView } from './views/PerkPickerView';
@@ -8,28 +8,35 @@ import { DataMethodologyView } from './views/DataMethodologyView';
 import { SettingsModal } from './components/SettingsModal';
 import { ImportExportModal } from './components/ImportExportModal';
 import { loadAppState, saveAppState } from './storage';
-import type { AppState, Responder, Loadout } from './types';
+import type { AppState, Responder, Loadout, CombatScenario } from './types';
 import './styles/app.css';
 
 export const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(() => loadAppState());
-  const [activeView, setActiveView] = useState<ActiveView>('optimizer');
+  const [mainTab, setMainTab] = useState<MainTab>('combat');
+  const [subTab, setSubTab] = useState<SubTab>('optimize');
+  const [isDataMethodologyOpen, setIsDataMethodologyOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [importExportModal, setImportExportModal] = useState<{
     isOpen: boolean;
-    mode: 'import' | 'export_build' | 'export_responder';
+    mode: 'import' | 'export_build' | 'export_responder' | 'export_scenario';
   }>({
     isOpen: false,
     mode: 'import'
   });
 
-  // Keep state synced to localStorage
+  // Sync to localStorage
   useEffect(() => {
     saveAppState(appState);
   }, [appState]);
 
   const activeResponder = appState.responders.find(r => r.id === appState.activeResponderId) || appState.responders[0];
   const activeLoadout = activeResponder.loadouts.find(l => l.id === activeResponder.activeLoadoutId) || activeResponder.loadouts[0];
+
+  const handleSelectTab = (main: MainTab, sub: SubTab) => {
+    setMainTab(main);
+    setSubTab(sub);
+  };
 
   const handleSelectResponder = (id: string) => {
     setAppState(prev => ({
@@ -100,6 +107,9 @@ export const App: React.FC = () => {
       const newResp = decoded.data as Responder;
       handleCreateResponder(newResp);
       alert(`Imported Responder profile "${newResp.name}" successfully!`);
+    } else if (decoded.type === 'S') {
+      const scenario = decoded.data as CombatScenario;
+      alert(`Imported combat scenario "${scenario.name}" successfully!`);
     } else if (decoded.type === 'A') {
       const restored = decoded.data as AppState;
       setAppState(restored);
@@ -110,21 +120,27 @@ export const App: React.FC = () => {
   return (
     <div className="app-root">
       <Navbar
-        activeView={activeView}
-        setActiveView={setActiveView}
+        mainTab={mainTab}
+        subTab={subTab}
+        onSelectTab={handleSelectTab}
+        onOpenDataMethodology={() => setIsDataMethodologyOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
         onOpenImport={() => setImportExportModal({ isOpen: true, mode: 'import' })}
       />
 
       <main>
-        {activeView === 'optimizer' && (
+        {mainTab === 'combat' && subTab === 'optimize' && (
           <OptimizerView
             selectedPerkIds={activeResponder.perkIds}
             onTogglePerk={handleToggleOptimizerPerk}
           />
         )}
 
-        {activeView === 'planner' && (
+        {mainTab === 'combat' && subTab === 'compare' && (
+          <CompareMatrixView selectedPerkIds={activeResponder.perkIds} />
+        )}
+
+        {mainTab === 'builds' && subTab === 'planner' && (
           <BuildPlannerView
             responders={appState.responders}
             activeResponderId={appState.activeResponderId}
@@ -136,18 +152,18 @@ export const App: React.FC = () => {
           />
         )}
 
-        {activeView === 'perk-picker' && (
+        {mainTab === 'builds' && subTab === 'perk-picker' && (
           <PerkPickerView activeResponder={activeResponder} />
         )}
-
-        {activeView === 'compare' && (
-          <CompareMatrixView selectedPerkIds={activeResponder.perkIds} />
-        )}
-
-        {activeView === 'data' && (
-          <DataMethodologyView />
-        )}
       </main>
+
+      {isDataMethodologyOpen && (
+        <div className="modal-overlay" onClick={() => setIsDataMethodologyOpen(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '850px' }}>
+            <DataMethodologyView onClose={() => setIsDataMethodologyOpen(false)} />
+          </div>
+        </div>
+      )}
 
       <SettingsModal
         isOpen={isSettingsOpen}

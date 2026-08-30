@@ -20,12 +20,6 @@ describe('Pure Combat Transition Engine', () => {
     expect(initialState.playerStamina).toBe(100);
 
     const quickHead = cleaver.attacks.find(a => a.id === 'quick')!;
-    const action: CombatActionInput = {
-      weapon: cleaver,
-      attack: quickHead,
-      hitZone: 'head'
-    };
-
     const calc = calculateAttackDamage(cleaver, quickHead, 'head', [], walker, initialState, mechanics);
     expect(calc.baseDamage).toBe(28);
     expect(calc.finalDamage).toBe(28);
@@ -85,17 +79,26 @@ describe('Pure Combat Transition Engine', () => {
     expect(state0.targetHp).toBe(130);
     expect(state0.posture).toBe('standing');
 
-    const kick = unarmed.attacks.find(a => a.id === 'kick')!;
-    const charged = cleaver.attacks.find(a => a.id === 'charged')!;
-
     // Step 1: Kick -> 100 stability (Downed!)
-    const step1 = transition(state0, { weapon: unarmed, attack: kick, hitZone: 'body' }, { perks: [foreman], enemy: prime, mechanics });
+    const step1 = transition(state0, {
+      weapon: unarmed,
+      input: { kind: 'kick' },
+      resolvedAttack: unarmed.attacks.find(a => a.id === 'kick')!,
+      hitZone: 'body'
+    }, { perks: [foreman], enemy: prime, mechanics });
+
     expect(step1.nextState.posture).toBe('downed');
     expect(step1.nextState.isDowned).toBe(true);
     expect(step1.nextState.targetHp).toBe(120); // 130 - 10 from Foreman kick
 
     // Step 2: Charged Head on downed target -> 50 * 2.0 = 100 damage
-    const step2 = transition(step1.nextState, { weapon: cleaver, attack: charged, hitZone: 'head' }, { perks: [foreman], enemy: prime, mechanics });
+    const step2 = transition(step1.nextState, {
+      weapon: cleaver,
+      input: { kind: 'hold', side: 'left', hitZone: 'head' },
+      resolvedAttack: cleaver.attacks.find(a => a.id === 'charged')!,
+      hitZone: 'head'
+    }, { perks: [foreman], enemy: prime, mechanics });
+
     expect(step2.nextState.targetHp).toBe(20); // 120 - 100 = 20
     expect(step2.log.isDownedHit).toBe(true);
     expect(step2.log.finalDamage).toBe(100);

@@ -1,6 +1,6 @@
 import { deflateSync, inflateSync } from 'fflate';
 import { z } from 'zod';
-import type { Responder, Loadout, AppState } from '../types';
+import type { Responder, Loadout, CombatScenario, AppState } from '../types';
 import { CURRENT_GAME_VERSION } from '../data/loader';
 
 export type CodeFamily = 'N2B1' | 'N2C1' | 'N2S1' | 'N2A1';
@@ -73,24 +73,47 @@ export function computeShortChecksum(data: Uint8Array): string {
 }
 
 // Zod schemas for runtime validation
+const ConstraintsSchema = z.object({
+  requireFirstInterrupt: z.boolean(),
+  requireKnockdownBeforeKill: z.boolean(),
+  minStaminaReserve: z.number(),
+  allowShove: z.boolean(),
+  allowKick: z.boolean(),
+  allowCharged: z.boolean(),
+  allowLimb: z.boolean(),
+  targetHitZone: z.enum(['auto', 'head', 'body', 'limb']),
+  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare'])
+});
+
+const ObjectiveSchema = z.enum([
+  'fastest_kill',
+  'lowest_stamina',
+  'safest_kill',
+  'efficient_control',
+  'fewest_attacks',
+  'balanced'
+]);
+
 const LoadoutSchema = z.object({
   id: z.string(),
   name: z.string(),
   weaponId: z.number(),
   secondaryWeaponId: z.number().optional().nullable(),
   perkIds: z.array(z.number()),
-  constraints: z.object({
-    requireFirstInterrupt: z.boolean(),
-    requireKnockdownBeforeKill: z.boolean(),
-    minStaminaReserve: z.number(),
-    allowShove: z.boolean(),
-    allowKick: z.boolean(),
-    allowCharged: z.boolean(),
-    allowLimb: z.boolean(),
-    targetHitZone: z.enum(['auto', 'head', 'body', 'limb']),
-    difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare'])
-  }),
-  objective: z.enum(['fewest_attacks', 'fastest_kill', 'lowest_stamina', 'safest_kill', 'balanced'])
+  constraints: ConstraintsSchema,
+  objective: ObjectiveSchema
+});
+
+const ScenarioSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  weaponId: z.number(),
+  enemyId: z.number(),
+  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare']),
+  perkIds: z.array(z.number()),
+  constraints: ConstraintsSchema,
+  objective: ObjectiveSchema,
+  gameVersion: z.string()
 });
 
 const ResponderSchema = z.object({
@@ -199,6 +222,8 @@ export function decodeCode(code: string): DecodedEnvelope {
     LoadoutSchema.parse(env.d);
   } else if (typeLetter === 'C') {
     ResponderSchema.parse(env.d);
+  } else if (typeLetter === 'S') {
+    ScenarioSchema.parse(env.d);
   }
 
   return {
@@ -218,6 +243,10 @@ export function encodeBuild(loadout: Loadout): string {
 
 export function encodeResponder(responder: Responder): string {
   return encodePayload('C', responder);
+}
+
+export function encodeScenario(scenario: CombatScenario): string {
+  return encodePayload('S', scenario);
 }
 
 export function encodeFullBackup(state: AppState): string {

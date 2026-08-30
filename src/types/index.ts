@@ -6,6 +6,16 @@ export type MeleeAttackType = 'quick' | 'strong' | 'charged';
 
 export type AttackSource = 'melee' | 'shove' | 'kick' | 'firearm';
 
+export type SwingSide = 'left' | 'right';
+
+export type PlayerInputKind = 'tap' | 'hold' | 'shove' | 'kick' | 'firearm_shot';
+
+export interface PlayerInput {
+  kind: PlayerInputKind;
+  side?: SwingSide;
+  hitZone?: HitZone;
+}
+
 export type CombatPosture = 'standing' | 'flinched' | 'interrupted' | 'staggered' | 'downed';
 
 export type EffectOperation = 'add' | 'multiply' | 'set' | 'min' | 'max';
@@ -20,10 +30,10 @@ export interface EffectCondition {
 }
 
 export interface EffectRule {
-  stat: string; // 'damage' | 'stability_damage' | 'stamina_cost' | 'max_stamina' | 'max_hp' | 'damage_taken'
+  stat: string;
   operation: EffectOperation;
   value: number;
-  stage: number; // 1: base flat, 2: category mults, 3: conditional mults, 4: state mults
+  stage: number;
   conditions: EffectCondition;
 }
 
@@ -149,18 +159,22 @@ export interface CombatState {
   isStaminaStarved: boolean;
   actionCount: number;
   controlAchievedAtMs?: number;
+  lastMeleeSide?: SwingSide | null;
+  lastAttackType?: 'quick' | 'strong' | 'charged' | 'shove' | 'kick' | 'firearm' | null;
   flags: Record<string, boolean | number | string>;
 }
 
 export interface CombatActionInput {
   weapon: Weapon;
-  attack: AttackProfile;
+  input: PlayerInput;
+  resolvedAttack: AttackProfile;
   hitZone: HitZone;
 }
 
 export interface TransitionLogStep {
   stepIndex: number;
-  actionName: string;
+  inputDescription: string;
+  resolvedActionName: string;
   weaponName: string;
   hitZone: HitZone;
   baseDamage: number;
@@ -177,8 +191,11 @@ export interface TransitionLogStep {
   staminaCost: number;
   staminaBefore: number;
   staminaAfter: number;
+  impactDurationMs: number;
+  recoveryDurationMs: number;
   actionDurationMs: number;
-  timeElapsedMs: number;
+  impactElapsedMs: number;
+  readyElapsedMs: number;
   isDownedHit: boolean;
   notes: string[];
 }
@@ -189,10 +206,11 @@ export interface TransitionResult {
 }
 
 export type OptimizerObjective =
-  | 'fewest_attacks'
   | 'fastest_kill'
   | 'lowest_stamina'
   | 'safest_kill'
+  | 'efficient_control'
+  | 'fewest_attacks'
   | 'balanced';
 
 export interface OptimizerConstraints {
@@ -212,7 +230,8 @@ export interface CombatRecipe {
   weapon: Weapon;
   actions: CombatActionInput[];
   totalActions: number;
-  totalTimeMs: number;
+  lethalImpactTimeMs: number;
+  readyAfterKillMs: number;
   totalStaminaSpent: number;
   totalAmmoSpent: number;
   timeToFirstControlMs: number | null;
@@ -224,11 +243,23 @@ export interface CombatRecipe {
   paretoRank?: number;
 }
 
+export interface CombatScenario {
+  id: string;
+  name: string;
+  weaponId: number;
+  enemyId: number;
+  difficulty: 'beginner' | 'normal' | 'hard' | 'nightmare';
+  perkIds: number[];
+  constraints: OptimizerConstraints;
+  objective: OptimizerObjective;
+  gameVersion: string;
+}
+
 export interface Loadout {
   id: string;
   name: string;
   weaponId: number;
-  secondaryWeaponId?: number;
+  secondaryWeaponId?: number | null;
   perkIds: number[];
   constraints: OptimizerConstraints;
   objective: OptimizerObjective;
@@ -251,6 +282,7 @@ export interface AppState {
   activeGameVersion: string;
   activeResponderId: string;
   responders: Responder[];
+  savedScenarios?: CombatScenario[];
   settings: {
     enableAnalytics: boolean;
     defaultObjective: OptimizerObjective;

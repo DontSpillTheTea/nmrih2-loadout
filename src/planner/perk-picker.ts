@@ -1,14 +1,23 @@
-import type { Weapon, Perk, Enemy, MechanicsConfig, OptimizerConstraints, OptimizerObjective, CombatRecipe } from '../types';
+import type {
+  Weapon,
+  Perk,
+  Enemy,
+  MechanicsConfig,
+  OptimizerConstraints,
+  OptimizerObjective,
+  CombatRecipe
+} from '../types';
 import { solveCombat } from '../solver';
-import { enemies, getWeaponById, getPerkById } from '../data/loader';
+import { enemies, getPerkById } from '../data/loader';
 
 export interface BreakpointDelta {
-  enemySlug: string;
+  enemyId: number;
   enemyName: string;
-  weaponName: string;
-  baselineRecipe: CombatRecipe | null;
-  newRecipe: CombatRecipe | null;
-  actionsDelta: number; // e.g. -1 means 1 fewer attack needed (breakpoint gained!)
+  baselineHits: number;
+  newHits: number;
+  hitDelta: number;
+  baselineLethalTimeMs: number;
+  newLethalTimeMs: number;
   timeSavedMs: number;
   staminaSaved: number;
   hasBreakpointGain: boolean;
@@ -18,12 +27,14 @@ export interface BreakpointDelta {
 export interface EvaluatedPerkChoice {
   perk: Perk;
   score: number;
-  breakpointGainsCount: number;
   deltas: BreakpointDelta[];
   recommendationReason: string;
+  totalHitsSaved: number;
+  totalTimeSavedMs: number;
+  totalStaminaSaved: number;
 }
 
-export interface PerkPickerInput {
+export interface PerkPickerOptions {
   weapon: Weapon;
   currentPerks: Perk[];
   offeredPerkIds: number[];
@@ -32,7 +43,7 @@ export interface PerkPickerInput {
   objective: OptimizerObjective;
 }
 
-export function evaluateOfferedPerks(input: PerkPickerInput): EvaluatedPerkChoice[] {
+export function evaluateOfferedPerks(options: PerkPickerOptions): EvaluatedPerkChoice[] {
   const {
     weapon,
     currentPerks,
@@ -40,13 +51,13 @@ export function evaluateOfferedPerks(input: PerkPickerInput): EvaluatedPerkChoic
     mechanics,
     constraints,
     objective
-  } = input;
+  } = options;
 
-  // Benchmark targets: Walker (Normal), Shambler, Prime, Runner
-  const benchmarkEnemies = enemies.filter(e => ['walker', 'shambler', 'prime', 'runner'].includes(e.slug));
+  // Benchmark against standard core enemies
+  const benchmarkEnemies: Enemy[] = enemies.slice(0, 4);
 
-  // Compute baseline recipes for all benchmark targets
-  const baselineMap = new Map<number, CombatRecipe | null>();
+  // Baseline recipes with current perks
+  const baselineRecipes = new Map<number, CombatRecipe>();
   for (const enemy of benchmarkEnemies) {
     const recipes = solveCombat({
       weapon,
@@ -57,7 +68,9 @@ export function evaluateOfferedPerks(input: PerkPickerInput): EvaluatedPerkChoic
       objective,
       maxActions: 6
     });
-    baselineMap.set(enemy.id, recipes[0] ?? null);
+    if (recipes.length > 0) {
+      baselineRecipes.set(enemy.id, recipes[0]);
+    }
   }
 
   const results: EvaluatedPerkChoice[] = [];
@@ -68,11 +81,12 @@ export function evaluateOfferedPerks(input: PerkPickerInput): EvaluatedPerkChoic
 
     const candidatePerks = [...currentPerks, perk];
     const deltas: BreakpointDelta[] = [];
-    let totalScore = 0;
-    let breakpointCount = 0;
+    let totalHitsSaved = 0;
+    let totalTimeSavedMs = 0;
+    let totalStaminaSaved = 0;
 
     for (const enemy of benchmarkEnemies) {
-      const baseline = baselineMap.get(enemy.id) ?? null;
+      const baseline = baselineRecipes.get(enemy.id);
       const newRecipes = solveCombat({
         weapon,
         perks: candidatePerks,
@@ -82,62 +96,72 @@ export function evaluateOfferedPerks(input: PerkPickerInput): EvaluatedPerkChoic
         objective,
         maxActions: 6
       });
-      const newRecipe = newRecipes[0] ?? null;
-
-      let actionsDelta = 0;
-      let timeSavedMs = 0;
-      let staminaSaved = 0;
-      let hasBreakpointGain = false;
-      let summary = 'No change in combat breakpoint';
+      const newRecipe = newRecipes[0];
 
       if (baseline && newRecipe) {
-        actionsDelta = newRecipe.totalActions - baseline.totalActions;
-        timeSavedMs = baseline.totalTimeMs - newRecipe.totalTimeMs;
-        staminaSaved = baseline.totalStaminaSpent - newRecipe.totalStaminaSpent;
+        const hitDelta = baseline.totalActions - newRecipe.totalActions;
+        const timeSavedMs = Math.max(0, baseline.lethalImpactTimeMs - newRecipe.lethalImpactTimeMs);
+        const staminaSaved = Math.max(0, baseline.totalStaminaSpent - newRecipe.totalStaminaSpent);
+        const hasGain = hitDelta > 0 || (timeSavedMs > 100 && hitDelta >= 0);
 
-        if (actionsDelta < 0) {
-          hasBreakpointGain = true;
-          breakpointCount += Math.abs(actionsDelta);
-          totalScore += 50 * Math.abs(actionsDelta);
-          summary = `Breakpoint gained! Reduces kill from ${baseline.totalActions} to ${newRecipe.totalActions} attacks (${(timeSavedMs / 1000).toFixed(2)}s faster)`;
-        } else if (timeSavedMs > 100 || staminaSaved > 5) {
-          totalScore += (timeSavedMs / 50) + (staminaSaved * 1.5);
-          summary = `Same attack count (${newRecipe.totalActions}), but ${(timeSavedMs / 1000).toFixed(2)}s faster and saves ${staminaSaved.toFixed(1)} stamina`;
+        let summary = '';
+        if (hitDelta > 0) {
+          summary = `Kills in ${newRecipe.totalActions} hits instead of ${baseline.totalActions} (${hitDelta} fewer hit!)`;
+        } else if (timeSavedMs > 100) {
+          summary = `Saves ${(timeSavedMs / 1000).toFixed(2)}s kill time with equal hits (${newRecipe.totalActions} hits)`;
+        } else if (staminaSaved > 2) {
+          summary = `Saves ${staminaSaved.toFixed(1)} stamina per kill`;
+        } else {
+          summary = `No major breakpoint shift vs ${enemy.name.split(' ')[0]} (${newRecipe.totalActions} hits)`;
         }
-      }
 
-      deltas.push({
-        enemySlug: enemy.slug,
-        enemyName: enemy.name,
-        weaponName: weapon.name,
-        baselineRecipe: baseline,
-        newRecipe,
-        actionsDelta,
-        timeSavedMs,
-        staminaSaved,
-        hasBreakpointGain,
-        summary
-      });
+        totalHitsSaved += Math.max(0, hitDelta);
+        totalTimeSavedMs += timeSavedMs;
+        totalStaminaSaved += staminaSaved;
+
+        deltas.push({
+          enemyId: enemy.id,
+          enemyName: enemy.name,
+          baselineHits: baseline.totalActions,
+          newHits: newRecipe.totalActions,
+          hitDelta,
+          baselineLethalTimeMs: baseline.lethalImpactTimeMs,
+          newLethalTimeMs: newRecipe.lethalImpactTimeMs,
+          timeSavedMs,
+          staminaSaved,
+          hasBreakpointGain: hasGain,
+          summary
+        });
+      }
     }
 
-    let recommendationReason = 'Provides general utility or stats without immediate kill breakpoint shift for current weapon.';
-    if (breakpointCount > 0) {
-      recommendationReason = `⭐ Top Recommendation! Gained ${breakpointCount} practical breakpoint(s) (fewer hits to kill) against benchmark enemies!`;
-    } else if (totalScore > 10) {
-      recommendationReason = `Improves attack execution speed and stamina efficiency on current weapon.`;
+    // Explicit scoring rule: Hits saved weighted highest, then time saved, then stamina
+    const score = (totalHitsSaved * 1000) + (totalTimeSavedMs / 10) + totalStaminaSaved;
+
+    let recommendationReason = '';
+    if (totalHitsSaved > 0) {
+      recommendationReason = `⭐ Reduces hits to kill across ${totalHitsSaved} target archetype(s)`;
+    } else if (totalTimeSavedMs > 200) {
+      recommendationReason = `⚡ Accelerates kill timing by ${(totalTimeSavedMs / 1000).toFixed(2)}s across benchmarks`;
+    } else if (totalStaminaSaved > 5) {
+      recommendationReason = `💧 Saves ${totalStaminaSaved.toFixed(0)} stamina across benchmark kills`;
+    } else {
+      recommendationReason = `Utility / incremental stat increase without immediate breakpoint shift`;
     }
 
     results.push({
       perk,
-      score: totalScore,
-      breakpointGainsCount: breakpointCount,
+      score,
       deltas,
-      recommendationReason
+      recommendationReason,
+      totalHitsSaved,
+      totalTimeSavedMs,
+      totalStaminaSaved
     });
   }
 
-  // Sort by highest score / most breakpoint gains
-  results.sort((a, b) => b.score - a.score || b.breakpointGainsCount - a.breakpointGainsCount);
+  // Sort ranked by highest marginal utility score
+  results.sort((a, b) => b.score - a.score);
 
   return results;
 }

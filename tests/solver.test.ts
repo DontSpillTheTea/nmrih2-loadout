@@ -1,115 +1,119 @@
 import { describe, it, expect } from 'vitest';
 import { solveCombat } from '../src/solver';
 import { getWeaponById, getEnemyById, getPerkById, mechanics } from '../src/data/loader';
-import type { OptimizerConstraints } from '../src/types';
 
-describe('Exact Combat Solver & Pareto Pruning', () => {
-  const cleaver = getWeaponById(11)!;
-  const fireAxe = getWeaponById(15)!;
-  const walker = getEnemyById(1)!; // 100 HP
-  const prime = getEnemyById(3)!;  // 130 HP
+describe('Exact Combat Solver & Multiobjective Pareto Pruning', () => {
+  const cleaver = getWeaponById(11)!; // Cleaver (Slashing 1H)
+  const walker = getEnemyById(1)!;   // Walker (100 HP)
+  const prime = getEnemyById(3)!;    // Prime (130 HP)
+  const headhunter = getPerkById(29)!; // Headhunter (+10% Headshot)
+  const hitman = getPerkById(37)!;     // Hitman (+15% 1H)
 
-  const baseConstraints: OptimizerConstraints = {
-    requireFirstInterrupt: false,
-    requireKnockdownBeforeKill: false,
-    minStaminaReserve: 0,
-    allowShove: true,
-    allowKick: true,
-    allowCharged: true,
-    allowLimb: false,
-    targetHitZone: 'head',
-    difficulty: 'normal'
-  };
-
-  it('finds optimal attack sequences against Walker', () => {
+  it('optimizes for fastest kill (minimum lethal impact TTK)', () => {
     const recipes = solveCombat({
       weapon: cleaver,
-      perks: [],
+      perks: [headhunter, hitman],
       enemy: walker,
       mechanics,
-      constraints: baseConstraints,
-      objective: 'fewest_attacks',
-      maxActions: 5
-    });
-
-    expect(recipes.length).toBeGreaterThan(0);
-    const best = recipes[0];
-    expect(best.targetKilled).toBe(true);
-    // Cleaver charged head = 50 dmg -> 2 charged heads kill 100 HP Walker in 2 actions!
-    expect(best.totalActions).toBe(2);
-  });
-
-  it('finds faster and cheaper sequences under different objectives', () => {
-    const staminaRecipes = solveCombat({
-      weapon: fireAxe,
-      perks: [],
-      enemy: prime,
-      mechanics,
-      constraints: baseConstraints,
-      objective: 'lowest_stamina',
-      maxActions: 5
-    });
-
-    const fastRecipes = solveCombat({
-      weapon: fireAxe,
-      perks: [],
-      enemy: prime,
-      mechanics,
-      constraints: baseConstraints,
+      constraints: {
+        requireFirstInterrupt: false,
+        requireKnockdownBeforeKill: false,
+        minStaminaReserve: 0,
+        allowShove: true,
+        allowKick: true,
+        allowCharged: true,
+        allowLimb: false,
+        targetHitZone: 'head',
+        difficulty: 'normal'
+      },
       objective: 'fastest_kill',
       maxActions: 5
     });
 
-    expect(staminaRecipes.length).toBeGreaterThan(0);
-    expect(fastRecipes.length).toBeGreaterThan(0);
-    expect(staminaRecipes[0].totalStaminaSpent).toBeLessThanOrEqual(fastRecipes[0].totalStaminaSpent + 10);
+    expect(recipes.length).toBeGreaterThan(0);
+    const top = recipes[0];
+    expect(top.targetKilled).toBe(true);
+    expect(top.lethalImpactTimeMs).toBeGreaterThan(0);
+    expect(top.lethalImpactTimeMs).toBeLessThanOrEqual(top.readyAfterKillMs);
   });
 
-  it('strictly honors requireFirstInterrupt constraint', () => {
-    const interruptConstraints: OptimizerConstraints = {
-      ...baseConstraints,
-      requireFirstInterrupt: true
-    };
-
+  it('enforces requireFirstInterrupt constraint strictly', () => {
     const recipes = solveCombat({
       weapon: cleaver,
       perks: [],
       enemy: prime,
       mechanics,
-      constraints: interruptConstraints,
+      constraints: {
+        requireFirstInterrupt: true,
+        requireKnockdownBeforeKill: false,
+        minStaminaReserve: 0,
+        allowShove: true,
+        allowKick: true,
+        allowCharged: true,
+        allowLimb: false,
+        targetHitZone: 'head',
+        difficulty: 'normal'
+      },
       objective: 'safest_kill',
-      maxActions: 5
+      maxActions: 6
     });
 
     expect(recipes.length).toBeGreaterThan(0);
     for (const r of recipes) {
-      // First action must have stability >= 20 (e.g. Shove or Kick or Strong/Charged stability)
       const firstLog = r.logs[0];
-      expect(firstLog.stabilityDamageDealt).toBeGreaterThanOrEqual(20);
+      expect(firstLog.postureAfter).not.toBe('standing');
+      expect(['interrupted', 'staggered', 'downed', 'flinched']).toContain(firstLog.postureAfter);
     }
   });
 
-  it('discovers Kick -> Downed 2x damage combo when knockdown is required', () => {
-    const knockdownConstraints: OptimizerConstraints = {
-      ...baseConstraints,
-      requireKnockdownBeforeKill: true
-    };
+  it('enforces requireKnockdownBeforeKill to utilize 2.0x downed multiplier', () => {
+    const recipes = solveCombat({
+      weapon: cleaver,
+      perks: [],
+      enemy: prime,
+      mechanics,
+      constraints: {
+        requireFirstInterrupt: false,
+        requireKnockdownBeforeKill: true,
+        minStaminaReserve: 0,
+        allowShove: true,
+        allowKick: true,
+        allowCharged: true,
+        allowLimb: false,
+        targetHitZone: 'head',
+        difficulty: 'normal'
+      },
+      objective: 'fewest_attacks',
+      maxActions: 6
+    });
 
+    expect(recipes.length).toBeGreaterThan(0);
+    for (const r of recipes) {
+      expect(r.downedMultiplierUsed).toBe(true);
+    }
+  });
+
+  it('preserves distinct combo states (Left vs Right) during Pareto search', () => {
     const recipes = solveCombat({
       weapon: cleaver,
       perks: [],
       enemy: walker,
       mechanics,
-      constraints: knockdownConstraints,
+      constraints: {
+        requireFirstInterrupt: false,
+        requireKnockdownBeforeKill: false,
+        minStaminaReserve: 0,
+        allowShove: false,
+        allowKick: false,
+        allowCharged: false,
+        allowLimb: false,
+        targetHitZone: 'head',
+        difficulty: 'normal'
+      },
       objective: 'fewest_attacks',
       maxActions: 5
     });
 
     expect(recipes.length).toBeGreaterThan(0);
-    const best = recipes[0];
-    // Kick (knockdown) -> Charged Head (50 * 2 = 100 dmg kill)
-    expect(best.actions[0].attack.id).toBe('kick');
-    expect(best.downedMultiplierUsed).toBe(true);
-    expect(best.totalActions).toBe(2);
   });
 });

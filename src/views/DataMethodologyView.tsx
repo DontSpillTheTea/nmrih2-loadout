@@ -1,18 +1,27 @@
 import React from 'react';
 import { CURRENT_GAME_VERSION, manifest } from '../data/loader';
 
-export const DataMethodologyView: React.FC = () => {
+interface DataMethodologyViewProps {
+  onClose?: () => void;
+}
+
+export const DataMethodologyView: React.FC<DataMethodologyViewProps> = ({ onClose }) => {
   return (
     <div className="main-container">
       <div className="card">
         <div className="card-title">
-          <span>📚 Data Provenance & Combat Engine Methodology</span>
-          <span className="badge badge-official">Patch {CURRENT_GAME_VERSION}</span>
+          <div>
+            <span>📚 Data Provenance & Combat Engine Methodology</span>
+            <span className="badge badge-official" style={{ marginLeft: '0.5rem' }}>Patch {CURRENT_GAME_VERSION}</span>
+          </div>
+          {onClose && (
+            <button className="btn btn-sm" onClick={onClose}>&times; Close</button>
+          )}
         </div>
 
         <div style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.85rem' }}>
           <h3 style={{ color: '#fff', fontSize: '1rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            1. Authoritative Data Sources
+            1. Authoritative Data Sources & Manifest
           </h3>
           <p style={{ marginBottom: '0.75rem' }}>
             This application ingests versioned data from structured game-file extractions and cross-checks official release patch notes. No numbers are fabricated or estimated.
@@ -30,14 +39,27 @@ export const DataMethodologyView: React.FC = () => {
           </ul>
 
           <h3 style={{ color: '#fff', fontSize: '1rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            2. Verified Damage Formula
+            2. Verified Directional Melee Combos
+          </h3>
+          <p style={{ marginBottom: '0.5rem' }}>
+            Strong melee attacks cannot open from neutral. The solver enforces legal player input sequences:
+          </p>
+          <ul style={{ marginLeft: '1.25rem', marginBottom: '1rem' }}>
+            <li><strong>Neutral Tap:</strong> Resolves to <strong>Quick Attack</strong>.</li>
+            <li><strong>Same-Direction Repeat:</strong> Resolves to <strong>Strong Attack</strong>.</li>
+            <li><strong>Alternating Direction:</strong> Resolves to chained <strong>Quick Attacks</strong>.</li>
+            <li><strong>Hold Direction:</strong> Resolves to <strong>Charged Attack</strong>.</li>
+          </ul>
+
+          <h3 style={{ color: '#fff', fontSize: '1rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
+            3. Verified Damage Formula
           </h3>
           <div style={{ backgroundColor: 'var(--bg-input)', padding: '0.85rem', borderRadius: '6px', fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '1rem', border: '1px solid var(--border-color)' }}>
             Damage = (Base Weapon Damage + Flat Additive Perks) * (1 + Sum of Multiplicative Perk Modifiers) * (Target Downed ? 2.0 : 1.0) * (1 - Armor Resistance)
           </div>
 
           <h3 style={{ color: '#fff', fontSize: '1rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            3. Stability & Posture Thresholds
+            4. Stability & Posture Thresholds
           </h3>
           <table className="matrix-table" style={{ marginBottom: '1rem' }}>
             <thead>
@@ -75,16 +97,6 @@ export const DataMethodologyView: React.FC = () => {
               </tr>
             </tbody>
           </table>
-
-          <h3 style={{ color: '#fff', fontSize: '1rem', marginTop: '1rem', marginBottom: '0.5rem' }}>
-            4. Verified Updates from Official 1.0 Patch Notes
-          </h3>
-          <ul style={{ marginLeft: '1.25rem', marginBottom: '1rem' }}>
-            <li><strong>Shove Stamina:</strong> Reduced from 25 to 15 in Armageddon 1.0 update.</li>
-            <li><strong>Melee Triples:</strong> Ordered Quick / Strong / Charged.</li>
-            <li><strong>Reference HP:</strong> Normal Zombies 100 HP, Shamblers 70 HP, Primes 130 HP.</li>
-            <li><strong>Slashing Weapons Stability:</strong> 5 on Quick, 10 on Strong.</li>
-          </ul>
         </div>
       </div>
     </div>

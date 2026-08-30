@@ -1,8 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { encodeBuild, encodeResponder, encodeFullBackup, decodeCode } from '../src/serialization/codec';
+import {
+  encodeBuild,
+  encodeResponder,
+  encodeScenario,
+  encodeFullBackup,
+  decodeCode
+} from '../src/serialization/codec';
 import { createDefaultLoadout, createDefaultResponder, createInitialAppState } from '../src/storage';
+import type { CombatScenario } from '../src/types';
 
-describe('Serialization and Compact Share Codes', () => {
+describe('Serialization and Compact Share Codes (N2B1, N2C1, N2S1, N2A1)', () => {
   it('encodes and decodes Loadout (N2B1) roundtrip losslessly', () => {
     const loadout = createDefaultLoadout('b-test', 'Hatchet Hunter');
     loadout.weaponId = 12;
@@ -35,6 +42,40 @@ describe('Serialization and Compact Share Codes', () => {
     expect(decoded.data.perkIds).toEqual([7, 8, 19, 29, 37]);
   });
 
+  it('encodes and decodes Scenario (N2S1) roundtrip losslessly', () => {
+    const scenario: CombatScenario = {
+      id: 'sc-1',
+      name: 'Prime Runner Cleaver Test',
+      weaponId: 11,
+      enemyId: 5,
+      difficulty: 'hard',
+      perkIds: [29, 37],
+      constraints: {
+        requireFirstInterrupt: true,
+        requireKnockdownBeforeKill: false,
+        minStaminaReserve: 10,
+        allowShove: true,
+        allowKick: true,
+        allowCharged: true,
+        allowLimb: false,
+        targetHitZone: 'head',
+        difficulty: 'hard'
+      },
+      objective: 'fastest_kill',
+      gameVersion: '1.0.4.0'
+    };
+
+    const code = encodeScenario(scenario);
+    expect(code.startsWith('N2S1-')).toBe(true);
+
+    const decoded = decodeCode(code);
+    expect(decoded.family).toBe('N2S1');
+    expect(decoded.type).toBe('S');
+    expect(decoded.data.name).toBe('Prime Runner Cleaver Test');
+    expect(decoded.data.enemyId).toBe(5);
+    expect(decoded.data.constraints.requireFirstInterrupt).toBe(true);
+  });
+
   it('encodes and decodes Full App Backup (N2A1) roundtrip', () => {
     const appState = createInitialAppState();
     const code = encodeFullBackup(appState);
@@ -57,5 +98,9 @@ describe('Serialization and Compact Share Codes', () => {
 
   it('rejects unknown code prefixes', () => {
     expect(() => decodeCode('UNKNOWN-XXXX.YYYY')).toThrow(/Unsupported or unknown code prefix/);
+  });
+
+  it('rejects malformed Base64URL characters in payload', () => {
+    expect(() => decodeCode('N2B1-$$$invalid$$$.12345')).toThrow();
   });
 });

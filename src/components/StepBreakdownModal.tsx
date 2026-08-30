@@ -11,12 +11,12 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '750px' }}>
         <div className="modal-header">
           <div>
-            <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>Combat Recipe Breakdown</h3>
+            <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>Combat Recipe & Formula Breakdown</h3>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-              {recipe.weapon.name} • {recipe.totalActions} Actions • {(recipe.totalTimeMs / 1000).toFixed(2)}s • {recipe.totalStaminaSpent} Stamina
+              {recipe.weapon.name} • {recipe.totalActions} Actions • Lethal Impact: {(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s • Ready: {(recipe.readyAfterKillMs / 1000).toFixed(2)}s • {recipe.totalStaminaSpent} Stamina
             </div>
           </div>
           <button className="close-btn" onClick={onClose}>&times;</button>
@@ -31,8 +31,9 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
             <div key={idx} className="step-item">
               <div className="step-header">
                 <div>
-                  <span style={{ color: 'var(--accent-blue)', marginRight: '0.4rem' }}>#{log.stepIndex}</span>
-                  <span style={{ color: '#fff' }}>{log.actionName}</span>
+                  <span style={{ color: 'var(--accent-blue)', marginRight: '0.4rem', fontWeight: 700 }}>#{log.stepIndex}</span>
+                  <span style={{ color: '#fff', fontWeight: 600 }}>{log.inputDescription}</span>
+                  <span style={{ color: 'var(--accent-cyan)', marginLeft: '0.4rem' }}>&rarr; {log.resolvedActionName}</span>
                   <span style={{ color: 'var(--text-muted)', marginLeft: '0.4rem' }}>({log.hitZone})</span>
                 </div>
                 <div>
@@ -44,15 +45,15 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
 
               <div className="step-details">
                 <div>Base Damage: <strong>{log.baseDamage}</strong></div>
-                <div>Flat Perk Addition: <strong>+{log.additiveFlat}</strong></div>
-                <div>Perk Multiplier: <strong>+{Math.round(log.multiplicativeBonus * 100)}%</strong></div>
+                <div>Flat Additive Perks: <strong>+{log.additiveFlat}</strong></div>
+                <div>Multiplicative Perks: <strong>+{Math.round(log.multiplicativeBonus * 100)}%</strong></div>
                 <div>Downed Multiplier: <strong>{log.downedMultiplier}x</strong> {log.isDownedHit && '🔥'}</div>
                 <div>Final Damage Dealt: <strong style={{ color: 'var(--accent-green)' }}>{log.finalDamage}</strong></div>
                 <div>Stability Damage: <strong>{log.stabilityDamageDealt}</strong></div>
-                <div>Enemy HP: <strong>{log.hpBefore} → {log.hpAfter}</strong></div>
-                <div>Player Stamina: <strong>{log.staminaBefore} → {log.staminaAfter}</strong></div>
-                <div>Step Duration: <strong>{log.actionDurationMs}ms</strong></div>
-                <div>Total Elapsed: <strong>{(log.timeElapsedMs / 1000).toFixed(2)}s</strong></div>
+                <div>Enemy HP: <strong>{log.hpBefore} &rarr; {log.hpAfter}</strong></div>
+                <div>Player Stamina: <strong>{log.staminaBefore} &rarr; {log.staminaAfter}</strong></div>
+                <div>Impact Timing: <strong>{(log.impactElapsedMs / 1000).toFixed(2)}s</strong></div>
+                <div>Next Action Ready: <strong>{(log.readyElapsedMs / 1000).toFixed(2)}s</strong></div>
               </div>
 
               {log.notes.length > 0 && (

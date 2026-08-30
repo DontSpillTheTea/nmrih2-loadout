@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "data:fetch": "python3 scripts/fetch-data.py",
     "data:normalize": "python3 scripts/normalize-data.py",
-    "data:update": "npm run data:fetch && npm run data:normalize",
+    "data:provenance-audit": "python3 scripts/audit-provenance.py",
+    "data:update": "npm run data:fetch && npm run data:normalize && npm run data:provenance-audit",
     "deploy": "npm run build && npx wrangler deploy"
   },
   "dependencies": {

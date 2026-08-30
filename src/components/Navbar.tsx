@@ -1,18 +1,23 @@
 import React from 'react';
 import { CURRENT_GAME_VERSION } from '../data/loader';
 
-export type ActiveView = 'optimizer' | 'planner' | 'perk-picker' | 'compare' | 'data';
+export type MainTab = 'combat' | 'builds';
+export type SubTab = 'optimize' | 'compare' | 'planner' | 'perk-picker' | 'data';
 
 interface NavbarProps {
-  activeView: ActiveView;
-  setActiveView: (view: ActiveView) => void;
+  mainTab: MainTab;
+  subTab: SubTab;
+  onSelectTab: (main: MainTab, sub: SubTab) => void;
+  onOpenDataMethodology: () => void;
   onOpenSettings: () => void;
   onOpenImport: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  activeView,
-  setActiveView,
+  mainTab,
+  subTab,
+  onSelectTab,
+  onOpenDataMethodology,
   onOpenSettings,
   onOpenImport
 }) => {
@@ -20,40 +25,46 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="header">
       <div className="brand">
         <div className="brand-title">NMRiH2 Combat Optimizer</div>
-        <span className="brand-badge">Patch {CURRENT_GAME_VERSION}</span>
+        <button
+          className="brand-badge"
+          style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
+          title="Click to view Data Methodology & Provenance"
+          onClick={onOpenDataMethodology}
+        >
+          Patch {CURRENT_GAME_VERSION} 📚
+        </button>
       </div>
 
-      <nav className="nav-tabs">
-        <button
-          className={`nav-tab ${activeView === 'optimizer' ? 'active' : ''}`}
-          onClick={() => setActiveView('optimizer')}
-        >
-          ⚔️ Combat Optimizer
-        </button>
-        <button
-          className={`nav-tab ${activeView === 'planner' ? 'active' : ''}`}
-          onClick={() => setActiveView('planner')}
-        >
-          📋 Build Planner
-        </button>
-        <button
-          className={`nav-tab ${activeView === 'perk-picker' ? 'active' : ''}`}
-          onClick={() => setActiveView('perk-picker')}
-        >
-          🎲 RNG Perk Picker
-        </button>
-        <button
-          className={`nav-tab ${activeView === 'compare' ? 'active' : ''}`}
-          onClick={() => setActiveView('compare')}
-        >
-          📊 Breakpoint Matrix
-        </button>
-        <button
-          className={`nav-tab ${activeView === 'data' ? 'active' : ''}`}
-          onClick={() => setActiveView('data')}
-        >
-          📚 Data & Methodology
-        </button>
+      <nav style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <div className="nav-tabs">
+          <button
+            className={`nav-tab ${mainTab === 'combat' && subTab === 'optimize' ? 'active' : ''}`}
+            onClick={() => onSelectTab('combat', 'optimize')}
+          >
+            ⚔️ Optimize
+          </button>
+          <button
+            className={`nav-tab ${mainTab === 'combat' && subTab === 'compare' ? 'active' : ''}`}
+            onClick={() => onSelectTab('combat', 'compare')}
+          >
+            📊 Compare Matrix
+          </button>
+        </div>
+
+        <div className="nav-tabs">
+          <button
+            className={`nav-tab ${mainTab === 'builds' && subTab === 'planner' ? 'active' : ''}`}
+            onClick={() => onSelectTab('builds', 'planner')}
+          >
+            📋 Responders & Builds
+          </button>
+          <button
+            className={`nav-tab ${mainTab === 'builds' && subTab === 'perk-picker' ? 'active' : ''}`}
+            onClick={() => onSelectTab('builds', 'perk-picker')}
+          >
+            🎲 RNG Perk Picker
+          </button>
+        </div>
       </nav>
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>

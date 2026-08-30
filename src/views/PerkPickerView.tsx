@@ -13,7 +13,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
   const [choice2, setChoice2] = useState<number>(37); // Hitman
   const [choice3, setChoice3] = useState<number>(7);  // Athlete
 
-  const [objective] = useState<OptimizerObjective>('fewest_attacks');
+  const [objective] = useState<OptimizerObjective>('fastest_kill');
   const [constraints] = useState<OptimizerConstraints>({
     requireFirstInterrupt: false,
     requireKnockdownBeforeKill: false,
@@ -53,7 +53,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
       <div className="card">
         <div className="card-title">
           <div>
-            <span>🎲 In-Game RNG Perk Choice Assistant</span>
+            <span>🎲 In-Game Level-Up RNG Perk Choice Assistant</span>
             <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
               Marginal Breakpoint Analysis for {activeResponder.name} ({currentEquippedPerks.length}/10 slots used)
             </span>
@@ -61,7 +61,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
         </div>
 
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '1.25rem' }}>
-          When the game offers you 3 RNG perk choices on level-up, select them below. The engine runs a full combat sequence search across benchmark zombie archetypes to determine which perk actually crosses a critical combat breakpoint (fewer hits to kill or safer control).
+          Select the 3 RNG perks offered in your in-game level-up roll. The engine simulates legal input combos across core benchmark enemies and exposes the exact before & after recipe deltas.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -81,7 +81,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
           </div>
 
           <div className="form-group">
-            <label className="form-label">Option #1 Rolled</label>
+            <label className="form-label">Roll Option #1</label>
             <select
               className="form-select"
               value={choice1}
@@ -96,7 +96,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
           </div>
 
           <div className="form-group">
-            <label className="form-label">Option #2 Rolled</label>
+            <label className="form-label">Roll Option #2</label>
             <select
               className="form-select"
               value={choice2}
@@ -111,7 +111,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
           </div>
 
           <div className="form-group">
-            <label className="form-label">Option #3 Rolled</label>
+            <label className="form-label">Roll Option #3</label>
             <select
               className="form-select"
               value={choice3}
@@ -171,7 +171,7 @@ export const PerkPickerView: React.FC<PerkPickerViewProps> = ({ activeResponder 
                     {choice.perk.description}
                   </p>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.65rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.65rem' }}>
                     {choice.deltas.map((delta, dIdx) => (
                       <div
                         key={dIdx}
