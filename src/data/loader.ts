@@ -43,6 +43,22 @@ export function getFirearms(): Weapon[] {
   return weapons.filter(w => w.category === 'firearm');
 }
 
+export function getMeleeBySubcategory() {
+  return {
+    bladed: weapons.filter(w => w.category === 'melee' && w.meleeCategory === 'bladed' && w.id !== 1),
+    blunt: weapons.filter(w => w.category === 'melee' && w.meleeCategory === 'blunt' && w.id !== 1)
+  };
+}
+
+export function getFirearmsBySubcategory() {
+  return {
+    handguns: weapons.filter(w => w.category === 'firearm' && w.gunCategory === 'handgun'),
+    smgs: weapons.filter(w => w.category === 'firearm' && w.gunCategory === 'smg'),
+    shotguns: weapons.filter(w => w.category === 'firearm' && w.gunCategory === 'shotgun'),
+    rifles: weapons.filter(w => w.category === 'firearm' && (w.gunCategory === 'rifle' || w.gunCategory === 'heavy rifle'))
+  };
+}
+
 export function getUniversalUnarmed(): Weapon {
   return weapons.find(w => w.id === 1) || weapons[0];
 }

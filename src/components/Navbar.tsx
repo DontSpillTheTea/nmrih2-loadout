@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="header">
       <div className="brand">
-        <div className="brand-title">NMRiH2 Combat Optimizer</div>
+        <div className="brand-title">NMRiH2 Loadouts</div>
         <button
           className="brand-badge"
           style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}

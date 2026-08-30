@@ -7,12 +7,13 @@ import {
   mechanics,
   getWeaponById,
   getEnemyById,
-  getMeleeWeapons,
-  getFirearms,
+  getMeleeBySubcategory,
+  getFirearmsBySubcategory,
   getLogicalPerkGroups,
   type LogicalPerkGroup
 } from '../data/loader';
 import { solveCombat } from '../solver';
+import { formatActionPill, formatActionSequence } from '../utils/format';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
 import { analytics } from '../analytics';
 
@@ -85,8 +86,8 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
     });
   }, [selectedWeapon, selectedEnemy, activePerks, constraints, objective]);
 
-  const meleeList = useMemo(() => getMeleeWeapons(), []);
-  const firearmsList = useMemo(() => getFirearms(), []);
+  const meleeGroups = useMemo(() => getMeleeBySubcategory(), []);
+  const firearmGroups = useMemo(() => getFirearmsBySubcategory(), []);
 
   const getPerkTierState = (group: LogicalPerkGroup): 'off' | 'standard' | 'expert' => {
     if (group.expertPerk && selectedPerkIds.includes(group.expertPerk.id)) {
@@ -101,14 +102,14 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
   return (
     <div className="main-container">
       <div className="grid-3col">
-        {/* Left Column: Target & Scenario Controls */}
+        {/* Left Column: Enemy and Weapon Controls */}
         <div className="sidebar">
-          {/* Target & Weapon */}
+          {/* Enemy and Weapon Panel */}
           <div className="card">
-            <div className="card-title">Target & Weapon</div>
+            <div className="card-title">Enemy and Weapon</div>
 
             <div className="form-group">
-              <label className="form-label">Target Enemy</label>
+              <label className="form-label">Enemy</label>
               <select
                 className="form-select"
                 value={selectedEnemyId}
@@ -123,23 +124,51 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
             </div>
 
             <div className="form-group">
-              <label className="form-label">Active Weapon</label>
+              <label className="form-label">Weapon</label>
               <select
                 className="form-select"
                 value={selectedWeaponId}
                 onChange={e => setSelectedWeaponId(Number(e.target.value))}
               >
-                <optgroup label="Melee Weapons">
-                  {meleeList.map(w => (
+                <optgroup label="Melee: Bladed">
+                  {meleeGroups.bladed.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name} ({w.meleeCategory || 'Melee'}, {w.handedness})
+                      {w.name} ({w.handedness})
                     </option>
                   ))}
                 </optgroup>
-                <optgroup label="Firearms">
-                  {firearmsList.map(w => (
+                <optgroup label="Melee: Blunt">
+                  {meleeGroups.blunt.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name} ({w.gunCategory})
+                      {w.name} ({w.handedness})
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Firearms: Handguns">
+                  {firearmGroups.handguns.map(w => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Firearms: SMGs">
+                  {firearmGroups.smgs.map(w => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Firearms: Shotguns">
+                  {firearmGroups.shotguns.map(w => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="Firearms: Rifles">
+                  {firearmGroups.rifles.map(w => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
                     </option>
                   ))}
                 </optgroup>
@@ -153,56 +182,55 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
                 value={constraints.difficulty}
                 onChange={e => setConstraints({ ...constraints, difficulty: e.target.value as any })}
               >
-                <option value="beginner">Beginner (0.7x Enemy HP)</option>
-                <option value="normal">Normal (1.0x Enemy HP)</option>
+                <option value="beginner">Beginner (0.7x HP)</option>
+                <option value="normal">Normal (1.0x HP)</option>
                 <option value="hard">Hard (Standard HP)</option>
                 <option value="nightmare">Nightmare (Standard HP)</option>
               </select>
             </div>
           </div>
 
-          {/* Goal & Priority */}
+          {/* Goal Panel */}
           <div className="card">
-            <div className="card-title">Goal & Optimization Priority</div>
+            <div className="card-title">Goal</div>
             <div className="form-group">
-              <label className="form-label">Objective</label>
               <select
                 className="form-select"
                 value={objective}
                 onChange={e => setObjective(e.target.value as OptimizerObjective)}
               >
-                <option value="fastest_kill">⚡ Fast Kill (Minimum Lethal Kill Time)</option>
-                <option value="lowest_stamina">💧 Stamina-Efficient Kill</option>
-                <option value="safest_kill">🛡️ Fast Control (Earliest Stun / Interruption)</option>
-                <option value="efficient_control">⚖️ Stamina-Efficient Control</option>
-                <option value="fewest_attacks">🎯 Advanced: Fewest Actions</option>
-                <option value="balanced">📊 Advanced: Balanced Pareto Metric</option>
+                <option value="fastest_kill">⚡ Fast Kill</option>
+                <option value="lowest_stamina">💧 Efficient Kill</option>
+                <option value="safest_kill">🛡️ Fast Control</option>
+                <option value="efficient_control">⚖️ Efficient Control</option>
+                <option value="fewest_attacks">🎯 Fewest Actions</option>
+                <option value="balanced">📊 Balanced</option>
               </select>
             </div>
           </div>
 
           {/* Combat Toggles & Safety Constraints */}
           <div className="card">
-            <div className="card-title">Combat Constraints</div>
+            <div className="card-title">Constraints</div>
 
             <div className="form-group">
-              <label className="form-label">Target Hit Zone</label>
+              <label className="form-label">Hit Zone</label>
               <select
                 className="form-select"
                 value={constraints.targetHitZone}
                 onChange={e => setConstraints({ ...constraints, targetHitZone: e.target.value as any })}
               >
-                <option value="head">Headshots Assumed (High Damage)</option>
-                <option value="body">Body Hits (Center Mass)</option>
-                <option value="auto">Auto / Mixed (Solver Choice)</option>
-                <option value="limb">Limb / Dismemberment</option>
+                <option value="head">Headshots Assumed</option>
+                <option value="body">Body Hits</option>
+                <option value="auto">Auto / Mixed</option>
+                <option value="limb">Limb</option>
               </select>
             </div>
 
             <div className="toggle-item">
               <div>
                 <div className="toggle-label">🛡️ Safe Opener</div>
-                <div className="toggle-desc">Target must be killed or stunned immediately</div>
+                <div className="toggle-desc">Stun or kill before enemy attack</div>
               </div>
               <input
                 type="checkbox"
@@ -218,7 +246,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
             <div className="toggle-item">
               <div>
                 <div className="toggle-label">⚡ Pre-Charge Opener</div>
-                <div className="toggle-desc">Hold Charged outside range; release on entry</div>
+                <div className="toggle-desc">Hold Charged out of range; release on entry</div>
               </div>
               <input
                 type="checkbox"
@@ -230,7 +258,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
             <div className="toggle-item">
               <div>
                 <div className="toggle-label">Require Knockdown</div>
-                <div className="toggle-desc">Forces knockdown for 2.0x downed bonus</div>
+                <div className="toggle-desc">Forces knockdown for 2x damage</div>
               </div>
               <input
                 type="checkbox"
@@ -242,7 +270,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
             <div className="toggle-item">
               <div>
                 <div className="toggle-label">Allow Shove</div>
-                <div className="toggle-desc">15 Stamina, 20 Stability (Interrupt)</div>
+                <div className="toggle-desc">15 Stamina, 20 Stability</div>
               </div>
               <input
                 type="checkbox"
@@ -254,7 +282,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
             <div className="toggle-item">
               <div>
                 <div className="toggle-label">Allow Kick</div>
-                <div className="toggle-desc">50 Stamina, 100 Stability (Knockdown)</div>
+                <div className="toggle-desc">50 Stamina, 100 Stability</div>
               </div>
               <input
                 type="checkbox"
@@ -265,12 +293,12 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
           </div>
         </div>
 
-        {/* Center Column: Recommended & Ranked Combat Recipes */}
+        {/* Center Column: Optimal Attacks */}
         <div className="results-column">
           <div className="card">
             <div className="card-title">
               <div>
-                <span>Ranked Legal Combat Recipes</span>
+                <span>Optimal Attacks</span>
                 <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
                   vs. {selectedEnemy.name} • {selectedWeapon.name}
                 </span>
@@ -307,14 +335,19 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
                             {isTop ? '⭐ RECOMMENDED' : `#${idx + 1}`}
                           </span>
                           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.35rem' }}>
-                            {recipe.actions.map((act, aIdx) => (
-                              <React.Fragment key={aIdx}>
-                                {renderActionToken(act.input, act.hitZone)}
-                                {aIdx < recipe.actions.length - 1 && (
-                                  <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>&rarr;</span>
-                                )}
-                              </React.Fragment>
-                            ))}
+                            {recipe.actions.map((act, aIdx) => {
+                              const pill = formatActionPill(act.input, act.hitZone, act.resolvedAttack?.name);
+                              return (
+                                <React.Fragment key={aIdx}>
+                                  <span className={`action-pill ${pill.isCharged ? 'charged' : ''} ${pill.isControl ? 'control' : ''}`}>
+                                    {pill.label} {pill.icon}
+                                  </span>
+                                  {aIdx < recipe.actions.length - 1 && (
+                                    <span style={{ color: 'var(--text-muted)', fontWeight: 700 }}>→</span>
+                                  )}
+                                </React.Fragment>
+                              );
+                            })}
                           </div>
                         </div>
 
@@ -331,10 +364,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
                       </div>
 
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
-                        Resolves to:{' '}
-                        <strong style={{ color: '#fff' }}>
-                          {recipe.logs.map(l => `${l.resolvedActionName}`).join(' &rarr; ')}
-                        </strong>
+                        Sequence: <strong style={{ color: '#fff' }}>{formatActionSequence(recipe)}</strong>
                       </div>
 
                       <div className="metrics-grid">
@@ -373,7 +403,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
                       </div>
 
                       <div style={{ marginTop: '0.65rem', fontSize: '0.75rem', color: 'var(--accent-cyan)', textAlign: 'right', fontWeight: 600 }}>
-                        Why this works & formula breakdown &raquo;
+                        Why this works & formula breakdown →
                       </div>
                     </div>
                   );
@@ -383,11 +413,11 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
           </div>
         </div>
 
-        {/* Right Column: Tri-State Perk Rail */}
+        {/* Right Column: Perks Rail */}
         <div className="perk-rail">
           <div className="card">
             <div className="card-title">
-              <span>Perks & Build Rail</span>
+              <span>Perks</span>
               <span className="badge badge-official">{activePerks.length}/10 Active</span>
             </div>
 
@@ -478,30 +508,3 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
     </div>
   );
 };
-
-function renderActionToken(input: PlayerInput, hitZone: string) {
-  const isCharged = input.kind === 'hold';
-  const isControl = input.kind === 'shove' || input.kind === 'kick';
-  const isShot = input.kind === 'firearm_shot';
-
-  let label = '';
-  if (input.kind === 'tap') {
-    label = `Quick ${input.side === 'left' ? 'L' : 'R'}`;
-  } else if (input.kind === 'hold') {
-    label = `Charged ${input.side === 'left' ? 'L' : 'R'}`;
-  } else if (input.kind === 'shove') {
-    label = 'Shove';
-  } else if (input.kind === 'kick') {
-    label = 'Kick';
-  } else if (input.kind === 'firearm_shot') {
-    label = 'Shot';
-  }
-
-  const icon = hitZone === 'head' ? '🎯' : isCharged ? '⚡' : isControl ? '🛡️' : isShot ? '💥' : '';
-
-  return (
-    <span className={`action-pill ${isCharged ? 'charged' : ''} ${isControl ? 'control' : ''}`}>
-      {label} {icon}
-    </span>
-  );
-}

@@ -16,7 +16,7 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
           <div>
             <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>Combat Recipe & Formula Breakdown</h3>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-              {recipe.weapon.name} • {recipe.totalActions} Actions • Lethal Impact: {(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s • Ready: {(recipe.readyAfterKillMs / 1000).toFixed(2)}s • {recipe.totalStaminaSpent} Stamina
+              {recipe.weapon.name} • {recipe.totalActions} Actions • Lethal Impact: ~{(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s • Ready: ~{(recipe.readyAfterKillMs / 1000).toFixed(2)}s • {recipe.weapon.category === 'firearm' ? `${recipe.totalAmmoSpent} rounds` : `${recipe.totalStaminaSpent} stamina`}
             </div>
           </div>
           <button className="close-btn" onClick={onClose}>&times;</button>
@@ -33,7 +33,7 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
                 <div>
                   <span style={{ color: 'var(--accent-blue)', marginRight: '0.4rem', fontWeight: 700 }}>#{log.stepIndex}</span>
                   <span style={{ color: '#fff', fontWeight: 600 }}>{log.inputDescription}</span>
-                  <span style={{ color: 'var(--accent-cyan)', marginLeft: '0.4rem' }}>&rarr; {log.resolvedActionName}</span>
+                  <span style={{ color: 'var(--accent-cyan)', marginLeft: '0.4rem' }}>→ {log.resolvedActionName}</span>
                   <span style={{ color: 'var(--text-muted)', marginLeft: '0.4rem' }}>({log.hitZone})</span>
                 </div>
                 <div>
@@ -48,12 +48,15 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
                 <div>Flat Additive Perks: <strong>+{log.additiveFlat}</strong></div>
                 <div>Multiplicative Perks: <strong>+{Math.round(log.multiplicativeBonus * 100)}%</strong></div>
                 <div>Downed Multiplier: <strong>{log.downedMultiplier}x</strong> {log.isDownedHit && '🔥'}</div>
+                {log.armorDamage > 0 && (
+                  <div>Armor Durability: <strong>-{log.armorDamage} ({log.armorHpAfter} HP left)</strong> {log.armorBrokenNow && '💥 BROKEN'}</div>
+                )}
                 <div>Final Damage Dealt: <strong style={{ color: 'var(--accent-green)' }}>{log.finalDamage}</strong></div>
                 <div>Stability Damage: <strong>{log.stabilityDamageDealt}</strong></div>
-                <div>Enemy HP: <strong>{log.hpBefore} &rarr; {log.hpAfter}</strong></div>
-                <div>Player Stamina: <strong>{log.staminaBefore} &rarr; {log.staminaAfter}</strong></div>
-                <div>Impact Timing: <strong>{(log.impactElapsedMs / 1000).toFixed(2)}s</strong></div>
-                <div>Next Action Ready: <strong>{(log.readyElapsedMs / 1000).toFixed(2)}s</strong></div>
+                <div>Enemy HP: <strong>{log.hpBefore} → {log.hpAfter}</strong></div>
+                <div>Player Stamina: <strong>{log.staminaBefore} → {log.staminaAfter}</strong></div>
+                <div>Impact Timing: <strong>~{(log.impactElapsedMs / 1000).toFixed(2)}s</strong></div>
+                <div>Next Action Ready: <strong>~{(log.readyElapsedMs / 1000).toFixed(2)}s</strong></div>
               </div>
 
               {log.notes.length > 0 && (

@@ -15,6 +15,7 @@ import type {
 import { createInitialCombatState, transition } from '../engine/transition';
 import { resolvePlayerInput } from '../engine/combo';
 import { isControlPosture } from '../engine/stability';
+import { calculateAttackDamage } from '../engine/damage';
 import { getUniversalUnarmed } from '../data/loader';
 
 export interface SolverOptions {
@@ -39,16 +40,15 @@ interface SearchNode {
   armorBroken: boolean;
 }
 
-export function solveCombat(options: SolverOptions): CombatRecipe[] {
-  const {
-    weapon,
-    perks,
-    enemy,
-    mechanics,
-    constraints,
-    objective,
-    maxActions = 6
-  } = options;
+export function getUsefulLegalActions(
+  weapon: Weapon,
+  state: CombatState,
+  perks: Perk[],
+  enemy: Enemy,
+  mechanics: MechanicsConfig,
+  constraints: OptimizerConstraints
+): Array<{ input: PlayerInput; hitZone: HitZone }> {
+  const actions: Array<{ input: PlayerInput; hitZone: HitZone }> = [];
 
   // Hit Zones
   const hitZones: HitZone[] = [];
@@ -65,35 +65,82 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
     }
   }
 
-  // Legal input candidates
-  const legalInputs: Array<{ input: PlayerInput; hitZone: HitZone }> = [];
-
+  // 1. Primary Weapon Damaging Actions
   if (weapon.category === 'firearm') {
     for (const hz of hitZones) {
-      legalInputs.push({
+      actions.push({
         input: { kind: 'firearm_shot', hitZone: hz },
         hitZone: hz
       });
     }
   } else {
-    // Melee: directional inputs (Left, Right)
+    // Melee directional inputs
     for (const hz of hitZones) {
-      legalInputs.push({ input: { kind: 'tap', side: 'left', hitZone: hz }, hitZone: hz });
-      legalInputs.push({ input: { kind: 'tap', side: 'right', hitZone: hz }, hitZone: hz });
+      actions.push({ input: { kind: 'tap', side: 'left', hitZone: hz }, hitZone: hz });
+      actions.push({ input: { kind: 'tap', side: 'right', hitZone: hz }, hitZone: hz });
       if (constraints.allowCharged) {
-        legalInputs.push({ input: { kind: 'hold', side: 'right', hitZone: hz }, hitZone: hz }); // ergonomic alternating preference
-        legalInputs.push({ input: { kind: 'hold', side: 'left', hitZone: hz }, hitZone: hz });
+        actions.push({ input: { kind: 'hold', side: 'right', hitZone: hz }, hitZone: hz });
+        actions.push({ input: { kind: 'hold', side: 'left', hitZone: hz }, hitZone: hz });
       }
     }
   }
 
+  const unarmed = getUniversalUnarmed();
+  const shoveAttack = unarmed.attacks.find(a => a.id === 'shove') || unarmed.attacks[0];
+  const kickAttack = unarmed.attacks.find(a => a.id === 'kick') || unarmed.attacks[1];
+
+  // Evaluate if Shove or Kick deal damage with active perks
+  const shoveDmgCalc = calculateAttackDamage(unarmed, shoveAttack, 'body', perks, enemy, state, mechanics);
+  const kickDmgCalc = calculateAttackDamage(unarmed, kickAttack, 'body', perks, enemy, state, mechanics);
+
+  const shoveDealsDamage = shoveDmgCalc.finalDamage > 0;
+  const kickDealsDamage = kickDmgCalc.finalDamage > 0;
+
+  // 2. Shove Generation Policy
   if (constraints.allowShove) {
-    legalInputs.push({ input: { kind: 'shove' }, hitZone: 'body' });
+    if (shoveDealsDamage) {
+      // Damaging shove (e.g. perk active) is always eligible
+      actions.push({ input: { kind: 'shove' }, hitZone: 'body' });
+    } else {
+      // Non-damaging shove:
+      // - NEVER allowed if target is already Downed (cannot improve Downed)
+      // - NEVER allowed if previous action was already a non-damaging control action (prevents repeated zero-damage shove spam)
+      const canShove = !state.isDowned && state.lastAttackType !== 'shove' && state.lastAttackType !== 'kick';
+      if (canShove) {
+        actions.push({ input: { kind: 'shove' }, hitZone: 'body' });
+      }
+    }
   }
 
+  // 3. Kick Generation Policy
   if (constraints.allowKick) {
-    legalInputs.push({ input: { kind: 'kick' }, hitZone: 'body' });
+    if (kickDealsDamage) {
+      // Damaging kick (e.g. Foreman perk active) is always eligible
+      actions.push({ input: { kind: 'kick' }, hitZone: 'body' });
+    } else {
+      // Non-damaging kick:
+      // - NEVER allowed if target is already Downed (cannot improve Downed)
+      // - NEVER allowed after an initial Shove (Shove -> Kick is strictly dominated by Kick directly)
+      const canKick = !state.isDowned && state.lastAttackType !== 'shove' && state.lastAttackType !== 'kick';
+      if (canKick) {
+        actions.push({ input: { kind: 'kick' }, hitZone: 'body' });
+      }
+    }
   }
+
+  return actions;
+}
+
+export function solveCombat(options: SolverOptions): CombatRecipe[] {
+  const {
+    weapon,
+    perks,
+    enemy,
+    mechanics,
+    constraints,
+    objective,
+    maxActions = 6
+  } = options;
 
   const initialState = createInitialCombatState(enemy, mechanics, constraints.difficulty);
   const context = {
@@ -180,7 +227,10 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
       continue;
     }
 
-    for (const candidate of legalInputs) {
+    // Get goal-directed useful actions for this state
+    const usefulCandidates = getUsefulLegalActions(weapon, current.state, perks, enemy, mechanics, constraints);
+
+    for (const candidate of usefulCandidates) {
       const isFirstAction = current.actions.length === 0;
 
       // Determine resolving attack
@@ -203,7 +253,6 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
       // Check constraint: Safe Opener / Require First Interrupt (default ON)
       const requireSafe = constraints.safeOpener ?? constraints.requireFirstInterrupt;
       if (isFirstAction && requireSafe) {
-        // Safe opener satisfied if target dies in 1 hit or reaches control posture (interrupt/stagger/downed)
         const isSafe = nextState.targetHp <= 0 || isControlPosture(nextState.posture);
         if (!isSafe) {
           continue;
@@ -223,7 +272,7 @@ export function solveCombat(options: SolverOptions): CombatRecipe[] {
       const staminaSpent = current.totalStaminaSpent + log.staminaCost;
       const ammoSpent = current.totalAmmoSpent + (candidate.input.kind === 'firearm_shot' ? 1 : 0);
 
-      // Exact State Equivalence Key (incorporates exact targetHp, exact stability, posture, combo side, and armor layers)
+      // Exact State Equivalence Key
       const armorKey = nextState.armorLayers.map(l => (l.broken ? '0' : Math.round(l.hp))).join(',');
       const stateKey = nextState.targetHp <= 0
         ? 'DEAD'
