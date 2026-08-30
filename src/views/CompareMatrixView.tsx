@@ -1,16 +1,21 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { CombatRecipe, Weapon } from '../types';
 import { enemies, getMeleeWeapons, getFirearms, mechanics, getPerkById } from '../data/loader';
 import { solveCombat } from '../solver';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
 
 interface CompareMatrixViewProps {
+  weaponTypeFilter: 'all' | 'melee' | 'firearms';
+  onSelectWeaponTypeFilter: (filter: 'all' | 'melee' | 'firearms') => void;
   selectedPerkIds: number[];
 }
 
-export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({ selectedPerkIds }) => {
-  const [activeBreakdownRecipe, setActiveBreakdownRecipe] = useState<CombatRecipe | null>(null);
-  const [weaponTypeFilter, setWeaponTypeFilter] = useState<'all' | 'melee' | 'firearms'>('all');
+export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
+  weaponTypeFilter,
+  onSelectWeaponTypeFilter,
+  selectedPerkIds
+}) => {
+  const [activeBreakdownRecipe, setActiveBreakdownRecipe] = React.useState<CombatRecipe | null>(null);
 
   const meleeWeapons = useMemo(() => getMeleeWeapons(), []);
   const firearms = useMemo(() => getFirearms(), []);
@@ -74,19 +79,19 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({ selectedPe
             <div className="tri-state-group">
               <button
                 className={`tri-btn ${weaponTypeFilter === 'all' ? 'active-std' : ''}`}
-                onClick={() => setWeaponTypeFilter('all')}
+                onClick={() => onSelectWeaponTypeFilter('all')}
               >
-                All ({displayedWeapons.length})
+                All ({meleeWeapons.length + firearms.length})
               </button>
               <button
                 className={`tri-btn ${weaponTypeFilter === 'melee' ? 'active-std' : ''}`}
-                onClick={() => setWeaponTypeFilter('melee')}
+                onClick={() => onSelectWeaponTypeFilter('melee')}
               >
                 Melee ({meleeWeapons.length})
               </button>
               <button
                 className={`tri-btn ${weaponTypeFilter === 'firearms' ? 'active-std' : ''}`}
-                onClick={() => setWeaponTypeFilter('firearms')}
+                onClick={() => onSelectWeaponTypeFilter('firearms')}
               >
                 Firearms ({firearms.length})
               </button>

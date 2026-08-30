@@ -18,28 +18,30 @@ import { StepBreakdownModal } from '../components/StepBreakdownModal';
 import { analytics } from '../analytics';
 
 interface OptimizerViewProps {
+  selectedWeaponId: number;
+  onSelectWeaponId: (id: number) => void;
+  selectedEnemyId: number;
+  onSelectEnemyId: (id: number) => void;
+  objective: OptimizerObjective;
+  onSelectObjective: (obj: OptimizerObjective) => void;
+  constraints: OptimizerConstraints;
+  onUpdateConstraints: (c: OptimizerConstraints) => void;
   selectedPerkIds: number[];
   onSetPerkTier: (baseSlug: string, tier: 'off' | 'standard' | 'expert') => void;
 }
 
-export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, onSetPerkTier }) => {
-  const [selectedWeaponId, setSelectedWeaponId] = useState<number>(11); // Cleaver
-  const [selectedEnemyId, setSelectedEnemyId] = useState<number>(1);   // Walker
-  const [objective, setObjective] = useState<OptimizerObjective>('fastest_kill');
-  const [constraints, setConstraints] = useState<OptimizerConstraints>({
-    requireFirstInterrupt: true,
-    safeOpener: true,
-    preChargedOpener: true,
-    requireKnockdownBeforeKill: false,
-    minStaminaReserve: 0,
-    allowShove: true,
-    allowKick: true,
-    allowCharged: true,
-    allowLimb: false,
-    targetHitZone: 'head',
-    difficulty: 'normal'
-  });
-
+export const OptimizerView: React.FC<OptimizerViewProps> = ({
+  selectedWeaponId,
+  onSelectWeaponId,
+  selectedEnemyId,
+  onSelectEnemyId,
+  objective,
+  onSelectObjective,
+  constraints,
+  onUpdateConstraints,
+  selectedPerkIds,
+  onSetPerkTier
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('all');
   const [activeBreakdownRecipe, setActiveBreakdownRecipe] = useState<CombatRecipe | null>(null);
@@ -113,7 +115,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <select
                 className="form-select"
                 value={selectedEnemyId}
-                onChange={e => setSelectedEnemyId(Number(e.target.value))}
+                onChange={e => onSelectEnemyId(Number(e.target.value))}
               >
                 {enemies.map(e => (
                   <option key={e.id} value={e.id}>
@@ -128,7 +130,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <select
                 className="form-select"
                 value={selectedWeaponId}
-                onChange={e => setSelectedWeaponId(Number(e.target.value))}
+                onChange={e => onSelectWeaponId(Number(e.target.value))}
               >
                 <optgroup label="Melee: Bladed">
                   {meleeGroups.bladed.map(w => (
@@ -180,7 +182,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <select
                 className="form-select"
                 value={constraints.difficulty}
-                onChange={e => setConstraints({ ...constraints, difficulty: e.target.value as any })}
+                onChange={e => onUpdateConstraints({ ...constraints, difficulty: e.target.value as any })}
               >
                 <option value="beginner">Beginner (0.7x HP)</option>
                 <option value="normal">Normal (1.0x HP)</option>
@@ -197,7 +199,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <select
                 className="form-select"
                 value={objective}
-                onChange={e => setObjective(e.target.value as OptimizerObjective)}
+                onChange={e => onSelectObjective(e.target.value as OptimizerObjective)}
               >
                 <option value="fastest_kill">⚡ Fast Kill</option>
                 <option value="lowest_stamina">💧 Efficient Kill</option>
@@ -218,7 +220,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <select
                 className="form-select"
                 value={constraints.targetHitZone}
-                onChange={e => setConstraints({ ...constraints, targetHitZone: e.target.value as any })}
+                onChange={e => onUpdateConstraints({ ...constraints, targetHitZone: e.target.value as any })}
               >
                 <option value="head">Headshots Assumed</option>
                 <option value="body">Body Hits</option>
@@ -235,7 +237,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <input
                 type="checkbox"
                 checked={constraints.safeOpener}
-                onChange={e => setConstraints({
+                onChange={e => onUpdateConstraints({
                   ...constraints,
                   safeOpener: e.target.checked,
                   requireFirstInterrupt: e.target.checked
@@ -251,7 +253,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <input
                 type="checkbox"
                 checked={constraints.preChargedOpener}
-                onChange={e => setConstraints({ ...constraints, preChargedOpener: e.target.checked })}
+                onChange={e => onUpdateConstraints({ ...constraints, preChargedOpener: e.target.checked })}
               />
             </div>
 
@@ -263,7 +265,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <input
                 type="checkbox"
                 checked={constraints.requireKnockdownBeforeKill}
-                onChange={e => setConstraints({ ...constraints, requireKnockdownBeforeKill: e.target.checked })}
+                onChange={e => onUpdateConstraints({ ...constraints, requireKnockdownBeforeKill: e.target.checked })}
               />
             </div>
 
@@ -275,7 +277,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <input
                 type="checkbox"
                 checked={constraints.allowShove}
-                onChange={e => setConstraints({ ...constraints, allowShove: e.target.checked })}
+                onChange={e => onUpdateConstraints({ ...constraints, allowShove: e.target.checked })}
               />
             </div>
 
@@ -287,7 +289,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({ selectedPerkIds, o
               <input
                 type="checkbox"
                 checked={constraints.allowKick}
-                onChange={e => setConstraints({ ...constraints, allowKick: e.target.checked })}
+                onChange={e => onUpdateConstraints({ ...constraints, allowKick: e.target.checked })}
               />
             </div>
           </div>

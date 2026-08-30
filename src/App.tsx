@@ -8,12 +8,14 @@ import { SettingsModal } from './components/SettingsModal';
 import { ImportExportModal } from './components/ImportExportModal';
 import { loadAppState, saveAppState } from './storage';
 import { getLogicalPerkGroups } from './data/loader';
-import type { AppState, Responder, Loadout, CombatScenario } from './types';
+import type { AppState, Responder, Loadout, CombatScenario, OptimizerConstraints, OptimizerObjective } from './types';
 import './styles/app.css';
 
 export const App: React.FC = () => {
   const [appState, setAppState] = useState<AppState>(() => loadAppState());
   const [mainTab, setMainTab] = useState<MainTab>('optimize');
+  const [activeEnemyId, setActiveEnemyId] = useState<number>(() => appState.activeEnemyId ?? 1); // 1 = Walker
+  const [compareFilter, setCompareFilter] = useState<'all' | 'melee' | 'firearms'>(() => appState.compareWeaponFilter ?? 'all');
   const [isDataMethodologyOpen, setIsDataMethodologyOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [importExportModal, setImportExportModal] = useState<{
@@ -26,8 +28,12 @@ export const App: React.FC = () => {
 
   // Sync to localStorage
   useEffect(() => {
-    saveAppState(appState);
-  }, [appState]);
+    saveAppState({
+      ...appState,
+      activeEnemyId,
+      compareWeaponFilter: compareFilter
+    });
+  }, [appState, activeEnemyId, compareFilter]);
 
   const activeResponder = appState.responders.find(r => r.id === appState.activeResponderId) || appState.responders[0];
   const activeLoadout = activeResponder.loadouts.find(l => l.id === activeResponder.activeLoadoutId) || activeResponder.loadouts[0];
@@ -64,6 +70,45 @@ export const App: React.FC = () => {
         activeResponderId: remaining[0].id
       };
     });
+  };
+
+  const handleSelectWeaponId = (weaponId: number) => {
+    const updatedLoadout: Loadout = {
+      ...activeLoadout,
+      weaponId
+    };
+    const updatedResp: Responder = {
+      ...activeResponder,
+      loadouts: activeResponder.loadouts.map(l => l.id === updatedLoadout.id ? updatedLoadout : l),
+      updatedAt: new Date().toISOString()
+    };
+    handleUpdateResponder(updatedResp);
+  };
+
+  const handleSelectObjective = (objective: OptimizerObjective) => {
+    const updatedLoadout: Loadout = {
+      ...activeLoadout,
+      objective
+    };
+    const updatedResp: Responder = {
+      ...activeResponder,
+      loadouts: activeResponder.loadouts.map(l => l.id === updatedLoadout.id ? updatedLoadout : l),
+      updatedAt: new Date().toISOString()
+    };
+    handleUpdateResponder(updatedResp);
+  };
+
+  const handleUpdateConstraints = (constraints: OptimizerConstraints) => {
+    const updatedLoadout: Loadout = {
+      ...activeLoadout,
+      constraints
+    };
+    const updatedResp: Responder = {
+      ...activeResponder,
+      loadouts: activeResponder.loadouts.map(l => l.id === updatedLoadout.id ? updatedLoadout : l),
+      updatedAt: new Date().toISOString()
+    };
+    handleUpdateResponder(updatedResp);
   };
 
   const handleSetPerkTier = (baseSlug: string, tier: 'off' | 'standard' | 'expert') => {
@@ -132,18 +177,30 @@ export const App: React.FC = () => {
       />
 
       <main>
-        {mainTab === 'optimize' && (
+        <div style={{ display: mainTab === 'optimize' ? 'block' : 'none' }}>
           <OptimizerView
+            selectedWeaponId={activeLoadout.weaponId}
+            onSelectWeaponId={handleSelectWeaponId}
+            selectedEnemyId={activeEnemyId}
+            onSelectEnemyId={setActiveEnemyId}
+            objective={activeLoadout.objective}
+            onSelectObjective={handleSelectObjective}
+            constraints={activeLoadout.constraints}
+            onUpdateConstraints={handleUpdateConstraints}
             selectedPerkIds={activeResponder.perkIds}
             onSetPerkTier={handleSetPerkTier}
           />
-        )}
+        </div>
 
-        {mainTab === 'compare' && (
-          <CompareMatrixView selectedPerkIds={activeResponder.perkIds} />
-        )}
+        <div style={{ display: mainTab === 'compare' ? 'block' : 'none' }}>
+          <CompareMatrixView
+            weaponTypeFilter={compareFilter}
+            onSelectWeaponTypeFilter={setCompareFilter}
+            selectedPerkIds={activeResponder.perkIds}
+          />
+        </div>
 
-        {mainTab === 'builds' && (
+        <div style={{ display: mainTab === 'builds' ? 'block' : 'none' }}>
           <BuildPlannerView
             responders={appState.responders}
             activeResponderId={appState.activeResponderId}
@@ -153,7 +210,7 @@ export const App: React.FC = () => {
             onDeleteResponder={handleDeleteResponder}
             onOpenExport={mode => setImportExportModal({ isOpen: true, mode })}
           />
-        )}
+        </div>
       </main>
 
       {isDataMethodologyOpen && (

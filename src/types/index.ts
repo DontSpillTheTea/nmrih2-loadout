@@ -306,6 +306,8 @@ export interface AppState {
   version: number;
   activeGameVersion: string;
   activeResponderId: string;
+  activeEnemyId?: number;
+  compareWeaponFilter?: 'all' | 'melee' | 'firearms';
   responders: Responder[];
   savedScenarios?: CombatScenario[];
   settings: {
