@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import type { CombatRecipe, Weapon } from '../types';
+import type { CombatRecipe, Weapon, OptimizerConstraints, OptimizerObjective } from '../types';
 import { enemies, getMeleeWeapons, getFirearms, mechanics, getPerkById } from '../data/loader';
 import { solveCombat } from '../solver';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
@@ -8,12 +8,20 @@ interface CompareMatrixViewProps {
   weaponTypeFilter: 'all' | 'melee' | 'firearms';
   onSelectWeaponTypeFilter: (filter: 'all' | 'melee' | 'firearms') => void;
   selectedPerkIds: number[];
+  objective: OptimizerObjective;
+  constraints: OptimizerConstraints;
+  onSelectObjective?: (obj: OptimizerObjective) => void;
+  onUpdateConstraints?: (c: OptimizerConstraints) => void;
 }
 
 export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
   weaponTypeFilter,
   onSelectWeaponTypeFilter,
-  selectedPerkIds
+  selectedPerkIds,
+  objective,
+  constraints,
+  onSelectObjective,
+  onUpdateConstraints
 }) => {
   const [activeBreakdownRecipe, setActiveBreakdownRecipe] = React.useState<CombatRecipe | null>(null);
 
@@ -42,27 +50,27 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
           perks: activePerks,
           enemy: e,
           mechanics,
-          constraints: {
-            requireFirstInterrupt: false,
-            safeOpener: false,
-            preChargedOpener: true,
-            requireKnockdownBeforeKill: false,
-            minStaminaReserve: 0,
-            allowShove: true,
-            allowKick: true,
-            allowCharged: true,
-            allowLimb: false,
-            targetHitZone: 'head',
-            difficulty: 'normal'
-          },
-          objective: 'fastest_kill',
-          maxActions: 6
+          constraints,
+          objective,
+          maxActions: 7
         });
         data[w.id][e.id] = recipes[0] ?? null;
       }
     }
     return data;
-  }, [displayedWeapons, coreEnemies, activePerks]);
+  }, [displayedWeapons, coreEnemies, activePerks, constraints, objective]);
+
+  const getObjectiveLabel = (obj: OptimizerObjective) => {
+    switch (obj) {
+      case 'fastest_kill': return '⚡ Fast Kill';
+      case 'lowest_stamina': return '💧 Efficient Kill';
+      case 'safest_kill': return '🛡️ Fast Control';
+      case 'efficient_control': return '⚖️ Efficient Control';
+      case 'fewest_attacks': return '🎯 Fewest Actions';
+      case 'balanced': return '📊 Balanced';
+      default: return obj;
+    }
+  };
 
   return (
     <div className="main-container">
@@ -71,11 +79,27 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
           <div>
             <span>📊 Breakpoint Comparison Matrix</span>
             <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
-              Fewest Actions to Kill with Headshots (Click any cell to inspect legal combo)
+              Synchronized with active Perks ({activePerks.length}/10) • Goal: {getObjectiveLabel(objective)} • Difficulty: {constraints.difficulty.toUpperCase()}
             </span>
           </div>
 
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            {onSelectObjective && (
+              <select
+                className="form-select"
+                style={{ width: '160px', padding: '0.25rem 0.5rem', fontSize: '0.75rem' }}
+                value={objective}
+                onChange={e => onSelectObjective(e.target.value as OptimizerObjective)}
+              >
+                <option value="fastest_kill">⚡ Fast Kill</option>
+                <option value="lowest_stamina">💧 Efficient Kill</option>
+                <option value="safest_kill">🛡️ Fast Control</option>
+                <option value="efficient_control">⚖️ Efficient Control</option>
+                <option value="fewest_attacks">🎯 Fewest Actions</option>
+                <option value="balanced">📊 Balanced</option>
+              </select>
+            )}
+
             <div className="tri-state-group">
               <button
                 className={`tri-btn ${weaponTypeFilter === 'all' ? 'active-std' : ''}`}
@@ -134,9 +158,14 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
                       );
                     }
 
-                    const isOneShot = recipe.totalActions === 1;
-                    const isTwoShot = recipe.totalActions === 2;
                     const isFirearm = w.category === 'firearm';
+                    const rounds = recipe.totalAmmoSpent;
+                    const stam = recipe.totalStaminaSpent;
+                    const hits = recipe.totalActions;
+                    const timeStr = `~${(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s`;
+
+                    const isOneShot = isFirearm ? rounds === 1 : hits === 1;
+                    const isTwoShot = isFirearm ? rounds === 2 : hits === 2;
 
                     return (
                       <td key={e.id}>
@@ -148,11 +177,17 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
                         >
                           {isFirearm ? (
                             <span>
-                              {recipe.totalActions} {recipe.totalActions === 1 ? 'shot' : 'shots'}
+                              {rounds} {rounds === 1 ? 'rd' : 'rds'}
+                              {stam > 0 && (
+                                <span style={{ fontSize: '0.7rem', color: '#fbbf24', marginLeft: '3px' }}>
+                                  ({stam}st)
+                                </span>
+                              )}
                             </span>
                           ) : (
                             <span>
-                              {recipe.totalActions} {recipe.totalActions === 1 ? 'hit' : 'hits'} (~{(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s)
+                              {hits} {hits === 1 ? 'hit' : 'hits'}
+                              {objective === 'lowest_stamina' ? ` (${stam}st)` : ` (${timeStr})`}
                             </span>
                           )}
                           {recipe.armorBroken && (

@@ -197,6 +197,10 @@ export const App: React.FC = () => {
             weaponTypeFilter={compareFilter}
             onSelectWeaponTypeFilter={setCompareFilter}
             selectedPerkIds={activeResponder.perkIds}
+            objective={activeLoadout.objective}
+            constraints={activeLoadout.constraints}
+            onSelectObjective={handleSelectObjective}
+            onUpdateConstraints={handleUpdateConstraints}
           />
         </div>
 
