@@ -1,0 +1,208 @@
+Road to 1.0: Upcoming Changes & Features Overview,,,,
+"To help answer frequently asked questions or just to give more info and a better idea of the update in general, this doc provides a comprehensively organized layout of confirmed, speculative, and unconfirmed features for the upcoming 1.0 release",,,,
+,,,,
+"If you know of anything I've missed or forgotten about here, toss me a message so I can add it.
+
+I will try to keep this as updated as I can -SchwarzFenrir",,,,
+"If anyone has screenshots of each updates in-game roadmap + upcoming features over the course of EA I'd love to have them sent to me to have a better picture of what has been cut, delayed or is potentially imminent.",,,,
+,,,,
+Release Date,,,,
+,,,,
+"August 11th, 2026",,,,
+,,,,
+,,,,
+,,,,
+Confirmed 1.0 Content & Features,,,,
+,,,,
+,,,,
+Category,Feature / Change,Details & Notes,,Source Info
+,,,,
+Maps & Modes,New Objective Map (Raven Rock),"Based on the Raven Rock Mountain Complex/Site R in Pennsylvania. Highly anticipated as Objective Map #6.
+
+This has honestly been one of the hardest things for me to sit quiet on, I was hoping someone else would notice the literal writing on the wall before me as this is a really exciting area for a map to take place.",,"Trailer Screenshot
+Source
+Source 2"
+,,,,
+,,,,
+,,,,
+Maps & Modes,Survival Mode ,"Survival Mode is a wave-based defense gamemode where you protect speakers to draw in and eliminate hordes of Zeds to give the National Guard time to evacuate areas.
+
+Three confirmed maps: Flooded, Night of the Living Dead & Lighthouse. ",,"News Post
+Source
+Source 2"
+,,,,
+,,,,
+,,,,
+,,,,
+Maps & Modes,Solo Training Mode,"Self-hosted offline environment. Progression and character permadeath will be completely disabled.
+
+You will apparently be able to progress your weekly assignments through this mode.",,"News Post
+Source
+Source 2
+"
+Map Changes,Bioscanners,"Bioscanner objectives will be removed on Powerplant entirely and now ""used where they narratively make sense in 1.0; no more shoehorning it into random spots""",,"Discord Dev Post
+Source"
+Cosmetics,Early Access Rewards,"Special cosmetic rewards granted to early supporters based on account level, nightmare tokens, and participation during EA.",,"News Post
+Source"
+,,,"There will be Account level logos for Level 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, and 100
+",
+EA Participation Reward Icon/Logo,Account Level 20 Mask,Account Level 50 Gloves,,
+,,,,
+Account Level 30 Logo,Account Level 60 Logo,Account Level 90 Logo,Account Level 100 Logo,
+,,,,
+100 Nightmare Token Logo,500 Nightmare Token Logo,900 Nightmare Token Logo,2000 Nightmare Token Logo,
+,,,"There will be also be Nightmare Token Logos for 1, 10, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, and 2000, your rewarded patch will be the closest to your level, rounded down.",
+10 Nightmare Token Pattern,100 Nightmare Token Pattern,Example of the Pattern on a new Hoodie,,
+Cosmetics,Paid Cosmetic DLC Outfits,"1.0 Will be launching with at least 4 DLC outfits that we know of at this point.
+
+1. ""Punk Is Life"" set featuring what we used to know as the ""Teen Survivor"" cosmetics.
+2. ""Surplus Officer"" set. I truthfully don't have much info on this one besides the trailer.
+3. ""First Responder"" set which has made a few appearances in past update vids and concept art.
+4. ""Veteran Survivor"" set which has also been ever so slightly teased and in the previous concept art.",,"Various Sources
+Source 1
+Source 2
+Source 3
+Source 4"
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+Cosmetics,Pattern & Logo Systems,"Return of older clothing patterns (Camouflage, Utility Stripes, Plaid) along with a new customizable graphic/logo placement system.",,Dev Teaser
+,,,,
+Camoflague Variant #1,Camoflague Variant #2,Plaid,Utility Stripe,
+Cosmetics,New Clothing Slots,"Dedicated slots for Gloves, Eyewear/Masks, Compass and Flashlight are confirmed.",,"News Post/Teaser
+Source"
+,,,,"Source 1
+Source 2
+Source 3 (Store Page)"
+,,,,
+,,,,Founders Edition Source
+,"""Founder's Edition"" Compass & Flashlight",,,
+Economy,Full Progression Wipe,A complete progression and economy wipe will take place at 1.0 launch to facilitate a rebalanced economy model.,,"News Post
+Source"
+Economy,Economy Rebalance,Perk Reroll costs will be slashed again drastically as well as item costs in the Loadout Shop,,"News Post
+Source"
+Economy,Nightmare Token Change,"Nightmare Tokens are now no longer account-bound and will instead be tracked on a per-Responder basis, when that Responder dies their legacy will disappear with them. Account Level will become the main way of visually seeing how much time a player has invested into the game.",,"News Post
+Source"
+Economy,New Currency: Merits & Weekly Challenges ‘Assignments’,"A new Weekly Challenges system will allow players to earn a new currency called Merits. Merits can be spent on cosmetics as well as ""specific, powerful items.""",,"News Post
+Source"
+,,,,
+Economy / Balance,Difficulty Changes & Rewards,"High difficulties will yield substantially better rewards. Slated 1.0 Changes below, Respawns will be enabled on Normal(Previously Classic)Difficutly. 
+
+Nightmare Difficulty is being promised as being much harder in the 1.0 update than it currently is.",,"News Post
+Source 1
+Source 2
+Source 3
+"
+,,,,
+Balance,Starter Pistol Change,The starting sidearm is officially switching from the Model 13 to the MKVII.,,"Discord Dev Post
+Source"
+Balance,Randomized Mag Counts,"Ammo found in weapons will finally be randomized, the higher the difficulty the larger the variable resulting in less ammo.",,"Discord Dev Post
+Source"
+Balance,Melee Weapon Tuning,"Baseball Bat is slated for a 'nerf', putting it rightfully below the Sledgehammer. 
+
+""One-handed weapons will be receiving a universal 10% speed increase to their strong attack windup alongside a 20% speed increase to their charged attack windup. This is separate from the actual swing speeds of individual weapons, which are receiving more targeted balance. Two-handed weapons will also receive a 10% speed increase to their charged attack windup""
+
+""Slashing weapons will see 5 stability damage added to quick attacks across the board and 10 stability damage added to strong attacks (for context, 20 stability damage triggers a zombie stagger)""",,"Discord/News Post
+Source
+Source 2"
+Balance,Survival Mode Tuning,"Difficulty adjustments are coming, including an increased count of zombies per wave.",,"Discord Dev Post
+Source"
+Balance,Zombie Spawning Changes,"Quantity and variety of zeds should see improvements on a situational basis. (Threat Level, Difficulty, POI, Etc)",,"Discord/News Post
+Source 1
+Source 2"
+Balance,Further Zombie Changes,"In lower difficulties the delay in spawning that happens while killing zombies in an area will be increased.
+
+Zombie detection will be tweaked even further from the changes introduced in 0.9, giving stealth more viability.
+
+Map difficulty will be made much more consisent so certain maps aren't massively easier or harder.",,"Discord Dev Post
+Source"
+Balance,Sprinting Speed & Stamina Regen Increase,"Sprinting Speed will be seeing a ""small"" increase as well as a decrease to the time to start stamina regen after sprinting.",,"News Post
+Source"
+Balance,Perks,"Perks being removed in 1.0:
+Averaging
+Guts
+Teddy Bear
+
+Perks being added in 1.0:
+Handgun Reloading
+Rifle Reloading
+Shotgun Reloading",,"News Post
+Source"
+,,Perk Improvements/More thought towards breakpoints and respective power of them should be coming.,,"Discord Dev Post
+Source"
+Items,Rescue Beacon,"New ""Rescue Beacon"" loadout consumable, will be purchaseable with Credits(2000) or Merits(1). 
+
+Having it in your loadout will save your Responder from any death that would delete it. The item and the rest of your loadout will be consumed after doing so.",,"News Post
+Source
+Source 2"
+System / UI,Controller Support,"Full, official controller support is confirmed to arrive at launch.",,"News Post
+Source"
+System / UI,Crossplay,Cross-platform play functionality is confirmed to be supported across platforms at launch.,,"News Post
+Source"
+Misc,Shield Zeds,Confirmed return of shield-bearing zeds.,,"Discord Dev Post
+Source"
+Misc,Achievements,Steam Achievements are officially confirmed for the 1.0 update.,,"Discord Dev Post
+Source"
+Misc,Optimizations,Further performance Optimizations will be coming with 1.0.,,"News Post
+Source"
+Misc,Price,The price of the game has been confirmed to be remaining at $29.99 USD even after 1.0,,"News Post
+Source"
+Misc,Disconnection/Crash Protection Improvements,"The system will be seeing improvements with 1.0, the exact specifics aren't known but I'd expect to see an increase to reconnect time as well as crashes being detected better.",,"Discord Dev Post
+Source"
+Misc,Unstuck Feature,"An unstuck system will be added with 1.0, currently it has quite a long activation time and it resets you to your initial spawn so I hope it gets a little more refined but this has been a needed feature.",,"News Post
+Source"
+,,,,
+"Potential, Speculative, and Unlikely Features",,,,
+,,,,
+Feature / Item,Current Status & Speculation,,,Expectation
+,,,,
+End of EA Community Events,End of Early Access community events are likely. The specific form they will take is currently unknown; they could be entirely for fun or feature increased XP gains.,,,"Likely
+Source"
+Legacy Outfits,A Developer confirmed they are looking into implementing legacy outfits.,,,"Under Review
+Source"
+Weapon Attachments,More attachments have been teased but it's unclear if they'll make it into 1.0.,,,"Speculative
+Source 1 
+Source 2"
+Female Runners,"A model and sound files has existed for them for quite a long time but it's still just hoping that they'll be included in 1.0.
+
+[Update] Cenelder has said the linked model wasn't fully finished but the sound files do still exist, show your interest to him for this to be added so he is inspired to complete it. More Zombie variety is always welcomed.",,,"Unlikely / Future Update
+Source
+Source 2"
+Frying Pan,Spotted in a developer ArtStation portfolio as a potential new melee weapon.,,,"Future Update
+Source"
+,,,,
+Animation-Heavy Features,Anything requiring complex animation work feels on hold at the moment. The team currently lacks animator manpower and is actively seeking to hire. It is realistic to expect features of this vein in post-1.0 updates instead.,,,Post-1.0 Update / Delayed
+Multigrapple,Mechanics or additions surrounding the capability of multiple zeds being able to grapple you.,,,Unlikely
+Bleeding,Mechanics involving a bleeding status effect or specialized damage over time.,,,"Unlikely
+Source"
+Devour Mechanic,Explicitly confirmed by developers that this feature will NOT be coming in 1.0.,,,"Delayed
+Source"
+New Firearms,Confirmed that entirely new firearms are NOT coming with 1.0 (unconfirmed if this applies to brand new melee weapons).,,,"Delayed
+Source"
+Weapon Families,Filling out lacking weapon families like .45 ACP and 6.8 calibers.,,,Post-1.0 Update / Speculative
+Modding Support / Mapping Tools,The development team has completely refrained from providing any public commentary or status updates on these tools.,,,Unknown / No Comment
+Child Zombies,"It's been awhile now so I guess not everyone will be aware of their previous announcements on this from last year, but this is one of the few things that is NOT coming to the game.",,,"Cut Content / Removed
+Source 1
+Source 2"
+Player Heads,"New Player Heads/Faces at this point seem unlikely despite being a massively requested addition, they have a lot of nice looking head models that were made for them ages ago I'll add here later but I would think they'd be teasing if new heads were going to be coming in 1.0.",,,Unknown / Unlikely
+"Potential Cosmetics
+(Unsorted )","I will sort this out later on and split everything up, but for now it's going to be a combined dump. 
+
+1. Teen Cosmetic Set:   Chestpiece made an appearance in the Reanimation Update video
+
+2. Multiple Cosmetic Sets, Badass appears to be pictured in the bottom left, Roje in the top Right.
+Roje's Chest clothing can be seen in the EA Mask reward so it's likely to be coming. The medic chest in the bottom right has been shown in the past. https://www.artstation.com/artwork/rlGze6 
+
+3. Aviators + Snakeskin Cowboy Hat: https://www.artstation.com/artwork/dy49Ex 
+
+4. Medic Chest, full set featured above making this very likely to come out in 1.0. This was shown in the April 2025 Reanimation update post: https://clan.fastly.steamstatic.com/images//39540272/445caa0743ecd0538311c519262f8bb39ee66d93.gif 
+
+It makes another appearance in a new Steam store page screenshot at the top right
+
+5. Chemlight backpack attachment, Basic T-shirt/Polo shirt and other cosmetics TBD",,,Unknown / Speculative

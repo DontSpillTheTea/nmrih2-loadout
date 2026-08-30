@@ -1,0 +1,96 @@
+Infection Timeline,How it Works
+"Initial Infection Timeline:
+0:00 - Incubation
+
+0:30 - InfectionStart
+
+1:25 - InfectionRecurringAudioCue
+
+2:05 - InfectionRecurringAudioCue
+
+2:45 - InfectionRecurringAudioCue
+
+3:00 - InfectionHalfwayPoint
+
+3:25 - InfectionRecurringAudioCue
+
+4:05 - InfectionRecurringAudioCue
+
+4:30 - Veins begin creeping in around the screen.
+
+4:45 - InfectionRecurringAudioCue
+
+5:18 - InfectionNearDeath
+
+5:30 - Death & Reanimation
+
+
+
+Infection Timeline(Pills):
+0:55 - InfectionRecurringAudioCue
+
+1:35 - InfectionRecurringAudioCue
+
+2:15 - InfectionRecurringAudioCue
+
+2:30 - InfectionHalfwayPoint
+
+2:55 - InfectionRecurringAudioCue
+
+3:35 - InfectionRecurringAudioCue
+
+4:00 - Veins begin creeping in around the screen.
+
+4:15 - InfectionRecurringAudioCue
+
+4:48 - InfectionNearDeath
+
+5:00 - Death & Reanimation","Infection has a 5minute 30second initial timer; the first 30 seconds are the incubation period where you generally won't have any idea you've been infected unless your character coughs, after the incubation period you'll hear this audio cue confirming you're fully infected: InfectionStart
+ 
+Your death timer has begun from this point and you have 5 minutes to find Pills, Gene Therapy or a Bullet.
+
+
+How Do You Get Infected?
+
+• Being below 60% HP and getting hit, the lower your HP the higher the chance of getting infected.
+
+• Being grabbed while your Stamina is at 15% or below results in an instant bite & infection, regardless of your HP Percentage.
+
+• Shambler's Gas Cloud CAN infect you even while being at 100% HP, current chance is shown below, avoid it to the best of your ability as even though the full HP chance is low it can and will happen and it only becomes more dangerous the lower your HP%.
+Zombies which walk through the gas cloud gain doubled infection chances.
+
+Detailed Infection Chances
+
+Zombie Swipes
+100%-60% HP: 0% chance
+59% HP: 0.5% chance
+58% HP: 1.0% chance
+55% HP: 2.5% chance
+52% HP: 4.0% chance
+50% HP: 5.0% chance
+40% HP: 16.25% chance
+30% HP: 27.50% chance
+20% HP: 38.75% chance
+10%-0% HP: 50.00% chance
+
+Shambler Gas Cloud
+100%-80% HP: 5% chance
+70% HP: 14% chance
+60% HP: 23% chance
+50% HP:32% chance
+40% HP:41% chance
+30%-0% HP: 50% chance
+
+
+Prevention & Cure
+
+Phalanx Pills have a ~5s Use Time with 3 Doses in the bottle, Each Dose resets the infection timer back to the start, removing the incubation time from initial infection.
+
+The Acquired Immunity perk used to be very strong, but now with it being 10% & 20% It's up to you if you want to have a 1/5 chance of resisting Infection applications at the cost of a perk slot. This resistance can prevent guaranteed infections like bites.
+
+
+Gene Therapy has a 3.5s Use Time to draw blood, Takes 30s to synthesize your cure, 5s Use Time to Inject.
+It's a single-use consumable that can only be used by one player.
+You can use it at any point infected or not and it will make you immune until the end of the match.
+
+"

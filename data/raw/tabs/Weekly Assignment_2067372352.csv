@@ -1,0 +1,21 @@
+Assignment,Amount,,,,,Rewards,,,,
+,T1,T2,T3,,,,,,,
+,,,,,,,,,,
+Extract on any difficulty,3,6,10,,,T1,,500,,1
+Complete objectives,6,12,20,,,T2,,"1,500",,1
+Gather supply items,60,90,120,,,T3,,0,,3
+Barricade any door or window,10,25,40,,,,,,,
+Deploy items,5,10,20,,,,,,,
+,,,,,,,,,,
+Kill zombies with any Weapon,50,100,150,,,,,,,
+Kill zombies with any Blunt Weapon,25,50,75,,,,,,,
+Kill zombies with any Bladed Weapon,25,50,75,,,,,,,
+Kill zombies with any Explosives,20,35,50,,,,,,,
+Kill zombies with any Thrown Weapon**,5,10,15,,**Killing blow must be from a thrown melee,,,,,
+Kill zombies with any Shotgun,30,60,90,,,,,,,
+Kill zombies with any Rifle,30,60,90,,,,,,,
+Kill zombies with any Pistol,30,60,90,,,,,,,
+Damage any zombie in the head,30,60,90,,,,,,,
+Cut off zombies limbs,40,80,120,,,,,,,
+Kick down zombies,30,60,90,,,,,,,
+Shove any zombies,40,80,120,,,,,,,

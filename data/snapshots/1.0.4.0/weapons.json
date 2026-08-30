@@ -1,0 +1,2388 @@
+[
+  {
+    "id": 1,
+    "slug": "unarmed",
+    "name": "Unarmed",
+    "category": "melee",
+    "meleeCategory": "unarmed",
+    "handedness": "none",
+    "weightKg": 0.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "shove",
+        "name": "Shove",
+        "source": "shove",
+        "damageByHitZone": {
+          "body": 0,
+          "head": 0,
+          "limb": 0
+        },
+        "stabilityDamage": 20,
+        "staminaCost": 15,
+        "windupMs": 180,
+        "activeMs": 80,
+        "recoveryMs": 240,
+        "totalMs": 500,
+        "maxTargets": 1,
+        "range": 150,
+        "tags": [
+          "shove",
+          "control",
+          "interrupt"
+        ]
+      },
+      {
+        "id": "kick",
+        "name": "Kick",
+        "source": "kick",
+        "damageByHitZone": {
+          "body": 0,
+          "head": 0,
+          "limb": 0
+        },
+        "stabilityDamage": 100,
+        "staminaCost": 50,
+        "windupMs": 230,
+        "activeMs": 120,
+        "recoveryMs": 300,
+        "totalMs": 650,
+        "maxTargets": 3,
+        "range": 200,
+        "tags": [
+          "kick",
+          "control",
+          "knockdown",
+          "aoe"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:unarmed"
+  },
+  {
+    "id": 10,
+    "slug": "kitchen-knife",
+    "name": "Kitchen Knife",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "one-handed",
+    "weightKg": 0.5,
+    "range": 160.0,
+    "playRate": 1.2,
+    "chargedPlayRate": 1.2,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 25.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 5.0,
+        "windupMs": 200,
+        "activeMs": 83,
+        "recoveryMs": 283,
+        "totalMs": 566,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 18.0,
+          "head": 38.0,
+          "limb": 30.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 7.0,
+        "windupMs": 316,
+        "activeMs": 100,
+        "recoveryMs": 400,
+        "totalMs": 816,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 40.0,
+          "limb": 30.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 566,
+        "activeMs": 125,
+        "recoveryMs": 475,
+        "totalMs": 1166,
+        "maxTargets": 2,
+        "range": 170.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:kitchen-knife"
+  },
+  {
+    "id": 11,
+    "slug": "cleaver",
+    "name": "Cleaver",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "one-handed",
+    "weightKg": 1.0,
+    "range": 165.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.05,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 28.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 5.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 1,
+        "range": 165.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 17.0,
+          "head": 38.0,
+          "limb": 30.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 7.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 1,
+        "range": 165.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 50.0,
+          "limb": 40.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 647,
+        "activeMs": 142,
+        "recoveryMs": 544,
+        "totalMs": 1333,
+        "maxTargets": 2,
+        "range": 175.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:cleaver"
+  },
+  {
+    "id": 12,
+    "slug": "hatchet",
+    "name": "Hatchet",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "one-handed",
+    "weightKg": 1.0,
+    "range": 175.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.15,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 40.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 5.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 1,
+        "range": 175.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 45.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 7.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 1,
+        "range": 175.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 34.0,
+          "head": 55.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 591,
+        "activeMs": 130,
+        "recoveryMs": 496,
+        "totalMs": 1217,
+        "maxTargets": 2,
+        "range": 185.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:hatchet"
+  },
+  {
+    "id": 13,
+    "slug": "machete",
+    "name": "Machete",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "one-handed",
+    "weightKg": 1.25,
+    "range": 190.0,
+    "playRate": 1.15,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 40.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 5.0,
+        "windupMs": 208,
+        "activeMs": 86,
+        "recoveryMs": 297,
+        "totalMs": 591,
+        "maxTargets": 1,
+        "range": 190.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 45.0,
+          "limb": 40.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 7.0,
+        "windupMs": 330,
+        "activeMs": 104,
+        "recoveryMs": 418,
+        "totalMs": 852,
+        "maxTargets": 1,
+        "range": 190.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 34.0,
+          "head": 55.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 2,
+        "range": 200.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:machete"
+  },
+  {
+    "id": 14,
+    "slug": "shovel",
+    "name": "Shovel",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 235.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 7.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 2,
+        "range": 235.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 45.0,
+          "limb": 30.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 13.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 2,
+        "range": 235.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 34.0,
+          "head": 50.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 18.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 3,
+        "range": 245.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:shovel"
+  },
+  {
+    "id": 15,
+    "slug": "fire-axe",
+    "name": "Fire Axe",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "two-handed",
+    "weightKg": 0.5,
+    "range": 210.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 60.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 10.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 50.0,
+          "head": 80.0,
+          "limb": 80.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 65.0,
+          "head": 100.0,
+          "limb": 100.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 13.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 3,
+        "range": 220.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:fire-axe"
+  },
+  {
+    "id": 16,
+    "slug": "treetrimmer",
+    "name": "Treetrimmer",
+    "category": "melee",
+    "meleeCategory": "bladed",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 250.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.1,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 35.0,
+          "limb": 30.0
+        },
+        "stabilityDamage": 5.0,
+        "staminaCost": 10.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 2,
+        "range": 250.0,
+        "tags": [
+          "melee",
+          "quick",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 30.0,
+          "head": 50.0,
+          "limb": 40.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 13.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 2,
+        "range": 250.0,
+        "tags": [
+          "melee",
+          "strong",
+          "bladed",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 65.0,
+          "limb": 60.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 15.0,
+        "windupMs": 618,
+        "activeMs": 136,
+        "recoveryMs": 518,
+        "totalMs": 1272,
+        "maxTargets": 3,
+        "range": 260.0,
+        "tags": [
+          "melee",
+          "charged",
+          "bladed",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:treetrimmer"
+  },
+  {
+    "id": 17,
+    "slug": "claw-hammer",
+    "name": "Claw Hammer",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 1.0,
+    "range": 170.0,
+    "playRate": 1.2,
+    "chargedPlayRate": 1.2,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 40.0,
+        "staminaCost": 5.0,
+        "windupMs": 200,
+        "activeMs": 83,
+        "recoveryMs": 283,
+        "totalMs": 566,
+        "maxTargets": 1,
+        "range": 170.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 55.0,
+        "staminaCost": 7.0,
+        "windupMs": 316,
+        "activeMs": 100,
+        "recoveryMs": 400,
+        "totalMs": 816,
+        "maxTargets": 1,
+        "range": 170.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 45.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 60.0,
+        "staminaCost": 13.0,
+        "windupMs": 566,
+        "activeMs": 125,
+        "recoveryMs": 475,
+        "totalMs": 1166,
+        "maxTargets": 2,
+        "range": 180.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:claw-hammer"
+  },
+  {
+    "id": 18,
+    "slug": "pipe-small",
+    "name": "Pipe (Small)",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 1.0,
+    "range": 180.0,
+    "playRate": 1.1,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 13.0,
+          "head": 20.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 7.0,
+        "windupMs": 218,
+        "activeMs": 90,
+        "recoveryMs": 310,
+        "totalMs": 618,
+        "maxTargets": 1,
+        "range": 180.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 50.0,
+        "staminaCost": 13.0,
+        "windupMs": 345,
+        "activeMs": 109,
+        "recoveryMs": 436,
+        "totalMs": 890,
+        "maxTargets": 1,
+        "range": 180.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 50.0,
+        "staminaCost": 15.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 2,
+        "range": 190.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:pipe-small"
+  },
+  {
+    "id": 19,
+    "slug": "wrench-small",
+    "name": "Wrench (Small)",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 0.5,
+    "range": 160.0,
+    "playRate": 1.2,
+    "chargedPlayRate": 1.1,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 10.0,
+          "head": 20.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 7.0,
+        "windupMs": 200,
+        "activeMs": 83,
+        "recoveryMs": 283,
+        "totalMs": 566,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 13.0,
+          "head": 25.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 35.0,
+        "staminaCost": 10.0,
+        "windupMs": 316,
+        "activeMs": 100,
+        "recoveryMs": 400,
+        "totalMs": 816,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 13.0,
+        "windupMs": 618,
+        "activeMs": 136,
+        "recoveryMs": 518,
+        "totalMs": 1272,
+        "maxTargets": 2,
+        "range": 170.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:wrench-small"
+  },
+  {
+    "id": 20,
+    "slug": "tire-iron",
+    "name": "Tire Iron",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 1.0,
+    "range": 175.0,
+    "playRate": 1.1,
+    "chargedPlayRate": 1.1,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 13.0,
+          "head": 25.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 5.0,
+        "windupMs": 218,
+        "activeMs": 90,
+        "recoveryMs": 310,
+        "totalMs": 618,
+        "maxTargets": 1,
+        "range": 175.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 7.0,
+        "windupMs": 345,
+        "activeMs": 109,
+        "recoveryMs": 436,
+        "totalMs": 890,
+        "maxTargets": 1,
+        "range": 175.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 13.0,
+        "windupMs": 618,
+        "activeMs": 136,
+        "recoveryMs": 518,
+        "totalMs": 1272,
+        "maxTargets": 2,
+        "range": 185.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:tire-iron"
+  },
+  {
+    "id": 21,
+    "slug": "mallet",
+    "name": "Mallet",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 0.5,
+    "range": 160.0,
+    "playRate": 1.2,
+    "chargedPlayRate": 1.1,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 10.0,
+          "head": 20.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 7.0,
+        "windupMs": 200,
+        "activeMs": 83,
+        "recoveryMs": 283,
+        "totalMs": 566,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 13.0,
+          "head": 25.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 35.0,
+        "staminaCost": 10.0,
+        "windupMs": 316,
+        "activeMs": 100,
+        "recoveryMs": 400,
+        "totalMs": 816,
+        "maxTargets": 1,
+        "range": 160.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 13.0,
+        "windupMs": 618,
+        "activeMs": 136,
+        "recoveryMs": 518,
+        "totalMs": 1272,
+        "maxTargets": 2,
+        "range": 170.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:mallet"
+  },
+  {
+    "id": 22,
+    "slug": "crowbar",
+    "name": "Crowbar",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "one-handed",
+    "weightKg": 2.0,
+    "range": 185.0,
+    "playRate": 1.1,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 40.0,
+        "staminaCost": 5.0,
+        "windupMs": 218,
+        "activeMs": 90,
+        "recoveryMs": 310,
+        "totalMs": 618,
+        "maxTargets": 1,
+        "range": 185.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 60.0,
+        "staminaCost": 7.0,
+        "windupMs": 345,
+        "activeMs": 109,
+        "recoveryMs": 436,
+        "totalMs": 890,
+        "maxTargets": 1,
+        "range": 185.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "one-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 45.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 60.0,
+        "staminaCost": 13.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 2,
+        "range": 195.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "one-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:crowbar"
+  },
+  {
+    "id": 23,
+    "slug": "rebar",
+    "name": "Rebar",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 210.0,
+    "playRate": 1.15,
+    "chargedPlayRate": 1.05,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 35.0,
+        "staminaCost": 10.0,
+        "windupMs": 208,
+        "activeMs": 86,
+        "recoveryMs": 297,
+        "totalMs": 591,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 13.0,
+        "windupMs": 330,
+        "activeMs": 104,
+        "recoveryMs": 418,
+        "totalMs": 852,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 30.0,
+          "head": 40.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 55.0,
+        "staminaCost": 18.0,
+        "windupMs": 647,
+        "activeMs": 142,
+        "recoveryMs": 544,
+        "totalMs": 1333,
+        "maxTargets": 3,
+        "range": 220.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:rebar"
+  },
+  {
+    "id": 24,
+    "slug": "wrench-large",
+    "name": "Wrench (Large)",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 230.0,
+    "playRate": 0.9,
+    "chargedPlayRate": 0.9,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 10.0,
+        "windupMs": 266,
+        "activeMs": 111,
+        "recoveryMs": 378,
+        "totalMs": 755,
+        "maxTargets": 2,
+        "range": 230.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 50.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 55.0,
+        "staminaCost": 13.0,
+        "windupMs": 422,
+        "activeMs": 133,
+        "recoveryMs": 533,
+        "totalMs": 1088,
+        "maxTargets": 2,
+        "range": 230.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 40.0,
+          "head": 60.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 65.0,
+        "staminaCost": 15.0,
+        "windupMs": 755,
+        "activeMs": 166,
+        "recoveryMs": 634,
+        "totalMs": 1555,
+        "maxTargets": 3,
+        "range": 240.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:wrench-large"
+  },
+  {
+    "id": 25,
+    "slug": "baseball-bat",
+    "name": "Baseball Bat",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 1.5,
+    "range": 210.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.2,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 25.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 10.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 40.0,
+        "staminaCost": 13.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 2,
+        "range": 210.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 33.0,
+          "head": 50.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 100.0,
+        "staminaCost": 15.0,
+        "windupMs": 566,
+        "activeMs": 125,
+        "recoveryMs": 475,
+        "totalMs": 1166,
+        "maxTargets": 3,
+        "range": 220.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:baseball-bat"
+  },
+  {
+    "id": 26,
+    "slug": "pipe-large",
+    "name": "Pipe (Large)",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 225.0,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 35.0,
+        "staminaCost": 10.0,
+        "windupMs": 240,
+        "activeMs": 100,
+        "recoveryMs": 340,
+        "totalMs": 680,
+        "maxTargets": 2,
+        "range": 225.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 25.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 45.0,
+        "staminaCost": 13.0,
+        "windupMs": 380,
+        "activeMs": 120,
+        "recoveryMs": 480,
+        "totalMs": 980,
+        "maxTargets": 2,
+        "range": 225.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 33.0,
+          "head": 40.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 55.0,
+        "staminaCost": 15.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 3,
+        "range": 235.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:pipe-large"
+  },
+  {
+    "id": 27,
+    "slug": "sledge-hammer",
+    "name": "Sledge Hammer",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 3.0,
+    "range": 230.0,
+    "playRate": 0.8,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 30.0,
+          "head": 50.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 65.0,
+        "staminaCost": 10.0,
+        "windupMs": 300,
+        "activeMs": 125,
+        "recoveryMs": 425,
+        "totalMs": 850,
+        "maxTargets": 2,
+        "range": 230.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 65.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 75.0,
+        "staminaCost": 13.0,
+        "windupMs": 475,
+        "activeMs": 150,
+        "recoveryMs": 600,
+        "totalMs": 1225,
+        "maxTargets": 2,
+        "range": 230.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 50.0,
+          "head": 100.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 100.0,
+        "staminaCost": 15.0,
+        "windupMs": 680,
+        "activeMs": 150,
+        "recoveryMs": 570,
+        "totalMs": 1400,
+        "maxTargets": 3,
+        "range": 240.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:sledge-hammer"
+  },
+  {
+    "id": 28,
+    "slug": "hockey-stick",
+    "name": "Hockey Stick",
+    "category": "melee",
+    "meleeCategory": "blunt",
+    "handedness": "two-handed",
+    "weightKg": 2.0,
+    "range": 255.0,
+    "playRate": 1.1,
+    "chargedPlayRate": 1.1,
+    "attacks": [
+      {
+        "id": "quick",
+        "name": "Quick Attack",
+        "source": "melee",
+        "attackType": "quick",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 25.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 10.0,
+        "windupMs": 218,
+        "activeMs": 90,
+        "recoveryMs": 310,
+        "totalMs": 618,
+        "maxTargets": 2,
+        "range": 255.0,
+        "tags": [
+          "melee",
+          "quick",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "strong",
+        "name": "Strong Attack",
+        "source": "melee",
+        "attackType": "strong",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 30.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 35.0,
+        "staminaCost": 13.0,
+        "windupMs": 345,
+        "activeMs": 109,
+        "recoveryMs": 436,
+        "totalMs": 890,
+        "maxTargets": 2,
+        "range": 255.0,
+        "tags": [
+          "melee",
+          "strong",
+          "blunt",
+          "two-handed"
+        ]
+      },
+      {
+        "id": "charged",
+        "name": "Charged Attack",
+        "source": "melee",
+        "attackType": "charged",
+        "damageByHitZone": {
+          "body": 30.0,
+          "head": 35.0,
+          "limb": 1.0
+        },
+        "stabilityDamage": 40.0,
+        "staminaCost": 15.0,
+        "windupMs": 618,
+        "activeMs": 136,
+        "recoveryMs": 518,
+        "totalMs": 1272,
+        "maxTargets": 3,
+        "range": 265.0,
+        "tags": [
+          "melee",
+          "charged",
+          "blunt",
+          "two-handed"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:melee:hockey-stick"
+  },
+  {
+    "id": 101,
+    "slug": "double-barrel-shotgun",
+    "name": "Double Barrel Shotgun (DT11)",
+    "category": "firearm",
+    "gunCategory": "shotgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 2,
+    "ammoType": "12ga Shell",
+    "penetration": 1,
+    "pellets": 10,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 170.0,
+          "head": 200.0,
+          "limb": 150.0
+        },
+        "stabilityDamage": 150.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 2,
+        "range": 30.0,
+        "pellets": 10,
+        "tags": [
+          "firearm",
+          "shotgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:double-barrel-shotgun"
+  },
+  {
+    "id": 102,
+    "slug": "m590a1",
+    "name": "M590A1",
+    "category": "firearm",
+    "gunCategory": "shotgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 8,
+    "ammoType": "12ga Shell",
+    "penetration": 1,
+    "pellets": 10,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 170.0,
+          "head": 200.0,
+          "limb": 150.0
+        },
+        "stabilityDamage": 100.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 2,
+        "range": 30.0,
+        "pellets": 10,
+        "tags": [
+          "firearm",
+          "shotgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:m590a1"
+  },
+  {
+    "id": 103,
+    "slug": "x12-super",
+    "name": "X12 Super",
+    "category": "firearm",
+    "gunCategory": "shotgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 6,
+    "ammoType": "12ga Shell",
+    "penetration": 1,
+    "pellets": 10,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 170.0,
+          "head": 200.0,
+          "limb": 150.0
+        },
+        "stabilityDamage": 100.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 2,
+        "range": 30.0,
+        "pellets": 10,
+        "tags": [
+          "firearm",
+          "shotgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:x12-super"
+  },
+  {
+    "id": 104,
+    "slug": "m9a3",
+    "name": "M9A3",
+    "category": "firearm",
+    "gunCategory": "handgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 15,
+    "ammoType": "9mm",
+    "penetration": 0,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 50.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 1,
+        "range": 45.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "handgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:m9a3"
+  },
+  {
+    "id": 105,
+    "slug": "model-13",
+    "name": "Model 13",
+    "category": "firearm",
+    "gunCategory": "handgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 6,
+    "ammoType": ".357 Magnum",
+    "penetration": 2,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 24.0,
+          "head": 100.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 3,
+        "range": 50.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "handgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:model-13"
+  },
+  {
+    "id": 106,
+    "slug": "m1911",
+    "name": "M1911",
+    "category": "firearm",
+    "gunCategory": "handgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 7,
+    "ammoType": ".45 ACP",
+    "penetration": 0,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 100.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 1,
+        "range": 40.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "handgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:m1911"
+  },
+  {
+    "id": 107,
+    "slug": "gruber-mkvii",
+    "name": "Gruber MKVII",
+    "category": "firearm",
+    "gunCategory": "handgun",
+    "weightKg": 2.0,
+    "magazineCapacity": 10,
+    "ammoType": ".22LR",
+    "penetration": 0,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 12.0,
+          "head": 35.0,
+          "limb": 8.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 1,
+        "range": 45.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "handgun"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:gruber-mkvii"
+  },
+  {
+    "id": 108,
+    "slug": "mp5a4",
+    "name": "MP5A4",
+    "category": "firearm",
+    "gunCategory": "smg",
+    "weightKg": 2.0,
+    "magazineCapacity": 30,
+    "ammoType": "9mm",
+    "penetration": 0,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 15.0,
+          "head": 70.0,
+          "limb": 15.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 1,
+        "range": 50.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "smg"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:mp5a4"
+  },
+  {
+    "id": 109,
+    "slug": "mc15",
+    "name": "MC15",
+    "category": "firearm",
+    "gunCategory": "rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 30,
+    "ammoType": "5.56 NATO",
+    "penetration": 2,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 130.0,
+          "limb": 15.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 3,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:mc15"
+  },
+  {
+    "id": 110,
+    "slug": "gruber-ranch-rifle",
+    "name": "Gruber Ranch Rifle",
+    "category": "firearm",
+    "gunCategory": "rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 10,
+    "ammoType": "5.56 NATO",
+    "penetration": 2,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 130.0,
+          "limb": 15.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 3,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:gruber-ranch-rifle"
+  },
+  {
+    "id": 111,
+    "slug": "m7a1",
+    "name": "M7A1",
+    "category": "firearm",
+    "gunCategory": "rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 20,
+    "ammoType": "6.8x51mm",
+    "penetration": 3,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 40.0,
+          "head": 150.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 25.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 4,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:m7a1"
+  },
+  {
+    "id": 112,
+    "slug": "gruber-922",
+    "name": "Gruber 922",
+    "category": "firearm",
+    "gunCategory": "rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 25,
+    "ammoType": ".22LR",
+    "penetration": 0,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 12.0,
+          "head": 35.0,
+          "limb": 8.0
+        },
+        "stabilityDamage": 10.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 1,
+        "range": 50.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:gruber-922"
+  },
+  {
+    "id": 113,
+    "slug": "rochester-1873",
+    "name": "Rochester 1873",
+    "category": "firearm",
+    "gunCategory": "rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 13,
+    "ammoType": ".357 Magnum",
+    "penetration": 2,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 20.0,
+          "head": 100.0,
+          "limb": 20.0
+        },
+        "stabilityDamage": 20.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 3,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:rochester-1873"
+  },
+  {
+    "id": 114,
+    "slug": "hunter-85",
+    "name": "Hunter 85",
+    "category": "firearm",
+    "gunCategory": "heavy rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 5,
+    "ammoType": ".308WIN",
+    "penetration": 3,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 150.0,
+          "limb": 50.0
+        },
+        "stabilityDamage": 80.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 4,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "heavy rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:hunter-85"
+  },
+  {
+    "id": 115,
+    "slug": "m14-battle-rifle",
+    "name": "M14 Battle Rifle",
+    "category": "firearm",
+    "gunCategory": "heavy rifle",
+    "weightKg": 2.0,
+    "magazineCapacity": 20,
+    "ammoType": ".308WIN",
+    "penetration": 3,
+    "pellets": 1,
+    "playRate": 1.0,
+    "chargedPlayRate": 1.0,
+    "attacks": [
+      {
+        "id": "single_shot",
+        "name": "Fire Shot",
+        "source": "firearm",
+        "damageByHitZone": {
+          "body": 35.0,
+          "head": 150.0,
+          "limb": 50.0
+        },
+        "stabilityDamage": 50.0,
+        "staminaCost": 0,
+        "ammoCost": 1,
+        "windupMs": 40,
+        "activeMs": 40,
+        "recoveryMs": 220,
+        "totalMs": 300,
+        "maxTargets": 4,
+        "range": 100.0,
+        "pellets": 1,
+        "tags": [
+          "firearm",
+          "heavy rifle"
+        ]
+      }
+    ],
+    "provenanceRef": "compendium:guns:m14-battle-rifle"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "name": "nmrih2-optimizer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "preview": "vite preview",
+    "data:fetch": "python3 scripts/fetch-data.py",
+    "data:normalize": "python3 scripts/normalize-data.py",
+    "data:update": "npm run data:fetch && npm run data:normalize",
+    "deploy": "npm run build && npx wrangler deploy"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.0.7",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
+  }
+}

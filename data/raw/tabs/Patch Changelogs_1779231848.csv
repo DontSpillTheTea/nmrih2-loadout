@@ -1,0 +1,1176 @@
+"**I'm only 1 person maintaining the raw data, so things can easily be missed (I only have the available data, not serverside changes). I always welcome the help of the community when it comes to the sheet since I made it for you guys. If you find anything I've missed or inaccuracies please DM me.",,,,,,,,,,,
+Update,,Perk,Change,,Item,Change,,Weapon,Change,,Other
+1.0.4.0 Hotfix,,,,,,,,,,,Thankfully there's no hidden changes to post
+,,,,,,,,,,,https://www.nmrih2.com/2026/08/25/hotfix-notes-1-0-4-0/
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"1.0.0.0
+Armageddon
+Aug 11 2026",,New Perks Added,Handgun Reloading,,Rescue Beacon,Added to the game,,Firearms,,,Player
+,,,Rifle Reloading,,,,,Gruber 922 ,Penetrations 1 -> 0,,Stamina Regen Rate: Idle 50/s -> 55/s
+,,,Shotgun Reloading,,Critical Supply,Credit Value: 100 -> 300,,,Damage 5 -> 12,,Stamina Regen Rate: Walking 30/s -> 35/s
+,,,,,,,,,,,Shove Stamina Cost: 25 -> 20
+,,Perks Removed,Averaging,,Hunting Scope,Range: -20% -> +20%,,Gruber MKVII ,Damage 5 -> 12,,Sprint Speed Increase in notes not applied?
+,,,Guts,,,,,,,,
+,,,Teddy Bear,,Suppressor,No longer reduces range.,,M7 Damage ,35 -> 40,,Zombies
+,,,,,,,,,,,Runner Basic Damage 25 -> 20
+,,,,,Holographic Optic,Targeting Spread Multiplier: 0.5 -> 0.7,,M9A1 ,Damage 10 -> 15,,Runner Lunge Damage 25 -> 20
+,,Handgun Reloading,Reload Speed +20%,,,Recoil Reduction removed.,,,,,
+,,Handgun Reloading Ultimate,Reload Speed +40%,,,,,M590A1 ,Recoil Pitch 2.0 -> 5.0,,Prime Runner Basic Damage 30 -> 25
+,,,,,,,,,Recoil Pitch First Shot 1.5 -> 4.5,,Prime Runner Lunge Damage 30 -> 25
+,,Rifle Reloading,Reload Speed +20%,,,,,,,,
+,,Rifle Reloading Ultimate,Reload Speed +40%,,,,,M1911,Damage 15 -> 20,,Walker Basic Damage 10 -> 20
+,,,,,,,,,Recoil Pitch 0.7 -> 1.25,,Walker Heavy Damage 15 -> 20
+,,Shotgun Reloading,Reload Speed +20%,,,,,,,,
+,,Shotgun Reloading Ultimate,Reload Speed +40%,,,,,Model 13 ,Damage 20 -> 24,,Prime Walker Basic Damage 15 -> 25
+,,,,,,,,,Recoil Pitch 2.0 -> 3.0,,Prime Walker Heavy Damage 20 -> 25
+,,,,,,,,,Recoil Pitch First Shot 2.0 -> 3.3,,Prime Walker Lunge Damage 20 -> 25
+,,,,,,,,,Cooldown 0.85 -> 0.7,,
+,,,,,,,,,,,Firefighter Zombie is now Immune to Fire
+,,,,,,,,MP5,Damage 10 -> 15,,
+,,,,,,,,,,,Early Extract now opens after 8 Minutes for everyone alive.
+,,Skilled Medic,Now properly applies the bonus to teammates,,,,,RX12 ,Recoil Pitch 3.0 -> 5.0,,
+,,,,,,,,,Recoil Pitch First Shot 2.0 -> 5.2,,New Music:
+,,,,,,,,,,,Bunker (Dynamic)
+,,Penetrating Shot,Damage Falloff Per Penetration: 0.8 -> 0.7,,,,,,,,Battle Trance (Dynamic)
+,,,Max Penetrations: +2 -> +1,,,,,Melee,,,Broadway EVAC Theme
+,,,,,,,,Baseball Bat,Decreased quick attack swing speed by 20%.,,Biohazard
+,,Penetrating Shot Ultimate,Damage Falloff Per Penetration: 0.6 -> 0.5,,,,,,Decreased base damage from 30/35/45 to 20/25/33,,Hospital EVAC Theme
+,,,Max Penetrations: +4 -> +1,,,,,,Decreased headshot damage from 45/50/80 to 25/35/50,,Raven Rock EVAC Theme
+,,,,,,,,,Decreased stability damage from 65/75/100 to 20/40/100,,Empty 2.0 (Dynamic)
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.25,,
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Difficulties:
+,,,,,,,,,,,
+,,,,,,,,Claw Hammer,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Beginner
+,,,,,,,,,,,Objective Based Respawn -> Time Based Respawn
+,,,,,,,,Cleaver,Decreased charged swing speed by 5%,,Melee Damage Increase +43%
+,,,,,,,,,Increased base quick attack damage from 13 to 15,,Firearm Damage Increase +100%
+,,,,,,,,,Increased headshot charged attack damage from 45 to 50,,Firearm Limb Damage Increase +100%
+,,,,,,,,,Quick Attack Stability Damage: 0 -> 5,,Firearm Headshot Damage Increase +50%
+,,,,,,,,,Strong Attack Stability Damage: 0 -> 10,,Marker Visibility Distance +25%
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,World Threat Modifier Removed
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,Prime Zombie Modifier Removed
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0,,
+,,,,,,,,,,,Normal
+,,,,,,,,Crowbar,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Character XP Multiplier: 120% -> 125%
+,,,,,,,,,,,Objective Based Respawn Added
+,,,,,,,,Fire Axe,Quick Attack Stability Damage 0 -> 10,,0-33% Less Ammo in Found Weapons
+,,,,,,,,,Strong Attack Stability Damage 0 -> 20,,
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,Hard
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,Account XP Multiplier: 120% -> 150%
+,,,,,,,,,,,Character XP Multiplier: 160% -> 200%
+,,,,,,,,Hatchet,Increased base damage from 17/22/26 to 20/25/34,,Credits Multiplier: 120% -> 150%
+,,,,,,,,,Quick Attack Stability Damage 0 -> 5,,Timing Minigame Modifier: Faster -> Normal
+,,,,,,,,,Strong Attack Stability Damage 0 -> 10,,Valves: Slowest(10s) -> Fast(5s)
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,Codebook: 9 Numbers Long -> 6 Numbers Long
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,20-50% Less Ammo in Found Weapons Added
+,,,,,,,,,,,Ammo Picked Up Modifier: -50% -> -20%
+,,,,,,,,Hockey Stick,Decreased base quick attack damage 20 to 15,,World Threat Modifier Removed
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Reduced Loot Modifier Removed
+,,,,,,,,,,,
+,,,,,,,,Kitchen Knife,Strong Attack Damage 17 -> 18,,Nightmare
+,,,,,,,,,Quick Attack Stability Damage 0 -> 5,,Account XP Multiplier: 120% -> 200%
+,,,,,,,,,Strong Attack Stability Damage 0 -> 10,,Character XP Multiplier: 200% -> 300%
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,Credits Multiplier: 130% -> 200%
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,Timing Minigame Modifier: Fastest -> Normal
+,,,,,,,,,SecondaryHitStabilityDamageMultiplier 0.5 -> 0,,Valves: Slowest(12s) -> Fast(5s)
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0,,Codebook: 12 Numbers Long -> 6 Numbers Long
+,,,,,,,,,,,World Threat Modifier Removed
+,,,,,,,,Machete,Increased base damage from 17/22/26 to 20/25/34,,Flashlight Dies Modifier Removed
+,,,,,,,,,Quick Attack Stability Damage 0 -> 5,,Powerplant Fog Modifier Removed
+,,,,,,,,,Strong Attack Stability Damage 0 -> 10,,Reduced Loot Modifier Removed
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,Zombie Movespeed Modifier Removed
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,Ammo Picked Up Modifier: -65% -> -40%
+,,,,,,,,,,,40-75% Less Ammo in Found Weapons Added
+,,,,,,,,Mallet,Decreased base damage from 13/15/20 to 10/13/15,,
+,,,,,,,,,Decreased headshot damage from 25/30/35 to 20/25/30,,Economy
+,,,,,,,,,Decreased stability damage from 25/40/50 to 25/35/45,,Reroll Costs:
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Level 1: 300 -> 100
+,,,,,,,,,,,Level 5: 400 -> 150
+,,,,,,,,Large Pipe,Strong Attack Damage 20 -> 25,,Level 10: 500 -> 200
+,,,,,,,,,Charged Attack Damage 30 -> 33,,Level 15: 600 -> 250
+,,,,,,,,,Strong Attack Headshot Damage: 30 -> 35,,"Level 20: 1,200 -> 300"
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,"Level 30: 2,400 -> 350"
+,,,,,,,,,,,"Level 40: 3,000 -> 400"
+,,,,,,,,Small Pipe,Quick Attack Damage 10 -> 13,,"Level 50: 3,500 -> 450"
+,,,,,,,,,Strong Attack Damage 10 -> 15,,"Level 75: 4,000 -> 500"
+,,,,,,,,,Charged Attack Damage 15 -> 20,,"Level 100: 5,000 -> 500"
+,,,,,,,,,Increased headshot damage from 20/25/30 to 20/30/35,,
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Professions
+,,,,,,,,,,,All profressions now have two different starting perks.
+,,,,,,,,Rebar,Decreased base quick damage from 20 to 15,,Baseball Rookie: Teddy Bear -> Rush
+,,,,,,,,,Increased headshot strong damage from 30 to 35,,Bear Hunter: Steel Chamber added.
+,,,,,,,,,TertiaryHitStabilityDamageMultiplier 0.3 -> 0.5,,Bird Hunter: Shotgun Reloading added.
+,,,,,,,,,,,Coast Guard Veteran: Mohawk added.
+,,,,,,,,Shovel,Increased base damage from 13/18/25 to 20/25/34,,Deer Hunter: Averaging -> Rifle Reloading
+,,,,,,,,,Increased headshot damage from 34/38/50 to 35/45/50,,Designated Marksman: Pistol Reloading added.
+,,,,,,,,,Quick Attack Stability Damage 0 -> 5,,Engineer: Builder added.
+,,,,,,,,,Strong Attack Stability Damage 0 -> 10,,Martial Arts Master: Guts -> Adrenaline Rush
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,MMA Fighter: Adrenaline Rush added.
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,Prop Master: Thick Skin added.
+,,,,,,,,,,,Police Sniper: Headblown added.
+,,,,,,,,Sledgehammer,Charged Attack Speed 0.85 -> 1.0,,Spinal Surgeon: Skilled Medic added.
+,,,,,,,,,QuickAttackStaminaCostPerHit(Cleave) 5 -> 3,,Sous Chef: Mule added.
+,,,,,,,,,StrongAttackStaminaCostPerHit(Cleave) 5 -> 3,,Swim Captain: Athlete added.
+,,,,,,,,,HeavyAttackStaminaCostPerHit(Cleave) 5 -> 3,,
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,
+,,,,,,,,,,,
+,,,,,,,,Tire Iron,Charged Attack Damage 35 -> 20,,
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,
+,,,,,,,,,,,
+,,,,,,,,Tree Trimmer,Increased base damage from 20/25/35 to 25/30/35,,
+,,,,,,,,,Strong Attack Headshot Damage 35 -> 50,,
+,,,,,,,,,Charged Attack Headshot Damage 45 -> 65,,
+,,,,,,,,,Quick Attack Stability Damage 0 -> 5,,
+,,,,,,,,,Strong Attack Stability Damage 0 -> 10,,
+,,,,,,,,,SecondaryHitDamageMultiplier 0.5 -> 0.7,,
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,
+,,,,,,,,,,,
+,,,,,,,,Large Wrench,Strong Attack Damage 25 -> 35,,
+,,,,,,,,,Strong Attack Headshot Damage 40 -> 50,,
+,,,,,,,,,Quick Attack Swing Speed 0.8 -> 0.9,,
+,,,,,,,,,Charged Attack Swing Speed 0.85 -> 0.9,,
+,,,,,,,,,TertiaryHitDamageMultiplier 0.3 -> 0.5,,
+,,,,,,,,,,,
+,,,,,,,,Small Wrench,Strong Attack Damage 10 -> 13,,
+,,,,,,,,,Strong Attack Stability Damage 45 -> 35,,
+,,,,,,,,,Charged Attack Swing Speed 1.25 -> 1.1,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.9.1.0
+Revelation
+Apr 7 2026",,,,,Medkit,Weight: 0.50kg -> 1.0kg,,Fire Axe,Charged Attack Damage: 30 -> 65,,Helmet HP changes in notes look to be an error.
+,,,,,,,,,,,Headshot Values are now used when hitting helmets.
+,,,,,Ammo Crate,Weight: 1.0kg -> 2.0kg,,Kitchen Knife,Weight: 1.0kg -> 0.50kg,,Gruber 922 retains its 1 penetration value.
+,,,,,,Now Contains .22 LR,,,Stack Size: 1 -> 5,,Vulture still doesn't work on .45 aaaaaaaaaaaaaaaa
+,,,,,,,,,,,Player:
+,,,,,Medical Crate,Weight: 1.0kg -> 2.0kg,,Mallet,Weight: 1.0kg -> 0.50kg,,Stamina Regen Delay: 0.25 -> 1.0
+,,,,,,,,,,,
+,,,,,Lantern,Weight: 0.50kg -> 0.75kg,,Small Wrench,Weight: 1.0kg -> 0.50kg,,Difficulties:
+,,,,,,,,,Stack Size: 1 -> 5,,Casual:
+,,,,,Worklight,Weight: 0.50kg -> 0.75kg,,,,,Damage Taken: -25% -> -35%
+,,,,,,,,Gruber 922,Headshot Damage: 50 -> 35,,Credits: 100% -> 80%
+,,,,,Radio,Target Limit: ∞ -> 10,,,Damage: 25 -> 5,,No Primes 
+,,,,,,,,,Stability Damage: 50 -> 10,,No Armored Zeds
+,,,,,Ammo - 9mm,Weight Per Round: 0.010kg -> 0.015kg,,,Limb Damage: 30 -> 8,,
+,,,,,,,,,Range: 150m -> 50m,,Normal:
+,,,,,Ammo - .45 ACP,Minimum Weight: 0.35kg -> 0.45kg,,,,,Account XP: 110% -> 100%
+,,,,,,Weight Per Round: 0.010kg -> 0.025kg,,DT11,Damage: 13 -> 17,,Character XP: 110% -> 120%
+,,,,,,,,,Limb Damage: 80 -> 15,,Credits: 110% -> 100%
+,,,,,Ammo - 6.8x51mm,Minimum Weight: 0.35kg -> 0.50kg,,,Stability Damage: 12 -> 15,,"""Some"" Primes (0.33)"
+,,,,,,Weight Per Round: 0.010kg -> 0.040kg,,,Pellets: 8 -> 10,,"""Some"" Armored Zeds (0.33)"
+,,,,,,,,,Damage Falloff Per Penetration: 0.1 -> 0.8,,
+,,,,,Ammo - .308 WIN,Minimum Weight: 0.35kg -> 0.50kg,,,Weight: 2.0kg -> 2.25kg,,Hard:
+,,,,,,Weight Per Round: 0.010kg -> 0.040kg,,,,,Character XP: 120% -> 160%
+,,,,,,,,Gruber MKVII,Headshot Damage: 50 -> 35,,"""More"" Primes (0.66)"
+,,,,,Ammo - .357 MAG,Minimum Weight: 0.35kg -> 0.45kg,,,Damage: 25 -> 5,,"""More"" Armored Zeds (0.66)"
+,,,,,,Weight Per Round: 0.010kg -> 0.025kg,,,Limb Damage: 30 -> 8,,
+,,,,,,,,,Stability Damage: 40 -> 10,,Nightmare:
+,,,,,Ammo - 5.56,Minimum Weight: 0.35kg -> 0.50kg,,,Range: 50m -> 45m,,Account XP: 130% -> 120%
+,,,,,,Weight Per Round: 0.010kg -> 0.025kg,,,,,Character XP: 130% -> 200%
+,,,,,,,,Gruber Ranch,Damage: 35 -> 20,,"""Plenty"" Primes (1.0)"
+,,,,,Ammo - 12ga,Minimum Weight: 0.35kg -> 0.50kg,,,Headshot Damage: 100 -> 130,,"""Plenty"" Armored Zeds (1.0)"
+,,,,,,Weight Per Round: 0.010kg -> 0.040kg,,,Limb Damage: 30 -> 15,,
+,,,,,,,,,Stability Damage: 40 -> 25,,Map Supply Caps:
+,,,,,Attachments:,,,,Penetrations: 1 -> 2,,Powerplant: 720
+,,,,,Suppressor:,Spread decreased by 10%,,,Range: 150m -> 100m,,Pottsville: 520
+,,,,,,Initial ADS Spread decreased by 10%,,,Damage Falloff Per Penetration: 0.15 -> 0.5,,Lewiston: 440
+,,,,,,Range decreased by 20%,,,Stability Damage Falloff Per Penetration: 0.10 -> 0.5,,Broadway: 600
+,,,,,,Recoil decreased by ~20%,,,Weight: 2.0kg -> 2.25kg,,Hospital: 560
+,,,,,,,,,,,
+,,,,,Weapon Flashlight:,Spread decreased by ~5%,,Hunter 85,Damage: 75 -> 35,,Character & Account level XP curves changed.
+,,,,,,,,,Penetrations: 2 -> 3,,"Responder Level 1-100 = 445,810 -> 392,500
+(~11.96% Decrease)
+With the new curve Responders are much faster to level up to 50, slowing down from there.
+Account Level 1-100 = 343,400 -> 644,300
+(~87.62% Increase)"
+,,,,,Holo Sight:,Aiming Spread decreased by 50%,,,Range: 150m -> 100m,,
+,,,,,,Spread Decay Rate increased by ~50%,,,Damage Falloff Per Penetration: 0.15 -> 0.3,,
+,,,,,,Initial ADS Spread decreased by 50%,,,Stability Damage Falloff Per Penetration: 0.10 -> 0.3,,
+,,,,,,Per Shot Spread Increase decreased by 20%,,,Weight: 2.0kg -> 2.25kg,,
+,,,,,,Moving Spread Multiplier decreased by 30%,,,,,
+,,,,,,Recoil Strength decreased by ~25%,,M7A1,Damage: 50 -> 35,,
+,,,,,,,,,Headshot Damage 100 -> 150,,Cost to Upgrade Perk to Expert: 5000 -> 1000
+,,,,,ACOG:,Aiming Spread decreased by 50%,,,Penetrations: 1 -> 3,,Perk Reroll costs change depending on the slot lv
+,,,,,,Spread Decay Rate increased by ~25%,,,Limb Damage: 30 -> 20,,Nightmare Clear requirements removed from shop
+,,,,,,Initial ADS Spread decreased by 75%,,,Stability Damage: 40 -> 25,,Shop prices reduced across the board
+,,,,,,Per Shot Spread Increase decreased by 40%,,,Range: 150m -> 100m,,
+,,,,,,Moving Spread Multiplier decreased by 10%,,,Weight: 3.0kg -> 3.25kg,,
+,,,,,,Recoil Strength decreased by ~25%,,,,,
+,,,,,,,,M9A1,Damage: 25 -> 10,,Stimuli:
+,,,,,Hunter Sight:,Range decreased by 20% (Bug/Unintended?),,,Limb Damage: 50 -> 20,,Gunshot - Suppressed:
+,,,,,,Initial ADS Spread decreased by 90%,,,Stability Damage: 40 -> 20,,Duration: 5.0 -> 1.0
+,,,,,,Aiming Spread decreased by 50%,,,Range: 50m -> 45m,,Radius: 3200 -> 1000
+,,,,,,Recoil Strength decreased by ~25%,,,,,Requires Line of Sight
+,,,,,,Spread Decay Rate reduced by ~20%,,M14,Damage: 75 -> 35,,Gunshot - Pistol:
+,,,,,,,,,Limb Damage: 75 -> 50,,Duration: 5.0 -> 2.0
+,,,,,██████,Spread decreased by ~25%,,,Stability Damage: 60 -> 50,,RadiusWhenOccluded: 1500
+,,,,,,Recoil decreased by ~25%+,,,Penetrations: 2 -> 3,,Requires Line of Sight
+,,,,,,,,,Range: 150m -> 100m,,Gunshot - Rifle/Shotgun/Assault Rifle:
+,,,,,,,,,Damage Falloff Per Penetration: 0.15 -> 0.3,,Duration: 5.0 -> 2.0
+,,,,,,,,,Stability Damage Falloff Per Penetration: 0.10 -> 0.3,,RadiusWhenOccluded: 1500
+,,,,,,,,,,,Requires Line of Sight
+,,,,,,,,M590A1,Damage: 13 -> 17,,Explosion:
+,,,,,,,,,Headshot Damage: 25 -> 20,,Radius: 7500 -> 4500
+,,,,,,,,,Limb Damage: 80 -> 15,,Pipebomb:
+,,,,,,,,,Stability Damage: 12 -> 10,,Radius: 10000 -> 2000
+,,,,,,,,,Pellets: 8 -> 10,,Requires Line of Sight
+,,,,,,,,,Damage Falloff Per Penetration: 0.1 -> 0.8,,Alarm:
+,,,,,,,,,,,Radius: 15000 -> 4500
+,,,,,,,,M1911,Damage: 35 -> 15,,Player:
+,,,,,,,,,Limb Damage: 70 -> 20,,Footstep - Crouch
+,,,,,,,,,Stability Damage: 60 -> 25,,Radius: 300 -> 100
+,,,,,,,,,Range: 50m -> 40m,,Requires Line of Sight
+,,,,,,,,,,,Footstep - Walk
+,,,,,,,,MC15,Damage: 35 -> 20,,Radius: 1000 -> 400
+,,,,,,,,,Headshot Damage: 100 -> 130,,Requires Line of Sight
+,,,,,,,,,Limb Damage: 30 -> 15,,Footstep - Sprint
+,,,,,,,,,Stability Damage: 40 -> 25,,Radius: 2000 -> 1000
+,,,,,,,,,Penetrations: 1 -> 2,,Requires Line of Sight
+,,,,,,,,,Range: 150m -> 100m,,Footstep - Jump
+,,,,,,,,,Damage Falloff Per Penetration: 0.15 -> 0.3,,Removed
+,,,,,,,,,Stability Damage Falloff Per Penetration: 0.10 -> 0.3,,
+,,,,,,,,,Weight: 3.0kg -> 2.5kg,,"Crouching, Aiming, and Movement all have decently large effects on spread; Crouching and Aiming of course being positive effects and Movement being negative."
+,,,,,,,,,,,
+,,,,,,,,Model 13,Damage: 35 -> 20,,
+,,,,,,,,,Limb Damage: 50 -> 20,,Rochester will be moved to the 'Rifle' category
+,,,,,,,,,Stability Damage: 60 -> 20,,RMB to underhand throw grenades.
+,,,,,,,,,Penetrations: 0 -> 2,,
+,,,,,,,,,Damage Falloff Per Penetration: 0 -> 0.5,,
+,,,,,,,,,Stability Damage Falloff Per Penetration: 0 -> 0.5,,
+,,,,,,,,,,,
+,,,,,,,,MP5,Damage: 25 -> 10,,MP5 has bugged values of 15 and 10 for Damage and Stability Damage falloff per pen(Norm is 0.15/0.10) despite no penetration. 
+,,,,,,,,,Headshot Damage: 100 -> 70,,
+,,,,,,,,,Limb Damage: 30 -> 15,,
+,,,,,,,,,Stability Damage: 30 -> 20,,
+,,,,,,,,,Range: 150m -> 50m,,
+,,,,,,,,,,,
+,,,,,,,,RX12,Damage: 15 -> 17,,
+,,,,,,,,,Headshot Damage: 25 -> 20,,
+,,,,,,,,,Limb Damage: 80 -> 15,,
+,,,,,,,,,Stability Damage: 12 -> 10,,
+,,,,,,,,,Pellets: 8 -> 10,,
+,,,,,,,,,Damage Falloff Per Penetration: 0.1 -> 0.8,,
+,,,,,,,,,Weight: 3.0kg -> 2.75kg,,
+,,,,,,,,,,,
+,,,,,,,,Rochester 1873,Damage: 30 -> 20,,
+,,,,,,,,,Limb Damage: 50 -> 20,,
+,,,,,,,,,Stability Damage: 80 -> 20,,
+,,,,,,,,,Range: 150m -> 100m,,
+,,,,,,,,,Damage Falloff Per Penetration: 0.15 -> 0,,
+,,,,,,,,,Stability Damage Falloff Per Penetration: 0.1 -> 0,,
+,,,,,,,,,Weight: 2.0kg -> 2.25kg,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.8.0.1
+Genesis Hotfix
+Feb. 24 2026",,,,,,,,Baseball Bat,Damage: 20 -> 30,,Zombies:
+,,,,,,,,,Headshot Damage: 34 -> 45,,Leg Limb HP: 60 -> 70
+,,,,,,,,,Stability Damage: 40 -> 65,,Crawler:
+,,,,,,,,,Strong Attack Damage: 30 -> 35,,Movespeed: 65 -> 95
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 75,,MaxYawRotationSpeed: 45 -> 90
+,,,,,,,,,Charged Attack Damage: 35 -> 45,,BasicAttackActivationRange: 120 -> 135
+,,,,,,,,,Thrown Damage: 80 -> 40,,BasicAttackDamageRange: 150 -> 165
+,,,,,,,,,Charged Attack Speed: 1x -> 1.2x,,PostInterruptCooldown: 0.5s -> 0.2s
+,,,,,,,,,Attack & Combo Speed: 1x -> 1.2x,,
+,,,,,,,,,,,Weapons:
+,,,,,,,,Claw Hammer,Damage: 20 -> 15,,Machete seems to be missing some changes.
+,,,,,,,,,Headshot Damage: 40 -> 30,,"Fire Axe Charged Damage = 30, not 65."
+,,,,,,,,,Stability Damage: 20 -> 40,,← These values are what's currently live.
+,,,,,,,,,Strong Attack Damage: 25 -> 20,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 35,,Slamfire bug introduced in 0.8 is still applying to the
+,,,,,,,,,Strong Attack Stability Damage: 40 -> 55,,M590 & 1873
+,,,,,,,,,Charged Attack Damage: 40 -> 25,,
+,,,,,,,,,Charged Attack Headshot Damage: 80 -> 45 ,,Player:
+,,,,,,,,,Thrown Damage: 60 -> 25,,Stamina Starved Regen Delay: 1.0 -> 1.75
+,,,,,,,,,Charged Attack Speed: 1x -> 1.2x,,
+,,,,,,,,,Attack & Combo Speed: 1x -> 1.2x,,Difficulties:
+,,,,,,,,,Range: 180 -> 170,,Casual & Classic:
+,,,,,,,,,,,25% Increased Melee Damage Modifier removed.
+,,,,,,,,Cleaver,Damage: 20 -> 13,,50% Increased Limb Damage Modifier removed.
+,,,,,,,,,Headshot Damage: 20 -> 28,,
+,,,,,,,,,Stability Damage: 20 -> 0,,Hard & Nightmare:
+,,,,,,,,,Strong Attack Damage: 25 -> 17,,25% Decreased Melee Damage Modifier removed.
+,,,,,,,,,Strong Attack Headshot Damage: 30 -> 38,,
+,,,,,,,,,Strong Attack Stability Damage: 30 -> 0,,
+,,,,,,,,,Charged Attack Damage: 35 -> 25,,
+,,,,,,,,,Charged Attack Headshot Damage: 40 -> 45,,
+,,,,,,,,,Charged Attack Stability Damage: 50 -> 20,,
+,,,,,,,,,Charged Attack Limb Damage: 30 -> 40,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 20,,
+,,,,,,,,,Charged Attack Speed: 1x -> 1.1x,,
+,,,,,,,,,Range: 180 -> 165,,
+,,,,,,,,,,,
+,,,,,,,,Crowbar,Damage: 20 -> 15,,
+,,,,,,,,,Headshot Damage: 40 -> 30,,
+,,,,,,,,,Stability Damage: 20 -> 40,,
+,,,,,,,,,Strong Attack Damage: 25 -> 20,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 35,,
+,,,,,,,,,Strong Attack Stability Damage: 40 -> 60,,
+,,,,,,,,,Charged Attack Damage: 40 -> 25,,
+,,,,,,,,,Charged Attack Headshot Damage: 80 -> 45,,
+,,,,,,,,,Thrown Damage: 60 -> 25,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 60,,
+,,,,,,,,,Attack & Combo Speed: 1x -> 1.1x,,
+,,,,,,,,,Range: 190 -> 185,,
+,,,,,,,,,,,
+,,,,,,,,Fire Axe,Damage: 30 -> 35,,
+,,,,,,,,,Headshot Damage: 35 -> 60,,
+,,,,,,,,,Stability Damage: 30 -> 0,,
+,,,,,,,,,Limb Damage: 30 -> 60,,
+,,,,,,,,,Strong Attack Damage: 35 -> 50,,
+,,,,,,,,,Strong Attack Headshot Damage: 40 -> 80,,
+,,,,,,,,,Strong Attack Stability Damage: 30 -> 0,,
+,,,,,,,,,Strong Attack Limb Damage: 60 -> 80,,
+,,,,,,,,,Charged Attack Damage: 45 -> 30,,
+,,,,,,,,,Charged Attack Headshot Damage: 75 -> 100,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 20,,
+,,,,,,,,,Charged Attack Limb Damage: 60 -> 100,,
+,,,,,,,,,Thrown Damage: 45 -> 75,,
+,,,,,,,,,,,
+,,,,,,,,Hatchet,Damage: 20 -> 17,,
+,,,,,,,,,Headshot Damage: 40 -> 35,,
+,,,,,,,,,Stability Damage: 20 -> 0,,
+,,,,,,,,,Limb Damage: 20 -> 40,,
+,,,,,,,,,Strong Attack Damage: 25 -> 22,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 45,,
+,,,,,,,,,Strong Attack Stability Damage: 30 -> 0,,
+,,,,,,,,,Strong Attack Limb Damage: 30 -> 60,,
+,,,,,,,,,Charged Attack Damage: 40 -> 26,,
+,,,,,,,,,Charged Attack Stability Damage: 50 -> 20,,
+,,,,,,,,,Charged Attack Limb Damage: 30 -> 60,,
+,,,,,,,,,Thrown Damage: 35 -> 50,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 20,,
+,,,,,,,,,Charged Attack Speed: 1x -> 1.15x,,
+,,,,,,,,,Range: 180 -> 175,,
+,,,,,,,,,,,
+,,,,,,,,Hockey Stick,Damage: ,,
+,,,,,,,,,Headshot Damage: 34 -> 25,,
+,,,,,,,,,Stability Damage: 40 -> 25,,
+,,,,,,,,,Strong Attack Damage: 30 -> 20,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 30,,
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 35,,
+,,,,,,,,,Charged Attack Damage: 35 -> 30,,
+,,,,,,,,,Charged Attack Headshot Damage: 80 -> 35,,
+,,,,,,,,,Charged Attack Stability Damage: 100 -> 40,,
+,,,,,,,,,Thrown Damage: 80 -> 40,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.1x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.1x,,
+,,,,,,,,,Range: 240 -> 255,,
+,,,,,,,,,,,
+,,,,,,,,Kitchen Knife,Damage: 20 -> 15,,
+,,,,,,,,,Headshot Damage: 20 -> 25,,
+,,,,,,,,,Stability Damage: 20 -> 0,,
+,,,,,,,,,Strong Attack Damage: 30 -> 17,,
+,,,,,,,,,Strong Attack Headshot Damage: 30 -> 38,,
+,,,,,,,,,Strong Attack Stability Damage: 20 -> 0,,
+,,,,,,,,,Charged Attack Damage: 35 -> 25,,
+,,,,,,,,,Charged Attack Stability Damage: 30 -> 20,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 20,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.2x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.2x,,
+,,,,,,,,,Range: 180 -> 160,,
+,,,,,,,,,,,
+,,,,,,,,Machete,Headshot Damage: 40 -> 35,,
+,,,,,,,,,Stability Damage: 20 -> 0,,
+,,,,,,,,,Limb Damage: 20 -> 40,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 45,,
+,,,,,,,,,Strong Attack Stability Damage: 30 -> 0,,
+,,,,,,,,,Strong Attack Limb Damage: 30 -> 40,,
+,,,,,,,,,Charged Attack Stability Damage: 50 -> 20,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 20,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.15x,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,Mallet,Damage: 18 -> 13,,
+,,,,,,,,,Headshot Damage: 30 -> 25,,
+,,,,,,,,,Stability Damage: 20 -> 25,,
+,,,,,,,,,Strong Attack Damage: 20 -> 15,,
+,,,,,,,,,Strong Attack Headshot Damage: 40 -> 30,,
+,,,,,,,,,Charged Attack Damage: 35 -> 20,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 -> 35,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 50,,
+,,,,,,,,,Thrown Damage: 60 -> 25,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 60,,
+,,,,,,,,,Thrown Limb Damage: 0 -> 1 ??,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.1x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.2x,,
+,,,,,,,,,Range: 170 -> 160,,
+,,,,,,,,,,,
+,,,,,,,,Large Pipe,Damage: 30 -> 20,,
+,,,,,,,,,Headshot Damage: 50 -> 30,,
+,,,,,,,,,Stability Damage: 40 -> 35,,
+,,,,,,,,,Strong Attack Damage: 45 -> 20,,
+,,,,,,,,,Strong Attack Headshot Damage: 70 -> 30,,
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 45,,
+,,,,,,,,,Charged Attack Damage: 50 -> 30,,
+,,,,,,,,,Charged Attack Headshot Damage: 100 -> 40,,
+,,,,,,,,,Charged Attack Stability Damage: 100 -> 55,,
+,,,,,,,,,Thrown Damage: 80 -> 40,,
+,,,,,,,,,Range: 220 -> 225,,
+,,,,,,,,,,,
+,,,,,,,,Small Pipe,Damage: 18 -> 10,,
+,,,,,,,,,Headshot Damage: 30 -> 20,,
+,,,,,,,,,Stability Damage: 20 -> 25,,
+,,,,,,,,,Strong Attack Damage: 20 -> 10,,
+,,,,,,,,,Strong Attack Headshot Damage: 40 -> 25,,
+,,,,,,,,,Strong Attack Stability Damage: 40 -> 50,,
+,,,,,,,,,Charged Attack Damage: 35 -> 15,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 -> 30,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 50,,
+,,,,,,,,,Thrown Damage: 60 -> 25,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 60,,
+,,,,,,,,,Attack & Combo Speed: 1.0 -> 1.1x,,
+,,,,,,,,,,,
+,,,,,,,,Rebar,Headshot Damage: 34 -> 30,,
+,,,,,,,,,Stability Damage: 20 -> 35,,
+,,,,,,,,,Strong Attack Damage: 25 -> 20,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 30,,
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 45,,
+,,,,,,,,,Charged Attack Damage: 35 -> 30,,
+,,,,,,,,,Charged Attack Headshot Damage: 80 -> 40,,
+,,,,,,,,,Charged Attack Stability Damage: 100 -> 55,,
+,,,,,,,,,Thrown Damage: 80 -> 40,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.15x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.05x,,
+,,,,,,,,,Range: 220 -> 210,,
+,,,,,,,,,,,
+,,,,,,,,Shovel,Damage: 30 -> 13,,
+,,,,,,,,,Headshot Damage: 25 -> 34,,
+,,,,,,,,,Stability Damage: 20 -> 0,,
+,,,,,,,,,Limb Damage: 30 -> 20,,
+,,,,,,,,,Strong Attack Damage: 35 -> 18,,
+,,,,,,,,,Strong Attack Headshot Damage: 34 -> 38,,
+,,,,,,,,,Strong Attack Stability Damage: 20 -> 0,,
+,,,,,,,,,Charged Attack Damage: 45 -> 25,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 -> 50,,
+,,,,,,,,,Charged Attack Stability Damage: 31 -> 20,,
+,,,,,,,,,Charged Attack Limb Damage: 60 -> 40,,
+,,,,,,,,,Thrown Damage: 45 -> 35,,
+,,,,,,,,,Thrown Stability Damage: 100 -> 40,,
+,,,,,,,,,Range: 230 -> 235,,
+,,,,,,,,,,,
+,,,,,,,,Sledgehammer,Stability Damage: 40 -> 65,,
+,,,,,,,,,Strong Attack Damage: 45 -> 35,,
+,,,,,,,,,Strong Attack Headshot Damage: 70 -> 65,,
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 75,,
+,,,,,,,,,Thrown Damage: 80 -> 40,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 0.85x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 0.80x,,
+,,,,,,,,,Range: 220 -> 230,,
+,,,,,,,,,,,
+,,,,,,,,Tire Iron,Damage: 18 -> 13,,
+,,,,,,,,,Headshot Damage: 30 -> 25,,
+,,,,,,,,,Stability Damage: 20 -> 25,,
+,,,,,,,,,Strong Attack Damage: 20 -> 15,,
+,,,,,,,,,Strong Attack Headshot Damage: 40 -> 30,,
+,,,,,,,,,Strong Attack Stability Damage: 40 -> 45,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 -> 35,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 45,,
+,,,,,,,,,Thrown Damage: 60 -> 25,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 60,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.1x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.1x,,
+,,,,,,,,,Range: 180 -> 175,,
+,,,,,,,,,,,
+,,,,,,,,Tree Trimmer,Damage: 30 -> 20,,
+,,,,,,,,,Headshot Damage: 25 -> 35,,
+,,,,,,,,,Stability Damage: 30 -> 0,,
+,,,,,,,,,Strong Attack Damage: 35 -> 25,,
+,,,,,,,,,Strong Attack Headshot Damage: 34 -> 35,,
+,,,,,,,,,Strong Attack Stability Damage: 30 -> 0,,
+,,,,,,,,,Strong Attack Limb Damage: 30 -> 40,,
+,,,,,,,,,Charged Attack Damage: 45 -> 35,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 ->  45,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 20,,
+,,,,,,,,,Thrown Damage: 45 -> 35,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.1x,,
+,,,,,,,,,,,
+,,,,,,,,Large Wrench,Damage: 20 -> 25,,
+,,,,,,,,,Headshot Damage: 34 -> 35,,
+,,,,,,,,,Stability Damage: 40 -> 45,,
+,,,,,,,,,Strong Attack Damage: 30 -> 25,,
+,,,,,,,,,Strong Attack Headshot Damage: 50 -> 40,,
+,,,,,,,,,Strong Attack Stability Damage: 60 -> 55,,
+,,,,,,,,,Charged Attack Damage: 35 -> 40,,
+,,,,,,,,,Charged Attack Headshot Damage: 80 -> 60,,
+,,,,,,,,,Charged Attack Stability Damage: 100 -> 65,,
+,,,,,,,,,Thrown Damage: 80 -> 40,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 0.85x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 0.80x,,
+,,,,,,,,,Range: 220 -> 230,,
+,,,,,,,,,,,
+,,,,,,,,Small Wrench,Damage: 18 -> 10,,
+,,,,,,,,,Headshot Damage: 30 -> 20,,
+,,,,,,,,,Stability Damage: 20 -> 25,,
+,,,,,,,,,Strong Attack Damage: 20 -> 10,,
+,,,,,,,,,Strong Attack Headshot Damage: 40 -> 25,,
+,,,,,,,,,Strong Attack Stability Damage: 40 -> 45,,
+,,,,,,,,,Charged Attack Damage: 35 -> 15,,
+,,,,,,,,,Charged Attack Headshot Damage: 60 -> 30,,
+,,,,,,,,,Charged Attack Stability Damage: 60 -> 45,,
+,,,,,,,,,Thrown Damage: 60 -> 25,,
+,,,,,,,,,Thrown Stability Damage: 50 -> 60,,
+,,,,,,,,,Charged Attack Speed: 1.0x -> 1.25x,,
+,,,,,,,,,Attack & Combo Speed: 1.0x -> 1.20x,,
+,,,,,,,,,Range: 170 -> 160,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,Damage: ,,
+,,,,,,,,,Headshot Damage: ,,
+,,,,,,,,,Stability Damage: ,,
+,,,,,,,,,Limb Damage: ,,
+,,,,,,,,,Strong Attack Damage: ,,
+,,,,,,,,,Strong Attack Headshot Damage: ,,
+,,,,,,,,,Strong Attack Stability Damage: ,,
+,,,,,,,,,Strong Attack Limb Damage: ,,
+,,,,,,,,,Charged Attack Damage: ,,
+,,,,,,,,,Charged Attack Headshot Damage:,,
+,,,,,,,,,Charged Attack Stability Damage: ,,
+,,,,,,,,,Charged Attack Limb Damage: ,,
+,,,,,,,,,Thrown Damage: ,,
+,,,,,,,,,Thrown Stability Damage:,,
+,,,,,,,,,Charged Attack Speed: ,,
+,,,,,,,,,Attack & Combo Speed:,,
+,,,,,,,,,Range: ,,
+,,,,,,,,,,,
+"0.8.0
+Genesis
+Feb. 3 2026",,,,,,,,GruberMkVII,Limb Damage 50 -> 30,,Stamina Starved:
+,,Builder,Battery & Board Weight -25% -> -15%,,,,,,Stability Damage 60 -> 40,,Reduced Stability Damage 80% -> 50%
+,,,,,,,,,,,
+,,Builder Expert,Board Weight -50% -> -30%,,,,,Baseball Bat,Range 250 -> 210,,Player Changes:
+,,,,,,,,,Light Attack Stamina Cost 15 -> 10,,Movement Speed: 240 -> 200
+,,Butcher,Strong Attack Limb Damage 1.50 -> 1.2,,,,,,Strong Attack Stamina Cost 18 -> 13,,Stamina Regen Rate - Walking: 20 -> 30
+,,,Charged Attack Limb Damage 1.50 -> 1.2,,,,,,Charged Attack Stamina Cost 20 -> 15,,Sprinting Speed Multiplier: 1.7 -> 1.85
+,,,,,,,,,,,
+,,Butcher Expert,Strong Attack Limb Damage 2.0 -> 1.4,,,,,Claw Hammer,Range 170 -> 180,,Responder Max Level: 50 -> 1000
+,,,Charged Attack Limb Damage 2.0 -> 1.4,,,,,,Light Attack Stamina Cost 9.5 -> 5,,Account Max Level: 100 -> 1000
+,,,,,,,,,Strong Attack Stamina Cost 12 -> 7,,Cost to Upgrade Perk to Expert: 1000 -> 5000
+,,Deprived,Max Stamina increase removed.,,,,,,Charged Attack Stamina Cost 18 -> 13,,
+,,,,,,,,,,,Zombie Movement Speed Changes:
+,,Deprived Expert,Max Stamina increase removed. ,,,,,Cleaver,Range 170 -> 180,,"Trying to find the numbers for this has annoyed me to no end, I'll put here what 'should' be the new numbers now but I don't have old ones for you. "
+,,,,,,,,,Light Attack Stamina Cost 9.5 -> 5,,
+,,,,,,,,,Strong Attack Stamina Cost 12 -> 7,,
+,,,,,,,,,Charged Attack Stamina Cost 18 -> 13,,Crawler Movespeed: 65
+,,Grenadier,Throwable & Deployable Weights -20% -> -10%,,,,,,,,Runner Crawler Movespeed: 190
+,,,,,,,,Crowbar,Range 170 -> 190,,Runner Movespeed: 260-400 (Utilizes Acceleration)
+,,,,,,,,,Light Attack Stamina Cost 9.5 -> 5,,Walker Movespeed: 120
+,,Grenadier Expert,Throwable & Deployable Weights -30% -> -20%,,,,,,Strong Attack Stamina Cost 12 -> 7,,
+,,,,,,,,,Charged Attack Stamina Cost 18 -> 13,,Runner Movespeed Variation = 0.9x to 1.0x
+,,Steady Hand,SpreadDegrees -25% -> -20%,,,,,,,,Walker Movespeed Variation = 0.9x to 1.1x
+,,,PerShotSpreadIncrease -25% -> 20%,,,,,Fire Axe,Range 220 -> 210,,Movement Speed increases from Hard/NM Unchanged.
+,,,,,,,,,Light Attack Stamina Cost 15 -> 10,,
+,,Steady Hand Expert,SpreadDegrees -50% -> -35%,,,,,,Strong Attack Stamina Cost 18 -> 13,,Difficulty Changes:
+,,,PerShotSpreadIncrease -50% -> 35%,,,,,,Charged Attack Stamina Cost 18 -> 13,,Classic XP & Credits Gain: 200% -> 110%
+,,,,,,,,,,,Hard XP & Credits Gain: 300% -> 120%
+,,Hitman,Light Attack Damage 1.25 -> 1.15,,,,,Hatchet,Range 170 -> 180,,Nightmare XP & Credits Gain: 400% -> 130%
+,,,Strong Attack Damage 1.25 -> 1.15,,,,,,Light Attack Stamina Cost 9.5 -> 5,,
+,,,Headshot Damage 1.25 -> 1.15,,,,,,Strong Attack Stamina Cost 12 -> 7,,Prime Runner:
+,,,Strong Attack Headshot Damage 1.25 -> 1.15,,,,,,Charged Attack Stamina Cost 18 -> 13,,Health: 120
+,,,,,,,,,,,Melee Damage - Basic: 30
+,,,Light Attack Stamina Cost Modifier 1.25 -> 1.15,,,,,Hockey Stick,Range 220 -> 240,,Melee Damage - Heavy: 12(Multihit Attack)
+,,,,,,,,,Light Attack Stamina Cost 15 -> 10,,Stability Damage - Basic: 72
+,,,Strong Attack Stamina Cost Modifier 1.25 -> 1.15,,,,,,Strong Attack Stamina Cost 18 -> 13,,Stability Damage - Heavy: 72
+,,,,,,,,,Charged Attack Stamina Cost 20 -> 15,,Melee Damage - Lunge: 30
+,,,,,,,,,,,Stability Damage - Lunge: 120
+,,Hitman Expert,Light Attack Damage 1.5 -> 1.3,,,,,Kitchen Knife,Range 170 -> 180,,
+,,,Strong Attack Damage 1.5 -> 1.3,,,,,,Light Attack Stamina Cost 9.5 -> 5,,Music: 
+,,,Headshot Damage 1.5 -> 1.3,,,,,,Strong Attack Stamina Cost 12 -> 7,,"""Survival EVAC Theme"""
+,,,Strong Attack Headshot Damage 1.5 -> 1.3,,,,,,Charged Attack Stamina Cost 18 -> 13,,"""Dragging"""
+,,,Light Attack Stamina Cost Modifier 1.25 -> 1.15,,,,,,,,"""NotLD Minimal"""
+,,,,,,,,Machete,Range 170 -> 190,,"""Campfire"""
+,,,Strong Attack Stamina Cost Modifier 1.25 -> 1.15,,,,,,Light Attack Stamina Cost 9.5 -> 5,,
+,,,,,,,,,Strong Attack Stamina Cost 12 -> 7,,New Melee Lines: (Standardized on all Melee)
+,,,,,,,,,Charged Attack Stamina Cost 18 -> 13,,Heavy Attack Play Rate: 1.0
+,,Hardblow,Light Attack Stability Damage 1.20 -> 1.15,,,,,,,,Attack And Combo Play Rate: 1.0
+,,,Strong Attack Stability Damage 1.20 -> 1.15,,,,,Mallet,Light Attack Stamina Cost 12 -> 7,,Light Attack Stamina Cost Per Hit: 5.0
+,,,,,,,,,Strong Attack Stamina Cost 15 -> 10,,Strong Attack Stamina Cost Per Hit: 5.0
+,,,,,,,,,Charged Attack Stamina Cost 18 -> 13,,Charged Attack Stamina Cost Per Hit: 5.0
+,,Hardblow Expert,Light Attack Stability Damage 1.40 -> 1.30,,,,,,,,
+,,,Strong Attack Stability Damage 1.40 -> 1.30,,,,,Large Pipe,Light Attack Stamina Cost 15 -> 10,,Bladed:
+,,,,,,,,,Strong Attack Stamina Cost 18 -> 13,,Initial Hit Damage Multiplier: 1.0
+,,,,,,,,,Charged Attack Stamina Cost 20 -> 15,,Secondary Hit Damage Multiplier: 0.5
+,,Limbo,Downed Health & Duration 1.7 -> 1.15,,,,,,,,Tertiary Hit Damage Multiplier: 0.3
+,,,,,,,,Small Pipe,Range 170 -> 180,,Initial Hit Limb Damage Multiplier: 1.0
+,,Limbo Expert,Downed Health & Duration 2.5 -> 1.3,,,,,,Light Attack Stamina Cost 12 -> 7,,Secondary Hit Limb Damage Multiplier: 0.7
+,,,,,,,,,Strong Attack Stamina Cost 18 -> 13,,Tertiary Hit Limb Damage Multiplier: 0.5
+,,Longer Battery,FlashLight Battery Drain Modifier 0.4 -> 0.75,,,,,,Charged Attack Stamina Cost 20 -> 15,,Initial Hit Stability Damage Multiplier:1.0
+,,,,,,,,,,,Secondary Hit Stability Damage Multiplier: 0.5
+,,,,,,,,Rebar,Light Attack Stamina Cost 15 -> 10,,Tertiary Hit Stability Damage Multiplier: 0.3
+,,Longer Battery Expert,FlashLight Battery Drain Modifier 0.1 -> 0.5,,,,,,Strong Attack Stamina Cost 18 -> 13,,
+,,,,,,,,,Charged Attack Stamina Cost 23 -> 18,,Blunt:
+,,One for One,Stamina Refunded Upon Damage Taken 0.1 -> 0.02,,,,,,,,Initial Hit Damage Multiplier: 1.0
+,,,,,,,,Shovel,Range 220 -> 230,,Secondary Hit Damage Multiplier: 0.5
+,,,,,,,,,Light Attack Stamina Cost 12 -> 7,,Tertiary Hit Damage Multiplier: 0.3
+,,One for One Expert,Stamina Refunded Upon Damage Taken 0.15 -> 0.05,,,,,,Strong Attack Stamina Cost 18 -> 13,,Initial Hit Limb Damage Multiplier: 1.0
+,,,,,,,,,Charged Attack Stamina Cost 23 -> 18,,Secondary Hit Limb Damage Multiplier: 0.2
+,,,,,,,,,,,Tertiary Hit Limb Damage Multiplier: 0.0
+,,Resilience,Fire/Water/Electricity/Poison Cloud Damage Resistance 0.3 -> 0.15,,,,,Sledgehammer,Light Attack Stamina Cost 15 -> 10,,Initial Hit Stability Damage Multiplier: 1.0
+,,,,,,,,,Strong Attack Stamina Cost 18 -> 13,,Secondary Hit Stability Damage Multiplier: 0.7
+,,,,,,,,,Charged Attack Stamina Cost 20 -> 15,,Tertiary Hit Stability Damage Multiplier: 0.3
+,,Resilience Expert,Fire/Water/Electricity/Poison Cloud Damage Resistance 0.5 -> 0.25,,,,,,,,
+,,,,,,,,Tire Iron,Range 170 -> 180,,Gruber MkVII Recoil Changes
+,,,,,,,,,Light Attack Stamina Cost 9.5 -> 5,,Recoil Pitch First Shot 2.5 -> 0.5
+,,Quiet Steps,Walking/Running/Crouching/Jumping Noise Stimuli Modifier 0.4 -> 0.9,,,,,,Strong Attack Stamina Cost 12 -> 7,,Recoil Yaw First Shot 0.3 -> 0.04
+,,,,,,,,,Charged Attack Stamina Cost 18 -> 13,,Recoil Yaw Max 0.3 -> 0.0
+,,,,,,,,,,,Recoil Yaw Min 0.15 -> 0.0
+,,Quiet Steps Expert,Walking/Running/Crouching/Jumping Noise Stimuli Modifier 0.2 -> 0.8,,,,,Treetrimmer,Range 220 -> 250,,
+,,,,,,,,,Light Attack Stamina Cost 15 -> 10,,
+,,,,,,,,,Strong Attack Stamina Cost 18 -> 13,,
+,,Hellfire,Max Spread Degrees 0.75 - 0.85,,,,,,Charged Attack Stamina Cost 18 -> 15,,
+,,,,,,,,,,,
+,,Hellfire Expert,Max Spread Degrees 0.5 - 0.7,,,,,Large Wrench,Light Attack Stamina Cost 15 -> 10,,
+,,,,,,,,,Strong Attack Stamina Cost 18 -> 13,,
+,,Mohawk,Max Penetrations 2 -> 1,,,,,,Charged Attack Stamina Cost 20 -> 15,,
+,,,,,,,,,,,
+,,Mohawk Expert,Max Penetrations 4 -> 2,,,,,Small Wrench,Light Attack Stamina Cost 12 -> 7,,
+,,,,,,,,,Strong Attack Stamina Cost 15 -> 10,,
+,,Steady Shot,Recoil Strength 0.7 -> 0.85,,,,,,Charged Attack Stamina Cost 18 -> 13,,
+,,,,,,,,,,,
+,,Steady Shot Expert,Recoil Strength 0.4 -> 0.7,,,,,,,,
+,,,,,,,,,,,
+,,Overkill,Pellets 1.5 -> 1.15,,,,,,,,
+,,,,,,,,,,,
+,,Overkill Expert,Pellets 2.0 -> 1.3,,,,,,,,
+,,,,,,,,,,,
+,,Tight Shot,Spread Degrees 0.75 -> 0.85,,,,,,,,
+,,,,,,,,,,,
+,,Tight Shot Expert,Spread Degrees 0.5 -> 0.7,,,,,,,,
+,,,,,,,,,,,
+,,Locked On,Recoil Strength 0.7 -> 0.8,,,,,,,,
+,,,,,,,,,,,
+,,Locked On Expert,Recoil Strength 0.5 -> 0.6,,,,,,,,
+,,,,,,,,,,,
+,,Steel Chamber,Damage Multiplier 1.3 -> 1.15,,,,,,,,
+,,,,,,,,,,,
+,,Steel Chamber Expert,Damage Multiplier 1.5 -> 1.3,,,,,,,,
+,,,,,,,,,,,
+,,Penetrating Shot,Damage Falloff Per Penetration 0.7 -> 0.8,,,,,,,,
+,,,,,,,,,,,
+,,Penetrating Shot Expert,Damage Falloff Per Penetration 0.4 -> 0.6,,,,,,,,
+,,,,,,,,,,,
+,,Eagle Eye,Range Damage FallOff Modifier 0.3 -> 0.4,,,,,,,,
+,,,,,,,,,,,
+,,Teddy Bear,Stability Damage 1.25 -> 1.15,,,,,,,,
+,,,Damage 0.75 -> 0.85,,,,,,,,
+,,,,,,,,,,,
+,,Teddy Bear Expert,Stability Damage 1.5 -> 1.3,,,,,,,,
+,,,Damage 0.75 -> 0.85,,,,,,,,
+,,,,,,,,,,,
+,,Vulture,Ammo Weight -0.2 -> -0.1,,,,,,,,
+,,,,,,,,,,,
+,,Vulture Expert,Ammo Weight -0.3 -> -0.2,,,,,,,,
+,,,,,,,,,,,
+"0.7.1
+Health Update #2
+Dec 2 2025",,,,,,,,,,,
+,,Adrenaline Rush,"Now applies to all attack types (light, strong, charged)",,,,,,,,
+,,,,,,,,,,,
+,,,Light Attack Stamina Cost -25% -> -10%,,,,,,,,"Patch notes say Guts is supposed to reduce Stamina Starved Duration as well, I can't find the changes to point to it."
+,,,Strong Attack Stamina Cost -50% -> -10%,,,,,,,,
+,,,Added: Charge Attack Stamina Cost -10%,,,,,,,,
+,,,,,,,,,,,
+,,Adrenaline Rush Expert,"Now applies to all attack types (light, strong, charged)",,,,,,,,Steel Chamber continues to not affect the Rochester
+,,,,,,,,,,,Vulture Normal + Expert still don't apply to .45acp
+,,,Light Attack Stamina Cost -50% -> -20%,,,,,,,,
+,,,Strong Attack Stamina Cost -100% -> -20%,,,,,,,,Player Changes:
+,,,Added: Charge Attack Stamina Cost -20%,,,,,,,,Stamina Regen Rate - Idle 66.6 -> 50
+,,,,,,,,,,,Stamina Regen Rate - Walking 66.6 -> 20
+,,Aquired Immunity,Infection resistance 50% -> 10% ,,,,,,,,Stamina Regen Rate - Targeting 12 -> 15
+,,,,,,,,,,,
+,,Aquired Immunity Expert,Infection resistance 75% -> 20% ,,,,,,,,
+,,,,,,,,,,,Stimuli added to thrown items hitting the ground
+,,Athlete,Max Stamina 20% -> 10%,,,,,,,,Duration: 5
+,,,,,,,,,,,Radius: 800
+,,Athlete Expert,Max Stamina 30% -> 20%,,,,,,,,Priority: High
+,,,,,,,,,,,Level: Medium
+,,Butcher,Limb Damage 50% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Butcher Expert,Limb Damage 100% -> 40%,,,,,,,,
+,,,,,,,,,,,
+,,Caravan,Removed -Max Health effect: -20% -> 0%,,,,,,,,
+,,,-Max Stamina -20% -> -15%,,,,,,,,
+,,,,,,,,,,,
+,,Caravan Expert,Removed -Max Health effect: -20% -> 0%,,,,,,,,
+,,,-Max Stamina -20% -> -10%,,,,,,,,
+,,,,,,,,,,,
+,,Deprived,Increased Max Health 20% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,Deprived Expert,Increased Max Health 30% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Foreman,Kicks deal damage 30-> 10,,,,,,,,
+,,,,,,,,,,,
+,,Foreman Expert,Kicks deal damage 45-> 30,,,,,,,,
+,,,,,,,,,,,
+,,Grenadier Expert,-30% weight now applies to deployables ,,,,,,,,
+,,,,,,,,,,,
+,,Guts Expert,Added: affects Stamina Starved duration,,,,,,,,
+,,,,,,,,,,,
+,,Lucky Pathogen,Damage Resistance 20% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,Lucky Pathogen Expert,Damage Resistance 30% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Marathon Runner,Sprint Stamina Cost 50% -> 15% ,,,,,,,,
+,,,,,,,,,,,
+,,Marathon Runner Expert,Sprint Stamina Cost 100% -> 30%,,,,,,,,
+,,,,,,,,,,,
+,,Mule,Added: Health Reduced by 15%,,,,,,,,
+,,,,,,,,,,,
+,,Mule Expert,Added: Health Reduced by 5%,,,,,,,,
+,,,,,,,,,,,
+,,Resident Genes,HP Heal 50 -> 15,,,,,,,,
+,,,,,,,,,,,
+,,Resident Genes Expert,HP Heal 50 -> 25,,,,,,,,
+,,,,,,,,,,,
+,,Scavenger,Increased Ammo Gained 25% -> 15%,,,,,,,,
+,,,,,,,,,,,
+,,Scavenger Expert,Increased Ammo Gained 50% -> 30%,,,,,,,,
+,,,,,,,,,,,
+,,Sturdy Body,Damage Resistance 20% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,Sturdy Body Expert,Damage Resistance 30% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Thick Skin,Max Health 20% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,Thick Skin Expert,Max Health 30% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Vulture,Now Properly affects .22LR,,,,,,,,
+,,,,,,,,,,,
+,,Vulture Expert,Now Properly affects .22LR,,,,,,,,
+,,,,,,,,,,,
+,,Wicked,Limb Damage 25% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,Wicked Expert,Limb Damage 50% -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Rush,Less Stamina for Charged Two-handed Attacks 25% -> 10%,,,,,,,,
+,,,,,,,,,,,
+,,,Removed: Strong Attack Reduction,,,,,,,,
+,,,,,,,,,,,
+,,Rush Expert,Less Stamina for Charged Two-handed Attacks 40% -> 30%,,,,,,,,
+,,,,,,,,,,,
+,,,Removed: Strong Attack Reduction,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.7
+Beaulieu Hospital
+Oct 27 2025",,,,,,,,Hatchet,Damage 20 -> 10,,Zombies:
+,,,,,,,,,Headshot Damage 40 -> 30,,Shield HP 400 -> 200
+,,,,,,,,,Strong Attack Damage 25 -> 12,,Construction Helmet HP 50 -> 30
+,,,,,,,,,Strong Attack Headshot Damage 50 -> 35,,Firefighter Helmet HP 50 -> 30
+,,,,,,,,,Strong Attack Stability Damage 30 -> 15,,Riot Helmet HP 100 -> 60
+,,,,,,,,,Charged Attack Damage 40 -> 20,,NG Helmet HP 150 -> 90
+,,,,,,,,,Charged Attack Headshot Damage 55 -> 50,,
+,,,,,,,,,Charged Attack Stability Damage 50 -> 25,,
+,,,,,,,,,,,Player:
+,,,,,,,,,,,Max Shove Targets 5 -> 1
+,,,,,,,,,,,Max Heavy Shove Targets 1 -> 3
+,,,,,,,,,,,Stamina Regen Delay 2.0 -> 0.25
+,,,,,,,,,,,Added Stamina Regen Delay (2.0) while Stamina Starved
+,,,,,,,,,,,
+,,,,,,,,,,,Post-Attack Stamina Regen Delay 0.5 -> 0.1
+,,,,,,,,,,,
+,,,,,,,,,,,Stamina Starved:
+,,,,,,,,,,,Reduced Damage Multiplier 30% -> 10%
+,,,,,,,,,,,Reduced Stability Damage 50% -> 80%
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,Difficulties:
+,,,,,,,,,,,Casual & Classic Melee Dmg 150% -> 125%
+,,,,,,,,,,,Hard & Nightmare Melee Dmg 100% -> 75%
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,Multi-hit Stam values seem to be +5-10 but I'll
+,,,,,,,,,,,confirm some extra values later on & update it.
+,,,,,,,,,,,
+,,,,,,,,,,,Firerate Changes(Semi):
+,,,,,,,,,,,M7/MP5/Gruber 922/Gruber MKVII 
+,,,,,,,,,,,M7 Semi is bugged as confirmed in the discord.
+,,,,,,,,,,,https://discord.com/channels/211900829307895819/1432373802066645074/1432470061351960751
+,,,,,,,,,,,New OST Songs:
+,,,,,,,,,,,"""Counting the Zombies"""
+,,,,,,,,,,,"""Past Is History"""
+,,,,,,,,,,,"""And So I Bid Farewell"""
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.6.1.1
+Hotfix
+Sept 18 2025",,,,,M67 Frag Grenade,Cannot be triggered via gunfire or explosives.,,,,,https://discord.com/channels/211900829307895819/375622861563494410/1418238202992398387
+,,,,,,,,,,,
+,,,,,,,,,,,Explosion Self Damage & Friendly Fire Damage has been disabled.
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,Firefighter's Oxygen Tank exploding and triggering surrounding explosives will no longer hurt you.
+,,,,,,,,,,,
+,,,,,,,,,,,Cost to Upgrade Perk to Expert 500 -> 1000
+"0.6.1
+Health Update #1
+Sept 16 2025",,,,,,,,Cleaver,Strong Damage Force 25000 -> 15000,,"Melee force values changed on multiple melees, the effects are hard to quantify since I don't know exactly what this ties into, whether it's just the ragdoll strength of the weapon or what."
+,,,,,,,,,Charged Damage Force 50000 -> 20000,,
+,,,,,,,,,,,
+,,,,,,,,Fire Axe,Strong Damage Force 37500 -> 20000,,
+,,,,,,,,,Charged Damage Force 75000 -> 40000,,
+,,,,,,,,,,,"""Army and Police zombies now properly take reduced damage and lose armor-based headshot resistance when helmets are destroyed"" From the patch notes, I'll test this later since there was already discrepenices between the Training Area and real matches."
+,,,,,,,,Machete,Strong Damage Force 37500 -> 20000,,
+,,,,,,,,,Charged Damage Force 75000 -> 40000,,
+,,,,,,,,,,,
+,,,,,,,,Mallet,Strong Damage Force 25000 -> 15000,,
+,,,,,,,,,Charged Damage Force 50000 -> 20000,,
+,,,,,,,,,,,Knocked Down Zombie Hitbox fixed.
+,,,,,,,,Small Pipe,Strong Damage Force 25000 -> 15000,,
+,,,,,,,,,Charged Damage Force 50000 -> 20000,,You can now Kick Zombies while they're getting up.
+,,,,,,,,,,,
+,,,,,,,,Shovel,Strong Damage Force 37500 -> 20000,,"Kicking a zombie while its down seems to be able to kill it, Another instance of Stability Damage turning into real damage due to the Weakened State? Testing needed outside the Training Area."
+,,,,,,,,,Charged Damage Force 75000 -> 40000,,
+,,,,,,,,,,,
+,,,,,,,,Tire Iron,Strong Damage Force 25000 -> 15000,,
+,,,,,,,,,Charged Damage Force 50000 -> 20000,,
+,,,,,,,,,,,Bugs:
+,,,,,,,,Tree Trimmer,Strong Damage Force 37500 -> 20000,,Steel Chamber still doesn't apply to the Rochester.
+,,,,,,,,,Charged Damage Force 75000 -> 40000,,Vulture still doesn't work on .22 LR/.45 ACP ammo.
+,,,,,,,,,,,Grenadier Expert still doesn't work on IEDs&Radios.
+,,,,,,,,Wrench,Strong Damage Force 25000 -> 15000,,
+,,,,,,,,,Charged Damage Force 50000 -> 20000,,Huge Damage Falloff past 25m in the Training Area.
+,,,,,,,,,,,
+" 0.6.0.1 
+Hotfix
+August 26 2025",,,,,,,,,,,https://discord.com/channels/211900829307895819/375622861563494410/1409900920682188973
+,,,,,,,,,,,Hard Difficulty Loot Changes:
+,,,,,,,,,,,30% -> 50% Less Ammo Picked Up
+,,,,,,,,,,,30% -> 40% Less Loot Spawns
+,,,,,,,,,,,
+,,,,,,,,,,,Nightmare Difficulty Loot Changes:
+,,,,,,,,,,,50% -> 65% Less Ammo Picked Up
+,,,,,,,,,,,50% -> 65% Less Loot Spawns
+,,,,,,,,,,,
+,,,,,,,,,,,"Total Supplies/Exp required to Lvl a Responder from 0-50 increased by 70%
+98250 -> 167,310"
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.6.0
+SPAWN
+August 19 2025",,,,,,,,Hockey Stick,Added to game,,Shove  Valid Angle 75 -> 180
+,,,,,,,,,,,Heavy Shove  Valid Angle 50 -> 180
+,,,,,,,,Baseball Bat,Stamina cost 20 -> 15,,
+,,,,,,,,,Strong Attack Stamina 30 -> 18,,Broadway: Fast Rope Hold Duration 3s -> 2s
+,,,,,,,,,Charged Attack Stamina 45 -> 20,,Broadway: +2 Nightmare Extractions fixed
+,,,,,,,,,,,
+,,,,,,,,Sledge Hammer,Stamina cost 20 -> 15,,
+,,,,,,,,,Strong Attack Stamina 30 -> 18,,Difficulty Prefrence Selection added
+,,,,,,,,,Charged Attack Stamina 45 -> 20,,Reroll Perk added
+,,,,,,,,,Range 250 -> 220,,Upgrade to Expert Perks added
+,,,,,,,,,,,
+,,,,,,,,Large Pipe,Stamina cost 20 -> 15,,
+,,,,,,,,,Strong Attack Stamina 30 -> 18,,Zombie Attack Ranges have been randomized
+,,,,,,,,,Charged Attack Stamina 45 -> 20,,
+,,,,,,,,,Range 250 -> 220,,Difficulty Changes:
+,,,,,,,,,,,Casual:
+,,,,,,,,Rebar,Stamina cost 20 -> 15,,"100% Character, Credit and Acc XP Gains"
+,,,,,,,,,Strong Attack Stamina 25 -> 18,,Classic:
+,,,,,,,,,Charged Attack Stamina 35 -> 23,,100% Account XP Gain -> 200%
+,,,,,,,,,Range 250 -> 220,,100% Character XP Gain -> 200%
+,,,,,,,,,,,100% Credit Multiplier -> 200%
+,,,,,,,,Large Wrench,Stamina cost 20 -> 15,,Hard:
+,,,,,,,,,Strong Attack Stamina 30 -> 18,,140% Account XP Gain -> 300%
+,,,,,,,,,Charged Attack Stamina 45 -> 20,,110% Character XP Gain -> 300%
+,,,,,,,,,Range 250 -> 220,,100% Credit Multiplier -> 300%
+,,,,,,,,,,,Nightmare:
+,,,,,,,,Fire Axe,Stamina cost 20 -> 15,,200% Account XP Gain -> 400%
+,,,,,,,,,Strong Attack Stamina 25 -> 18,,120% Character XP Gain -> 400%
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,100% Credit Multiplier -> 400%
+,,,,,,,,,Range 250 -> 220,,
+,,,,,,,,,,,
+,,,,,,,,Tree Trimmer,Stamina cost 20 -> 15,,
+,,,,,,,,,Strong Attack Stamina 25 -> 18,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,"Casual & Classic difficulty modifier:
+
+Melee Damage +50%
+Limb Damage +50%"
+,,,,,,,,,Range 250 -> 220,,
+,,,,,,,,,,,
+,,,,,,,,Shovel,Stamina cost 15 -> 12,,
+,,,,,,,,,Strong Attack Stamina 25 -> 18,,
+,,,,,,,,,Charged Attack Stamina 40 -> 23,,"Hard & Nightmare difficulty modifier:
+
+Crawler Movement Speed +20%
+Shambler Movement Speed +20%
+Walker Movement Speed +20%
+Runner Movement Speed +10%"
+,,,,,,,,,Range 250 -> 220,,
+,,,,,,,,,Stability Damage 19 -> 20 ,,
+,,,,,,,,,,,
+,,,,,,,,Machete,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20 ,,
+,,,,,,,,,,,
+,,,,,,,,Cleaver,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20 ,,
+,,,,,,,,,,,
+,,,,,,,,Kitchen Knife,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 10 -> 20 ,,
+,,,,,,,,,Strong Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+,,,,,,,,Hatchet,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20 ,,
+,,,,,,,,,,,
+,,,,,,,,Crowbar,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 25 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,,,
+,,,,,,,,Claw Hammer,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 25 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,,,
+,,,,,,,,Tire Iron,Stamina cost 12 -> 9.5,,
+,,,,,,,,,Strong Attack Stamina 15 -> 12,,
+,,,,,,,,,Charged Attack Stamina 25 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,,,
+,,,,,,,,Wrench,Stamina cost 15 -> 12,,
+,,,,,,,,,Strong Attack Stamina 20 -> 15,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+,,,,,,,,Mallet,Stamina cost 15 -> 12,,
+,,,,,,,,,Strong Attack Stamina 20 -> 15,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+,,,,,,,,Pipe,Stamina cost 15 -> 12,,
+,,,,,,,,,Strong Attack Stamina 20 -> 15,,
+,,,,,,,,,Charged Attack Stamina 30 -> 18,,
+,,,,,,,,,Range 220 -> 170,,
+,,,,,,,,,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+"0.5.0
+Broadway
+July 15 2025",,,,,,,,Gruber MKVII .22 pistol,Added to game,,Broadway Map Added
+,,,,,,,,DT11,Damage 20 -> 13,,Tutorial Gym Added
+,,,,,,,,,Headshot Damage 25 -> 20,,Character Customization 1.0
+,,,,,,,,,,,Throw (hold G)
+,,,,,,,,M590A1,Damage 20 -> 13,,
+,,,,,,,,,Headshot Damage 50 -> 25,,
+,,,,,,,,,Weight 2kg -> 3kg,,
+,,,,,,,,,,,
+,,,,,,,,RX12,Damage 13 -> 15,,Zombie death animation reduced 
+,,,,,,,,,Weight 2kg -> 3kg,,
+,,,,,,,,,,,
+,,,,,,,,MC-15,Weight 2kg -> 3kg,,
+,,,,,,,,,,,
+,,,,,,,,M7A1,Weight 2kg -> 3kg,,
+,,,,,,,,,,,
+,,,,,,,,M14,Weight 2kg -> 3kg,,
+,,,,,,,,,,,
+,,,,,,,,Gruber 922,Rate of Fire increased,,Sabinian Moonstone voices the train driver in
+,,,,,,,,,,,Broadway's train extract variant
+,,,,,,,,Sledgehammer,Weight 2kg -> 3kg,,
+,,,,,,,,,Stability Damage 20 - > 40,,
+,,,,,,,,,,,
+,,,,,,,,Fire Axe,Weight 2kg -> 3kg,,
+,,,,,,,,,Stability Damage 40 - > 30,,
+,,,,,,,,,Strong Stability Damage 50 -> 30,,
+,,,,,,,,,Charged Stability Damage 80 -> 60,,
+,,,,,,,,,,,
+,,,,,,,,Hatchet,Stability Damage 10 -> 15,,
+,,,,,,,,,,,
+,,,,,,,,Machete,Stability Damage 10 -> 15,,
+,,,,,,,,,,,
+,,,,,,,,Long Pipe,Stability Damage 20 -> 40,,
+,,,,,,,,,,,
+,,,,,,,,Tire Iron,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+,,,,,,,,Large Wrench,Stability Damage 20 -> 40,,
+,,,,,,,,,,,
+,,,,,,,,Baseball Bat,Stability Damage 20 -> 40,,
+,,,,,,,,,,,
+,,,,,,,,Claw Hammer,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+,,,,,,,,Cleaver,Stability Damage 10 -> 15,,
+,,,,,,,,,,,
+,,,,,,,,Crowbar,Stability Damage 15 -> 20,,
+,,,,,,,,,,,
+"0.4.2
+Reanimation++
+June 17 2025",,Butcher,25%->50% melee damage to limb,,,,,Gruber 922,Added to game,,Zombie Weakened state added (+100% Damage taken while knocked down) 
+,,,,,,,,,,,
+,,Butcher - Expert,50% -> 100% melee damage to limbs,,,,,,,,"""Lynch"" Responder voice featuring Jon St. John as M & Lani Minella as F"
+,,,,,,,,,,,"There wasn't any stealth nerfs this patch thankfully compared to last, If anyone finds a change I missed just let me know and I'll correct it."
+,,,,,,,,,,,
+,,,,,,,,,,,
+"0.4.1 
+Reanimation+
+May 13 2025",,,,,,,,,,,
+,,Hardblow,150% -> 120%,,Adrenaline shot,200% Total Stamina -> 125%,,Baseball bat,StabilityDamage 19 -> 20,,
+,,,,,,,,,StaminaStarvedAttackSpeedReductionPercent 0.9 -> 1.15,,
+,,Hardblow Expert,200% -> 140%,,Body armor,30% Damage Resistance -> 25%,,,,,
+,,,,,,Remains additive,,Cleaver,LimbDamage 50 -> 20,,
+,,Rush,50% Stamina Reduction -> 25%,,,,,,StrongAttackLimbDamage 70 -> 30,,
+,,,Did not change charged attacks -> now works with charged attacks,,Nailgun,200% Speed -> 300%,,,HeavyAttackLimbDamage 100 -> 30,,
+,,,,,,,,,,,
+,,Rush Expert,80% Stamina Reduction -> 40%,,,,,Fireaxe,StaminaStarvedAttackSpeedReductionPercent 1.0 -> 1.15,,
+,,,Did not change charged attacks -> now works with charged attacks,,,,,,LimbDamage 100 -> 30,,
+,,,,,,,,,StrongAttackLimbDamage 100 -> 60,,
+,,Adrenaline Rush,50% Reduction -> 25%,,,,,,HeavyAttackLimbDamage 100 -> 60,,
+,,,,,,,,,,,
+,,Adrenaline Rush Expert,No Stamina cost -> 50% Reduction,,,,,Hatchet,LimbDamage 50 -> 20,,
+,,,,,,,,,StrongAttackLimbDamage 70 -> 30,,
+,,Antibodies Expert,100% Infection Resistance -> 75%,,,,,,HeavyAttackLimbDamage 100 -> 30,,
+,,,,,,,,,,,
+,,Athlete,140% Total Stamina -> 120%,,,,,Knife,LimbDamage 50 -> 20,,
+,,,,,,,,,StrongAttackLimbDamage 70 -> 30,,
+,,Athlete Expert,200% Total Stamina -> 130%,,,,,,HeavyAttackLimbDamage 100 -> 30,,
+,,,,,,,,,,,
+,,Builder,-20% Weight -> -25%,,,,,Machete,LimbDamage 50 -> 20,,
+,,,,,,,,,StrongAttackLimbDamage 70 -> 30,,
+,,Builder Expert,-30% Weight -> -50%,,,,,,HeavyAttackLimbDamage 100 -> 60,,
+,,,,,,,,,,,
+,,Butcher,150% Limb Damage -> 125%,,,,,Large pipe,StabilityDamage 19 -> 20,,
+,,,,,,,,,StaminaStarvedAttackSpeedReductionPercent 0.9 -> 1.15,,
+,,Butcher Expert,200% Limb Damage -> 150%,,,,,,,,
+,,,,,,,,,,,
+,,Headhunter,120% -> 110%,,,,,,,,
+,,,,,,,,Shovel,StaminaStarvedAttackSpeedReductionPercent 1.0 -> 1.15,,
+,,Headhunter Expert,140% -> 120%,,,,,,LimbDamage 100 -> 30,,
+,,,,,,,,,StrongAttackLimbDamage 100 -> 30,,
+,,Limbo,150% -> 170%,,,,,,HeavyAttackLimbDamage 100 -> 60,,
+,,,,,,,,,,,
+,,Limbo Expert,200% -> 250%,,,,,Sledgehammer,StabilityDamage 19 -> 20,,
+,,,,,,,,,StaminaStarvedAttackSpeedReductionPercent 0.9 -> 1.15,,
+,,Mule,2.5kg -> 1kg,,,,,,,,
+,,,,,,,,Treetrimmer,StaminaStarvedAttackSpeedReductionPercent 1.0 -> 1.15,,
+,,Mule Expert,5kg -> 2kg,,,,,,LimbDamage 100 -> 30,,
+,,,,,,,,,StrongAttackLimbDamage 100 -> 30,,
+,,Quiet Steps,Walking sound reduction 50% -> 60%,,,,,,HeavyAttackLimbDamage 100 -> 60,,
+,,,,,,,,,,,
+,,Quiet Steps Expert,Walking sound reduction 70% -> 80%,,,,,Large wrench,StabilityDamage 19 -> 20,,
+,,,,,,,,,StaminaStarvedAttackSpeedReductionPercent 0.9 -> 1.15,,
+,,Steady Shot / Steady Shot Expert,Used to work without crouching -> requires crouch,,,,,,,,
+,,,,,,,,,,,
+,,Scavenger,150% -> 125%,,,,,,,,
+,,,,,,,,,,,
+,,Scavenger Expert,200% -> 150%,,,,,,,,
+,,,,,,,,,,,
+,,Sturdy Body,30% Damage mitigation -> 20%,,,,,,,,
+,,,,,,,,,,,
+,,Sturdy Body Expert,60% Damage mitigation -> 30%,,,,,,,,
+,,,,,,,,,,,
+,,Thick Skin,150% Total Health -> 120%,,,,,,,,
+,,,,,,,,,,,
+,,Thick Skin Expert,200% Total Health -> 130%,,,,,,,,

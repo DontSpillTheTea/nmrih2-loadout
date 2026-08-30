@@ -1,0 +1,438 @@
+,,"Reroll Costs
+(in Credits)","Level 1: 100                          Level 30: 350
+Level 5: 150                          Level 40: 400
+Level 10: 200                        Level 50: 450
+Level 15: 250                        Level 75: 500
+Level 20: 300                        Level 100: 500",,"Upgrade to Expert:
+1000",,
+"Note: ""Multiplicative"" values are defined as such in the files, not by me. 
+These percentages are added together before multiplying. 
+Example: A +30% perk and +20% perk equal a 1.5x multiplier, not 1.56x.
+(Base Value + All ""Additive"" Modifiers) * (1 + All ""Multiplicative"" Modifiers)",,,,,,,
+"UNLOCK
+AccLv",PERK,,DESCRIPTION,NOTES,TYPE,,
+"
+
+
+
+",,Acquired Immunity,"You are less likely to be infected by zombies.
+
+10% Infection Resistance",Value is Additive,H,,
+74,,Acquired Immunity - Expert,"You are much less likely to be infected by zombies.
+
+20% Infection Resistance",Value is Additive,H,,
+,,Adrenaline Rush,"At critical health you consume less stamina on melee attacks.
+
+10% Less Stamina Consumption with Light/Strong/Charged Attacks
+","Value is Multiplicative
+
+You're considered 'Critical Health' at 20 HP and below",S,,
+4,,Adrenaline Rush - Expert,"At critical health you consume much less stamina on melee attacks.
+
+20% Less Stamina Consumption with Light/Strong/Charged Attacks","Value is Multiplicative
+
+You're considered 'Critical Health' at 20 HP and below",S,,
+,,Athlete,"Increased stamina.
+10% Increased Total Stamina
+",Value is Multiplicative,S,,
+72,,Athlete - Expert,"Greatly increased stamina.
+
+20% Increased Total Stamina",Value is Multiplicative,S,,
+,,Builder,"Utility items have reduced weight.
+
+15% less Weight of Boards
+15% less Weight of Batteries",Value is Additive,U,,
+71,,Builder - Expert,"Utility items have greatly reduced weight.
+
+30% less Weight of Boards
+30% less Weight of Batteries",Value is Additive,U,,
+,,Butcher,"Easier to dismember zombies with melee weapons.
+
+20% Increased Melee Damage to Limbs
+","Value is Multiplicative
+
+",D,M,
+56,,Butcher - Expert,"Dismember zombies with great ease with melee weapons.
+
+40% Increased Melee Damage to Limbs","Value is Multiplicative
+
+",D,M,
+,,Caravan,"You can carry more weight, but your stamina is reduced.
+
++2kg Carry Weight
+15% reduced Max Stamina","Value 1 is Additive
+Value 2 is Multiplicative",U,H,S
+54,,Caravan - Expert,"You can carry much more weight, but your stamina is reduced.
+
++3kg Carry Weight
+10% reduced Max Stamina","Value 1 is Additive
+Value 2 is Multiplicative",U,H,S
+,,Deprived,"Your max weight limit is reduced, but you have more health.
+
+-2kg Carry Weight
+10% Increased Max Health
+
+","Value 1 is Additive
+Value 2 is Multiplicative
+",U,H,S
+58,,Deprived - Expert,"Your max weight limit is greatly reduced, but you have more health.
+
+-2kg Carry Weight
+20% Increased Max Health
+","Value 1 is Additive
+Value 2 is Multiplicative
+",U,H,S
+,,Doorbreaker,"Kicks deal more damage to doors and barricades.
+
+50% Increased Damage",Value is Multiplicative,U,,
+46,,Doorbreaker - Expert,"Kicks deal much more damage to doors and barricades.
+
+200% Increased Damage",Value is Multiplicative,U,,
+,,Eagle Eye,"Damage falloff on Heavy Rifles is reduced.
+
+40% more Range with Heavy Rifles",Value is Additive,W,,
+28,,Eagle Eye - Expert,"Damage falloff on Heavy Rifles is greatly reduced.
+
+80% more Range with Heavy Rifles",Value is Additive,W,,
+,,Foreman,"Kicks deal damage to zombies.
+
++10 Damage with Kicks",Value is Additive,D,,
+50,,Foreman - Expert,"Kicks deal significant damage to zombies.
+
++30 Damage with Kicks",Value is Additive,D,,
+,,Grenadier,"Throwables and deployables have reduced weight.
+
+10% reduced Weight of Throwables & Deployables","Value is Additive
+
+",U,,
+10,,Grenadier - Expert,"Throwables and deployables have greatly reduced weight.
+
+20% reduced Weight of Throwables & Deployables","Value is Additive
+
+",U,,
+,,Handgun Reloading,"Hands-on experience and familiarity makes reloading handguns second nature.
+
+20% Increase to Handgun Reload Speed",Value is Multiplicative,W,U,
+11,,Handgun Reloading - Expert,"Your handgun is an extension of your body, and reloading is as natural as breathing.
+
+40% Increase to Handgun Reload Speed",Value is Multiplicative,W,U,
+,,Hard Blow,"More stagger damage from two-handed melee attacks.
+
+15% Increased Stability Damage with Light & Strong Attacks","Value is Multiplicative
+
+As the description says, this is only for two-handed weapons.",D,M,
+40,,Hard Blow - Expert,"Significant stagger damage from two-handed melee attacks.
+
+30% Increased Stability Damage with Light & Strong Attacks","Value is Multiplicative
+
+As the description says, this is only for two-handed weapons.",D,M,
+,,Headblown,"Handguns deal increased headshot damage.
+
+20% Increased Headshot Damage",Value is Multiplicative,D,W,
+12,,Headblown - Expert,"Handguns deal greatly increased headshot damage.
+
+30% Increased Headshot Damage",Value is Multiplicative,D,W,
+,,Headhunter,"Increased melee headshot damage.
+
+10% Increased headshot Damage with Melee","Value is Multiplicative
+",D,M,
+80,,Headhunter - Expert,"Greatly increased melee headshot damage.
+
+20% Increased headshot Damage with Melee",Value is Multiplicative,D,M,
+,,Healing Item Stack,"Medical items have reduced weight.
+
+20% reduced Weight","Value is Additive
+",U,,
+52,,Healing Item Stack - Expert,"Medical items have greatly reduced weight.
+
+30% reduced Weight ","Value is Additive
+",U,,
+,,Heavy Shoves,"Shoving deals damage.
+
++10 Damage with Shoves",,D,,
+64,,Heavy Shoves - Expert,"Shoving deals heavy damage.
+
++20 Damage with Shoves",,D,,
+,,Hellfire,"Increased hipfire accuraccy with Rifles.
+
+15% less Spread while hipfiring with Rifles",Value is Multiplicative,W,,
+84,,Hellfire - Expert,"Greatly increased hipfire accuraccy with Rifles.
+
+30% less Spread while hipfiring with Rifles",Value is Multiplicative,W,,
+,,Hitman,"One-handed melee attacks consume more stamina, but do more damage.
+
+15% Increased One-handed Damage 
+15% Increased Stamina consumed",Value is Multiplicative,D,M,S
+24,,Hitman - Expert,"Greatly increased one-handed melee damage at the cost of more stamina..
+
+30% Increased One-handed Damage 
+15% Increased Stamina consumed",Value is Multiplicative,D,M,S
+,,Icarus,"Increased shotgun range.
+
+30% more Range with Shotguns",Value is Additive,W,,
+14,,Icarus - Expert,"Greatly increased shotgun range.
+
+50% more Range with Shotguns",Value is Additive,W,,
+,,Limbo,"You survive longer when down.
+
+15% Increased Down Time",Value is Multiplicative,U,H,
+16,,Limbo - Expert,"Greater endurance when down.
+
+30% Increased Down Time",Value is Multiplicative,U,H,
+,,Locked On,"SMG's have reduced recoil.
+
+20% less Recoil with SMG's",Value is Multiplicative,W,,
+31,,Locked On - Expert,"SMG's have greatly reduced recoil.
+
+40% less Recoil with SMG's",Value is Multiplicative,W,,
+,,Longer Battery,"Greater lifespan for flashlight batteries.
+
+25% less Battery Drain",Value is Multiplicative,U,,
+20,,Longer Battery - Expert,"maximize lifespan for flashlight batteries.
+
+50% less Battery Drain",Value is Multiplicative,U,,
+,,Lucky Pathogen,"You take less damage while infected.
+
+10% Damage Resistance while Infected","Value is Additive
+
+Value specifically refers to ""Resistance""",H,,
+42,,Lucky Pathogen - Expert,"You take much less damage while infected.
+
+20% Damage Resistance while Infected","Value is Additive
+
+Value specifically refers to ""Resistance""",H,,
+,,Marathon Runner,"Running consumes less stamina.
+
+15% less Stamina Drain while Sprinting",Value is Multiplicative,S,,
+18,,Marathon Runner - Expert,"Running consumes far less stamina.
+
+30% less Stamina Drain while Sprinting",Value is Multiplicative,S,,
+,,Mohawk,"Rifles penetrate more targets. 
+
++1 targets Penetrated
+30% Less Damage Falloff per Penetration",Value is Additive,D,W,
+22,,Mohawk - Expert,"Rifles penetrate many more targets. 
+
++2 targets Penetrated
+50% Less Damage Falloff per Penetration",Value is Additive,D,W,
+,,Mule,"Increased backpack weight capacity.
+
++1kg Weight
+Max Health reduced by 15%","Value 1 is Additive
+Value 2 is Multiplicative",U,,
+92,,Mule - Expert,"Greatly increased backpack weight capacity.
+
++2kg Weight
+Max Health reduced by 5%","Value 1 is Additive
+Value 2 is Multiplicative",U,,
+,,Overkill,"Shotguns fire more pellets.
+
+15% more pellets per shot",Value is Multiplicative,D,W,
+96,,Overkill - Expert,"Shotguns fire a lot more pellets.
+
+30% more pellets per shot",Value is Multiplicative,D,W,
+,,Penetrating Shot,"Heavy Rifles penetrate more targets. 
+
++1 targets Penetrated
+30% Less Damage Falloff per Penetration",Value is Additive,D,W,
+60,,Penetrating Shot - Expert,"Heavy Rifles penetrate many more targets. 
+
++1 targets Penetrated
+50% Less Damage Falloff per Penetration",Value is Additive,D,W,
+,,Quiet Steps,"Reduced noise from movement.
+
+10% less Noise while Walking, Crouching, Jumping and Running","Values are Multiplicative
+",U,,
+36,,Quiet Steps - Expert,"Reduced noise from movement.
+
+20% less Noise while Walking, Crouching, Jumping and Running","Values are Multiplicative
+",U,,
+,,Resident Genes,"You heal while using Pills.
+
++15 hp Heal",Skilled Medic does not increase the heal from this perk.,H,,
+38,,Resident Genes - Expert,"You heal while using Pills and Gene Therapy.
+
++25 hp Heal",Skilled Medic does not increase the heal from this perk.,H,,
+,,Resilience,"Greatly reduced damage from environmental sources.
+
+15% Damage Resistance to Fire, Poison, Electricity, Water",Values are Additive,U,H,
+75,,Resilience - Expert,"Greatly reduced damage from environmental sources.
+
+25% Damage Resistance to Fire, Poison, Electricity, Water",Values are Additive,U,H,
+,,Rifle Reloading,"Consistent practice makes changing magazines a smooth and efficient process even under pressure.
+
+20% Increase to Rifle & SMG Reload Speed","Value is Multiplicative
+
+Applies to all rifles and SMGs",W,U,
+34,,Rifle Reloading - Expert,"Muscle memory makes swapping detachable box magazines on long guns a trivial task.
+
+40% Increase to Rifle & SMG Reload Speed","Value is Multiplicative
+
+Applies to all rifles and SMGs",W,U,
+,,Rush,"Two-handed melee attacks use less stamina.
+
+10% less Stamina cost for Charged Two-handed melee attacks",Value is Multiplicative,M,S,
+2,,Rush - Expert,"Two-handed melee attacks use much less stamina.
+
+30% less Stamina cost for Charged Two-handed melee attacks",Value is Multiplicative,M,S,
+,,Scavenger,"Increased ammo from pickups.
+
+15% increased Ammo looted","Value is Multiplicative
+",U,,
+8,,Scavenger - Expert,"Greatly increased ammo from pickups.
+
+30% increased Ammo looted","Value is Multiplicative
+",U,,
+,,Shotgun Reloading,"Regularly running shotgun drills has made feeding shells a seamless process.
+
+20% Increase to Shotgun Reload Speed",Value is Multiplicative,W,U,
+21,,Shotgun Reloading - Expert,"You can load shells with the speed and precision of a competition shooter.
+
+40% Increase to Shotgun Reload Speed",Value is Multiplicative,W,U,
+,,Skilled Medic,"Heal yourself and others more.
+
+50% Increased Healing","Value is Multiplicative
+
+Bandages heal 25hp base
+Medkit heals 100hp base",H,,
+88,,Skilled Medic - Expert,"Heal yourself and others much more.
+
+100% Increased Healing","Value is Multiplicative
+
+Bandages heal 25hp base
+Medkit heals 100hp base",H,,
+,,Stayin' Alive,"Revive other Responders faster.
+
+50% faster Revive speed","Value is Multiplicative
+
+Bonus also applies to yourself while using Revive Syringes",H,,
+6,,Stayin' Alive - Expert,"Revive other much faster.
+
+100% faster Revive speed","Value is Multiplicative
+
+Bonus also applies to yourself while using Revive Syringes",H,,
+,,Steady Hand,"Handgun spread is reduced.
+
+20% less Spread with Handguns",Value is Multiplicative,W,,
+49,,Steady Hand - Expert,"Handgun spread is greatly reduced.
+
+30% less Spread with Handguns",Value is Multiplicative,W,,
+,,Steady Shot,"Rifle recoil is reduced.
+
+15% less Recoil with Rifles",Value is Multiplicative,W,,
+76,,Steady Shot - Expert,"Rifle recoil is greatly reduced.
+
+30% less Recoil with Rifles",Value is Multiplicative,W,,
+,,Steel Chamber,"Heavy Rifles deal increased Damage.
+
+15% Increased Damage with Heavy Rifles","Value is Multiplicative
+",D,W,
+44,,Steel Chamber - Expert,"Heavy Rifles deal vastly more Damage.
+
+30% Increased Damage with Heavy Rifles","Value is Multiplicative
+",D,W,
+,,Sturdy Body,"Reduced damage from attacks.
+
+10% less Damage taken","Value is Additive
+
+Value specifically refers to ""DamageMitigationModifier""",H,,
+100,,Sturdy Body - Expert,"Greatly reduced damage from attacks.
+
+20% less Damage taken","Value is Additive
+
+Value specifically refers to ""DamageMitigationModifier""",H,,
+,,Thick Skin,"Increased maximum Health.
+
+10% Increased total HP",Value is Multiplicative,H,,
+48,,Thick Skin - Expert,"Significantly increased maximum Health.
+
+20% Increased total HP",Value is Multiplicative,H,,
+,,Tight Shot,"Shotgun pellets have reduced spread.
+
+15% less Spread with Shotguns",Value is Multiplicative,W,,
+68,,Tight Shot - Expert,"Shotgun pellets have greatly reduced spread.
+
+30% less Spread with Shotguns",Value is Multiplicative,W,,
+,,Vulture,"Ammunition has reduced weight.
+
+10% reduced Weight for Ammo","Value is Additive
+
+",U,,
+32,,Vulture - Expert,"Ammunition has greatly reduced weight.
+
+20% reduced Weight for Ammo","Value is Additive
+
+",U,,
+,,Wicked,"Handguns deal more limb damage.
+
+10% Increased Damage to Limbs with Handguns",Value is Multiplicative,D,W,
+49,,Wicked - Expert,"Handguns deal much more limb damage.
+
+20% Increased Damage to Limbs with Handguns",Value is Multiplicative,D,W,
+,,Winged,"SMG's have increased range.
+
+25% more Range for SMG's",Value is Additive,W,,
+27,,Winged - Expert,"SMG's have greatly increased range.
+
+50% more Range for SMG's",Value is Additive,W,,
+,,,,,,,
+,,,,,,,
+,,,,Damage,D,,
+,,,,Weapon,W,,
+,,,,Melee,M,,
+,,,,Utility,U,,
+,,,,Health,H,,
+,,,,Stamina,S,,
+,,,,,,,
+RETIRED PERKS,,,,,,,
+"UNLOCK
+AccLv",PERK,,DESCRIPTION,NOTES,TYPE,,
+,,Averaging,"Headshots deal less damage, but body shots deal increased damage.
+
+50% reduced Headshot damage with Guns & Light Attacks
+20% more Body shot damage","Value 1 is Multiplicative
+Value 2 is Additive
+
+The increased damage applies to many damage actions it shouldn't (strong/charged melee headshots, heavy shoves & foreman)
+
+Removed in 1.0 Patch",D,,
+62,,Averaging - Expert,"Headshots deal less damage, but body shots deal greatly increased damage.
+
+50% reduced Headshot damage with Guns & Light Attacks       
+30% more Body shot damage","Value 1 is Multiplicative
+Value 2 is Additive
+
+The increased damage applies to many damage actions it shouldn't (strong/charged melee headshots, heavy shoves & foreman)
+
+Removed in 1.0 Patch",D,,
+,,Guts,"You recover faster from being out of stamina.
+
+25% faster start of Stamina Regen","Value is Multiplicative
+
+**Doesn't seem to have the Stamina Starved effect yet
+
+Removed in 1.0 Patch",S,,
+34,,Guts - Expert,"You recover much faster from being out of stamina.
+
+50% faster start of Stamina Regen
+50% Less Stamina Starved Duration","Value is Multiplicative
+
+Removed in 1.0 Patch
+
+",S,,
+,,Teddy Bear,"Blunt weapons deal much more Stability Damage, but deal less Direct Damage. 
+
+15% Increased Stability Damage with Light Attacks
+15% less Direct Damage with Light Attacks","Value is Multiplicative
+
+As the description says, this is only for blunt weapons.
+
+Removed in 1.0 Patch",D,M,
+66,,Teddy Bear - Expert,"Blunt weapons deal significantly more Stability Damage, but deal less Direct Damage. 
+
+30% Increased Stability Damage with Light Attacks
+15% less Direct Damage with Light Attacks","Value is Multiplicative
+
+As the description says, this is only for blunt weapons.
+
+Removed in 1.0 Patch",D,M,

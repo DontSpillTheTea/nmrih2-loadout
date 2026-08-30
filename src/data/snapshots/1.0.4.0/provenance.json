@@ -1,0 +1,1010 @@
+{
+  "weapon:1": {
+    "sourceType": "official-and-community",
+    "confidence": "official",
+    "notes": "Shove stamina 15 from 1.0 official notes; Kick stats from compendium"
+  },
+  "weapon:10": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 25,
+    "patch": "1.0.4.0"
+  },
+  "weapon:11": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 37,
+    "patch": "1.0.4.0"
+  },
+  "weapon:12": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 49,
+    "patch": "1.0.4.0"
+  },
+  "weapon:13": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 61,
+    "patch": "1.0.4.0"
+  },
+  "weapon:14": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 73,
+    "patch": "1.0.4.0"
+  },
+  "weapon:15": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 85,
+    "patch": "1.0.4.0"
+  },
+  "weapon:16": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 97,
+    "patch": "1.0.4.0"
+  },
+  "weapon:17": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 109,
+    "patch": "1.0.4.0"
+  },
+  "weapon:18": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 121,
+    "patch": "1.0.4.0"
+  },
+  "weapon:19": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 133,
+    "patch": "1.0.4.0"
+  },
+  "weapon:20": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 145,
+    "patch": "1.0.4.0"
+  },
+  "weapon:21": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 157,
+    "patch": "1.0.4.0"
+  },
+  "weapon:22": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 169,
+    "patch": "1.0.4.0"
+  },
+  "weapon:23": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 181,
+    "patch": "1.0.4.0"
+  },
+  "weapon:24": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 193,
+    "patch": "1.0.4.0"
+  },
+  "weapon:25": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 205,
+    "patch": "1.0.4.0"
+  },
+  "weapon:26": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 217,
+    "patch": "1.0.4.0"
+  },
+  "weapon:27": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 229,
+    "patch": "1.0.4.0"
+  },
+  "weapon:28": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Melee",
+    "row": 241,
+    "patch": "1.0.4.0"
+  },
+  "weapon:101": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 4,
+    "patch": "1.0.4.0"
+  },
+  "weapon:102": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 15,
+    "patch": "1.0.4.0"
+  },
+  "weapon:103": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 26,
+    "patch": "1.0.4.0"
+  },
+  "weapon:104": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 37,
+    "patch": "1.0.4.0"
+  },
+  "weapon:105": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 45,
+    "patch": "1.0.4.0"
+  },
+  "weapon:106": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 55,
+    "patch": "1.0.4.0"
+  },
+  "weapon:107": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 63,
+    "patch": "1.0.4.0"
+  },
+  "weapon:108": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 71,
+    "patch": "1.0.4.0"
+  },
+  "weapon:109": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 79,
+    "patch": "1.0.4.0"
+  },
+  "weapon:110": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 89,
+    "patch": "1.0.4.0"
+  },
+  "weapon:111": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 99,
+    "patch": "1.0.4.0"
+  },
+  "weapon:112": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 109,
+    "patch": "1.0.4.0"
+  },
+  "weapon:113": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 119,
+    "patch": "1.0.4.0"
+  },
+  "weapon:114": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 129,
+    "patch": "1.0.4.0"
+  },
+  "weapon:115": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Guns",
+    "row": 139,
+    "patch": "1.0.4.0"
+  },
+  "perk:1": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 4,
+    "patch": "1.0.4.0"
+  },
+  "perk:2": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 5,
+    "patch": "1.0.4.0"
+  },
+  "perk:3": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 6,
+    "patch": "1.0.4.0"
+  },
+  "perk:4": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 7,
+    "patch": "1.0.4.0"
+  },
+  "perk:5": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 8,
+    "patch": "1.0.4.0"
+  },
+  "perk:6": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 9,
+    "patch": "1.0.4.0"
+  },
+  "perk:7": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 10,
+    "patch": "1.0.4.0"
+  },
+  "perk:8": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 11,
+    "patch": "1.0.4.0"
+  },
+  "perk:9": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 12,
+    "patch": "1.0.4.0"
+  },
+  "perk:10": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 13,
+    "patch": "1.0.4.0"
+  },
+  "perk:11": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 14,
+    "patch": "1.0.4.0"
+  },
+  "perk:12": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 15,
+    "patch": "1.0.4.0"
+  },
+  "perk:13": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 16,
+    "patch": "1.0.4.0"
+  },
+  "perk:14": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 17,
+    "patch": "1.0.4.0"
+  },
+  "perk:15": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 18,
+    "patch": "1.0.4.0"
+  },
+  "perk:16": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 19,
+    "patch": "1.0.4.0"
+  },
+  "perk:17": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 20,
+    "patch": "1.0.4.0"
+  },
+  "perk:18": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 21,
+    "patch": "1.0.4.0"
+  },
+  "perk:19": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 22,
+    "patch": "1.0.4.0"
+  },
+  "perk:20": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 23,
+    "patch": "1.0.4.0"
+  },
+  "perk:21": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 24,
+    "patch": "1.0.4.0"
+  },
+  "perk:22": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 25,
+    "patch": "1.0.4.0"
+  },
+  "perk:23": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 26,
+    "patch": "1.0.4.0"
+  },
+  "perk:24": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 27,
+    "patch": "1.0.4.0"
+  },
+  "perk:25": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 28,
+    "patch": "1.0.4.0"
+  },
+  "perk:26": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 29,
+    "patch": "1.0.4.0"
+  },
+  "perk:27": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 30,
+    "patch": "1.0.4.0"
+  },
+  "perk:28": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 31,
+    "patch": "1.0.4.0"
+  },
+  "perk:29": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 32,
+    "patch": "1.0.4.0"
+  },
+  "perk:30": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 33,
+    "patch": "1.0.4.0"
+  },
+  "perk:31": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 34,
+    "patch": "1.0.4.0"
+  },
+  "perk:32": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 35,
+    "patch": "1.0.4.0"
+  },
+  "perk:33": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 36,
+    "patch": "1.0.4.0"
+  },
+  "perk:34": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 37,
+    "patch": "1.0.4.0"
+  },
+  "perk:35": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 38,
+    "patch": "1.0.4.0"
+  },
+  "perk:36": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 39,
+    "patch": "1.0.4.0"
+  },
+  "perk:37": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 40,
+    "patch": "1.0.4.0"
+  },
+  "perk:38": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 41,
+    "patch": "1.0.4.0"
+  },
+  "perk:39": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 42,
+    "patch": "1.0.4.0"
+  },
+  "perk:40": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 43,
+    "patch": "1.0.4.0"
+  },
+  "perk:41": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 44,
+    "patch": "1.0.4.0"
+  },
+  "perk:42": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 45,
+    "patch": "1.0.4.0"
+  },
+  "perk:43": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 46,
+    "patch": "1.0.4.0"
+  },
+  "perk:44": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 47,
+    "patch": "1.0.4.0"
+  },
+  "perk:45": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 48,
+    "patch": "1.0.4.0"
+  },
+  "perk:46": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 49,
+    "patch": "1.0.4.0"
+  },
+  "perk:47": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 50,
+    "patch": "1.0.4.0"
+  },
+  "perk:48": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 51,
+    "patch": "1.0.4.0"
+  },
+  "perk:49": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 52,
+    "patch": "1.0.4.0"
+  },
+  "perk:50": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 53,
+    "patch": "1.0.4.0"
+  },
+  "perk:51": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 54,
+    "patch": "1.0.4.0"
+  },
+  "perk:52": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 55,
+    "patch": "1.0.4.0"
+  },
+  "perk:53": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 56,
+    "patch": "1.0.4.0"
+  },
+  "perk:54": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 57,
+    "patch": "1.0.4.0"
+  },
+  "perk:55": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 58,
+    "patch": "1.0.4.0"
+  },
+  "perk:56": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 59,
+    "patch": "1.0.4.0"
+  },
+  "perk:57": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 60,
+    "patch": "1.0.4.0"
+  },
+  "perk:58": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 61,
+    "patch": "1.0.4.0"
+  },
+  "perk:59": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 62,
+    "patch": "1.0.4.0"
+  },
+  "perk:60": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 63,
+    "patch": "1.0.4.0"
+  },
+  "perk:61": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 64,
+    "patch": "1.0.4.0"
+  },
+  "perk:62": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 65,
+    "patch": "1.0.4.0"
+  },
+  "perk:63": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 66,
+    "patch": "1.0.4.0"
+  },
+  "perk:64": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 67,
+    "patch": "1.0.4.0"
+  },
+  "perk:65": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 68,
+    "patch": "1.0.4.0"
+  },
+  "perk:66": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 69,
+    "patch": "1.0.4.0"
+  },
+  "perk:67": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 70,
+    "patch": "1.0.4.0"
+  },
+  "perk:68": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 71,
+    "patch": "1.0.4.0"
+  },
+  "perk:69": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 72,
+    "patch": "1.0.4.0"
+  },
+  "perk:70": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 73,
+    "patch": "1.0.4.0"
+  },
+  "perk:71": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 74,
+    "patch": "1.0.4.0"
+  },
+  "perk:72": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 75,
+    "patch": "1.0.4.0"
+  },
+  "perk:73": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 76,
+    "patch": "1.0.4.0"
+  },
+  "perk:74": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 77,
+    "patch": "1.0.4.0"
+  },
+  "perk:75": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 78,
+    "patch": "1.0.4.0"
+  },
+  "perk:76": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 79,
+    "patch": "1.0.4.0"
+  },
+  "perk:77": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 80,
+    "patch": "1.0.4.0"
+  },
+  "perk:78": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 81,
+    "patch": "1.0.4.0"
+  },
+  "perk:79": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 82,
+    "patch": "1.0.4.0"
+  },
+  "perk:80": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 83,
+    "patch": "1.0.4.0"
+  },
+  "perk:81": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 84,
+    "patch": "1.0.4.0"
+  },
+  "perk:82": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 85,
+    "patch": "1.0.4.0"
+  },
+  "perk:83": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 86,
+    "patch": "1.0.4.0"
+  },
+  "perk:84": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 87,
+    "patch": "1.0.4.0"
+  },
+  "perk:85": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 88,
+    "patch": "1.0.4.0"
+  },
+  "perk:86": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 89,
+    "patch": "1.0.4.0"
+  },
+  "perk:87": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 90,
+    "patch": "1.0.4.0"
+  },
+  "perk:88": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 91,
+    "patch": "1.0.4.0"
+  },
+  "perk:89": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 92,
+    "patch": "1.0.4.0"
+  },
+  "perk:90": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 93,
+    "patch": "1.0.4.0"
+  },
+  "perk:91": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 94,
+    "patch": "1.0.4.0"
+  },
+  "perk:92": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 95,
+    "patch": "1.0.4.0"
+  },
+  "perk:93": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 96,
+    "patch": "1.0.4.0"
+  },
+  "perk:94": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 97,
+    "patch": "1.0.4.0"
+  },
+  "perk:95": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 109,
+    "patch": "1.0.4.0"
+  },
+  "perk:96": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 110,
+    "patch": "1.0.4.0"
+  },
+  "perk:97": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 111,
+    "patch": "1.0.4.0"
+  },
+  "perk:98": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 112,
+    "patch": "1.0.4.0"
+  },
+  "perk:99": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 113,
+    "patch": "1.0.4.0"
+  },
+  "perk:100": {
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sheet": "Perks",
+    "row": 114,
+    "patch": "1.0.4.0"
+  },
+  "enemy:1": {
+    "sourceType": "official-and-datamined",
+    "confidence": "official",
+    "patch": "1.0.4.0"
+  },
+  "enemy:2": {
+    "sourceType": "official-and-datamined",
+    "confidence": "official",
+    "patch": "1.0.4.0"
+  },
+  "enemy:3": {
+    "sourceType": "official-and-datamined",
+    "confidence": "official",
+    "patch": "1.0.4.0"
+  },
+  "enemy:4": {
+    "sourceType": "official-and-datamined",
+    "confidence": "datamined",
+    "patch": "1.0.4.0"
+  },
+  "enemy:5": {
+    "sourceType": "official-and-datamined",
+    "confidence": "datamined",
+    "patch": "1.0.4.0"
+  },
+  "enemy:6": {
+    "sourceType": "official-and-datamined",
+    "confidence": "datamined",
+    "patch": "1.0.4.0"
+  },
+  "enemy:7": {
+    "sourceType": "official-and-datamined",
+    "confidence": "datamined",
+    "patch": "1.0.4.0"
+  },
+  "enemy:8": {
+    "sourceType": "official-and-datamined",
+    "confidence": "datamined",
+    "patch": "1.0.4.0"
+  },
+  "mechanics:downedDamageMultiplier": {
+    "value": 2.0,
+    "sourceType": "game-file-derived-community",
+    "confidence": "community-measured",
+    "sourceRef": "compendium:melee:row10",
+    "notes": "When a zombie is knocked down, it takes 100% increased damage (2.0x) from all sources"
+  },
+  "mechanics:shoveStaminaCost": {
+    "value": 15,
+    "sourceType": "official",
+    "confidence": "official",
+    "sourceRef": "official:1.0:patchnotes",
+    "notes": "Reduced from 25 to 15 in Armageddon 1.0 update"
+  },
+  "mechanics:stabilityThresholds": {
+    "value": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "sourceType": "game-file-derived-community",
+    "confidence": "datamined",
+    "sourceRef": "compendium:melee:rows6-9"
+  }
+}

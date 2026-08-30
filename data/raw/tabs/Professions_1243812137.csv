@@ -1,0 +1,37 @@
+CLASS,STARTING PERKS,,,RESPONDER
+,,,,
+Army Reservist,Hellfire,Mohawk,,
+Baseball Rookie,Hard Blow,Rush,,
+Bear Hunter,Penetrating Shot,Steel Chamber,,
+Bird Hunter,Icarus,Shotgun Reloading,,
+Courier,Mule,Caravan,,
+Coast Guard Veteran,Limbo,Mohawk,,
+Deer Hunter,Quiet Steps,Rifle Reloading,,
+Deputy,Tightshot,Wicked,,
+Detective,Head Blown,Locked On,,
+Designated Marksman,Steel Chamber,Pistol Reloading,,
+Engineer,Longer Battery,Builder,,
+Football MVP,Adrenaline Rush,Marathon Runner,,
+Hockey Player,Rush,Foreman,,
+Lumberjack,Headhunter,Resilience,,
+Martial Arts Master,Heavy Shoves,Adrenaline Rush,,
+MMA Fighter,Sturdy Body,Adrenaline Rush,,
+Marine Veteran,Steady Shot,Winged,,STATS
+Nurse,Skilled Medic,Acquired Immunity,,HP: 100
+Prepper,Scavenger,Builder,,Stamina: 100
+Prop Master,Grenadier,Thick Skin,,Movement Speed: 200
+Paramedic,Stayin' Alive,Resident Genes,,Sprinting Speed Multiplier: 1.9x
+Police Sniper,Eagle Eye,Headblown,,Stamina Regen Delay: 1.0s
+Quartermaster,Vulture,Deprived,,Stamina Regen Rate - Idle: 55/s
+Rescue Specialist,Healing Item Stack,Lucky Pathogen,,Stamina Regen Rate - Walking: 35/s
+Sheriff,Overkill,Steady Hand,,Stamina Regen Rate - Targeting: 15/s
+Spinal Surgeon,Hitman,Skilled Medic,,Stamina Regen Rate - Sprinting: 0/s
+Sous Chef,Butcher,Mule,,Stamina Drain Rate - Sprinting: 5/s
+Swim Captain,Thick Skin,Athlete,,
+Track Star,Athlete,Doorbreaker,,NOTES
+,,,,You have i-frames (Damage invulnerability) while performing shoves.
+,,,,
+,,,,
+,,,,Critical Health = 20HP and below
+,,,,Crouching reduces recoil by 25%
+,,,,Crouching reduces firearm spread.

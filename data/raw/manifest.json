@@ -1,0 +1,153 @@
+{
+  "fetchedAt": "2026-08-30T20:32:28Z",
+  "source": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYRiLDS0qkszc2GgVRzTiNy46i-JaatWB2qbgsufwzwpCbyZCBqcaQ3avoYnLEAiif-ZYJLD-OD5rW/pubhtml",
+  "files": [
+    {
+      "tabName": "Home",
+      "gid": "834458701",
+      "path": "data/raw/tabs/Home_834458701.csv",
+      "sha256": "72d96e3d30ff7a093b3db6256361d568c2d919775e3ca1dd046be1ba5b3ea85b",
+      "sizeBytes": 1135
+    },
+    {
+      "tabName": "Perks",
+      "gid": "160707575",
+      "path": "data/raw/tabs/Perks_160707575.csv",
+      "sha256": "adb8642fdd161e580061b3288b8f82e389ee251870476d0d11d02b912931c8b9",
+      "sizeBytes": 15682
+    },
+    {
+      "tabName": "Professions",
+      "gid": "1243812137",
+      "path": "data/raw/tabs/Professions_1243812137.csv",
+      "sha256": "18e7661d8d80c93b6afafe3b67c7cc91a9288191969790b282ddf80772df0c5a",
+      "sizeBytes": 1606
+    },
+    {
+      "tabName": " EXP",
+      "gid": "345628904",
+      "path": "data/raw/tabs/EXP_345628904.csv",
+      "sha256": "c6d06b9f3f13ac7e8df3c96fbeb265eb1c7bbd4eabad9494bd779be9f3bcae0f",
+      "sizeBytes": 2958
+    },
+    {
+      "tabName": "Difficulty",
+      "gid": "703432921",
+      "path": "data/raw/tabs/Difficulty_703432921.csv",
+      "sha256": "281d2f4ce03db08312acced8a9ac565e27881ebda27d432458770320a37848f9",
+      "sizeBytes": 6014
+    },
+    {
+      "tabName": "Passive Items",
+      "gid": "1928548077",
+      "path": "data/raw/tabs/Passive Items_1928548077.csv",
+      "sha256": "97629b007c452eab8aff772c2d47d8ba2376c86c5f2e8093c1966c8a2a081caa",
+      "sizeBytes": 1046
+    },
+    {
+      "tabName": "Guns",
+      "gid": "2130222439",
+      "path": "data/raw/tabs/Guns_2130222439.csv",
+      "sha256": "925610aae62c50bbf21ed73de58028abf5ee8ecc99df6000eef1da82d54c2441",
+      "sizeBytes": 5591
+    },
+    {
+      "tabName": "Melee",
+      "gid": "545299304",
+      "path": "data/raw/tabs/Melee_545299304.csv",
+      "sha256": "0a9d0da93e7a3069b88b8dd4d05f113de8dd2cecf40af1db80e68345f57275e5",
+      "sizeBytes": 17969
+    },
+    {
+      "tabName": "Other",
+      "gid": "1433700980",
+      "path": "data/raw/tabs/Other_1433700980.csv",
+      "sha256": "7b313c1514991d715d3489d627e64b3fbca767aca640b525b2e3b5b7bd9fb329",
+      "sizeBytes": 3992
+    },
+    {
+      "tabName": "Economy",
+      "gid": "1486487671",
+      "path": "data/raw/tabs/Economy_1486487671.csv",
+      "sha256": "ca7078950fb05990a292b4248e1828b69cbba8eb22c53f988d8db036636306cb",
+      "sizeBytes": 16618
+    },
+    {
+      "tabName": "Weekly Assignment",
+      "gid": "2067372352",
+      "path": "data/raw/tabs/Weekly Assignment_2067372352.csv",
+      "sha256": "4ac7e118a5645ac840b2c4acb1659b0e3db274b361951fcc7a9e8b2f85b98c7e",
+      "sizeBytes": 880
+    },
+    {
+      "tabName": "Zombies",
+      "gid": "1426584761",
+      "path": "data/raw/tabs/Zombies_1426584761.csv",
+      "sha256": "08a5d41a6d28eb6b783dc9e13b74b61c51b93d9129f726574d2242b7921d61f1",
+      "sizeBytes": 2646
+    },
+    {
+      "tabName": "Infection",
+      "gid": "359394605",
+      "path": "data/raw/tabs/Infection_359394605.csv",
+      "sha256": "06ac72f052bf16a51cdec5543a1f618fca00a37d2f9b2b7082e8c487744663cb",
+      "sizeBytes": 2937
+    },
+    {
+      "tabName": "Unlocks",
+      "gid": "2106950113",
+      "path": "data/raw/tabs/Unlocks_2106950113.csv",
+      "sha256": "08de6d1be01afeb5bd42000b09d75acef61a3384dabfcec48321ccee1bad1d96",
+      "sizeBytes": 4287
+    },
+    {
+      "tabName": "Misc",
+      "gid": "115969216",
+      "path": "data/raw/tabs/Misc_115969216.csv",
+      "sha256": "3a7a2b6245947e3669f52d28ec4ea62d41183aa235e1c5c2e8e9d18be477c21a",
+      "sizeBytes": 2230
+    },
+    {
+      "tabName": "Tips",
+      "gid": "1659569103",
+      "path": "data/raw/tabs/Tips_1659569103.csv",
+      "sha256": "e85ce1ba9b62b5fa31108daacf863340787815a90b66c49e20a6eacf84888e9e",
+      "sizeBytes": 7832
+    },
+    {
+      "tabName": "Audio",
+      "gid": "408040571",
+      "path": "data/raw/tabs/Audio_408040571.csv",
+      "sha256": "fe040cc06eead67075bd8ffec7e560081f09bd21fcc2e64ef82142693261daa5",
+      "sizeBytes": 7164
+    },
+    {
+      "tabName": "Early Extracts",
+      "gid": "1304165467",
+      "path": "data/raw/tabs/Early Extracts_1304165467.csv",
+      "sha256": "e9cc330a20e42be42d3baaf6628a0a645982205a28affa9c006a724888342230",
+      "sizeBytes": 2407
+    },
+    {
+      "tabName": "Patch Changelogs",
+      "gid": "1779231848",
+      "path": "data/raw/tabs/Patch Changelogs_1779231848.csv",
+      "sha256": "5b5aa2d63dd1de5b907be798bfb9158e21936819d07ca2cd9d488c4eb4a1fda7",
+      "sizeBytes": 57530
+    },
+    {
+      "tabName": "1.0 Patchnotes",
+      "gid": "1591445006",
+      "path": "data/raw/tabs/1.0 Patchnotes_1591445006.csv",
+      "sha256": "c2b2dca3d1601bfec7d89972fb05f8ad581791c1ee1b26e9bfc00c8595b3ac22",
+      "sizeBytes": 22842
+    },
+    {
+      "tabName": "(Archived)1.0 Overview",
+      "gid": "527422754",
+      "path": "data/raw/tabs/_Archived_1.0 Overview_527422754.csv",
+      "sha256": "c05fdbfadaf103b4b245aea70344e24d9ec0f906ef2474d3bdeedb600de86c45",
+      "sizeBytes": 12845
+    }
+  ]
+}

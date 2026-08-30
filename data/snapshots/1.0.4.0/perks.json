@@ -1,0 +1,1942 @@
+[
+  {
+    "id": 1,
+    "slug": "acquired-immunity",
+    "name": "Acquired Immunity",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "You are less likely to be infected by zombies.\n\n10% Infection Resistance",
+    "notes": "Value is Additive",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:acquired-immunity"
+  },
+  {
+    "id": 2,
+    "slug": "acquired-immunity-expert",
+    "name": "Acquired Immunity - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 74,
+    "description": "You are much less likely to be infected by zombies.\n\n20% Infection Resistance",
+    "notes": "Value is Additive",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:acquired-immunity-expert"
+  },
+  {
+    "id": 3,
+    "slug": "adrenaline-rush",
+    "name": "Adrenaline Rush",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "At critical health you consume less stamina on melee attacks.\n\n10% Less Stamina Consumption with Light/Strong/Charged Attacks",
+    "notes": "Value is Multiplicative\n\nYou're considered 'Critical Health' at 20 HP and below",
+    "tags": [
+      "charged",
+      "melee",
+      "s",
+      "stamina",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": -0.1,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": "charged"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:adrenaline-rush"
+  },
+  {
+    "id": 4,
+    "slug": "adrenaline-rush-expert",
+    "name": "Adrenaline Rush - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 4,
+    "description": "At critical health you consume much less stamina on melee attacks.\n\n20% Less Stamina Consumption with Light/Strong/Charged Attacks",
+    "notes": "Value is Multiplicative\n\nYou're considered 'Critical Health' at 20 HP and below",
+    "tags": [
+      "charged",
+      "melee",
+      "s",
+      "stamina",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": -0.3,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": "charged"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:adrenaline-rush-expert"
+  },
+  {
+    "id": 5,
+    "slug": "athlete",
+    "name": "Athlete",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased stamina.\n10% Increased Total Stamina",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "player",
+      "s",
+      "stamina"
+    ],
+    "effects": [
+      {
+        "stat": "max_stamina",
+        "operation": "multiply",
+        "value": 0.1,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:athlete"
+  },
+  {
+    "id": 6,
+    "slug": "athlete-expert",
+    "name": "Athlete - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 72,
+    "description": "Greatly increased stamina.\n\n20% Increased Total Stamina",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "player",
+      "s",
+      "stamina"
+    ],
+    "effects": [
+      {
+        "stat": "max_stamina",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:athlete-expert"
+  },
+  {
+    "id": 7,
+    "slug": "builder",
+    "name": "Builder",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Utility items have reduced weight.\n\n15% less Weight of Boards\n15% less Weight of Batteries",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:builder"
+  },
+  {
+    "id": 8,
+    "slug": "builder-expert",
+    "name": "Builder - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 71,
+    "description": "Utility items have greatly reduced weight.\n\n30% less Weight of Boards\n30% less Weight of Batteries",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:builder-expert"
+  },
+  {
+    "id": 9,
+    "slug": "butcher",
+    "name": "Butcher",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Easier to dismember zombies with melee weapons.\n\n20% Increased Melee Damage to Limbs",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "limb",
+      "m",
+      "melee"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 3,
+        "conditions": {
+          "source": "melee",
+          "hitZone": "limb"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:butcher"
+  },
+  {
+    "id": 10,
+    "slug": "butcher-expert",
+    "name": "Butcher - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 56,
+    "description": "Dismember zombies with great ease with melee weapons.\n\n40% Increased Melee Damage to Limbs",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "limb",
+      "m",
+      "melee"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.4,
+        "stage": 3,
+        "conditions": {
+          "source": "melee",
+          "hitZone": "limb"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:butcher-expert"
+  },
+  {
+    "id": 11,
+    "slug": "caravan",
+    "name": "Caravan",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "You can carry more weight, but your stamina is reduced.\n\n+2kg Carry Weight\n15% reduced Max Stamina",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "h",
+      "s",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:caravan"
+  },
+  {
+    "id": 12,
+    "slug": "caravan-expert",
+    "name": "Caravan - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 54,
+    "description": "You can carry much more weight, but your stamina is reduced.\n\n+3kg Carry Weight\n10% reduced Max Stamina",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "h",
+      "s",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:caravan-expert"
+  },
+  {
+    "id": 13,
+    "slug": "deprived",
+    "name": "Deprived",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Your max weight limit is reduced, but you have more health.\n\n-2kg Carry Weight\n10% Increased Max Health",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "h",
+      "s",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:deprived"
+  },
+  {
+    "id": 14,
+    "slug": "deprived-expert",
+    "name": "Deprived - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 58,
+    "description": "Your max weight limit is greatly reduced, but you have more health.\n\n-2kg Carry Weight\n20% Increased Max Health",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "h",
+      "s",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:deprived-expert"
+  },
+  {
+    "id": 15,
+    "slug": "doorbreaker",
+    "name": "Doorbreaker",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Kicks deal more damage to doors and barricades.\n\n50% Increased Damage",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:doorbreaker"
+  },
+  {
+    "id": 16,
+    "slug": "doorbreaker-expert",
+    "name": "Doorbreaker - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 46,
+    "description": "Kicks deal much more damage to doors and barricades.\n\n200% Increased Damage",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:doorbreaker-expert"
+  },
+  {
+    "id": 17,
+    "slug": "eagle-eye",
+    "name": "Eagle Eye",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Damage falloff on Heavy Rifles is reduced.\n\n40% more Range with Heavy Rifles",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:eagle-eye"
+  },
+  {
+    "id": 18,
+    "slug": "eagle-eye-expert",
+    "name": "Eagle Eye - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 28,
+    "description": "Damage falloff on Heavy Rifles is greatly reduced.\n\n80% more Range with Heavy Rifles",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:eagle-eye-expert"
+  },
+  {
+    "id": 19,
+    "slug": "foreman",
+    "name": "Foreman",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Kicks deal damage to zombies.\n\n+10 Damage with Kicks",
+    "notes": "Value is Additive",
+    "tags": [
+      "control",
+      "d",
+      "damage",
+      "kick"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "add",
+        "value": 10.0,
+        "stage": 1,
+        "conditions": {
+          "source": "kick"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:foreman"
+  },
+  {
+    "id": 20,
+    "slug": "foreman-expert",
+    "name": "Foreman - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 50,
+    "description": "Kicks deal significant damage to zombies.\n\n+30 Damage with Kicks",
+    "notes": "Value is Additive",
+    "tags": [
+      "control",
+      "d",
+      "damage",
+      "kick"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "add",
+        "value": 30.0,
+        "stage": 1,
+        "conditions": {
+          "source": "kick"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:foreman-expert"
+  },
+  {
+    "id": 21,
+    "slug": "grenadier",
+    "name": "Grenadier",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Throwables and deployables have reduced weight.\n\n10% reduced Weight of Throwables & Deployables",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:grenadier"
+  },
+  {
+    "id": 22,
+    "slug": "grenadier-expert",
+    "name": "Grenadier - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 10,
+    "description": "Throwables and deployables have greatly reduced weight.\n\n20% reduced Weight of Throwables & Deployables",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:grenadier-expert"
+  },
+  {
+    "id": 23,
+    "slug": "handgun-reloading",
+    "name": "Handgun Reloading",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Hands-on experience and familiarity makes reloading handguns second nature.\n\n20% Increase to Handgun Reload Speed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:handgun-reloading"
+  },
+  {
+    "id": 24,
+    "slug": "handgun-reloading-expert",
+    "name": "Handgun Reloading - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 11,
+    "description": "Your handgun is an extension of your body, and reloading is as natural as breathing.\n\n40% Increase to Handgun Reload Speed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:handgun-reloading-expert"
+  },
+  {
+    "id": 25,
+    "slug": "hard-blow",
+    "name": "Hard Blow",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "More stagger damage from two-handed melee attacks.\n\n15% Increased Stability Damage with Light & Strong Attacks",
+    "notes": "Value is Multiplicative\n\nAs the description says, this is only for two-handed weapons.",
+    "tags": [
+      "d",
+      "m",
+      "melee",
+      "stability",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stability_damage",
+        "operation": "multiply",
+        "value": 0.15,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": [
+            "quick",
+            "strong"
+          ]
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:hard-blow"
+  },
+  {
+    "id": 26,
+    "slug": "hard-blow-expert",
+    "name": "Hard Blow - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 40,
+    "description": "Significant stagger damage from two-handed melee attacks.\n\n30% Increased Stability Damage with Light & Strong Attacks",
+    "notes": "Value is Multiplicative\n\nAs the description says, this is only for two-handed weapons.",
+    "tags": [
+      "d",
+      "m",
+      "melee",
+      "stability",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stability_damage",
+        "operation": "multiply",
+        "value": 0.3,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": [
+            "quick",
+            "strong"
+          ]
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:hard-blow-expert"
+  },
+  {
+    "id": 27,
+    "slug": "headblown",
+    "name": "Headblown",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Handguns deal increased headshot damage.\n\n20% Increased Headshot Damage",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "handgun",
+      "headshot",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 3,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "handgun",
+          "hitZone": "head"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:headblown"
+  },
+  {
+    "id": 28,
+    "slug": "headblown-expert",
+    "name": "Headblown - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 12,
+    "description": "Handguns deal greatly increased headshot damage.\n\n30% Increased Headshot Damage",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "handgun",
+      "headshot",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.3,
+        "stage": 3,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "handgun",
+          "hitZone": "head"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:headblown-expert"
+  },
+  {
+    "id": 29,
+    "slug": "headhunter",
+    "name": "Headhunter",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased melee headshot damage.\n\n10% Increased headshot Damage with Melee",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "headshot",
+      "m",
+      "melee"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.1,
+        "stage": 3,
+        "conditions": {
+          "source": "melee",
+          "hitZone": "head"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:headhunter"
+  },
+  {
+    "id": 30,
+    "slug": "headhunter-expert",
+    "name": "Headhunter - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 80,
+    "description": "Greatly increased melee headshot damage.\n\n20% Increased headshot Damage with Melee",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "headshot",
+      "m",
+      "melee"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 3,
+        "conditions": {
+          "source": "melee",
+          "hitZone": "head"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:headhunter-expert"
+  },
+  {
+    "id": 31,
+    "slug": "healing-item-stack",
+    "name": "Healing Item Stack",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Medical items have reduced weight.\n\n20% reduced Weight",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:healing-item-stack"
+  },
+  {
+    "id": 32,
+    "slug": "healing-item-stack-expert",
+    "name": "Healing Item Stack - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 52,
+    "description": "Medical items have greatly reduced weight.\n\n30% reduced Weight",
+    "notes": "Value is Additive",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:healing-item-stack-expert"
+  },
+  {
+    "id": 33,
+    "slug": "heavy-shoves",
+    "name": "Heavy Shoves",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Shoving deals damage.\n\n+10 Damage with Shoves",
+    "notes": "D",
+    "tags": [
+      "control",
+      "damage",
+      "shove"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "add",
+        "value": 10.0,
+        "stage": 1,
+        "conditions": {
+          "source": "shove"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:heavy-shoves"
+  },
+  {
+    "id": 34,
+    "slug": "heavy-shoves-expert",
+    "name": "Heavy Shoves - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 64,
+    "description": "Shoving deals heavy damage.\n\n+20 Damage with Shoves",
+    "notes": "D",
+    "tags": [
+      "control",
+      "damage",
+      "shove"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "add",
+        "value": 20.0,
+        "stage": 1,
+        "conditions": {
+          "source": "shove"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:heavy-shoves-expert"
+  },
+  {
+    "id": 35,
+    "slug": "hellfire",
+    "name": "Hellfire",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased hipfire accuraccy with Rifles.\n\n15% less Spread while hipfiring with Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:hellfire"
+  },
+  {
+    "id": 36,
+    "slug": "hellfire-expert",
+    "name": "Hellfire - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 84,
+    "description": "Greatly increased hipfire accuraccy with Rifles.\n\n30% less Spread while hipfiring with Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:hellfire-expert"
+  },
+  {
+    "id": 37,
+    "slug": "hitman",
+    "name": "Hitman",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "One-handed melee attacks consume more stamina, but do more damage.\n\n15% Increased One-handed Damage \n15% Increased Stamina consumed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "m",
+      "melee",
+      "one-handed",
+      "s",
+      "stamina"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.15,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "one-handed"
+        }
+      },
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": 0.15,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "one-handed"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:hitman"
+  },
+  {
+    "id": 38,
+    "slug": "hitman-expert",
+    "name": "Hitman - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 24,
+    "description": "Greatly increased one-handed melee damage at the cost of more stamina..\n\n30% Increased One-handed Damage \n15% Increased Stamina consumed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "m",
+      "melee",
+      "one-handed",
+      "s",
+      "stamina"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.3,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "one-handed"
+        }
+      },
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": 0.15,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "one-handed"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:hitman-expert"
+  },
+  {
+    "id": 39,
+    "slug": "icarus",
+    "name": "Icarus",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased shotgun range.\n\n30% more Range with Shotguns",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:icarus"
+  },
+  {
+    "id": 40,
+    "slug": "icarus-expert",
+    "name": "Icarus - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 14,
+    "description": "Greatly increased shotgun range.\n\n50% more Range with Shotguns",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:icarus-expert"
+  },
+  {
+    "id": 41,
+    "slug": "limbo",
+    "name": "Limbo",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "You survive longer when down.\n\n15% Increased Down Time",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "h",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:limbo"
+  },
+  {
+    "id": 42,
+    "slug": "limbo-expert",
+    "name": "Limbo - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 16,
+    "description": "Greater endurance when down.\n\n30% Increased Down Time",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "h",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:limbo-expert"
+  },
+  {
+    "id": 43,
+    "slug": "locked-on",
+    "name": "Locked On",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "SMG's have reduced recoil.\n\n20% less Recoil with SMG's",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:locked-on"
+  },
+  {
+    "id": 44,
+    "slug": "locked-on-expert",
+    "name": "Locked On - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 31,
+    "description": "SMG's have greatly reduced recoil.\n\n40% less Recoil with SMG's",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:locked-on-expert"
+  },
+  {
+    "id": 45,
+    "slug": "longer-battery",
+    "name": "Longer Battery",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Greater lifespan for flashlight batteries.\n\n25% less Battery Drain",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:longer-battery"
+  },
+  {
+    "id": 46,
+    "slug": "longer-battery-expert",
+    "name": "Longer Battery - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 20,
+    "description": "maximize lifespan for flashlight batteries.\n\n50% less Battery Drain",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:longer-battery-expert"
+  },
+  {
+    "id": 47,
+    "slug": "lucky-pathogen",
+    "name": "Lucky Pathogen",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "You take less damage while infected.\n\n10% Damage Resistance while Infected",
+    "notes": "Value is Additive\n\nValue specifically refers to \"Resistance\"",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:lucky-pathogen"
+  },
+  {
+    "id": 48,
+    "slug": "lucky-pathogen-expert",
+    "name": "Lucky Pathogen - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 42,
+    "description": "You take much less damage while infected.\n\n20% Damage Resistance while Infected",
+    "notes": "Value is Additive\n\nValue specifically refers to \"Resistance\"",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:lucky-pathogen-expert"
+  },
+  {
+    "id": 49,
+    "slug": "marathon-runner",
+    "name": "Marathon Runner",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Running consumes less stamina.\n\n15% less Stamina Drain while Sprinting",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "s",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:marathon-runner"
+  },
+  {
+    "id": 50,
+    "slug": "marathon-runner-expert",
+    "name": "Marathon Runner - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 18,
+    "description": "Running consumes far less stamina.\n\n30% less Stamina Drain while Sprinting",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "s",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:marathon-runner-expert"
+  },
+  {
+    "id": 51,
+    "slug": "mohawk",
+    "name": "Mohawk",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Rifles penetrate more targets. \n\n+1 targets Penetrated\n30% Less Damage Falloff per Penetration",
+    "notes": "Value is Additive",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:mohawk"
+  },
+  {
+    "id": 52,
+    "slug": "mohawk-expert",
+    "name": "Mohawk - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 22,
+    "description": "Rifles penetrate many more targets. \n\n+2 targets Penetrated\n50% Less Damage Falloff per Penetration",
+    "notes": "Value is Additive",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:mohawk-expert"
+  },
+  {
+    "id": 53,
+    "slug": "mule",
+    "name": "Mule",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased backpack weight capacity.\n\n+1kg Weight\nMax Health reduced by 15%",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:mule"
+  },
+  {
+    "id": 54,
+    "slug": "mule-expert",
+    "name": "Mule - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 92,
+    "description": "Greatly increased backpack weight capacity.\n\n+2kg Weight\nMax Health reduced by 5%",
+    "notes": "Value 1 is Additive\nValue 2 is Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:mule-expert"
+  },
+  {
+    "id": 55,
+    "slug": "overkill",
+    "name": "Overkill",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Shotguns fire more pellets.\n\n15% more pellets per shot",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:overkill"
+  },
+  {
+    "id": 56,
+    "slug": "overkill-expert",
+    "name": "Overkill - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 96,
+    "description": "Shotguns fire a lot more pellets.\n\n30% more pellets per shot",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:overkill-expert"
+  },
+  {
+    "id": 57,
+    "slug": "penetrating-shot",
+    "name": "Penetrating Shot",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Heavy Rifles penetrate more targets. \n\n+1 targets Penetrated\n30% Less Damage Falloff per Penetration",
+    "notes": "Value is Additive",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:penetrating-shot"
+  },
+  {
+    "id": 58,
+    "slug": "penetrating-shot-expert",
+    "name": "Penetrating Shot - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 60,
+    "description": "Heavy Rifles penetrate many more targets. \n\n+1 targets Penetrated\n50% Less Damage Falloff per Penetration",
+    "notes": "Value is Additive",
+    "tags": [
+      "d",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:penetrating-shot-expert"
+  },
+  {
+    "id": 59,
+    "slug": "quiet-steps",
+    "name": "Quiet Steps",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Reduced noise from movement.\n\n10% less Noise while Walking, Crouching, Jumping and Running",
+    "notes": "Values are Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:quiet-steps"
+  },
+  {
+    "id": 60,
+    "slug": "quiet-steps-expert",
+    "name": "Quiet Steps - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 36,
+    "description": "Reduced noise from movement.\n\n20% less Noise while Walking, Crouching, Jumping and Running",
+    "notes": "Values are Multiplicative",
+    "tags": [
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:quiet-steps-expert"
+  },
+  {
+    "id": 61,
+    "slug": "resident-genes",
+    "name": "Resident Genes",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "You heal while using Pills.\n\n+15 hp Heal",
+    "notes": "Skilled Medic does not increase the heal from this perk.",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:resident-genes"
+  },
+  {
+    "id": 62,
+    "slug": "resident-genes-expert",
+    "name": "Resident Genes - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 38,
+    "description": "You heal while using Pills and Gene Therapy.\n\n+25 hp Heal",
+    "notes": "Skilled Medic does not increase the heal from this perk.",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:resident-genes-expert"
+  },
+  {
+    "id": 63,
+    "slug": "resilience",
+    "name": "Resilience",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Greatly reduced damage from environmental sources.\n\n15% Damage Resistance to Fire, Poison, Electricity, Water",
+    "notes": "Values are Additive",
+    "tags": [
+      "h",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:resilience"
+  },
+  {
+    "id": 64,
+    "slug": "resilience-expert",
+    "name": "Resilience - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 75,
+    "description": "Greatly reduced damage from environmental sources.\n\n25% Damage Resistance to Fire, Poison, Electricity, Water",
+    "notes": "Values are Additive",
+    "tags": [
+      "h",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:resilience-expert"
+  },
+  {
+    "id": 65,
+    "slug": "rifle-reloading",
+    "name": "Rifle Reloading",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Consistent practice makes changing magazines a smooth and efficient process even under pressure.\n\n20% Increase to Rifle & SMG Reload Speed",
+    "notes": "Value is Multiplicative\n\nApplies to all rifles and SMGs",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:rifle-reloading"
+  },
+  {
+    "id": 66,
+    "slug": "rifle-reloading-expert",
+    "name": "Rifle Reloading - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 34,
+    "description": "Muscle memory makes swapping detachable box magazines on long guns a trivial task.\n\n40% Increase to Rifle & SMG Reload Speed",
+    "notes": "Value is Multiplicative\n\nApplies to all rifles and SMGs",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:rifle-reloading-expert"
+  },
+  {
+    "id": 67,
+    "slug": "rush",
+    "name": "Rush",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Two-handed melee attacks use less stamina.\n\n10% less Stamina cost for Charged Two-handed melee attacks",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "charged",
+      "m",
+      "melee",
+      "s",
+      "stamina",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": -0.1,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": "charged"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:rush"
+  },
+  {
+    "id": 68,
+    "slug": "rush-expert",
+    "name": "Rush - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 2,
+    "description": "Two-handed melee attacks use much less stamina.\n\n30% less Stamina cost for Charged Two-handed melee attacks",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "charged",
+      "m",
+      "melee",
+      "s",
+      "stamina",
+      "two-handed"
+    ],
+    "effects": [
+      {
+        "stat": "stamina_cost",
+        "operation": "multiply",
+        "value": -0.3,
+        "stage": 2,
+        "conditions": {
+          "source": "melee",
+          "handedness": "two-handed",
+          "attackType": "charged"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:rush-expert"
+  },
+  {
+    "id": 69,
+    "slug": "scavenger",
+    "name": "Scavenger",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased ammo from pickups.\n\n15% increased Ammo looted",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "loot",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:scavenger"
+  },
+  {
+    "id": 70,
+    "slug": "scavenger-expert",
+    "name": "Scavenger - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 8,
+    "description": "Greatly increased ammo from pickups.\n\n30% increased Ammo looted",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "loot",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:scavenger-expert"
+  },
+  {
+    "id": 71,
+    "slug": "shotgun-reloading",
+    "name": "Shotgun Reloading",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Regularly running shotgun drills has made feeding shells a seamless process.\n\n20% Increase to Shotgun Reload Speed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:shotgun-reloading"
+  },
+  {
+    "id": 72,
+    "slug": "shotgun-reloading-expert",
+    "name": "Shotgun Reloading - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 21,
+    "description": "You can load shells with the speed and precision of a competition shooter.\n\n40% Increase to Shotgun Reload Speed",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "firearm",
+      "reload",
+      "u",
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:shotgun-reloading-expert"
+  },
+  {
+    "id": 73,
+    "slug": "skilled-medic",
+    "name": "Skilled Medic",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Heal yourself and others more.\n\n50% Increased Healing",
+    "notes": "Value is Multiplicative\n\nBandages heal 25hp base\nMedkit heals 100hp base",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:skilled-medic"
+  },
+  {
+    "id": 74,
+    "slug": "skilled-medic-expert",
+    "name": "Skilled Medic - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 88,
+    "description": "Heal yourself and others much more.\n\n100% Increased Healing",
+    "notes": "Value is Multiplicative\n\nBandages heal 25hp base\nMedkit heals 100hp base",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:skilled-medic-expert"
+  },
+  {
+    "id": 75,
+    "slug": "stayin-alive",
+    "name": "Stayin' Alive",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Revive other Responders faster.\n\n50% faster Revive speed",
+    "notes": "Value is Multiplicative\n\nBonus also applies to yourself while using Revive Syringes",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:stayin-alive"
+  },
+  {
+    "id": 76,
+    "slug": "stayin-alive-expert",
+    "name": "Stayin' Alive - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 6,
+    "description": "Revive other much faster.\n\n100% faster Revive speed",
+    "notes": "Value is Multiplicative\n\nBonus also applies to yourself while using Revive Syringes",
+    "tags": [
+      "h",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:stayin-alive-expert"
+  },
+  {
+    "id": 77,
+    "slug": "steady-hand",
+    "name": "Steady Hand",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Handgun spread is reduced.\n\n20% less Spread with Handguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:steady-hand"
+  },
+  {
+    "id": 78,
+    "slug": "steady-hand-expert",
+    "name": "Steady Hand - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 49,
+    "description": "Handgun spread is greatly reduced.\n\n30% less Spread with Handguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:steady-hand-expert"
+  },
+  {
+    "id": 79,
+    "slug": "steady-shot",
+    "name": "Steady Shot",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Rifle recoil is reduced.\n\n15% less Recoil with Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:steady-shot"
+  },
+  {
+    "id": 80,
+    "slug": "steady-shot-expert",
+    "name": "Steady Shot - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 76,
+    "description": "Rifle recoil is greatly reduced.\n\n30% less Recoil with Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:steady-shot-expert"
+  },
+  {
+    "id": 81,
+    "slug": "steel-chamber",
+    "name": "Steel Chamber",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Heavy Rifles deal increased Damage.\n\n15% Increased Damage with Heavy Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "heavy rifle",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.15,
+        "stage": 2,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "heavy rifle"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:steel-chamber"
+  },
+  {
+    "id": 82,
+    "slug": "steel-chamber-expert",
+    "name": "Steel Chamber - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 44,
+    "description": "Heavy Rifles deal vastly more Damage.\n\n30% Increased Damage with Heavy Rifles",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "heavy rifle",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.3,
+        "stage": 2,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "heavy rifle"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:steel-chamber-expert"
+  },
+  {
+    "id": 83,
+    "slug": "sturdy-body",
+    "name": "Sturdy Body",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Reduced damage from attacks.\n\n10% less Damage taken",
+    "notes": "Value is Additive\n\nValue specifically refers to \"DamageMitigationModifier\"",
+    "tags": [
+      "defense",
+      "h",
+      "health"
+    ],
+    "effects": [
+      {
+        "stat": "damage_taken",
+        "operation": "add",
+        "value": -0.1,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:sturdy-body"
+  },
+  {
+    "id": 84,
+    "slug": "sturdy-body-expert",
+    "name": "Sturdy Body - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 100,
+    "description": "Greatly reduced damage from attacks.\n\n20% less Damage taken",
+    "notes": "Value is Additive\n\nValue specifically refers to \"DamageMitigationModifier\"",
+    "tags": [
+      "defense",
+      "h",
+      "health"
+    ],
+    "effects": [
+      {
+        "stat": "damage_taken",
+        "operation": "add",
+        "value": -0.2,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:sturdy-body-expert"
+  },
+  {
+    "id": 85,
+    "slug": "thick-skin",
+    "name": "Thick Skin",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Increased maximum Health.\n\n10% Increased total HP",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "h",
+      "health",
+      "player"
+    ],
+    "effects": [
+      {
+        "stat": "max_hp",
+        "operation": "multiply",
+        "value": 0.1,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:thick-skin"
+  },
+  {
+    "id": 86,
+    "slug": "thick-skin-expert",
+    "name": "Thick Skin - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 48,
+    "description": "Significantly increased maximum Health.\n\n20% Increased total HP",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "h",
+      "health",
+      "player"
+    ],
+    "effects": [
+      {
+        "stat": "max_hp",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 1,
+        "conditions": {}
+      }
+    ],
+    "provenanceRef": "compendium:perks:thick-skin-expert"
+  },
+  {
+    "id": 87,
+    "slug": "tight-shot",
+    "name": "Tight Shot",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Shotgun pellets have reduced spread.\n\n15% less Spread with Shotguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:tight-shot"
+  },
+  {
+    "id": 88,
+    "slug": "tight-shot-expert",
+    "name": "Tight Shot - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 68,
+    "description": "Shotgun pellets have greatly reduced spread.\n\n30% less Spread with Shotguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:tight-shot-expert"
+  },
+  {
+    "id": 89,
+    "slug": "vulture",
+    "name": "Vulture",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Ammunition has reduced weight.\n\n10% reduced Weight for Ammo",
+    "notes": "Value is Additive",
+    "tags": [
+      "loot",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:vulture"
+  },
+  {
+    "id": 90,
+    "slug": "vulture-expert",
+    "name": "Vulture - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 32,
+    "description": "Ammunition has greatly reduced weight.\n\n20% reduced Weight for Ammo",
+    "notes": "Value is Additive",
+    "tags": [
+      "loot",
+      "u",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:vulture-expert"
+  },
+  {
+    "id": 91,
+    "slug": "wicked",
+    "name": "Wicked",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "Handguns deal more limb damage.\n\n10% Increased Damage to Limbs with Handguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "handgun",
+      "limb",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.1,
+        "stage": 3,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "handgun",
+          "hitZone": "limb"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:wicked"
+  },
+  {
+    "id": 92,
+    "slug": "wicked-expert",
+    "name": "Wicked - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 49,
+    "description": "Handguns deal much more limb damage.\n\n20% Increased Damage to Limbs with Handguns",
+    "notes": "Value is Multiplicative",
+    "tags": [
+      "d",
+      "damage",
+      "firearm",
+      "handgun",
+      "limb",
+      "w"
+    ],
+    "effects": [
+      {
+        "stat": "damage",
+        "operation": "multiply",
+        "value": 0.2,
+        "stage": 3,
+        "conditions": {
+          "source": "firearm",
+          "gunCategory": "handgun",
+          "hitZone": "limb"
+        }
+      }
+    ],
+    "provenanceRef": "compendium:perks:wicked-expert"
+  },
+  {
+    "id": 93,
+    "slug": "winged",
+    "name": "Winged",
+    "tier": "standard",
+    "unlockAccountLevel": 1,
+    "description": "SMG's have increased range.\n\n25% more Range for SMG's",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:winged"
+  },
+  {
+    "id": 94,
+    "slug": "winged-expert",
+    "name": "Winged - Expert",
+    "tier": "expert",
+    "unlockAccountLevel": 27,
+    "description": "SMG's have greatly increased range.\n\n50% more Range for SMG's",
+    "notes": "Value is Additive",
+    "tags": [
+      "utility",
+      "w"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:winged-expert"
+  },
+  {
+    "id": 95,
+    "slug": "averaging",
+    "name": "Averaging",
+    "tier": "retired",
+    "unlockAccountLevel": 1,
+    "description": "Headshots deal less damage, but body shots deal increased damage.\n\n50% reduced Headshot damage with Guns & Light Attacks\n20% more Body shot damage",
+    "notes": "Value 1 is Multiplicative\nValue 2 is Additive\n\nThe increased damage applies to many damage actions it shouldn't (strong/charged melee headshots, heavy shoves & foreman)\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "d",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:averaging"
+  },
+  {
+    "id": 96,
+    "slug": "averaging-expert",
+    "name": "Averaging - Expert",
+    "tier": "retired",
+    "unlockAccountLevel": 62,
+    "description": "Headshots deal less damage, but body shots deal greatly increased damage.\n\n50% reduced Headshot damage with Guns & Light Attacks       \n30% more Body shot damage",
+    "notes": "Value 1 is Multiplicative\nValue 2 is Additive\n\nThe increased damage applies to many damage actions it shouldn't (strong/charged melee headshots, heavy shoves & foreman)\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "d",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:averaging-expert"
+  },
+  {
+    "id": 97,
+    "slug": "guts",
+    "name": "Guts",
+    "tier": "retired",
+    "unlockAccountLevel": 1,
+    "description": "You recover faster from being out of stamina.\n\n25% faster start of Stamina Regen",
+    "notes": "Value is Multiplicative\n\n**Doesn't seem to have the Stamina Starved effect yet\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "s",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:guts"
+  },
+  {
+    "id": 98,
+    "slug": "guts-expert",
+    "name": "Guts - Expert",
+    "tier": "retired",
+    "unlockAccountLevel": 34,
+    "description": "You recover much faster from being out of stamina.\n\n50% faster start of Stamina Regen\n50% Less Stamina Starved Duration",
+    "notes": "Value is Multiplicative\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "s",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:guts-expert"
+  },
+  {
+    "id": 99,
+    "slug": "teddy-bear",
+    "name": "Teddy Bear",
+    "tier": "retired",
+    "unlockAccountLevel": 1,
+    "description": "Blunt weapons deal much more Stability Damage, but deal less Direct Damage. \n\n15% Increased Stability Damage with Light Attacks\n15% less Direct Damage with Light Attacks",
+    "notes": "Value is Multiplicative\n\nAs the description says, this is only for blunt weapons.\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "d",
+      "m",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:teddy-bear"
+  },
+  {
+    "id": 100,
+    "slug": "teddy-bear-expert",
+    "name": "Teddy Bear - Expert",
+    "tier": "retired",
+    "unlockAccountLevel": 66,
+    "description": "Blunt weapons deal significantly more Stability Damage, but deal less Direct Damage. \n\n30% Increased Stability Damage with Light Attacks\n15% less Direct Damage with Light Attacks",
+    "notes": "Value is Multiplicative\n\nAs the description says, this is only for blunt weapons.\n\nRemoved in 1.0 Patch",
+    "tags": [
+      "d",
+      "m",
+      "utility"
+    ],
+    "effects": [],
+    "provenanceRef": "compendium:perks:teddy-bear-expert"
+  }
+]

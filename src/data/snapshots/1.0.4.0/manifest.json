@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "gameVersion": "1.0.4.0",
+  "generatedAt": "2026-08-30T20:34:17Z",
+  "entityCounts": {
+    "weapons": 35,
+    "meleeWeapons": 20,
+    "firearms": 15,
+    "perks": 100,
+    "enemies": 8
+  },
+  "sources": [
+    {
+      "id": "compendium",
+      "name": "NMRiH2 Info Compendium",
+      "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRYRiLDS0qkszc2GgVRzTiNy46i-JaatWB2qbgsufwzwpCbyZCBqcaQ3avoYnLEAiif-ZYJLD-OD5rW/pubhtml",
+      "type": "game-file-derived-community"
+    },
+    {
+      "id": "official-1.0",
+      "name": "NMRiH2 Armageddon 1.0 Update Notes",
+      "url": "https://www.nmrih2.com/2026/08/10/armageddon-1-0-update-notes/",
+      "type": "official"
+    },
+    {
+      "id": "official-1.0.4.0",
+      "name": "NMRiH2 Hotfix Notes 1.0.4.0",
+      "url": "https://www.nmrih2.com/2026/08/25/hotfix-notes-1-0-4-0/",
+      "type": "official"
+    }
+  ]
+}

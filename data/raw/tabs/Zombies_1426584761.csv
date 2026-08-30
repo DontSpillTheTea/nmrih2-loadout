@@ -1,0 +1,59 @@
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Walker (Zombie),,,Prime (Bloody),,,Runner,,,Shambler (Screamer),,,Prime Runner,
+,,,,,,,,,,,,,
+HP,100,,HP,130,,HP,100,,HP,70,,HP,120
+Movement Speed,120 (-10% → +10%◈),,Movement Speed,120 (-10% → +10%◈),,Movement Speed,400 (-10% → +0%◈),,Movement Speed,78,,Movement Speed,400 (-10% → +0%◈)
+Basic Damage,20   | 150 Range,,Basic Damage,25   | 150 Range,,Basic Damage,20   | 130 Range,,Basic Damage,10   | 150 Range,,Basic Damage,25   | 130 Range
+Heavy Damage,20   | 150 Range,,Heavy Damage,25   | 150 Range,,Heavy Damage(Multihit),10   | 225 Range,,Heavy Damage,15   | 150 Range,,Heavy Damage(Multihit),12   | 225 Range
+Lunge Damage,20   | 150 Range,,Lunge Damage,25   | 150 Range,,Lunge Damage,20   | 175 Range,,*Lunge Damage,40   | 150 Range,,Lunge Damage,25   | 175 Range
+Periodic Grab Damage,7,,Periodic Grab Damage,7,,*Periodic Grab Damage,10,,*Periodic Grab Damage,3,,*Periodic Grab Damage,10
+Grab Range,80,,Grab Range,80,,*Grab Range,140,,*Grab Range,160,,*Grab Range,140
+Notes,,,Notes,"Prime zombies are unmistakenly coated and darkened with blood.
+
+Prime zombies have new low/guttural noises to separate them from Walkers",,Notes,"Listen for their unique screams and footsteps to hear them coming up on you.
+
+They have a really easy to spot power stance when they're idle/not aggro'd",,Notes,"If allowed to complete their scream a runner will spawn. 
+The gas cloud from the body can infect you.
+
+Other zombies can get a gas aura from walking through it which gives them doubled infection chances.",,Notes,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+"NG Zed Armor: 
+50% Damage Resistance
+50% Stability Damage Resistance
+Affected area highlighted. →
+
+Riot Police Vest: 
+50% Gunshot Damage Resistance 
+50% Gunshot Stability Damage Resistance
+Affected area highlighted. →
+Riot Shield: 
++10 Additional Dmg to Left Hand Attacks
+
+Firefighter Zed:
+Immune to Fire
+
+◈ = Value randomized between the bounds on spawn.
+
+* = Currently disabled.
+
+
+Disclaimer:
+
+
+Bugs/Oddities:
+",,,,,,,,,,,,,
+,,,,,,,,,,,,,
+Attributes,,,National Guard,,,Riot Police,,,Crawler,,,Runner Crawler,
+,,,,,,,,,,,,,
+,,,,,,,,,HP,N/A,,HP,N/A
+,,,,,,,,,Movement Speed,95,,Movement Speed,190
+,,,,,,,,,Basic Damage,N/A   | 165 Range,,Basic Damage,N/A   | 150 Range
+,,,,,,,,,Heavy Damage(Multihit),N/A,,Heavy Damage(Multihit),N/A
+,,,,,,,,,Lunge Damage,N/A,,Lunge Damage,N/A
+,,,,,,,,,Periodic Grab Damage,N/A,,Periodic Grab Damage,N/A
+,,,,,,,,,Grab Range,N/A,,Grab Range,N/A
+,,,,,,,,,Notes,"Crawlers use the stats of what they were made from, only differences are movespeed and attack range.",,Notes,

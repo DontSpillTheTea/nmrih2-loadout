@@ -1,0 +1,44 @@
+{
+  "gameVersion": "1.0.4.0",
+  "schemaVersion": 1,
+  "maxPerkSlots": 10,
+  "basePlayerStamina": 100,
+  "basePlayerHp": 100,
+  "downedDamageMultiplier": 2.0,
+  "shoveStaminaCost": 15,
+  "stabilityThresholds": {
+    "flinch": 0,
+    "interrupt": 20,
+    "stagger": 50,
+    "knockdown": 100
+  },
+  "staminaStarvedModifiers": {
+    "damageMultiplier": 0.9,
+    "limbDamageMultiplier": 0.5,
+    "stabilityDamageMultiplier": 0.5,
+    "staminaRegenDelaySeconds": 2.0
+  },
+  "difficultyModifiers": {
+    "beginner": {
+      "enemyHpMultiplier": 0.7,
+      "creditMultiplier": 0.8,
+      "xpMultiplier": 1.0
+    },
+    "normal": {
+      "enemyHpMultiplier": 1.0,
+      "creditMultiplier": 1.0,
+      "xpMultiplier": 1.25
+    },
+    "hard": {
+      "enemyHpMultiplier": 1.0,
+      "creditMultiplier": 1.5,
+      "xpMultiplier": 2.0
+    },
+    "nightmare": {
+      "enemyHpMultiplier": 1.0,
+      "creditMultiplier": 2.0,
+      "xpMultiplier": 3.0
+    }
+  },
+  "damageFormula": "finalDamage = (baseDamage + additiveFlat) * (1 + sum(multiplicativeRatios)) * (isDowned ? downedMultiplier : 1.0) * (1.0 - resistance)"
+}

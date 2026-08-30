@@ -1,0 +1,221 @@
+Update,,Perk,Change,,Item,Change,,Weapon,Change,,Map,Change,,,Other
+"1.0.0.0
+Armageddon
+Aug 11 2026",,New Perks Added,Handgun Reloading,,Rescue Beacon,Added to the game,,All Firearms,Firearms now have a chance to spawn with varying amounts of ammo within them based on difficulty.,,Game Modes Added,Solo,,New Currency,Merits
+,,,Rifle Reloading,,,,,,,,,Survival,,,
+,,,Shotgun Reloading,,,,,,,,,,,,
+,,,,,,,,All Melee,Held interacts can now be started before a melee swing is fully resolved.,,Objective Map Added,Raven Rock,,New Weekly Assignments,
+,,Perks Removed,Averaging,,,,,,,,,Flooded,,,
+,,,Guts,,,,,,,,,Lighthouse,,,
+,,,Teddy Bear,,,,,Slashing Weapons,Now all deal 5 stability quick attack damage.,,,Night of the Living Dead,,New Achievements,
+,,,,,,,,,Now all deal 10 stability strong attack damage.,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,1-Handed Weapons,Reduced time to begin strong attack by 10%.,,,,,New Tutorial,
+,,,,,,,,,Reduced time to begin charged attack by 20%.,,All Maps,"Zombie pressure across all maps has been tuned, refactored, to feel more appropriate to each experience based on the difficulty tunings mentioned above.",,,
+,,,,,,,,,,,,,,,
+,,,,,,,,2-Handed Weapons,Reduced time to begin charged attack by 10%.,,,,,Responder Customization,"Added several new cosmetics to the Outfit selection, earnable through Credits or Merits."
+,,,,,,,,,,,,Carryables like fuses are now placed slightly further from the associated objective with additional spawn variations.,,,
+,,,,,,,,,,,,,,,Added new cosmetic types: Compass & Flashlight.
+,,,,,,,,"(Damage values shown as X/Y/Z are Quick, Strong, and Charged attacks)",,,,Objectives now scale in difficulty based on the remaining player count available at its start.,,,Updated the pricing of all cosmetic options available.
+,,,,,,,,Mallet,Replaces Small Pipe in default inventory.,,,,,,Cosmetics are now sorted based on their level unlock requirements.
+,,,,,,,,,Moved from Tier 2 to Tier 1.,,,Optimized collision for objects outside of bounds across maps.,,,Added new voice character set: Wright
+,,,,,,,,,Decreased base damage from 13/15/20 to 10/13/15,,,,,,
+,,,,,,,,,Decreased headshot damage from 25/30/35 to 20/25/30,,,Added some additional time to extract for rope extraction beats.,,,
+,,,,,,,,,Decreased stability damage from 25/50/50 to 25/35/45,,,,,Traversal,Reduced shove stamina cost from 25 to 15
+,,,,,,,,,,,,Adjusted spawn rate of Tier 3 Weapons to favor later stages of maps.,,,Reduced stamina recharge timer.
+,,,,,,,,Small Wrench,Increased charged swing speed by 12%.,,,,,,Increased sprint speed from 370 to 380
+,,,,,,,,,Increased base strong attack damage from 10 to 13,,,,,,Increased sprint speed during angular movement.
+,,,,,,,,,Decreased strong stability damage from 45 to 35,,Beaulieu Hospital,Slightly moved back ventilation parts that were very close to the ventilation van.,,,Responders can now kick while carrying 1-Handed Objective items.
+,,,,,,,,,,,,,,,
+,,,,,,,,Small Pipe,Moved from Tier 1 to Tier 2.,,,Fixed multiple exploitable areas throughout Beaulieu Hospital.,,,
+,,,,,,,,,Increased headshot damage from 20/25/30 to 20/30/35,,,,,Zombies,Fixed various locations where zombies can spawn clipping or floating in various maps
+,,,,,,,,,,,,,,,
+,,,,,,,,Tire Iron,Fixed an issue where the Tire Iron was not dealing its intended base heavy attack damage (20).,,Power Plant,Removed the Bio-Scanner initial objective scenario.,,,Improved zombie ragdolls on impact and death
+,,,,,,,,,,,,Powerplant stash rooms loot is now better scaled according to player counts at each POI,,,Fixed cases where zombies would slide rapidly and attack
+,,,,,,,,,,,,,,,Fixed zombies without clothes spawning in Pottsville
+,,,,,,,,Small Knife,Fixed an issue where the Small Knife was not dealing its intended base strong attack damage (18).,,,,,,Fixed cases of zombies warping from ragdoll to standing instantly
+,,,,,,,,,,,Lewiston,Blocked some unintentional pathways that enabled the map to be completed too quickly.,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,Cleaver,Increased charged swing speed by 5%.,,,Adjusted the train tunnel puzzle and added some art to improve zombie flow.,,"Progression, Loadout, & Skills",Nightmare Extractions should update accurately when returning to the main menu
+,,,,,,,,,Increased base quick attack damage from 13 to 15,,,,,,
+,,,,,,,,,Increased headshot charged attack damage from 45 to 50,,,Added one Bio-Scanner to open the chapel when retrieving hard drives.,,,Loadout slot changes now take effect if player removes and re-equips multiple items while in the same category
+,,,,,,,,,,,,,,,
+,,,,,,,,Machete,Increased base damage from 17/22/26 to 20/25/34,,,Extended hard drive upload beat slightly in the library.,,,Switching characters should no longer cause some loadout items to become unable to interact with.
+,,,,,,,,,,,,Finale area gates must now be powered before they can be opened.,,,
+,,,,,,,,Hatchet,Increased base damage from 17/22/26 to 20/25/34,,,,,,Fixed the incorrect amount of weight being added to the inventory when picking up ammo with the Scavenger perk
+,,,,,,,,,,,,Lightly adjusted some geometry in the train extract area.,,,
+,,,,,,,,Rebar,Decreased base quick damage from 20 to 15,,,,,,Skilled Medic skill now should heal other players more
+,,,,,,,,,Increased headshot strong damage from 30 to 35,,Broadway,Added a shortcut after travelling all the way around the rooftop of the Diner.,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,Hockey Stick,Moved from Tier 2 to Tier 1.,,,Updated the art on the platform of the train extract to improve zombie flow.,,Gameplay,"Applied fixes to cases where it was possible for a player to enter a bad state and become unable to perform any actions, especially after using or dropping items, or while escaping a grab"
+,,,,,,,,,Decreased base quick attack damage 20 to 15,,,,,,
+,,,,,,,,,,,,More appropriately spaced out C4 throughout the Courthouse.,,,
+,,,,,,,,Large Pipe,Moved from Tier 1 to Tier 2.,,,,,,Fixed a case where players can get stuck in a bad state by interacting with an item at the same time as another player
+,,,,,,,,,Increased base damage from 20/20/23 to 20/25/33,,,Adjusted Movie Theatre flow to improve zombie pressure.,,,
+,,,,,,,,,Increased headshot strong damage from 30 to 35,,,,,,Fixed a case where players can get stuck in a bad state when interrupted while unloading a firearm
+,,,,,,,,,,,Pottsville,Neighborhood objective indicators are now more specific.,,,
+,,,,,,,,Large Wrench,Decreased quick melee swing speed by 10%.,,,Extended the antenna upload holdout beat in Downtown.,,,"Fixed the ability to ping water-covered terrain, which made it difficult to ping locations in Flooded"
+,,,,,,,,,Decreased charged swing speed by 10%.,,,Locked the doors in the back of downtown stores.,,,
+,,,,,,,,,,,,"When Responders open one gate from Midtown to Downtown, both will now open.",,,Fixed the flashlight causing strange shadows to appear when vaulting
+,,,,,,,,Baseball Bat,Moved statline from Tier 3 to Tier 2.,,,,,,Slightly increased the ease of the generator minigame
+,,,,,,,,,Decreased quick attack swing speed by 20%.,,,There is an additional beat where you must tune a radio prior to extracting.,,,Improved flow of wiring minigame
+,,,,,,,,,Decreased base damage from 30/35/45 to 20/25/33,,,,,,Fixed the flashlight appearing all white when occluding a wiring minigame
+,,,,,,,,,Decreased headshot damage from 45/50/80 to 25/35/50,,,,,,Fixed issue with fail state sound for wiring minigame not working correctly
+,,,,,,,,,Decreased stability damage from 65/75/100 to 20/40/100,,Training Range,Added a Med Kit to the medical cabinet,,,Fixed an exploit where dropping a Molotov and shooting it would do full damage to players
+,,,,,,,,,,,,Added static item spawns to van trunks,,,
+,,,,,,,,Shovel,Increased base damage from 13/18/25 to 20/25/34,,,Added a reward item in Objective Training cage,,,Fixed various cases where kicking or shoving windows would not consistently break them
+,,,,,,,,,Increased headshot damage from 34/38/50 to 35/45/50,,,Added some items to pick up on spawn table,,,
+,,,,,,,,,,,,Moved lever in fire room to be more obvious,,,Fixed a case where carry-and-place objective items could get hidden when swapping weapons
+,,,,,,,,Tree Trimmer,Increased base damage from 20/25/35 to 25/30/35,,,Moved vans and rotated them to have more accessible trunks,,,
+,,,,,,,,,,,,,,,Fixed some cases where players could burn for longer than intended from fire from red barrel explosions
+,,,,,,,,Fire Axe,Increased stability quick attack damage from 5 (universal buff) to 10,,,Removed big pipe from obstacle course,,,
+,,,,,,,,,,,,Removed red hose in fire room of obstacle course,,,Applied more fixes to ensure that carry-and-place objective items respawn properly if taken away from the objective area
+,,,,,,,,,,,,Updated the Range’s swimming rules and removed signage telling players not to.,,,
+,,,,,,,,,,,,,,,Applied fixes to an issue where the extraction helicopter could appear to hover higher for some players
+,,,,,,,,,,,,Fixed the obstacle course objectives turning back on when repeating the course,,,
+,,,,,,,,Combat,Improved windows for queuing melee attacks to make combos more smooth and prevent unintentional extra inputs,,,,,,Fixed some cases where items would shift on the ground after thrown or dropped
+,,,,,,,,,,,,,,,
+,,,,,,,,,Made it easier to hit zombies while looking down at the ground when they are slightly below you off a curb or down stairs.,,,,,,Fixed an issue where sometimes players will not see the first barricade board placed on a door by another responder
+,,,,,,,,,,,Difficulty Balance ,Adjusted zombie pressure and threat levels across each experience. Difficulty will now tangibly change the composition and density of hordes and dynamically adjust itself over the course of a match.,,,
+,,,,,,,,,,,,,,,Fixed an issue where gas clouds would not dissipate after being sealed in Power Plant
+,,,,,,,,,Weapon throwing can be cancelled properly by melee attacks,,,,,,
+,,,,,,,,,,,,"Example: Nightmare will experience more zombie variety overall, with special types and Runners/Prime much more prevalent than prior.",,,Responders should no longer be able to interact with bodies in wards not relevant to the objective in Hospital
+,,,,,,,,,Responders can now shove and kick as intended with the flashlight is out after having a two-handed weapon equipped,,,,,,
+,,,,,,,,,,,,,,,Fixed issues when dropping items where they could become obscured or pick up ground textures
+,,,,,,,,,Fixed some cases where bladed weapons would not stick when thrown at zombies,,,"Scripted objective scenarios now better scale with difficulty, leading to differing speeds and amounts of zombies during a sequence.
+This applies to situations where zombies spawn infinitely until a given objective is completed.",,,
+,,,,,,,,,,,,,,,Prevent responders from checking the compass while primed for self-sacrifice
+,,,,,,,,,Fixed IEDs doing no damage to zombies in Survival maps,,,,,,Fixed cases where players could not add extra barricades to doors and windows under attack
+,,,,,,,,,Sprinting now interrupts firearm reload,,,,,,
+,,,,,,,,,Fixed grenades and thrown weapons sometimes passing through zombies when thrown,,,,,,The flashlight should turn on appropriately when pressing Q with a two-handed weapon equipped
+,,,,,,,,,,,Beginner,previously called Casual,,,
+,,,,,,,,,Improved the release timing for dropping a grenade with RMB,,,"Various UI elements will be always on, including control hints and objective reminders.",,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,Improved grenade throw traces to not be blocked by small bits of geometry,,,Zombies have their effective HP reduced by 30%.,,Audio,Added 5.1 surround sound support
+,,,,,,,,,,,,"Respawns are now tied to a timer, with Responders returning each minute if not sooner.",,,Headshots against zombies now have a more distinct sound
+,,,,,,,,,,,,,,,Runner pursuit audio volume was boosted
+,,,,,,,,,,,,,,,New music is present during Evac preparation phase on various maps
+,,,,,,,,,,,Normal,previously called Classic,,,Improved audio for various objectives and for objective progress updates
+,,,,,,,,,,,,Respawning is enabled after the completion of a major objective.,,,Responders now make an appropriate landing sound from height
+,,,,,,,,,,,,,,,Alarms and security nodes destruction sound was updated
+,,,,,,,,,,,,Increased Character XP multiplier from 120% to 125%,,,Beaulieu Hospital security nodes have been given spatialized beeps to help locate them
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,Hard,Increased Account XP Multiplier from 120% to 150%,,,Added meta sounds for progress getting up during DBNO
+,,,,,,,,,,,,Increased Credit Multiplier from 120% to 150%,,,Improved DBNO meta sound distance
+,,,,,,,,,,,,,,,Updated DBNO sounds for multiple player states
+,,,,,,,,,,,Nightmare,Increased Account XP Multiplier from 120% to 200%,,,Fixed an issue with lights not playing sounds unless they were turned on
+,,,,,,,,,,,,Increased Character XP Multiplier from 200% to 300%,,,All voiceover lines should no longer retrigger when reconnecting to a match
+,,,,,,,,,,,,Increased Credit Multiplier from 130% to 200%,,,Fixed MC15 suppressed shot audio being faded while shooting rapidly
+,,,,,,,,,,,,Players can now see full nameplates when in close proximity of other Responders,,,Fixed inconsistent audio between M7A1 semi and full auto when suppressed
+,,,,,,,,,,,,,,,Fixed missing impact SFX when throwing certain items at zombies or objects
+,,,,,,,,,,,,Adjusted how ammo scarcity works to lean more on unloading weapons.,,,Fixed barricading audio looping and overlapping
+,,,,,,,,,,,,,,,Fixed additional cases where zombies would be silent on occasion behind you
+,,,,,,,,,,,,Fixed the obstacle course objectives turning back on when repeating the course,,,Reduced Player Runner IQ by removing cases of them saying phonetic language
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Removed Objective VO related to closing valves as they have a variety of uses now
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Fixed a memory leak when retreading areas multiple times
+,,,,,,,,,,,Environment,Fixed a location in Broadway where it was possible to get stuck between a staircase and a van,,,Reworked music sequence flow for community center gym
+,,,,,,,,,,,,,,,Fixed an issue where community center gym would have instances of no music playing mid-objective
+,,,,,,,,,,,,Fixed a location in Flooded where players could get stuck,,,
+,,,,,,,,,,,,Fixed a location where a player could get trapped on Lewiston,,,Fixed instances of missing fire sounds
+,,,,,,,,,,,,,,,Fixed a few issues of the player sounding like they were in an interior when outside
+,,,,,,,,,,,,Fixed a location where the player can get stuck near the Radio Station in Power Plant,,,
+,,,,,,,,,,,,,,,Added some new audio hallucinations.
+,,,,,,,,,,,,Removed some unintended safe spots in Pottsville and Flooded,,,Improved audio cues of zombies encounters close to you
+,,,,,,,,,,,,,,,Added rumble.
+,,,,,,,,,,,,Fixed a few geometry issues with a residential house,,,
+,,,,,,,,,,,,Fixed cases of overhead flying birds not appearing,,,
+,,,,,,,,,,,,Fixed some cases of overlapping ammo box spawns in Power Plant,,Art & Animation,Improved some animations when checking the compass while holding carry-and-place objective items
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed debug text present on an interactable keypad in Hospital,,,Fixed blood decals appearing on weapon attachments incorrectly
+,,,,,,,,,,,,,,,Fixed sprint animation when nothing is held
+,,,,,,,,,,,,Fixed corpses without full outfits spawning in Pottsville,,,Fixed zombies failing to play appropriate death animations when killed by explosive barrels
+,,,,,,,,,,,,Fixes for zombies vaulting through barricaded windows in various maps,,,
+,,,,,,,,,,,,,,,Fixed missing equip/unequip animations for some items
+,,,,,,,,,,,,Fixed various locations where zombies could get stuck,,,Fixed false VFX/SFX playing from two-handed firearms when the flashlight and equipped and the responder interacts with something
+,,,,,,,,,,,,Fixed various places where zombies path awkwardly in various maps,,,
+,,,,,,,,,,,,,,,Fixed VFX/SFX delays when firing a suppressed Gruber Rifle
+,,,,,,,,,,,,"Fixed various instances of overlapping, floating, or clipping loot in maps",,,Fixed the location of the M1911 muzzle flare.
+,,,,,,,,,,,,,,,Fixed the flashlight floating out of a crouched responder’s hand
+,,,,,,,,,,,,"Fixed some instances of level geometry popping in when moving, especially on Low and Medium graphics presets",,,Fixed a case where muzzle flare from firearms can appear delayed after sprinting
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed various places where responders could not vault out of windows in Lewiston,,,Fixed an animation issue when cooking a pipe bomb
+,,,,,,,,,,,,,,,"Fixed various animation pops when transitioning into a heavy attack with some melee weapons, and when aiming down sights."
+,,,,,,,,,,,,Fixed some locations where zombies do no attack barricades as intended,,,
+,,,,,,,,,,,,,,,Fixed blue highlights visible on responders in the main menu on Low graphics settings
+,,,,,,,,,,,,Fixed an issue where responders arriving late to an area will fail to see checkpoint gates open in Power Plant,,,
+,,,,,,,,,,,,,,,Fixed corpses having a low level of detail before being interacted with
+,,,,,,,,,,,,Fixed various cases of awkward collision when walking or vaulting for responders,,,Fixed various cases of unintended camera jitter
+,,,,,,,,,,,,,,,Fixed an animation issue when interacting with valves with an item in hand
+,,,,,,,,,,,,"Fixed water appearance: missing water ripples when walking in deep water and missing underwater effects, and responder legs appearing on top of water when looking down",,,Fixed an issue when using a scope attachment and swapping weapons
+,,,,,,,,,,,,,,,"Added additional fallbacks so that responders should not appear without meshes, outfits, heads, or bodies in any case"
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed zombies being able to attack players through cage walls,,,Improved attachment sight reticles to parallax properly
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed various cases of floating or clipping objects in the environment,,,
+,,,,,,,,,,,,,,Localization,Made some translation improvements to Brazilian Portuguese and other languages
+,,,,,,,,,,,,Fixed fire extinguishers not appearing destroyed to other responders,,,
+,,,,,,,,,,,,,,,Fixed various typos in English and other languages
+,,,,,,,,,,,,Improved some textures,,,
+,,,,,,,,,,,,Fallen trees should replicate properly for all players,,,
+,,,,,,,,,,,,Fixed a gate not appearing open and floating zombies during Lewiston extraction cinematics,,Performance,Added support for DLSS 4.5 on compatible RTX cards
+,,,,,,,,,,,,,,,Refactored impact and gore effects to more efficiently render
+,,,,,,,,,,,,Fixed the Broadway helicopter visuals and CVO playing out of sync for backfilling players,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed zombies failing to navigate through broken glass windows in Hospital,,Server and Client,Added an unstuck feature that teleports players back to their last respawn point to help if players get stuck in the map
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,Fixed some instances of missing VFX in Broadway,,,Unstuck Respawn automatically triggers when a player falls through the map
+,,,,,,,,,,,,,,,"Manually Unstuck Respawn triggered in the pause menu, requiring 30s of no actions or movement to successfully use"
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Added a Reconnect option when players crash during map load
+,,,,,,,,,,,,,,,Squad Leaders should no longer be able to Deploy if a squad member does not have a character
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Squad Members who are playing the Tutorial should be brought into a match appropriately when one is found
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Various client and server crash fixes
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,UI & UX,The Holdout banner should now reappear when entering and exiting an Early Extraction bunker
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Reworked the map selection screen.
+,,,,,,,,,,,,,,,Added a gamemode selection screen.
+,,,,,,,,,,,,,,,Clarified interaction prompts when holding carry-and-place objective items in a stage in Broadway
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Rebinding movement to E and other inputs on an AZERTY keyboard now functions as intended again
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Fixed the match end sequence not showing appropriately after the final player uses an Early Extraction hatch
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,The Pottsville Scientist body no longer glows after the objective is complete
+,,,,,,,,,,,,,,,Fixed an incorrectly labelled compass objective on Lewiston
+,,,,,,,,,,,,,,,Pottsville house objective markers should be visible from further away and be cleared after the tools and parts are found
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Corrected an inaccurate difficulty modifier on Beginner mode
+,,,,,,,,,,,,,,,Added the ability to mute players not in your squad
+,,,,,,,,,,,,,,,Fixed a UI scale pop on the loading screens for maps
+,,,,,,,,,,,,,,,"Removed the “Cancel” button from the Reroll Skill widget, as the action cannot be cancelled or credits refunded after skills are rerolled"
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Fixed objective UI appearing and fading out on spawn
+,,,,,,,,,,,,,,,Fixed missing intro card UI when spawning into Flooded
+,,,,,,,,,,,,,,,Improved contrast between the squad invite toaster notification and the MOTD
+,,,,,,,,,,,,,,,Improved the appearance of completed objectives in the compass objective log
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Fixed objective messages to better queue when multiple are displayed in a row
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,Known Issues,There can be a short delay between picking up an item and being able to use it within the inventory.
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,"Rarely, players can enter a state where they cannot perform actions by being in ADS and running out of ammo entirely. Being grabbed by a zombie resets the state."
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Runner footsteps can continue to play while ragdolling after being killed
+,,,,,,,,,,,,,,,Flashlights and Voice can appear to not be selected at first when opening the Customization menu.
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,Exiting the Loadout menu using the Esc key can cause the warning for Unsaved Changes to be missing.
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,"Rarely, the responder can be missing on the main menu. They're just on smoke break."
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,"Late in a match, players in Normal mode may see UI indicating they will respawn, even though all respawn checkpoints have been passed."
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,"In Solo Mode, Beginner supply drops do not appear to spawn on PS5 or XSX"

@@ -1,0 +1,37 @@
+Unlock,Name,,,Description,Notes
+"Acc Lv33
+",,Nailer,,"Passive Item: Electric Nailer to drive framing nails for construction. 
+Reduces Barricading time.
+
+300% faster Barricading time",Effect Value is Additive
+,,,0.50KG,,
+"Acc Lv38
+",,Ranger Boots,,"Passive Item: High quality all weather hiking boots.
+Reduces noise generated from moving.
+
+50% less Noise from all Movement actions","Effect Value is Multiplicative
+"
+,,,0.50KG,,
+"Acc Lv48
+
+",,Adrenaline Shot,,"Passive Item: Epinephrine injector that provides a heafty increase to your maximum Stamina.
+
+25% Increased total Stamina",Effect Value is Multiplicative
+,,,0.50KG,,
+"Acc Lv55
+
+",,Body Armor,,"Passive Item: Aramid fiber vest with ballistic protection.
+Can protect wearers body from damage.
+
+25% less Damage taken from Zombies","Effect Value is Additive
+
+
+Value specifically refers to ""ZombieSwipeResistance"""
+,,,0.50KG,,
+"Acc Lv59
+
+",,Satchel,,"Passive Item: A small bag.
+Increases inventory space.
+
+25% Increased total Carry Weight",Effect Value is Multiplicitive
+,,,0.50KG,,

@@ -1,0 +1,251 @@
+[
+  {
+    "id": 1,
+    "slug": "walker",
+    "name": "Walker (Normal Zombie)",
+    "baseHp": 100,
+    "movementSpeed": 120,
+    "limbHp": {
+      "head": 100,
+      "leftArm": 60,
+      "rightArm": 60,
+      "leftLeg": 70,
+      "rightLeg": 70
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "walker",
+      "zombie",
+      "standard"
+    ],
+    "provenanceRef": "compendium:zombies:walker"
+  },
+  {
+    "id": 2,
+    "slug": "shambler",
+    "name": "Shambler (Screamer)",
+    "baseHp": 70,
+    "movementSpeed": 78,
+    "limbHp": {
+      "head": 70,
+      "leftArm": 50,
+      "rightArm": 50,
+      "leftLeg": 60,
+      "rightLeg": 60
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "shambler",
+      "screamer",
+      "low-hp"
+    ],
+    "provenanceRef": "compendium:zombies:shambler"
+  },
+  {
+    "id": 3,
+    "slug": "prime",
+    "name": "Prime (Bloody)",
+    "baseHp": 130,
+    "movementSpeed": 120,
+    "limbHp": {
+      "head": 130,
+      "leftArm": 80,
+      "rightArm": 80,
+      "leftLeg": 90,
+      "rightLeg": 90
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "prime",
+      "bloody",
+      "high-hp"
+    ],
+    "provenanceRef": "compendium:zombies:prime"
+  },
+  {
+    "id": 4,
+    "slug": "runner",
+    "name": "Runner",
+    "baseHp": 100,
+    "movementSpeed": 400,
+    "limbHp": {
+      "head": 100,
+      "leftArm": 60,
+      "rightArm": 60,
+      "leftLeg": 70,
+      "rightLeg": 70
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "runner",
+      "fast"
+    ],
+    "provenanceRef": "compendium:zombies:runner"
+  },
+  {
+    "id": 5,
+    "slug": "prime-runner",
+    "name": "Prime Runner",
+    "baseHp": 120,
+    "movementSpeed": 400,
+    "limbHp": {
+      "head": 120,
+      "leftArm": 75,
+      "rightArm": 75,
+      "leftLeg": 85,
+      "rightLeg": 85
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "prime",
+      "runner",
+      "fast",
+      "high-threat"
+    ],
+    "provenanceRef": "compendium:zombies:prime-runner"
+  },
+  {
+    "id": 6,
+    "slug": "crawler",
+    "name": "Crawler",
+    "baseHp": 70,
+    "movementSpeed": 50,
+    "limbHp": {
+      "head": 70,
+      "leftArm": 40,
+      "rightArm": 40,
+      "leftLeg": 0,
+      "rightLeg": 0
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [],
+    "tags": [
+      "crawler",
+      "ground"
+    ],
+    "provenanceRef": "compendium:zombies:crawler"
+  },
+  {
+    "id": 7,
+    "slug": "national-guard",
+    "name": "National Guard (Armored)",
+    "baseHp": 100,
+    "movementSpeed": 120,
+    "limbHp": {
+      "head": 100,
+      "leftArm": 60,
+      "rightArm": 60,
+      "leftLeg": 70,
+      "rightLeg": 70
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [
+      {
+        "name": "NG Helmet",
+        "hitZone": "head",
+        "hp": 90,
+        "damageResistance": 0.5,
+        "stabilityResistance": 0.5
+      },
+      {
+        "name": "NG Body Armor",
+        "hitZone": "body",
+        "damageResistance": 0.5,
+        "stabilityResistance": 0.5
+      }
+    ],
+    "tags": [
+      "armored",
+      "national-guard"
+    ],
+    "provenanceRef": "compendium:zombies:national-guard"
+  },
+  {
+    "id": 8,
+    "slug": "riot-police",
+    "name": "Riot Police",
+    "baseHp": 100,
+    "movementSpeed": 120,
+    "limbHp": {
+      "head": 100,
+      "leftArm": 60,
+      "rightArm": 60,
+      "leftLeg": 70,
+      "rightLeg": 70
+    },
+    "stability": 100,
+    "stabilityThresholds": {
+      "flinch": 0,
+      "interrupt": 20,
+      "stagger": 50,
+      "knockdown": 100
+    },
+    "armor": [
+      {
+        "name": "Riot Helmet",
+        "hitZone": "head",
+        "hp": 60,
+        "damageResistance": 0.0,
+        "stabilityResistance": 0.0
+      },
+      {
+        "name": "Riot Police Vest",
+        "hitZone": "body",
+        "gunDamageResistance": 0.5,
+        "gunStabilityResistance": 0.5
+      }
+    ],
+    "tags": [
+      "armored",
+      "riot-police"
+    ],
+    "provenanceRef": "compendium:zombies:riot-police"
+  }
+]

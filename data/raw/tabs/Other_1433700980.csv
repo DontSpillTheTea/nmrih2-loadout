@@ -1,0 +1,126 @@
+"Zombies(Walkers) have 100hp, Shriekers(Shamblers) have 70hp, Bloodied(Prime) Zombies have 130hp,
+Construction/Firefighter Helmets = 30hp, Riot = 60hp, NG = 90hp, Shield = 200hp, Limbs = 70hp",,,,,,,
+Weapon,,Information,Stats,,,,Notes
+,,,Thrown,,Detonated via Gunfire,,
+Throwable,"M67
+Frag Grenade",,Damage,300,Damage,300,- Uses the explosion sound stimuli values
+,,,Stability Damage,180,Stability Damage,180,
+,,,Explosion Radius,1000,Explosion Radius,750,
+,,,Minimum Radius,400,Minimum Radius,300,
+,,,Fragmentation Radius,0.3,Fragmentation Radius,0.3,
+,,,Partial Dismemberment Radius,0.5,Partial Dismemberment Radius,0.5,
+,,,Max Limbs Lost to Partial Dismemberment,2,Max Limbs Lost to Partial Dismemberment,2,
+,,,Fuse Timer,3.5s,,,
+,,,Weight,0.50kg,,,
+,Pipe Bomb,,Damage,200,Damage,200,"- Uses the Pipebomb sound stimuli values while thrown, explosion values when detonated"
+,,,Stability Damage,120,Stability Damage,120,
+,,,Explosion Radius,750,Explosion Radius,500,
+,,,Minimum Radius,600,Minimum Radius,---,
+,,,Fragmentation Radius,---,Fragmentation Radius,---,
+,,,Partial Dismemberment Radius,0.5,Partial Dismemberment Radius,0.5,
+,,,Max Limbs Lost to Partial Dismemberment,2,Max Limbs Lost to Partial Dismemberment,2,
+,,,Fuse Timer,5.0s,,,
+,,,Weight,0.50kg,,,
+,Molotov,,Damage,,Damage,,"Ground fire lasts 15 seconds. 
+Burning status outside of that persists for 5 seconds, Ticks for 5 Damage every 1s?"
+,,,Stability Damage,40,Stability Damage,,
+,,,Explosion Radius,200,Explosion Radius,50,
+,,,Minimum Radius,,Minimum Radius,,
+,,,Fragmentation Radius,,Fragmentation Radius,,
+,,,Partial Dismemberment Radius,,Partial Dismemberment Radius,,
+,,,Max Limbs Lost to Partial Dismemberment,,Max Limbs Lost to Partial Dismemberment,,
+,,,Fuse Timer,,,,
+,,,Weight,0.50kg,,,
+,Oxygen Tank,,,,Damage,,"Can set off dropped explosives/fuel puddles, beware."
+,,,,,Stability Damage,200,
+,,,,,Explosion Radius,,
+,,,,,Minimum Radius,45,
+,,,,,Fragmentation Radius,0.9,
+,,,,,Partial Dismemberment Radius,0,
+,,,,,Max Limbs Lost to Partial Dismemberment,,
+,,,,,Fuse Timer,4.1s,
+"Traps &
+Deployable","IED
+
+(Proximity Explosive)",,Damage,300,Damage,300,- Uses the explosion sound stimuli values
+,,,Stability Damage,200,Stability Damage,200,
+,,,Explosion Radius,800,Explosion Radius,800,
+,,,Minimum Radius,400,Minimum Radius,400,
+,,,Fragmentation Radius,0.15,Fragmentation Radius,0.15,
+,,,Partial Dismemberment Radius,0.4,Partial Dismemberment Radius,0.4,
+,,,Max Limbs Lost to Partial Dismemberment,2,Max Limbs Lost to Partial Dismemberment,2,
+,,,Fuse Timer,0.25s,,,
+,,,Weight,0.50kg,,,
+,Radio,,Duration,30s,,,- Continually pulses the Radio sound stimuli for its duration
+,,,Target Limit,10,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,0.75kg,,,
+,Ammo Crate,,,,,,Contents when placed: 12 randomized ammo
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,2.00kg,,,
+Meds,Bandage,,Healing Amount,25,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,0.35kg,,,
+,Medkit,,Healing Amount,100,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,1.00kg,,,
+,Phalanx Pills,,Healing Amount (infected),15|25,,,"**Only heals with Resident Genes perk, and while infected
+
+Stalls infection for ~4minutes at a time, consuming when first seeing veins."
+,,,,,,,
+,,,,,,,
+,,,Uses,3,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,0.35kg,,,
+,Medical Crate,,,,,,"Contents when placed:
+
+1 Medkit
+2 Phalanx Pills4 Bandages
+"
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,2.00kg,,,
+,Gene Therapy,,Healing Amount (infected),25,,,"Can be used to grant infection immunity to 1 player. 
+Use once to analyze your blood sample, wait a small period and inject. 
+You do not need to be infected beforehand."
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,1.00kg,,,
+,Revive Syringe,,,,,,"Used to revive yourself while downed.
+"
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,Weight,0.50kg,,,

@@ -1,0 +1,260 @@
+"Zombies(Walkers) have 100hp, Shriekers(Shamblers) have 70hp, Bloodied(Prime) Zombies have 130hp,
+Construction/Firefighter Helmets = 30hp, Riot = 60hp, NG = 90hp, Shield = 200hp, Legs = 70hp, Arms = 60hp",,,,,,,,,
+"While Stamina Starved: You deal 10% decreased Damage, 50% decreased Limb Damage, 50% decreased Stability Damage, +2s Stamina Regen delay",,,,,,,,,
+Weapon,,Picture,Main Stats,AMT,Stamina Cost,Additional Stats,AMT,Additional Stats,AMT
+,,,,,,,,,
+Unarmed,Shove,,i-frames while performing?,TRUE,,,,,
+,,,Stamina Cost,20,,Additional Notes,,,
+,,,Stability Damage,20,,Stability Damage Thresholds,0 - 19 = Flinch,,
+,,,Angle°,180,,,20 - 49 = Interrupt,,
+,,,Max Targets,1,,,50 - 99 = Stagger,,
+,,,Range,150,,,100 = Knockdown,,
+,,,,,,"**When a zombie is knocked down, it takes 100% increased damage from all sources.",,,
+,,,,,,,,,
+,,,,,,"When removing a limb from a zombie, they will experience a stagger.",,,
+,,,,,,,,,
+,Kick,,i-frames while performing?,TRUE,,,,,
+,,,Stamina Cost,50,,,,,
+,,,Stability Damage,100,,,,,
+,,,Angle°,180,,,,,
+,,,Max Targets,3,,,,,
+,,,Range,200,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+"Bladed
+One-Handed","Kitchen Knife
+",,Damage,15,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,18,7,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,20
+,,,Charged Damage,25,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,50
+,,,Headshot Damage,25,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,38,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,40,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,20,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,30,,Secondary Stab Dmg Multiplier,0,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,30,,Tertiary Stability Dmg Multiplier,0,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.2x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.2x,,
+,,,Charged Stability Damage,20,,Range,160,,0.50KG
+,"Cleaver
+",,Damage,15,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,17,7,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,20
+,,,Charged Damage,25,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,50
+,,,Headshot Damage,28,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,38,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,50,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,20,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,30,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,40,,Tertiary Stability Dmg Multiplier,0,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.05x,,
+,,,Charged Stability Damage,20,,Range,165,,1.00KG
+,Hatchet,,Damage,20,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,25,7,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,20
+,,,Charged Damage,34,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,50
+,,,Headshot Damage,35,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,45,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,55,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,40,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,60,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,60,,Tertiary Stability Dmg Multiplier,0.3,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.15x,,
+,,,Charged Stability Damage,20,,Range,175,,1.00KG
+,Machete,,Damage,20,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,25,7,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,20
+,,,Charged Damage,34,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,50
+,,,Headshot Damage,35,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,45,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,55,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,40,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,40,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,60,,Tertiary Stability Dmg Multiplier,0.3,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.15x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,20,,Range,190,,1.25KG
+"Bladed
+Two-Handed",Shovel,,Damage,20,7,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,25,13,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,40
+,,,Charged Damage,34,18,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,100
+,,,Headshot Damage,35,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,45,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,50,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,20,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,30,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,60,,Tertiary Stability Dmg Multiplier,0.3,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,20,,Range,235,,2.00KG
+,Fire Axe,,Damage,35,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,75
+,,,Strong Damage,50,13,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,100
+,,,Charged Damage,65,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,100
+,,,Headshot Damage,60,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,80,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,100,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,60,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,80,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,100,,Tertiary Stability Dmg Multiplier,0.3,,
+,,,Stability Damage,10,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,20,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,20,,Range,210,,0.50KG
+,Treetrimmer,,Damage,25,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,35
+,,,Strong Damage,30,13,Secondary Hit Dmg Multiplier,0.7,Throw Stability Damage,100
+,,,Charged Damage,35,15,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,100
+,,,Headshot Damage,35,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,50,,Secondary Limb Dmg Multiplier,0.7,,
+,,,Charged Headshot Damage,65,,Tertiary Limb Dmg Multiplier,0.5,Quick Stamina per Cleave,5
+,,,Limb Damage,30,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,40,,Secondary Stab Dmg Multiplier,0.5,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,60,,Tertiary Stability Dmg Multiplier,0.3,,
+,,,Stability Damage,5,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,10,,Charged Attack Play Rate,1.1x,,
+,,,Charged Stability Damage,20,,Range,250,,2.00KG
+"Blunt
+One-Handed",Claw Hammer,,Damage,15,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,20,7,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,50
+,,,Charged Damage,25,13,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,30,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,35,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,45,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,40,,Attack & Combo Play Rate,1.2x,,
+,,,Strong Stability Damage,55,,Charged Attack Play Rate,1.2x,,
+,,,Charged Stability Damage,60,,Range,170,,1.00KG
+,Pipe (Small),,Damage,13,7,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,15,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,60
+,,,Charged Damage,20,15,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,20,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,30,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,35,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,25,,Attack & Combo Play Rate,1.1x,,
+,,,Strong Stability Damage,50,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,50,,Range,180,,1.00KG
+,Wrench (Small),,Damage,10,7,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,13,10,Secondary Hit Dmg Multiplier,0.3,Throw Stability Damage,60
+,,,Charged Damage,15,13,Tertiary Hit Dmg Multiplier,0.5,Throw Limb Damage,0
+,,,Headshot Damage,20,,Initial Hit Limb Multiplier,0.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,25,,Secondary Limb Dmg Multiplier,-,,
+,,,Charged Headshot Damage,30,,Tertiary Limb Dmg Multiplier,-,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,25,,Attack & Combo Play Rate,1.2x,,
+,,,Strong Stability Damage,35,,Charged Attack Play Rate,1.1x,,
+,,,Charged Stability Damage,45,,Range,160,,0.50KG
+,Tire Iron,,Damage,13,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,15,7,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,60
+,,,Charged Damage,20,13,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,25,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,30,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,35,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,25,,Attack & Combo Play Rate,1.1x,,
+,,,Strong Stability Damage,45,,Charged Attack Play Rate,1.1x,,
+,,,Charged Stability Damage,45,,Range,175,,1.00KG
+,Mallet,,Damage,10,7,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,13,10,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,60
+,,,Charged Damage,15,13,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,1
+,,,Headshot Damage,20,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,25,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,30,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,25,,Attack & Combo Play Rate,1.2x,,
+,,,Strong Stability Damage,35,,Charged Attack Play Rate,1.1x,,
+,,,Charged Stability Damage,45,,Range,160,,0.50KG
+,Crowbar,,Damage,15,5,Initial Hit Dmg Multiplier,1.0,Throw Damage,25
+,,,Strong Damage,20,7,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,60
+,,,Charged Damage,25,13,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,30,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,10
+,,,Strong Headshot Damage,35,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,45,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,40,,Attack & Combo Play Rate,1.1x,,
+,,,Strong Stability Damage,60,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,60,,Range,185,,2.00KG
+"Blunt
+Two-Handed",Rebar,,Damage,15,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,20,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,30,18,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,30,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,35,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,40,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,35,,Attack & Combo Play Rate,1.15x,,
+,,,Strong Stability Damage,45,,Charged Attack Play Rate,1.05x,,
+,,,Charged Stability Damage,55,,Range,210,,2.00KG
+,Wrench (Large),,Damage,25,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,35,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,40,15,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,35,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,50,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,60,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,45,,Attack & Combo Play Rate,0.9x,,
+,,,Strong Stability Damage,55,,Charged Attack Play Rate,0.9x,,
+,,,Charged Stability Damage,65,,Range,230,,2.00KG
+,Baseball Bat,,Damage,20,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,25,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,33,15,Tertiary Hit Dmg Multiplier,0.25,Throw Limb Damage,0
+,,,Headshot Damage,25,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,35,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,50,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,20,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,40,,Charged Attack Play Rate,1.2x,,
+,,,Charged Stability Damage,100,,Range,210,,1.50KG
+,"Pipe (Large)
+T Junction Pipe",,Damage,20,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,25,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,33,15,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,30,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,35,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,40,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,35,,Attack & Combo Play Rate,1.0x,,
+,,,Strong Stability Damage,45,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,55,,Range,225,,2.00KG
+,Sledge Hammer,,Damage,30,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,35,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,50,15,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,50,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,65,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,100,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,3
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,3
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,3
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,65,,Attack & Combo Play Rate,0.8x,,
+,,,Strong Stability Damage,75,,Charged Attack Play Rate,1.0x,,
+,,,Charged Stability Damage,100,,Range,230,,3.00KG
+,Hockey Stick,,Damage,15,10,Initial Hit Dmg Multiplier,1.0,Throw Damage,40
+,,,Strong Damage,20,13,Secondary Hit Dmg Multiplier,0.5,Throw Stability Damage,100
+,,,Charged Damage,30,15,Tertiary Hit Dmg Multiplier,0.3,Throw Limb Damage,0
+,,,Headshot Damage,25,,Initial Hit Limb Multiplier,1.0,Throw Stamina Cost,20
+,,,Strong Headshot Damage,30,,Secondary Limb Dmg Multiplier,0.2,,
+,,,Charged Headshot Damage,35,,Tertiary Limb Dmg Multiplier,0,Quick Stamina per Cleave,5
+,,,Limb Damage,1,,Initial Hit Stability Multiplier,1,Strong Stamina per Cleave,5
+,,,Strong Limb Damage,1,,Secondary Stab Dmg Multiplier,0.7,Charged Stamina per Cleave,5
+,,,Charged Limb Damage,1,,Tertiary Stability Dmg Multiplier,0.5,,
+,,,Stability Damage,25,,Attack & Combo Play Rate,1.1x,,
+,,,Strong Stability Damage,35,,Charged Attack Play Rate,1.1x,,
+,,,Charged Stability Damage,40,,Range,255,,2.00KG

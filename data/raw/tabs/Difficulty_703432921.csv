@@ -1,0 +1,76 @@
+DIFFICULTY DIFFERENCES - 1.0,,,,,,,,
+,,,,,,,,NOTES
+Beginner,,Normal,,Hard,,Nightmare,,
+1.0x Account XP Multiplier,,1.0x Account XP Multiplier,,1.5x Account XP Multiplier,,2.0x Account XP Multiplier,,Account XP is now always rewarded regardless of if the player dies or extracts. (0.9.1.1)
+1.0x Character XP Multiplier,,1.25x Character XP Multiplier,,2.0x Character XP Multiplier,,3.0x Character XP Multiplier,,Character XP is awarded at match end based on extraction and supplies gathered.
+0.8x Credit Multiplier,,1.0x Credit Multiplier,,1.5x Credit Multiplier,,2.0x Credit Multiplier,,"Credits are now awarded based on supplies picked up, not Account XP. (0.9.1.1) Values listed below. ↙"
+Code Minigames are 6 numbers long,,Code Minigames are 6 numbers long,,Code Minigames are 6 numbers long,,Code Minigames are 6 numbers long,,"Supply Credit Values:
+Small Supply: 2
+Medium Supply: 5
+Large Supply: 10
+Critical Supply: 300 (A maximum of four(4) can spawn per map)"
+Valves turn very fast (5s),,Valves turn very fast (5s),,Valves turn very fast (5s),,Valves turn very fast (5s),,
+Generator Minigame is at its normal speed,,Generator Minigame is at its normal speed,,Generator Minigame is at its normal speed,,Generator Minigame is at its normal speed,,"Map Supply Caps:
+Objective
+Powerplant: 720
+Pottsville: 520
+Lewiston: 440
+Broadway: 600
+Hospital: 560
+Raven Rock: 540
+Survival
+Flooded: 400
+NotLD: 400
+Lighthouse: 400"
+Time Based Respawn Enabled (45s),,Objective Based Respawn Enabled,,"Difficulty Ratings increased by 25%
+(Points of Interest/Areas)",,"Difficulty Ratings increased by 50%
+(Points of Interest/Areas)",,
+,,,,25% Increased Damage Taken from Zombies,,50% Increased Damage Taken from Zombies,,
+,,,,20% Reduced Ammo Picked up,,40% Reduced Ammo Picked up,,
+No Reduction of Ammo in Found Weapons,,0-33% Less Ammo in Found Weapons,,20-50% Less Ammo in Found Weapons,,40-75% Less Ammo in Found Weapons,,"Critical Supplies are separated from the map caps, meaning they will always provide their full amount in addition to normal supplies gathered."
+Default Prime Spawn Rates,,Prime Spawn Rates are increased by 33%,,Prime Spawns are increased by 66%,,Prime Spawns are increased by 100%,,"Players that extract early get no credits, and their supplies are added to the team pool."
+No Armored Zeds,,"Armored Spawn Rates are increased by 40%
+(National Guard, Riot Police, Shields)",,"Armored Spawn Rates are increased by 70%
+(National Guard, Riot Police, Shields)",,"Armored Spawn Rates are increased by 100%
+(National Guard, Riot Police, Shields)",,Players that fail to extract only receive credits for the supplies they personally gathered.
+Airdrops Enabled,,,,,,Reduced UI,,"Taking an early extraction forfeits character xp, credits, and only gives you the account xp for objectives you were around for."
+-35% Damage taken,,,,,,,,Early Extractions now open after 8 minutes for everyone in the match.
+Melee Damage Increase +43%,,,,,,,,Critical Supplies are shattered and lost if you go down.
+"Firearm Damage Increase +100%
+Firearm Limb Damage Increase +100%
+Firearm Headshot Damage Increase +50%",,,,,,,,"Excess supplies over the cap continue to award character XP, Don't leave them behind."
+Marker Visibility Distance +25%,,,,,,,,Map Cap + Critical Supplies x Difficulty Bonus = Total Credits earned.
+,,,,,,,,
+DIFFICULTY DIFFERENCES - PRE1.0,,,,,,,,
+,,,,,,,,NOTES
+Casual,,Classic,,Hard,,Nightmare,,
+1.0x Account XP Multiplier,,1.0x Account XP Multiplier,,1.2x Account XP Multiplier,,1.2x Account XP Multiplier,,Account XP is now always rewarded regardless of if the player dies or extracts. (0.9.1.1)
+1.0x Character XP Multiplier,,1.2x Character XP Multiplier,,1.6x Character XP Multiplier,,2.0x Character XP Multiplier,,Character XP is awarded at match end based on extraction and supplies gathered.
+0.8x Credit Multiplier,,1.0x Credit Multiplier,,1.2x Credit Multiplier,,1.3x Credit Multiplier,,"Credits are now awarded based on supplies picked up, not Account XP. (0.9.1.1) Values listed below. ↙"
+-35% Damage taken,,Code Minigames are 6 numbers long,,Code Minigames are now 9 numbers long,,Code Minigames are now 12 numbers long,,"Supply Credit Values:
+Small Supply: 2
+Medium Supply: 5
+Large Supply: 10
+Critical Supply: 100"
+Respawn Enabled,,Valves turn very fast (5s),,Valves now take even longer to turn (10s),,Valves now take their absolute longest to turn (12s),,
+Airdrops,,Generator Minigame is at its normal speed,,Generator Minigame is now faster (50% Faster),,Generator Minigame is now at its fastest speed (100% Faster),,"Map Supply Caps:
+Powerplant: 720              Flooded: 400
+Pottsville: 520
+Lewiston: 440
+Broadway: 600
+Hospital: 560"
+,,,,"40% Reduced Loot Spawns (Medical, Weapons, Passives, Attachments, Deployables)",,"65% Reduced Loot Spawns (Medical, Weapons, Passives, Attachments, Deployables)",,
+,,,,25% Increased Damage Taken from Zombies,,50% Increased Damage Taken from Zombies,,"Critical Supplies are separated from the map caps, meaning they will always provide their full amount in addition to normal supplies gathered."
+,,,,50% Reduced Ammo Picked up,,65% Reduced Ammo Picked up,,"Players that extract early get no credits, and their supplies are added to the team pool."
+,,,,World Threat Levels are now higher (Spawn Cap Increase),,"World Threat Levels are now much higher (Spawn Cap Increase, Threat set to 5)",,Players that fail to extract only receive credits for the supplies they personally gathered.
+,,,,"Crawler Movement Speed +20%
+Shambler Movement Speed +20%
+Walker Movement Speed +20%
+Runner Movement Speed +10%",,"Crawler Movement Speed +20%
+Shambler Movement Speed +20%
+Walker Movement Speed +20%
+Runner Movement Speed +10%",,
+,,,,,,,,"Taking an early extraction forfeits character xp, credits, and only gives you the account xp for objectives you were around for."
+,,,,,,20% Increased Spawn rate of Prime Zombies,,
+,,,,,,Flashlight batteries can completely run out,,
+,,,,,,A dense fog now covers the world (Powerplant),,
