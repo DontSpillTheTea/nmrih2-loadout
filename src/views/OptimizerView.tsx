@@ -15,7 +15,6 @@ import {
 import { solveCombat } from '../solver';
 import { formatActionPill, formatActionSequence } from '../utils/format';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
-import { analytics } from '../analytics';
 
 interface OptimizerViewProps {
   selectedWeaponId: number;
@@ -65,18 +64,6 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
   }, [logicalPerks, searchTerm, selectedTag]);
 
   const recipes = useMemo(() => {
-    analytics.capture({
-      name: 'optimizer_run',
-      properties: {
-        enemySlug: selectedEnemy.slug,
-        weaponSlug: selectedWeapon.slug,
-        objective,
-        perkCount: activePerks.length,
-        safeOpener: constraints.safeOpener,
-        preChargedOpener: constraints.preChargedOpener
-      }
-    });
-
     return solveCombat({
       weapon: selectedWeapon,
       perks: activePerks,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { encodeFullBackup, decodeCode } from '../serialization/codec';
 import { resetAppState } from '../storage';
+import { CURRENT_GAME_VERSION, APP_VERSION, APP_BUILD_NAME } from '../data/loader';
 import type { AppState } from '../types';
 
 interface SettingsModalProps {
@@ -58,11 +59,44 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>Settings & Full App Backup</h3>
+          <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>Settings & Information</h3>
           <button className="close-btn" onClick={onClose}>&times;</button>
         </div>
 
+        {/* Application & Environment Info */}
         <div className="form-group">
+          <label className="form-label">Version & Environment Information</label>
+          <div
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '6px',
+              padding: '0.75rem 1rem',
+              fontSize: '0.82rem',
+              lineHeight: '1.5'
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+              <span style={{ color: 'var(--text-secondary)' }}>App Version:</span>
+              <strong style={{ color: '#93c5fd' }}>{APP_VERSION} ({APP_BUILD_NAME})</strong>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+              <span style={{ color: 'var(--text-secondary)' }}>Game Patch:</span>
+              <strong style={{ color: '#fff' }}>{CURRENT_GAME_VERSION}</strong>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+              <span style={{ color: 'var(--text-secondary)' }}>Steam Build ID:</span>
+              <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>24830003 (App 292000)</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'var(--text-secondary)' }}>Data Storage:</span>
+              <span style={{ color: 'var(--accent-green)' }}>100% Local / Offline (No Tracking)</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Full Application Backup */}
+        <div className="form-group" style={{ paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
           <label className="form-label">Full Application Backup (N2A1)</label>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginBottom: '0.5rem' }}>
             Export all saved responders, builds, and settings in one compressed code:
@@ -81,6 +115,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           )}
         </div>
 
+        {/* Restore Full Backup */}
         <div className="form-group" style={{ paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
           <label className="form-label">Restore Full Backup</label>
           <textarea
@@ -98,49 +133,28 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </div>
         </div>
 
+        {/* Factory Reset */}
         <div className="form-group" style={{ paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
-          <label className="form-label">Privacy & Telemetry</label>
-          <div className="toggle-item">
-            <div>
-              <div className="toggle-label">Anonymous Zero-Cost Telemetry</div>
-              <div className="toggle-desc">No personal data or builds transmitted. Core app always runs offline.</div>
-            </div>
-            <input
-              type="checkbox"
-              checked={appState.settings.enableAnalytics}
-              onChange={e => {
-                const updated = {
-                  ...appState,
-                  settings: { ...appState.settings, enableAnalytics: e.target.checked }
-                };
-                onStateUpdate(updated);
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="form-group" style={{ paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
-          <label className="form-label">Reset Local Data</label>
-          <button className="btn btn-danger btn-sm" onClick={handleReset}>
-            🗑️ Factory Reset All Data
+          <label className="form-label" style={{ color: '#f87171' }}>Reset Application Data</label>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginBottom: '0.5rem' }}>
+            Wipe all local builds and responder profiles to reset back to factory defaults.
+          </p>
+          <button className="btn btn-sm" onClick={handleReset} style={{ color: '#f87171', borderColor: 'rgba(239, 68, 68, 0.4)' }}>
+            ⚠️ Reset All Data
           </button>
         </div>
 
         {message && (
-          <div style={{ color: 'var(--accent-green)', marginTop: '0.5rem', fontSize: '0.85rem' }}>
-            ✅ {message}
+          <div className="status-badge" style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', marginTop: '1rem', textAlign: 'center' }}>
+            {message}
           </div>
         )}
 
         {error && (
-          <div style={{ color: 'var(--accent-red)', marginTop: '0.5rem', fontSize: '0.85rem' }}>
-            ⚠️ {error}
+          <div className="status-badge" style={{ backgroundColor: 'rgba(239, 68, 68, 0.2)', color: '#f87171', marginTop: '1rem', textAlign: 'center' }}>
+            {error}
           </div>
         )}
-
-        <div style={{ marginTop: '1.25rem', textAlign: 'right' }}>
-          <button className="btn" onClick={onClose}>Close</button>
-        </div>
       </div>
     </div>
   );

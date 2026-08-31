@@ -1,5 +1,5 @@
 import React from 'react';
-import { CURRENT_GAME_VERSION, APP_VERSION, APP_BUILD_NAME } from '../data/loader';
+import { CURRENT_GAME_VERSION } from '../data/loader';
 
 export type MainTab = 'optimize' | 'compare' | 'builds';
 
@@ -22,29 +22,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="header">
       <div className="brand">
         <div className="brand-title">NMRiH2 Loadouts</div>
-        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-          <button
-            className="brand-badge"
-            style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
-            title="Click to inspect verified Patch Data & Provenance"
-            onClick={onOpenDataMethodology}
-          >
-            Game Patch {CURRENT_GAME_VERSION} 📚
-          </button>
-          <span
-            className="badge"
-            style={{
-              backgroundColor: 'rgba(59, 130, 246, 0.18)',
-              color: '#93c5fd',
-              border: '1px solid rgba(59, 130, 246, 0.4)',
-              fontSize: '0.72rem',
-              fontWeight: 700
-            }}
-            title="App Version and Build State"
-          >
-            App {APP_VERSION} ({APP_BUILD_NAME})
-          </span>
-        </div>
+        <button
+          className="brand-badge"
+          style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
+          title="Click to inspect verified Patch Data & Provenance"
+          onClick={onOpenDataMethodology}
+        >
+          Game Patch {CURRENT_GAME_VERSION} 📚
+        </button>
       </div>
 
       <nav className="nav-tabs">
@@ -73,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           📥 Import Code
         </button>
         <button className="btn btn-sm" onClick={onOpenSettings}>
-          ⚙️ Settings / Backup
+          ⚙️ Settings & Info
         </button>
       </div>
     </header>

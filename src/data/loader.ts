@@ -7,8 +7,8 @@ import manifestData from './snapshots/1.0.4.0/manifest.json';
 import provenanceData from './snapshots/1.0.4.0/provenance.json';
 
 export const CURRENT_GAME_VERSION = '1.0.4.0';
-export const APP_VERSION = 'v5.0';
-export const APP_BUILD_NAME = 'Correctness Pass';
+export const APP_VERSION = 'v0.1.0-alpha';
+export const APP_BUILD_NAME = 'Early Preview';
 
 export const weapons: Weapon[] = weaponsData as unknown as Weapon[];
 export const perks: Perk[] = perksData as unknown as Perk[];
