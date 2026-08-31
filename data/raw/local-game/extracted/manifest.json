@@ -1,0 +1,28 @@
+{
+  "extractionDate": "2026-08-30",
+  "steamAppId": 292000,
+  "steamBuildId": 24830003,
+  "gameVersion": "1.0.4.0",
+  "gameRoot": "/mnt/d/SteamLibrary/steamapps/common/nmrih2",
+  "archiveContainerType": "Unreal Engine 5.3/5.4 IoStore (.utoc/.ucas)",
+  "totalContainers": 93,
+  "unencryptedContainers": 46,
+  "encryptedContainers": 47,
+  "masterAesKeyGuid": "00000000000000000000000000000000",
+  "totalPackagesEnumerated": 76637,
+  "indexedCombatAssets": 11250,
+  "globalNamesExtracted": 51952,
+  "combatGlobalNames": 1499,
+  "toolchain": {
+    "runtime": ".NET SDK 10.0.400 (WSL2 Ubuntu)",
+    "tool": "CUE4Parse",
+    "upstreamRepo": "https://github.com/FabianFG/CUE4Parse.git",
+    "toolVersion": "1.2.2 (Compiled against net10.0)"
+  },
+  "extractedArtifacts": [
+    "data/raw/local-game/extracted/package-index.json",
+    "data/raw/local-game/extracted/combat-asset-index.json",
+    "data/raw/local-game/extracted/global-names.json",
+    "data/raw/local-game/extracted/combat-global-names.json"
+  ]
+}

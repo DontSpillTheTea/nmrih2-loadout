@@ -1,0 +1,41 @@
+{
+  "auditDate": "2026-08-30",
+  "targetVersion": "1.0.4.0",
+  "comparisons": [
+    {
+      "entity": "stamina_cost_execution",
+      "shippingEngine": "KExecution_LightAttackConsumeStamina / UKAttributeSet_Stamina (Float)",
+      "compendium": "Integer values in balance table",
+      "classification": "MATCH",
+      "notes": "Engine computes floating-point stamina costs; compendium presents base integer values."
+    },
+    {
+      "entity": "hitman_perk_structure",
+      "shippingEngine": "GE_Hitman / SD_1hMelee_Hitman (GameplayEffect)",
+      "compendium": "15% damage / 15% stamina (Hitman), 30% damage / 15% stamina (Expert)",
+      "classification": "MATCH",
+      "notes": "Target condition is 1h Melee. No exclusion for Charged attacks."
+    },
+    {
+      "entity": "penetration_falloff",
+      "shippingEngine": "DamageFalloffPerPenetration & StabilityFalloffPerPenetration",
+      "compendium": "Binary Penetration requirement (0-3)",
+      "classification": "SHIPPING_DIFFERS",
+      "notes": "Shipping game applies DamageFalloffPerPenetration and StabilityFalloffPerPenetration on bullet penetration."
+    },
+    {
+      "entity": "swat_helmet_damage_modifier",
+      "shippingEngine": "KIncomingDamageModifier_SwatHelmet",
+      "compendium": "60 HP durability",
+      "classification": "MATCH",
+      "notes": "Dedicated incoming damage modifier class handles SWAT helmet hit mitigation."
+    },
+    {
+      "entity": "downed_damage_multiplier",
+      "shippingEngine": "KGameplayAbility_BecomeDowned / CanBeDowned / IsDowned",
+      "compendium": "2.0x (100% bonus damage when target is knocked down)",
+      "classification": "MATCH",
+      "notes": "Matches official 1.0 patch notes and compendium core mechanics."
+    }
+  ]
+}
