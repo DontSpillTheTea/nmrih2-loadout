@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .wrangler/
+tools/CUE4Parse
+**/bin/
+**/obj/
