@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
-import type { CombatRecipe, Weapon, OptimizerConstraints, OptimizerObjective } from '../types';
+import type { CombatRecipe, Weapon, Enemy, OptimizerConstraints, OptimizerObjective } from '../types';
 import { enemies, getMeleeWeapons, getFirearms, mechanics, getPerkById } from '../data/loader';
 import { solveCombat } from '../solver';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
+import { ReportResultModal } from '../components/ReportResultModal';
 
 interface CompareMatrixViewProps {
   weaponTypeFilter: 'all' | 'melee' | 'firearms';
@@ -23,7 +24,8 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
   onSelectObjective,
   onUpdateConstraints
 }) => {
-  const [activeBreakdownRecipe, setActiveBreakdownRecipe] = React.useState<CombatRecipe | null>(null);
+  const [activeCellData, setActiveCellData] = React.useState<{ weapon: Weapon; enemy: Enemy; recipe: CombatRecipe } | null>(null);
+  const [isReportModalOpen, setIsReportModalOpen] = React.useState(false);
 
   const meleeWeapons = useMemo(() => getMeleeWeapons(), []);
   const firearms = useMemo(() => getFirearms(), []);
@@ -173,7 +175,7 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
                           className={`matrix-cell ${isOneShot ? 'one-shot' : isTwoShot ? 'two-shot' : ''}`}
                           style={{ cursor: 'pointer' }}
                           title={`Click to view sequence: ${recipe.actions.map(a => a.input.kind).join(' → ')}`}
-                          onClick={() => setActiveBreakdownRecipe(recipe)}
+                          onClick={() => setActiveCellData({ weapon: w, enemy: e, recipe })}
                         >
                           {isFirearm ? (
                             <span>
@@ -205,9 +207,27 @@ export const CompareMatrixView: React.FC<CompareMatrixViewProps> = ({
       </div>
 
       <StepBreakdownModal
-        recipe={activeBreakdownRecipe}
-        onClose={() => setActiveBreakdownRecipe(null)}
+        recipe={activeCellData?.recipe ?? null}
+        onClose={() => setActiveCellData(null)}
+        onReport={() => {
+          if (activeCellData) {
+            setIsReportModalOpen(true);
+          }
+        }}
       />
+
+      {isReportModalOpen && activeCellData && (
+        <ReportResultModal
+          isOpen={isReportModalOpen}
+          onClose={() => setIsReportModalOpen(false)}
+          weapon={activeCellData.weapon}
+          enemy={activeCellData.enemy}
+          perks={activePerks}
+          objective={objective}
+          constraints={constraints}
+          recipe={activeCellData.recipe}
+        />
+      )}
     </div>
   );
 };

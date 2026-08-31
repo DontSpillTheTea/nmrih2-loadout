@@ -22,14 +22,29 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="header">
       <div className="brand">
         <div className="brand-title">NMRiH2 Loadouts</div>
-        <button
-          className="brand-badge"
-          style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
-          title="Click to inspect verified Patch Data & Provenance"
-          onClick={onOpenDataMethodology}
-        >
-          Game Patch {CURRENT_GAME_VERSION} 📚
-        </button>
+        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+          <span
+            className="badge"
+            style={{
+              backgroundColor: 'rgba(234, 179, 8, 0.15)',
+              color: '#fde047',
+              border: '1px solid rgba(234, 179, 8, 0.35)',
+              fontSize: '0.72rem',
+              fontWeight: 700
+            }}
+            title="Combat data is still being validated against NMRiH2 game files."
+          >
+            Early Alpha
+          </span>
+          <button
+            className="brand-badge"
+            style={{ cursor: 'pointer', background: 'none', textAlign: 'left' }}
+            title="Click to inspect verified Patch Data & Provenance"
+            onClick={onOpenDataMethodology}
+          >
+            Game Patch {CURRENT_GAME_VERSION} 📚
+          </button>
+        </div>
       </div>
 
       <nav className="nav-tabs">

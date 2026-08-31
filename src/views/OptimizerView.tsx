@@ -15,6 +15,7 @@ import {
 import { solveCombat } from '../solver';
 import { formatActionPill, formatActionSequence } from '../utils/format';
 import { StepBreakdownModal } from '../components/StepBreakdownModal';
+import { ReportResultModal } from '../components/ReportResultModal';
 
 interface OptimizerViewProps {
   selectedWeaponId: number;
@@ -41,20 +42,24 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
   selectedPerkIds,
   onSetPerkTier
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTag, setSelectedTag] = useState('all');
   const [activeBreakdownRecipe, setActiveBreakdownRecipe] = useState<CombatRecipe | null>(null);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [reportTargetRecipe, setReportTargetRecipe] = useState<CombatRecipe | undefined>(undefined);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTag, setSelectedTag] = useState<string>('all');
 
-  const selectedWeapon = useMemo(() => getWeaponById(selectedWeaponId) || weapons[0], [selectedWeaponId]);
-  const selectedEnemy = useMemo(() => getEnemyById(selectedEnemyId) || enemies[0], [selectedEnemyId]);
+  const selectedWeapon = getWeaponById(selectedWeaponId) || weapons[0];
+  const selectedEnemy = getEnemyById(selectedEnemyId) || enemies[0];
+
+  const meleeGroups = useMemo(() => getMeleeBySubcategory(), []);
+  const firearmGroups = useMemo(() => getFirearmsBySubcategory(), []);
+  const logicalPerks = useMemo(() => getLogicalPerkGroups(), []);
 
   const activePerks = useMemo(() => {
     return perks.filter(p => selectedPerkIds.includes(p.id));
   }, [selectedPerkIds]);
 
-  const logicalPerks = useMemo(() => getLogicalPerkGroups(), []);
-
-  const filteredLogicalPerks = useMemo(() => {
+  const filteredPerkGroups = useMemo(() => {
     return logicalPerks.filter(group => {
       const matchesSearch = group.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         group.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -75,27 +80,43 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
     });
   }, [selectedWeapon, selectedEnemy, activePerks, constraints, objective]);
 
-  const meleeGroups = useMemo(() => getMeleeBySubcategory(), []);
-  const firearmGroups = useMemo(() => getFirearmsBySubcategory(), []);
+  const allTags = useMemo(() => {
+    const set = new Set<string>();
+    for (const g of logicalPerks) {
+      for (const t of g.tags) set.add(t);
+    }
+    return Array.from(set);
+  }, [logicalPerks]);
 
-  const getPerkTierState = (group: LogicalPerkGroup): 'off' | 'standard' | 'expert' => {
-    if (group.expertPerk && selectedPerkIds.includes(group.expertPerk.id)) {
-      return 'expert';
-    }
-    if (group.standardPerk && selectedPerkIds.includes(group.standardPerk.id)) {
-      return 'standard';
-    }
-    return 'off';
+  const isArmoredEnemy = (selectedEnemy.armor && selectedEnemy.armor.length > 0) || false;
+
+  const handleOpenReport = (recipe?: CombatRecipe) => {
+    setReportTargetRecipe(recipe || recipes[0]);
+    setIsReportModalOpen(true);
   };
 
   return (
-    <div className="main-container">
-      <div className="grid-3col">
-        {/* Left Column: Enemy and Weapon Controls */}
-        <div className="sidebar">
-          {/* Enemy and Weapon Panel */}
+    <div className="tab-pane active">
+      <div className="grid grid-3">
+        {/* Left Column: Enemy & Weapon Selection + Constraints */}
+        <div className="selection-column">
           <div className="card">
-            <div className="card-title">Enemy and Weapon</div>
+            <h2 className="card-title">Enemy and Weapon</h2>
+
+            <div className="form-group">
+              <label className="form-label">Difficulty</label>
+              <div className="pill-selector">
+                {(['normal', 'hard', 'nightmare'] as const).map(diff => (
+                  <button
+                    key={diff}
+                    className={`pill-btn ${constraints.difficulty === diff ? 'active' : ''}`}
+                    onClick={() => onUpdateConstraints({ ...constraints, difficulty: diff })}
+                  >
+                    {diff.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="form-group">
               <label className="form-label">Enemy</label>
@@ -136,94 +157,98 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
                 <optgroup label="Firearms: Handguns">
                   {firearmGroups.handguns.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name}
+                      {w.name} ({w.ammoType || 'Handgun'})
                     </option>
                   ))}
                 </optgroup>
                 <optgroup label="Firearms: SMGs">
                   {firearmGroups.smgs.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name}
+                      {w.name} ({w.ammoType || 'SMG'})
                     </option>
                   ))}
                 </optgroup>
                 <optgroup label="Firearms: Shotguns">
                   {firearmGroups.shotguns.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name}
+                      {w.name} (12 Gauge)
                     </option>
                   ))}
                 </optgroup>
                 <optgroup label="Firearms: Rifles">
                   {firearmGroups.rifles.map(w => (
                     <option key={w.id} value={w.id}>
-                      {w.name}
+                      {w.name} ({w.ammoType || 'Rifle'})
                     </option>
                   ))}
                 </optgroup>
               </select>
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Difficulty</label>
-              <select
-                className="form-select"
-                value={constraints.difficulty}
-                onChange={e => onUpdateConstraints({ ...constraints, difficulty: e.target.value as any })}
-              >
-                <option value="beginner">Beginner (0.7x HP)</option>
-                <option value="normal">Normal (1.0x HP)</option>
-                <option value="hard">Hard (Standard HP)</option>
-                <option value="nightmare">Nightmare (Standard HP)</option>
-              </select>
-            </div>
+            {selectedWeapon.category === 'firearm' && (
+              <div className="stat-row" style={{ marginTop: '0.5rem' }}>
+                <span className="stat-label">Penetration:</span>
+                <span className="stat-value">Tier {selectedWeapon.penetration ?? 0}</span>
+              </div>
+            )}
           </div>
 
-          {/* Goal Panel */}
           <div className="card">
-            <div className="card-title">Goal</div>
-            <div className="form-group">
-              <select
-                className="form-select"
-                value={objective}
-                onChange={e => onSelectObjective(e.target.value as OptimizerObjective)}
+            <h2 className="card-title">Goal</h2>
+            <div className="objective-grid">
+              <button
+                className={`objective-card ${objective === 'lowest_stamina' ? 'active' : ''}`}
+                onClick={() => onSelectObjective('lowest_stamina')}
               >
-                <option value="fastest_kill">⚡ Fast Kill</option>
-                <option value="lowest_stamina">💧 Efficient Kill</option>
-                <option value="safest_kill">🛡️ Fast Control</option>
-                <option value="efficient_control">⚖️ Efficient Control</option>
-                <option value="fewest_attacks">🎯 Fewest Actions</option>
-                <option value="balanced">📊 Balanced</option>
-              </select>
+                <div className="objective-title">💧 Efficient Kill</div>
+                <div className="objective-desc">Minimizes resource consumption (stamina for melee, rounds for guns)</div>
+              </button>
+              <button
+                className={`objective-card ${objective === 'fastest_kill' ? 'active' : ''}`}
+                onClick={() => onSelectObjective('fastest_kill')}
+              >
+                <div className="objective-title">⚡ Fast Kill</div>
+                <div className="objective-desc">Minimizes hit count and PlayRate execution time</div>
+              </button>
+              <button
+                className={`objective-card ${objective === 'safest_kill' ? 'active' : ''}`}
+                onClick={() => onSelectObjective('safest_kill')}
+              >
+                <div className="objective-title">🛡️ Safe Control</div>
+                <div className="objective-desc">Fastest route to interrupt or stagger the enemy</div>
+              </button>
+              <button
+                className={`objective-card ${objective === 'fewest_attacks' ? 'active' : ''}`}
+                onClick={() => onSelectObjective('fewest_attacks')}
+              >
+                <div className="objective-title">🎯 Fewest Hits</div>
+                <div className="objective-desc">Strict minimum number of weapon attacks</div>
+              </button>
             </div>
-          </div>
 
-          {/* Combat Toggles & Safety Constraints */}
-          <div className="card">
-            <div className="card-title">Constraints</div>
-
-            <div className="form-group">
+            <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem' }}>
               <label className="form-label">Hit Zone</label>
-              <select
-                className="form-select"
-                value={constraints.targetHitZone}
-                onChange={e => onUpdateConstraints({ ...constraints, targetHitZone: e.target.value as any })}
-              >
-                <option value="head">Headshots Assumed</option>
-                <option value="body">Body Hits</option>
-                <option value="auto">Auto / Mixed</option>
-                <option value="limb">Limb</option>
-              </select>
+              <div className="pill-selector">
+                {(['auto', 'head', 'body', 'limb'] as const).map(hz => (
+                  <button
+                    key={hz}
+                    className={`pill-btn ${constraints.targetHitZone === hz ? 'active' : ''}`}
+                    onClick={() => onUpdateConstraints({ ...constraints, targetHitZone: hz })}
+                  >
+                    {hz.toUpperCase()}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="toggle-item">
+            <div className="toggle-item" style={{ marginTop: '0.75rem' }}>
               <div>
                 <div className="toggle-label">🛡️ Safe Opener</div>
-                <div className="toggle-desc">Stun or kill before enemy attack</div>
+                <div className="toggle-desc">Hit 1 must flinch/interrupt or kill enemy</div>
               </div>
               <input
                 type="checkbox"
-                checked={constraints.safeOpener}
+                checked={constraints.safeOpener ?? constraints.requireFirstInterrupt}
                 onChange={e => onUpdateConstraints({
                   ...constraints,
                   safeOpener: e.target.checked,
@@ -285,18 +310,23 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
         {/* Center Column: Optimal Attacks */}
         <div className="results-column">
           <div className="card">
-            <div className="card-title">
-              <div>
-                <span>Optimal Attacks</span>
-                <span style={{ fontSize: '0.8rem', fontWeight: 400, color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>
-                  vs. {selectedEnemy.name} • {selectedWeapon.name}
-                </span>
-              </div>
-              <div style={{ display: 'flex', gap: '0.35rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h2 className="card-title" style={{ margin: 0 }}>Optimal Attacks</h2>
+              <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                <button
+                  className="btn btn-sm"
+                  onClick={() => handleOpenReport()}
+                  title="Report a discrepancy or in-game result mismatch"
+                  style={{ fontSize: '0.75rem', borderColor: 'rgba(234, 179, 8, 0.4)', color: '#fde047' }}
+                >
+                  📝 Report Result
+                </button>
                 <span className="badge badge-official">Combo State Enforced</span>
-                <span className="badge" style={{ backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
-                  ~PlayRate Scaled
-                </span>
+                {isArmoredEnemy && (
+                  <span className="badge" style={{ backgroundColor: 'rgba(239, 68, 68, 0.15)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.3)' }} title="Armor mechanics (break overflow/pass-through) are based on current model assumptions">
+                    Armor Model Incomplete
+                  </span>
+                )}
               </div>
             </div>
 
@@ -308,6 +338,7 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
               <div>
                 {recipes.map((recipe, idx) => {
                   const isTop = idx === 0;
+                  const isFirearm = recipe.weapon.category === 'firearm';
                   return (
                     <div
                       key={recipe.id}
@@ -370,16 +401,16 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
                             ~{(recipe.lethalImpactTimeMs / 1000).toFixed(2)}s
                           </div>
                           <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
-                            Ready: ~{(recipe.readyAfterKillMs / 1000).toFixed(2)}s
+                            PlayRate Est • Ready: ~{(recipe.readyAfterKillMs / 1000).toFixed(2)}s
                           </div>
                         </div>
 
                         <div className="metric-box">
                           <div className="metric-label">
-                            {recipe.weapon.category === 'firearm' ? 'Rounds Used' : 'Stamina Spent'}
+                            {isFirearm ? 'Rounds Used' : 'Stamina Spent'}
                           </div>
                           <div className="metric-value">
-                            {recipe.weapon.category === 'firearm' ? `${recipe.totalAmmoSpent} rds` : recipe.totalStaminaSpent}
+                            {isFirearm ? `${recipe.totalAmmoSpent} rds` : recipe.totalStaminaSpent}
                           </div>
                         </div>
 
@@ -389,6 +420,18 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
                             {recipe.timeToFirstControlMs !== null ? `~${(recipe.timeToFirstControlMs / 1000).toFixed(2)}s` : 'None'}
                           </div>
                         </div>
+                      </div>
+
+                      {/* Dimension-Specific Confidence Indicators */}
+                      <div style={{ display: 'flex', gap: '0.6rem', fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                        <span>Damage <strong style={{ color: '#4ade80' }}>✓</strong></span>
+                        <span>{isFirearm ? 'Ammo' : 'Stamina'} <strong style={{ color: '#4ade80' }}>✓</strong></span>
+                        <span>Timing <strong style={{ color: '#fbbf24' }}>~Est</strong></span>
+                        {isArmoredEnemy ? (
+                          <span>Armor <strong style={{ color: '#f87171' }}>Experimental</strong></span>
+                        ) : (
+                          <span>Armor <strong style={{ color: 'var(--text-muted)' }}>N/A</strong></span>
+                        )}
                       </div>
 
                       <div style={{ marginTop: '0.65rem', fontSize: '0.75rem', color: 'var(--accent-cyan)', textAlign: 'right', fontWeight: 600 }}>
@@ -405,83 +448,82 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
         {/* Right Column: Perks Rail */}
         <div className="perk-rail">
           <div className="card">
-            <div className="card-title">
-              <span>Perks</span>
-              <span className="badge badge-official">{activePerks.length}/10 Active</span>
-            </div>
+            <h2 className="card-title">Perks</h2>
 
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginBottom: '0.65rem' }}>
-              Select tier to toggle in-place and immediately observe breakpoint shifts:
-            </p>
-
-            <div style={{ display: 'flex', gap: '0.35rem', marginBottom: '0.75rem' }}>
+            <div style={{ marginBottom: '0.75rem' }}>
               <input
+                type="text"
                 className="form-input"
-                style={{ padding: '0.35rem 0.55rem', fontSize: '0.8rem' }}
-                placeholder="Search perk..."
+                placeholder="Search perks..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
+                style={{ fontSize: '0.8rem' }}
               />
-              <select
-                className="form-select"
-                style={{ width: '120px', padding: '0.35rem 0.45rem', fontSize: '0.75rem' }}
-                value={selectedTag}
-                onChange={e => setSelectedTag(e.target.value)}
-              >
-                <option value="all">All Tags</option>
-                <option value="damage">Damage</option>
-                <option value="stamina">Stamina</option>
-                <option value="melee">Melee</option>
-                <option value="firearm">Guns</option>
-                <option value="stability">Stability</option>
-              </select>
             </div>
 
-            <div style={{ maxHeight: '680px', overflowY: 'auto', paddingRight: '0.25rem' }}>
-              {filteredLogicalPerks.map(group => {
-                const tierState = getPerkTierState(group);
-                const hasExpert = !!group.expertPerk;
-                const isEquipped = tierState !== 'off';
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '0.85rem' }}>
+              <button
+                className={`pill-btn ${selectedTag === 'all' ? 'active' : ''}`}
+                style={{ fontSize: '0.7rem', padding: '0.2rem 0.5rem' }}
+                onClick={() => setSelectedTag('all')}
+              >
+                All
+              </button>
+              {allTags.map(tag => (
+                <button
+                  key={tag}
+                  className={`pill-btn ${selectedTag === tag ? 'active' : ''}`}
+                  style={{ fontSize: '0.7rem', padding: '0.2rem 0.5rem' }}
+                  onClick={() => setSelectedTag(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            <div className="perk-list" style={{ maxHeight: 'calc(100vh - 280px)', overflowY: 'auto' }}>
+              {filteredPerkGroups.map(group => {
+                const stdId = group.standardPerk?.id;
+                const expId = group.expertPerk?.id;
+
+                let currentTier: 'off' | 'standard' | 'expert' = 'off';
+                if (expId && selectedPerkIds.includes(expId)) {
+                  currentTier = 'expert';
+                } else if (stdId && selectedPerkIds.includes(stdId)) {
+                  currentTier = 'standard';
+                }
 
                 return (
-                  <div
-                    key={group.baseSlug}
-                    className={`perk-row-card ${tierState === 'expert' ? 'equipped-expert' : isEquipped ? 'equipped' : ''}`}
-                  >
-                    <div style={{ marginRight: '0.5rem', flex: 1 }}>
-                      <div style={{ fontWeight: 700, fontSize: '0.82rem', color: '#fff' }}>
-                        {group.name}
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.2, marginTop: '2px' }}>
-                        {group.description.split('\n')[0]}
+                  <div key={group.baseSlug} className="perk-card">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.35rem' }}>
+                      <span className="perk-name">{group.name}</span>
+                      <div className="tier-toggle">
+                        <button
+                          className={`tier-btn ${currentTier === 'off' ? 'active' : ''}`}
+                          onClick={() => onSetPerkTier(group.baseSlug, 'off')}
+                        >
+                          OFF
+                        </button>
+                        {group.standardPerk && (
+                          <button
+                            className={`tier-btn ${currentTier === 'standard' ? 'active' : ''}`}
+                            onClick={() => onSetPerkTier(group.baseSlug, 'standard')}
+                          >
+                            STD
+                          </button>
+                        )}
+                        {group.expertPerk && (
+                          <button
+                            className={`tier-btn ${currentTier === 'expert' ? 'active' : ''}`}
+                            onClick={() => onSetPerkTier(group.baseSlug, 'expert')}
+                          >
+                            EXP
+                          </button>
+                        )}
                       </div>
                     </div>
 
-                    <div className="tri-state-group">
-                      <button
-                        className={`tri-btn ${tierState === 'off' ? 'active-off' : ''}`}
-                        title="Turn Off"
-                        onClick={() => onSetPerkTier(group.baseSlug, 'off')}
-                      >
-                        OFF
-                      </button>
-                      <button
-                        className={`tri-btn ${tierState === 'standard' ? 'active-std' : ''}`}
-                        title="Standard Tier"
-                        onClick={() => onSetPerkTier(group.baseSlug, 'standard')}
-                      >
-                        STD
-                      </button>
-                      {hasExpert && (
-                        <button
-                          className={`tri-btn ${tierState === 'expert' ? 'active-exp' : ''}`}
-                          title="Expert Tier"
-                          onClick={() => onSetPerkTier(group.baseSlug, 'expert')}
-                        >
-                          EXP
-                        </button>
-                      )}
-                    </div>
+                    <div className="perk-desc">{group.description}</div>
                   </div>
                 );
               })}
@@ -490,10 +532,30 @@ export const OptimizerView: React.FC<OptimizerViewProps> = ({
         </div>
       </div>
 
-      <StepBreakdownModal
-        recipe={activeBreakdownRecipe}
-        onClose={() => setActiveBreakdownRecipe(null)}
-      />
+      {activeBreakdownRecipe && (
+        <StepBreakdownModal
+          recipe={activeBreakdownRecipe}
+          onClose={() => setActiveBreakdownRecipe(null)}
+          onReport={() => {
+            const r = activeBreakdownRecipe;
+            setActiveBreakdownRecipe(null);
+            handleOpenReport(r);
+          }}
+        />
+      )}
+
+      {isReportModalOpen && (
+        <ReportResultModal
+          isOpen={isReportModalOpen}
+          onClose={() => setIsReportModalOpen(false)}
+          weapon={selectedWeapon}
+          enemy={selectedEnemy}
+          perks={activePerks}
+          objective={objective}
+          constraints={constraints}
+          recipe={reportTargetRecipe}
+        />
+      )}
     </div>
   );
 };
