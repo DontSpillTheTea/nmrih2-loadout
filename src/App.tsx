@@ -8,14 +8,96 @@ import { SettingsModal } from './components/SettingsModal';
 import { ImportExportModal } from './components/ImportExportModal';
 import { loadAppState, saveAppState } from './storage';
 import { getLogicalPerkGroups } from './data/loader';
+import { decodeCode, parseShareUrlOrPath } from './serialization/codec';
 import type { AppState, Responder, Loadout, CombatScenario, OptimizerConstraints, OptimizerObjective } from './types';
 import './styles/app.css';
 
+function getInitialAppStateAndTab(): {
+  initialState: AppState;
+  initialTab: MainTab;
+  initialEnemyId: number;
+} {
+  const loaded = loadAppState();
+  let initialTab: MainTab = 'optimize';
+  let initialEnemyId = loaded.activeEnemyId ?? 1;
+  let state = loaded;
+
+  if (typeof window !== 'undefined' && window.location.pathname) {
+    const parsed = parseShareUrlOrPath(window.location.pathname);
+    if (parsed.code && parsed.type) {
+      try {
+        const decoded = decodeCode(parsed.code);
+        if (decoded.type === parsed.type) {
+          if (decoded.type === 'B') {
+            const loadout = decoded.data as Loadout;
+            state = {
+              ...state,
+              responders: state.responders.map(r => {
+                if (r.id === state.activeResponderId) {
+                  return {
+                    ...r,
+                    loadouts: [...r.loadouts.filter(l => l.id !== loadout.id), loadout],
+                    activeLoadoutId: loadout.id,
+                    updatedAt: new Date().toISOString()
+                  };
+                }
+                return r;
+              })
+            };
+            initialTab = 'optimize';
+          } else if (decoded.type === 'S') {
+            const scenario = decoded.data as CombatScenario;
+            initialEnemyId = scenario.enemyId;
+            state = {
+              ...state,
+              activeEnemyId: scenario.enemyId,
+              responders: state.responders.map(r => {
+                if (r.id === state.activeResponderId) {
+                  const activeL = r.loadouts.find(l => l.id === r.activeLoadoutId) || r.loadouts[0];
+                  const updatedL: Loadout = {
+                    ...activeL,
+                    weaponId: scenario.weaponId,
+                    constraints: scenario.constraints,
+                    objective: scenario.objective,
+                    perkIds: scenario.perkIds
+                  };
+                  return {
+                    ...r,
+                    perkIds: scenario.perkIds,
+                    loadouts: r.loadouts.map(l => l.id === updatedL.id ? updatedL : l),
+                    updatedAt: new Date().toISOString()
+                  };
+                }
+                return r;
+              })
+            };
+            initialTab = 'optimize';
+          } else if (decoded.type === 'C') {
+            const newResp = decoded.data as Responder;
+            state = {
+              ...state,
+              responders: [...state.responders.filter(r => r.id !== newResp.id), newResp],
+              activeResponderId: newResp.id
+            };
+            initialTab = 'builds';
+          }
+        }
+      } catch (e) {
+        console.warn('Invalid or malformed share URL on initial load:', e);
+      }
+    }
+  }
+
+  return { initialState: state, initialTab, initialEnemyId };
+}
+
+const initialSetup = getInitialAppStateAndTab();
+
 export const App: React.FC = () => {
-  const [appState, setAppState] = useState<AppState>(() => loadAppState());
-  const [mainTab, setMainTab] = useState<MainTab>('optimize');
-  const [activeEnemyId, setActiveEnemyId] = useState<number>(() => appState.activeEnemyId ?? 1); // 1 = Walker
-  const [compareFilter, setCompareFilter] = useState<'all' | 'melee' | 'firearms'>(() => appState.compareWeaponFilter ?? 'all');
+  const [appState, setAppState] = useState<AppState>(() => initialSetup.initialState);
+  const [mainTab, setMainTab] = useState<MainTab>(() => initialSetup.initialTab);
+  const [activeEnemyId, setActiveEnemyId] = useState<number>(() => initialSetup.initialEnemyId);
+  const [compareFilter, setCompareFilter] = useState<'all' | 'melee' | 'firearms'>(() => initialSetup.initialState.compareWeaponFilter ?? 'all');
   const [isDataMethodologyOpen, setIsDataMethodologyOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [importExportModal, setImportExportModal] = useState<{
@@ -158,6 +240,22 @@ export const App: React.FC = () => {
       alert(`Imported Responder profile "${newResp.name}" successfully!`);
     } else if (decoded.type === 'S') {
       const scenario = decoded.data as CombatScenario;
+      setActiveEnemyId(scenario.enemyId);
+      const updatedLoadout: Loadout = {
+        ...activeLoadout,
+        weaponId: scenario.weaponId,
+        constraints: scenario.constraints,
+        objective: scenario.objective,
+        perkIds: scenario.perkIds
+      };
+      const updatedResp: Responder = {
+        ...activeResponder,
+        perkIds: scenario.perkIds,
+        loadouts: activeResponder.loadouts.map(l => l.id === updatedLoadout.id ? updatedLoadout : l),
+        updatedAt: new Date().toISOString()
+      };
+      handleUpdateResponder(updatedResp);
+      setMainTab('optimize');
       alert(`Imported combat scenario "${scenario.name}" successfully!`);
     } else if (decoded.type === 'A') {
       const restored = decoded.data as AppState;

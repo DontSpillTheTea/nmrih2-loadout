@@ -254,3 +254,75 @@ export function encodeScenario(scenario: CombatScenario): string {
 export function encodeFullBackup(state: AppState): string {
   return encodePayload('A', state);
 }
+
+// Canonical Public Site URL
+export const CANONICAL_SITE_ORIGIN = 'https://nmrih2-loadouts.site';
+
+export function createShareUrl(code: string): string {
+  const prefix = code.slice(0, 4);
+  let path = 'build';
+  if (prefix === 'N2B1') path = 'build';
+  else if (prefix === 'N2S1') path = 'scenario';
+  else if (prefix === 'N2C1') path = 'character';
+  else return `${CANONICAL_SITE_ORIGIN}/#${code}`;
+
+  return `${CANONICAL_SITE_ORIGIN}/${path}/${encodeURIComponent(code)}`;
+}
+
+export function parseShareUrlOrPath(urlOrPath: string): { type: 'B' | 'C' | 'S' | null; code: string | null } {
+  if (!urlOrPath) return { type: null, code: null };
+  let input = urlOrPath.trim();
+
+  // If it's a full URL, extract path
+  if (input.startsWith('http://') || input.startsWith('https://')) {
+    try {
+      const url = new URL(input);
+      input = url.pathname;
+    } catch {
+      // Fallback
+    }
+  }
+
+  // Handle /build/<codeOrPayload>, /scenario/<codeOrPayload>, /character/<codeOrPayload>
+  const match = input.match(/^\/?(build|scenario|character)\/([^/?#]+)/i);
+  if (match) {
+    const route = match[1].toLowerCase();
+    let rawPayload = '';
+    try {
+      rawPayload = decodeURIComponent(match[2].trim());
+    } catch {
+      return { type: null, code: null };
+    }
+
+    let typeLetter: 'B' | 'C' | 'S' = 'B';
+    if (route === 'scenario') typeLetter = 'S';
+    else if (route === 'character') typeLetter = 'C';
+
+    return { type: typeLetter, code: rawPayload };
+  }
+
+  return { type: null, code: null };
+}
+
+export function extractShareCode(input: string): string {
+  if (!input) return '';
+  const trimmed = input.trim();
+  const parsed = parseShareUrlOrPath(trimmed);
+  if (parsed.code) {
+    return parsed.code;
+  }
+  return trimmed;
+}
+
+export function generateBuildShareUrl(loadout: Loadout): string {
+  return createShareUrl(encodeBuild(loadout));
+}
+
+export function generateScenarioShareUrl(scenario: CombatScenario): string {
+  return createShareUrl(encodeScenario(scenario));
+}
+
+export function generateResponderShareUrl(responder: Responder): string {
+  return createShareUrl(encodeResponder(responder));
+}
+
