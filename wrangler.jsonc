@@ -14,7 +14,8 @@
     {
       "binding": "DB",
       "database_name": "nmrih2-loadouts-shares",
-      "database_id": "nmrih2-loadouts-shares-db"
+      "database_id": "6738cda6-9067-4360-bbad-5b458896c09a",
+      "migrations_dir": "migrations"
     }
   ]
 }
