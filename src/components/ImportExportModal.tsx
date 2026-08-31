@@ -35,8 +35,9 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   const [warning, setWarning] = useState<string | null>(null);
   const [copiedType, setCopiedType] = useState<'link' | 'portable' | 'code' | null>(null);
   const [clipboardBlocked, setClipboardBlocked] = useState(false);
+  const [shortLinkStatus, setShortLinkStatus] = useState<'idle' | 'loading' | 'success' | 'failed'>('idle');
   const [shortUrl, setShortUrl] = useState<string | null>(null);
-  const [isShortening, setIsShortening] = useState(false);
+  const [shortError, setShortError] = useState<string | null>(null);
   const [isImporting, setIsImporting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +63,8 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   useEffect(() => {
     if (!isOpen) {
       setShortUrl(null);
-      setIsShortening(false);
+      setShortLinkStatus('idle');
+      setShortError(null);
       setCopiedType(null);
       setClipboardBlocked(false);
       return;
@@ -70,38 +72,48 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
 
     if (mode === 'export_build' && exportCode) {
       let mounted = true;
-      setIsShortening(true);
+      setShortLinkStatus('loading');
+      setShortError(null);
 
       fetch('/api/builds', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: exportCode })
       })
-        .then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        .then(async res => {
+          if (!res.ok) {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData?.error || `HTTP ${res.status}`);
+          }
           return res.json();
         })
         .then(data => {
-          if (mounted && data?.url) {
-            setShortUrl(data.url);
+          if (mounted) {
+            if (data?.url) {
+              setShortUrl(data.url);
+              setShortLinkStatus('success');
+            } else {
+              throw new Error('Invalid API response');
+            }
           }
         })
         .catch(err => {
-          console.warn('Could not generate short link, using portable link fallback:', err);
-        })
-        .finally(() => {
-          if (mounted) setIsShortening(false);
+          if (mounted) {
+            console.warn('Short link creation failed:', err);
+            setShortError(err.message || 'Network/Server error');
+            setShortLinkStatus('failed');
+          }
         });
 
       return () => {
         mounted = false;
       };
+    } else {
+      setShortLinkStatus('idle');
     }
   }, [isOpen, mode, exportCode]);
 
   if (!isOpen) return null;
-
-  const displayUrl = shortUrl || portableUrl;
 
   const copyToClipboard = async (text: string, type: 'link' | 'portable' | 'code') => {
     setClipboardBlocked(false);
@@ -173,74 +185,190 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
 
         {mode !== 'import' ? (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
-                {shortUrl
-                  ? 'Short durable link (D1-backed):'
-                  : isShortening
-                  ? 'Generating short share link...'
-                  : 'Self-contained portable link:'}
-              </p>
-              {shortUrl && (
-                <span className="badge badge-official" style={{ fontSize: '0.7rem' }}>
-                  Short URL
-                </span>
-              )}
-            </div>
+            {mode === 'export_build' ? (
+              <div>
+                {shortLinkStatus === 'loading' && (
+                  <div>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+                      ⏳ Generating short share link...
+                    </p>
+                    <input
+                      className="form-input"
+                      readOnly
+                      disabled
+                      value="Generating short link..."
+                      style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem', opacity: 0.7 }}
+                    />
+                  </div>
+                )}
 
-            <input
-              ref={inputRef}
-              className="form-input"
-              readOnly
-              value={displayUrl}
-              style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
-              onClick={e => (e.target as HTMLInputElement).select()}
-            />
+                {shortLinkStatus === 'success' && shortUrl && (
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
+                        Short durable link (D1-backed):
+                      </p>
+                      <span className="badge badge-official" style={{ fontSize: '0.7rem' }}>
+                        Short URL
+                      </span>
+                    </div>
 
-            {clipboardBlocked && (
-              <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
-                ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
+                    <input
+                      ref={inputRef}
+                      className="form-input"
+                      readOnly
+                      value={shortUrl}
+                      style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
+                      onClick={e => (e.target as HTMLInputElement).select()}
+                    />
+
+                    {clipboardBlocked && (
+                      <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
+                        ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => copyToClipboard(shortUrl, 'link')}
+                      >
+                        {copiedType === 'link' ? '✅ Link Copied!' : '🔗 Copy Share Link'}
+                      </button>
+
+                      <a
+                        className="btn"
+                        href={shortUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open share link directly"
+                      >
+                        ↗️ Open Link
+                      </a>
+
+                      <button
+                        className="btn"
+                        onClick={() => copyToClipboard(portableUrl, 'portable')}
+                        title="Copy full self-contained URL without D1 dependency"
+                      >
+                        {copiedType === 'portable' ? '✅ Portable Link Copied!' : '📦 Copy Portable Link'}
+                      </button>
+
+                      <button
+                        className="btn"
+                        onClick={() => copyToClipboard(exportCode, 'code')}
+                        title="Copy raw compressed code"
+                      >
+                        {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
+                      </button>
+
+                      <button className="btn" onClick={onClose}>Close</button>
+                    </div>
+                  </div>
+                )}
+
+                {shortLinkStatus === 'failed' && (
+                  <div>
+                    <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '6px', padding: '0.75rem', marginBottom: '0.75rem' }}>
+                      <div style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.25rem' }}>
+                        ⚠️ Short link unavailable ({shortError || 'backend unreachable'})
+                      </div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                        Self-contained portable sharing is available below without server dependency:
+                      </div>
+                    </div>
+
+                    <input
+                      ref={inputRef}
+                      className="form-input"
+                      readOnly
+                      value={portableUrl}
+                      style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
+                      onClick={e => (e.target as HTMLInputElement).select()}
+                    />
+
+                    {clipboardBlocked && (
+                      <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
+                        ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => copyToClipboard(portableUrl, 'portable')}
+                      >
+                        {copiedType === 'portable' ? '✅ Portable Link Copied!' : '📦 Copy Portable Link'}
+                      </button>
+
+                      <a
+                        className="btn"
+                        href={portableUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open portable link directly"
+                      >
+                        ↗️ Open Portable Link
+                      </a>
+
+                      <button
+                        className="btn"
+                        onClick={() => copyToClipboard(exportCode, 'code')}
+                        title="Copy raw compressed code"
+                      >
+                        {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
+                      </button>
+
+                      <button className="btn" onClick={onClose}>Close</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
+                  Self-contained portable link:
+                </p>
+                <input
+                  ref={inputRef}
+                  className="form-input"
+                  readOnly
+                  value={portableUrl}
+                  style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
+                  onClick={e => (e.target as HTMLInputElement).select()}
+                />
+                {clipboardBlocked && (
+                  <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
+                    ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
+                  </div>
+                )}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => copyToClipboard(portableUrl, 'portable')}
+                  >
+                    {copiedType === 'portable' ? '✅ Link Copied!' : '🔗 Copy Share Link'}
+                  </button>
+                  <a
+                    className="btn"
+                    href={portableUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open share link directly"
+                  >
+                    ↗️ Open Link
+                  </a>
+                  <button
+                    className="btn"
+                    onClick={() => copyToClipboard(exportCode, 'code')}
+                    title="Copy raw compressed code"
+                  >
+                    {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
+                  </button>
+                  <button className="btn" onClick={onClose}>Close</button>
+                </div>
               </div>
             )}
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <button
-                className="btn btn-primary"
-                onClick={() => copyToClipboard(displayUrl, 'link')}
-              >
-                {copiedType === 'link' ? '✅ Link Copied!' : '🔗 Copy Share Link'}
-              </button>
-
-              <a
-                className="btn"
-                href={displayUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open share link directly"
-              >
-                ↗️ Open Link
-              </a>
-
-              {shortUrl && (
-                <button
-                  className="btn"
-                  onClick={() => copyToClipboard(portableUrl, 'portable')}
-                  title="Copy full self-contained URL without D1 dependency"
-                >
-                  {copiedType === 'portable' ? '✅ Portable Link Copied!' : '📦 Copy Portable Link'}
-                </button>
-              )}
-
-              <button
-                className="btn"
-                onClick={() => copyToClipboard(exportCode, 'code')}
-                title="Copy raw compressed code"
-              >
-                {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
-              </button>
-
-              <button className="btn" onClick={onClose}>Close</button>
-            </div>
           </div>
         ) : (
           <div>
