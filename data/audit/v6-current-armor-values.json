@@ -1,0 +1,52 @@
+{
+  "auditDate": "2026-08-30",
+  "targetVersion": "1.0.4.0",
+  "enemies": {
+    "construction": {
+      "name": "Construction Worker",
+      "compendiumHelmetHp": 30,
+      "historicalOfficialHelmetHp": 70,
+      "penetrationRequirement": 1,
+      "selectedProductionHp": 30,
+      "sourceType": "COMPENDIUM",
+      "provenance": "data/raw/tabs/Zombies_1426584761.csv Row 0",
+      "conflictNotes": "Compendium row 0 lists 30hp for Construction/Firefighter Helmets; historical pre-1.0 documentation noted 70hp."
+    },
+    "firefighter": {
+      "name": "Firefighter",
+      "compendiumHelmetHp": 30,
+      "historicalOfficialHelmetHp": 75,
+      "penetrationRequirement": 1,
+      "selectedProductionHp": 30,
+      "sourceType": "COMPENDIUM",
+      "provenance": "data/raw/tabs/Zombies_1426584761.csv Row 0",
+      "conflictNotes": "Compendium row 0 lists 30hp; historical pre-1.0 developer notes mentioned 75hp."
+    },
+    "riot-police": {
+      "name": "Riot Police",
+      "compendiumHelmetHp": 60,
+      "historicalOfficialHelmetHp": 60,
+      "penetrationRequirement": 2,
+      "riotShieldHp": 200,
+      "selectedProductionHp": 60,
+      "sourceType": "COMPENDIUM",
+      "provenance": "data/raw/tabs/Zombies_1426584761.csv Row 0",
+      "conflictNotes": "Compendium and historical official documentation both cite 60hp helmet / 200hp shield."
+    },
+    "national-guard": {
+      "name": "National Guard (Armored)",
+      "compendiumHelmetHp": 90,
+      "historicalOfficialHelmetHp": 130,
+      "penetrationRequirement": 3,
+      "selectedProductionHp": 90,
+      "sourceType": "COMPENDIUM",
+      "provenance": "data/raw/tabs/Zombies_1426584761.csv Row 0",
+      "conflictNotes": "Compendium row 0 explicitly lists NG = 90hp; historical pre-1.0 developer balance cited 130hp."
+    }
+  },
+  "mechanicsStatus": {
+    "nonpenetratingOverflow": "UNRESOLVED",
+    "penetrationPassThrough": "UNRESOLVED",
+    "stabilityThroughArmor": "UNRESOLVED"
+  }
+}

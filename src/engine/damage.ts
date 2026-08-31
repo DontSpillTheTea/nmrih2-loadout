@@ -169,17 +169,15 @@ export function calculateAttackDamage(
     }
   }
 
-  // Calculate final stability damage with armor mitigation
+  // Calculate final stability damage (applies explicit stability resistance if sourced, no arbitrary fallback)
   let stabilityDamage = Math.round(attack.stabilityDamage * stabilityMult);
-  if (activeArmorLayer && !penetratedArmor) {
-    const stabResistance = activeArmorLayer.stabilityResistance > 0
-      ? activeArmorLayer.stabilityResistance
-      : (activeArmorLayer.hitZone === 'head' ? 0.50 : 0.30);
-    stabilityDamage = Math.round(stabilityDamage * (1 - stabResistance));
-    mods.notes.push(`${activeArmorLayer.name}: ${Math.round(stabResistance * 100)}% stability resistance applied`);
+  if (activeArmorLayer && !penetratedArmor && activeArmorLayer.stabilityResistance > 0) {
+    stabilityDamage = Math.round(stabilityDamage * (1 - activeArmorLayer.stabilityResistance));
+    mods.notes.push(`${activeArmorLayer.name}: ${Math.round(activeArmorLayer.stabilityResistance * 100)}% stability resistance applied`);
   }
 
-  const staminaCost = Math.round(attack.staminaCost * mods.staminaMultiplier);
+  // Exact floating point stamina cost (unrounded internally)
+  const staminaCost = Math.round((attack.staminaCost * mods.staminaMultiplier) * 100) / 100;
 
   return {
     baseDamage,
