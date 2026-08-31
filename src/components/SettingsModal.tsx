@@ -84,13 +84,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <span style={{ color: 'var(--text-secondary)' }}>Game Patch:</span>
               <strong style={{ color: '#fff' }}>{CURRENT_GAME_VERSION}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: 'var(--text-secondary)' }}>Steam Build ID:</span>
               <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>24830003 (App 292000)</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Data Storage:</span>
-              <span style={{ color: 'var(--accent-green)' }}>100% Local / Offline (No Tracking)</span>
             </div>
           </div>
         </div>
