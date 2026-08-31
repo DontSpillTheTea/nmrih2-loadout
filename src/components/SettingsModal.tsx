@@ -89,9 +89,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>24830003 (App 292000)</span>
             </div>
           </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.76rem', marginTop: '0.5rem', lineHeight: '1.4' }}>
-            NMRiH2 Loadouts is an early public alpha. Combat values are being cross-checked against NMRiH2 1.0.4.0 game files and official data. Exact attack timing and some armored-enemy interactions remain under active investigation.
-          </p>
         </div>
 
         {/* Full Application Backup */}

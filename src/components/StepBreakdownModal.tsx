@@ -4,10 +4,9 @@ import type { CombatRecipe } from '../types';
 interface StepBreakdownModalProps {
   recipe: CombatRecipe | null;
   onClose: () => void;
-  onReport?: () => void;
 }
 
-export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, onClose, onReport }) => {
+export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, onClose }) => {
   if (!recipe) return null;
 
   return (
@@ -44,14 +43,20 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
                 </div>
               </div>
 
-              <div className="step-stats">
-                <span>Dmg: <strong>{log.finalDamage.toFixed(1)}</strong></span>
-                <span>Target HP: <strong>{log.hpAfter.toFixed(1)}</strong></span>
-                <span>Stability Dmg: <strong>{log.stabilityDamageDealt.toFixed(0)}</strong></span>
-                <span>Stam Cost: <strong>{log.staminaCost.toFixed(2)}</strong></span>
+              <div className="step-details">
+                <div>Base Damage: <strong>{log.baseDamage}</strong></div>
+                <div>Flat Additive Perks: <strong>+{log.additiveFlat}</strong></div>
+                <div>Multiplicative Perks: <strong>+{Math.round(log.multiplicativeBonus * 100)}%</strong></div>
+                <div>Downed Multiplier: <strong>{log.downedMultiplier}x</strong> {log.isDownedHit && '🔥'}</div>
                 {log.armorDamage > 0 && (
-                  <span style={{ color: '#f87171' }}>Armor Dmg: <strong>{log.armorDamage.toFixed(1)}</strong> (Rem: {log.armorHpAfter.toFixed(1)})</span>
+                  <div>Armor Durability: <strong>-{log.armorDamage} ({log.armorHpAfter} HP left)</strong> {log.armorBrokenNow && '💥 BROKEN'}</div>
                 )}
+                <div>Final Damage Dealt: <strong style={{ color: 'var(--accent-green)' }}>{log.finalDamage}</strong></div>
+                <div>Stability Damage: <strong>{log.stabilityDamageDealt}</strong></div>
+                <div>Enemy HP: <strong>{log.hpBefore} → {log.hpAfter}</strong></div>
+                <div>Player Stamina: <strong>{log.staminaBefore} → {log.staminaAfter}</strong></div>
+                <div>Impact Timing: <strong>~{(log.impactElapsedMs / 1000).toFixed(2)}s</strong></div>
+                <div>Next Action Ready: <strong>~{(log.readyElapsedMs / 1000).toFixed(2)}s</strong></div>
               </div>
 
               {log.notes.length > 0 && (
@@ -65,17 +70,8 @@ export const StepBreakdownModal: React.FC<StepBreakdownModalProps> = ({ recipe, 
           ))}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {onReport ? (
-            <button
-              className="btn btn-sm"
-              onClick={onReport}
-              style={{ borderColor: 'rgba(234, 179, 8, 0.4)', color: '#fde047' }}
-            >
-              📝 Report This Result
-            </button>
-          ) : <div />}
-          <button className="btn btn-primary btn-sm" onClick={onClose}>Close Breakdown</button>
+        <div style={{ textAlign: 'right' }}>
+          <button className="btn btn-primary" onClick={onClose}>Close Breakdown</button>
         </div>
       </div>
     </div>
