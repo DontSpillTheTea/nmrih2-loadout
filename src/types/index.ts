@@ -281,11 +281,23 @@ export interface CombatScenario {
   gameVersion: string;
 }
 
+export interface LoadoutItem {
+  id: number;
+  slug: string;
+  name: string;
+  category: string;
+  unlockAccountLevel: number;
+  description?: string;
+  isWeapon?: boolean;
+  weaponId?: number;
+}
+
 export interface Loadout {
   id: string;
   name: string;
   weaponId: number;
   secondaryWeaponId?: number | null;
+  loadoutItemIds?: [number | null, number | null, number | null];
   selectedEnemyId?: number;
   perkIds: number[];
   constraints: OptimizerConstraints;
@@ -297,6 +309,7 @@ export interface Responder {
   name: string;
   level: number;
   perkIds: number[];
+  loadoutItemIds?: [number | null, number | null, number | null];
   loadouts: Loadout[];
   activeLoadoutId: string;
   notes: string;
@@ -310,10 +323,12 @@ export interface AppState {
   activeResponderId: string;
   activeEnemyId?: number;
   compareWeaponFilter?: 'all' | 'melee' | 'firearms';
+  myAccountLevel?: number | null;
   responders: Responder[];
   savedScenarios?: CombatScenario[];
   settings: {
     enableAnalytics: boolean;
     defaultObjective: OptimizerObjective;
+    myAccountLevel?: number | null;
   };
 }

@@ -1,8 +1,9 @@
-import type { Weapon, Perk, Enemy, MechanicsConfig } from '../types';
+import type { Weapon, Perk, Enemy, MechanicsConfig, LoadoutItem } from '../types';
 import weaponsData from './snapshots/1.0.4.0/weapons.json';
 import perksData from './snapshots/1.0.4.0/perks.json';
 import enemiesData from './snapshots/1.0.4.0/enemies.json';
 import mechanicsData from './snapshots/1.0.4.0/mechanics.json';
+import itemsData from './snapshots/1.0.4.0/items.json';
 import manifestData from './snapshots/1.0.4.0/manifest.json';
 import provenanceData from './snapshots/1.0.4.0/provenance.json';
 
@@ -14,16 +15,19 @@ export const weapons: Weapon[] = weaponsData as unknown as Weapon[];
 export const perks: Perk[] = perksData as unknown as Perk[];
 export const enemies: Enemy[] = enemiesData as unknown as Enemy[];
 export const mechanics: MechanicsConfig = mechanicsData as unknown as MechanicsConfig;
+export const loadoutItems: LoadoutItem[] = itemsData as unknown as LoadoutItem[];
 export const manifest = manifestData;
 export const provenance = provenanceData;
 
 export const weaponMap = new Map<number, Weapon>(weapons.map(w => [w.id, w]));
 export const perkMap = new Map<number, Perk>(perks.map(p => [p.id, p]));
 export const enemyMap = new Map<number, Enemy>(enemies.map(e => [e.id, e]));
+export const loadoutItemMap = new Map<number, LoadoutItem>(loadoutItems.map(it => [it.id, it]));
 
 export const weaponSlugMap = new Map<string, Weapon>(weapons.map(w => [w.slug, w]));
 export const perkSlugMap = new Map<string, Perk>(perks.map(p => [p.slug, p]));
 export const enemySlugMap = new Map<string, Enemy>(enemies.map(e => [e.slug, e]));
+export const loadoutItemSlugMap = new Map<string, LoadoutItem>(loadoutItems.map(it => [it.slug, it]));
 
 export function getWeaponById(id: number): Weapon | undefined {
   return weaponMap.get(id);
@@ -35,6 +39,10 @@ export function getPerkById(id: number): Perk | undefined {
 
 export function getEnemyById(id: number): Enemy | undefined {
   return enemyMap.get(id);
+}
+
+export function getLoadoutItemById(id: number): LoadoutItem | undefined {
+  return loadoutItemMap.get(id);
 }
 
 export function getMeleeWeapons(): Weapon[] {

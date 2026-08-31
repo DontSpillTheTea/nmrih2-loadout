@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { decodeCode, encodeBuild, encodeResponder, encodeScenario, createShareUrl, extractShareCode } from '../serialization/codec';
+import React, { useState, useRef } from 'react';
+import { decodeCode, encodeBuild, encodeScenario, createShareUrl, extractShareCode } from '../serialization/codec';
 import type { Loadout, Responder, CombatScenario, AppState } from '../types';
 
 interface ImportExportModalProps {
@@ -26,30 +26,65 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [warning, setWarning] = useState<string | null>(null);
   const [copiedType, setCopiedType] = useState<'link' | 'code' | null>(null);
+  const [clipboardBlocked, setClipboardBlocked] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   if (!isOpen) return null;
 
   let exportCode = '';
-  if (mode === 'export_build' && activeLoadout) {
-    exportCode = encodeBuild(activeLoadout);
-  } else if (mode === 'export_responder' && activeResponder) {
-    exportCode = encodeResponder(activeResponder);
+  if ((mode === 'export_build' || mode === 'export_responder') && (activeResponder || activeLoadout)) {
+    exportCode = encodeBuild({
+      name: activeResponder?.name ?? activeLoadout?.name ?? 'Lead Responder',
+      level: activeResponder?.level ?? 1,
+      perkIds: activeResponder?.perkIds ?? activeLoadout?.perkIds ?? [],
+      loadoutItemIds: activeResponder?.loadoutItemIds ?? activeLoadout?.loadoutItemIds ?? [null, null, null],
+      weaponId: activeLoadout?.weaponId ?? 11,
+      secondaryWeaponId: activeLoadout?.secondaryWeaponId,
+      constraints: activeLoadout?.constraints,
+      objective: activeLoadout?.objective
+    });
   } else if (mode === 'export_scenario' && activeScenario) {
     exportCode = encodeScenario(activeScenario);
   }
 
   const exportUrl = exportCode ? createShareUrl(exportCode) : '';
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(exportUrl);
-    setCopiedType('link');
-    setTimeout(() => setCopiedType(null), 2000);
+  const handleCopyLink = async () => {
+    setClipboardBlocked(false);
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(exportUrl);
+        setCopiedType('link');
+        setTimeout(() => setCopiedType(null), 2500);
+      } else {
+        throw new Error('Clipboard API unavailable');
+      }
+    } catch {
+      setClipboardBlocked(true);
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.select();
+      }
+    }
   };
 
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(exportCode);
-    setCopiedType('code');
-    setTimeout(() => setCopiedType(null), 2000);
+  const handleCopyCode = async () => {
+    setClipboardBlocked(false);
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(exportCode);
+        setCopiedType('code');
+        setTimeout(() => setCopiedType(null), 2500);
+      } else {
+        throw new Error('Clipboard API unavailable');
+      }
+    } catch {
+      setClipboardBlocked(true);
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.select();
+      }
+    }
   };
 
   const handleImport = () => {
@@ -73,7 +108,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h3 style={{ fontSize: '1.15rem', color: '#fff' }}>
-            {mode === 'import' ? 'Import Build / Responder / Scenario' : 'Share Configuration'}
+            {mode === 'import' ? 'Import Build / Scenario' : 'Share Build Configuration'}
           </h3>
           <button className="close-btn" onClick={onClose}>&times;</button>
         </div>
@@ -81,19 +116,34 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
         {mode !== 'import' ? (
           <div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
-              Share this direct link. Anyone opening it will instantly load your exact configuration:
+              Share this direct link. Anyone opening it will instantly load your exact build (responder, perks, and 3 loadout items):
             </p>
             <input
+              ref={inputRef}
               className="form-input"
               readOnly
               value={exportUrl}
               style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
               onClick={e => (e.target as HTMLInputElement).select()}
             />
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
+            {clipboardBlocked && (
+              <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
+                ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
+              </div>
+            )}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
               <button className="btn btn-primary" onClick={handleCopyLink}>
                 {copiedType === 'link' ? '✅ Link Copied!' : '🔗 Copy Share Link'}
               </button>
+              <a
+                className="btn"
+                href={exportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open share link directly"
+              >
+                ↗️ Open Link
+              </a>
               <button className="btn" onClick={handleCopyCode} title="Copy raw compressed code">
                 {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
               </button>
@@ -103,7 +153,7 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
         ) : (
           <div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
-              Paste a share link (e.g. <code>https://nmrih2-loadouts.site/build/...</code>) or raw code (<code>N2B1-...</code>, <code>N2C1-...</code>, <code>N2S1-...</code>, <code>N2A1-...</code>):
+              Paste a share link (e.g. <code>https://nmrih2-loadouts.site/build/...</code>) or code (<code>N2B2-...</code>, <code>N2B1-...</code>, <code>N2C1-...</code>, <code>N2S1-...</code>, <code>N2A1-...</code>):
             </p>
             <textarea
               className="form-input"

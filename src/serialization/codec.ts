@@ -1,9 +1,9 @@
 import { deflateSync, inflateSync } from 'fflate';
 import { z } from 'zod';
-import type { Responder, Loadout, CombatScenario, AppState } from '../types';
+import type { Responder, Loadout, CombatScenario, AppState, OptimizerConstraints, OptimizerObjective } from '../types';
 import { CURRENT_GAME_VERSION } from '../data/loader';
 
-export type CodeFamily = 'N2B1' | 'N2C1' | 'N2S1' | 'N2A1';
+export type CodeFamily = 'N2B1' | 'N2B2' | 'N2C1' | 'N2S1' | 'N2A1';
 
 export interface DecodedEnvelope<T = any> {
   family: CodeFamily;
@@ -58,25 +58,25 @@ export function canonicalJsonStringify(obj: any): string {
 // Synchronous fast checksum (8-byte hash -> 11 char base64url)
 export function computeShortChecksum(data: Uint8Array): string {
   let h1 = 0x811c9dc5;
-  let h2 = 0x55555555;
-  for (let i = 0; i < data.length; i++) {
-    h1 ^= data[i];
-    h1 = Math.imul(h1, 0x01000193);
-    h2 ^= (data[i] + i);
-    h2 = Math.imul(h2, 0x01000193);
+  let h2 = 0x5f356495;
+  const len = data.length;
+  for (let i = 0; i < len; i++) {
+    const byte = data[i];
+    h1 = Math.imul(h1 ^ byte, 0x01000193);
+    h2 = Math.imul(h2 ^ byte, 0x27d4eb2f);
   }
-  const buf = new Uint8Array(8);
-  const view = new DataView(buf.buffer);
+  const buffer = new ArrayBuffer(8);
+  const view = new DataView(buffer);
   view.setUint32(0, h1 >>> 0, true);
   view.setUint32(4, h2 >>> 0, true);
-  return uint8ArrayToBase64Url(buf);
+  return uint8ArrayToBase64Url(new Uint8Array(buffer));
 }
 
 // Zod schemas for runtime validation
 const ConstraintsSchema = z.object({
   requireFirstInterrupt: z.boolean().default(true),
-  safeOpener: z.boolean().optional().default(true),
-  preChargedOpener: z.boolean().optional().default(true),
+  safeOpener: z.boolean().optional(),
+  preChargedOpener: z.boolean().optional(),
   requireKnockdownBeforeKill: z.boolean().default(false),
   minStaminaReserve: z.number().default(0),
   allowShove: z.boolean().default(true),
@@ -96,38 +96,65 @@ const ObjectiveSchema = z.enum([
   'balanced'
 ]);
 
-const LoadoutSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  weaponId: z.number(),
+export const UnifiedBuildSchema = z.object({
+  name: z.string().default('Shared Build'),
+  level: z.number().default(1),
+  perkIds: z.array(z.number()).default([]),
+  loadoutItemIds: z.tuple([
+    z.number().nullable().default(null),
+    z.number().nullable().default(null),
+    z.number().nullable().default(null)
+  ]).default([null, null, null]),
+  weaponId: z.number().default(10),
   secondaryWeaponId: z.number().optional().nullable(),
-  perkIds: z.array(z.number()),
-  constraints: ConstraintsSchema,
-  objective: ObjectiveSchema
+  constraints: ConstraintsSchema.optional(),
+  objective: ObjectiveSchema.optional()
+});
+
+export type UnifiedBuild = z.infer<typeof UnifiedBuildSchema>;
+
+const LoadoutSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().default('Shared Build'),
+  weaponId: z.number().default(10),
+  secondaryWeaponId: z.number().optional().nullable(),
+  perkIds: z.array(z.number()).default([]),
+  constraints: ConstraintsSchema.optional(),
+  objective: ObjectiveSchema.optional()
 });
 
 const ScenarioSchema = z.object({
-  id: z.string(),
-  name: z.string(),
+  id: z.string().optional(),
+  name: z.string().default('Shared Scenario'),
   weaponId: z.number(),
   enemyId: z.number(),
-  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare']),
-  perkIds: z.array(z.number()),
-  constraints: ConstraintsSchema,
-  objective: ObjectiveSchema,
-  gameVersion: z.string()
+  difficulty: z.enum(['beginner', 'normal', 'hard', 'nightmare']).default('normal'),
+  perkIds: z.array(z.number()).default([]),
+  constraints: ConstraintsSchema.default({
+    requireFirstInterrupt: true,
+    requireKnockdownBeforeKill: false,
+    minStaminaReserve: 0,
+    allowShove: true,
+    allowKick: true,
+    allowCharged: true,
+    allowLimb: false,
+    targetHitZone: 'head',
+    difficulty: 'normal'
+  }),
+  objective: ObjectiveSchema.default('fastest_kill'),
+  gameVersion: z.string().default(CURRENT_GAME_VERSION)
 });
 
 const ResponderSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  level: z.number(),
-  perkIds: z.array(z.number()),
-  loadouts: z.array(LoadoutSchema),
-  activeLoadoutId: z.string(),
-  notes: z.string(),
-  gameVersion: z.string(),
-  updatedAt: z.string()
+  id: z.string().optional(),
+  name: z.string().default('Shared Responder'),
+  level: z.number().default(1),
+  perkIds: z.array(z.number()).default([]),
+  loadouts: z.array(LoadoutSchema).optional().default([]),
+  activeLoadoutId: z.string().optional(),
+  notes: z.string().optional().default(''),
+  gameVersion: z.string().optional().default(CURRENT_GAME_VERSION),
+  updatedAt: z.string().optional()
 });
 
 const EnvelopeSchema = z.object({
@@ -137,10 +164,10 @@ const EnvelopeSchema = z.object({
   d: z.any()
 });
 
-export function encodePayload<T>(type: 'B' | 'C' | 'S' | 'A', data: T): string {
+export function encodePayload<T>(type: 'B' | 'C' | 'S' | 'A', data: T, version: number = (type === 'B' ? 2 : 1)): string {
   const envelope = {
     t: type,
-    v: 1,
+    v: version,
     g: CURRENT_GAME_VERSION,
     d: data
   };
@@ -153,26 +180,26 @@ export function encodePayload<T>(type: 'B' | 'C' | 'S' | 'A', data: T): string {
   const payloadBase64 = uint8ArrayToBase64Url(compressed);
   const checksum = computeShortChecksum(compressed);
 
-  const prefix = `N2${type}1`;
+  const prefix = `N2${type}${version}`;
   return `${prefix}-${payloadBase64}.${checksum}`;
 }
 
 export function decodeCode(code: string): DecodedEnvelope {
   const trimmed = code.trim();
-  const prefixMatch = trimmed.match(/^(N2[BCSA]1)-/);
+  const prefixMatch = trimmed.match(/^(N2[BCSA][12])-/) || trimmed.match(/^(N2[BCSA]1)-/);
   if (!prefixMatch) {
-    throw new Error('Unsupported or unknown code prefix. Expected N2B1, N2C1, N2S1, or N2A1.');
+    throw new Error('Unsupported or unknown code prefix. Expected N2B2, N2B1, N2C1, N2S1, or N2A1.');
   }
 
   const prefix = prefixMatch[1] as CodeFamily;
   const typeLetter = prefix.charAt(2) as 'B' | 'C' | 'S' | 'A';
 
   const dotIdx = trimmed.lastIndexOf('.');
-  if (dotIdx <= 5) {
+  if (dotIdx <= prefix.length) {
     throw new Error('Invalid code format. Expected Prefix-Payload.Checksum.');
   }
 
-  const payloadB64 = trimmed.slice(5, dotIdx);
+  const payloadB64 = trimmed.slice(prefix.length + 1, dotIdx);
   const checksum = trimmed.slice(dotIdx + 1);
 
   if (!payloadB64 || !checksum) {
@@ -220,12 +247,37 @@ export function decodeCode(code: string): DecodedEnvelope {
     warning = `Created for NMRiH2 patch ${env.g}. Current active version is ${CURRENT_GAME_VERSION}. Some balance numbers or weapon stats may differ.`;
   }
 
+  let processedData = env.d;
+
   if (typeLetter === 'B') {
-    LoadoutSchema.parse(env.d);
+    if (env.v === 2) {
+      processedData = UnifiedBuildSchema.parse(env.d);
+    } else {
+      // Legacy N2B1 (v1)
+      const legacy = LoadoutSchema.parse(env.d);
+      processedData = {
+        name: legacy.name,
+        level: 1,
+        perkIds: legacy.perkIds || [],
+        loadoutItemIds: [null, null, null],
+        weaponId: legacy.weaponId || 10,
+        secondaryWeaponId: legacy.secondaryWeaponId,
+        constraints: legacy.constraints,
+        objective: legacy.objective
+      };
+    }
   } else if (typeLetter === 'C') {
-    ResponderSchema.parse(env.d);
+    // Legacy N2C1
+    const legacyResp = ResponderSchema.parse(env.d);
+    processedData = {
+      name: legacyResp.name,
+      level: legacyResp.level || 1,
+      perkIds: legacyResp.perkIds || [],
+      loadoutItemIds: [null, null, null],
+      weaponId: legacyResp.loadouts?.[0]?.weaponId || 10
+    };
   } else if (typeLetter === 'S') {
-    ScenarioSchema.parse(env.d);
+    processedData = ScenarioSchema.parse(env.d);
   }
 
   return {
@@ -233,26 +285,51 @@ export function decodeCode(code: string): DecodedEnvelope {
     type: typeLetter,
     version: env.v,
     gameVersion: env.g,
-    data: env.d,
+    data: processedData,
     isPatchMismatch: isMismatch,
     warning
   };
 }
 
-export function encodeBuild(loadout: Loadout): string {
-  return encodePayload('B', loadout);
+export function encodeBuild(build: {
+  name?: string;
+  level?: number;
+  perkIds?: number[];
+  loadoutItemIds?: [number | null, number | null, number | null];
+  weaponId?: number;
+  secondaryWeaponId?: number | null;
+  constraints?: OptimizerConstraints;
+  objective?: OptimizerObjective;
+}): string {
+  const unifiedData: UnifiedBuild = {
+    name: build.name || 'Shared Build',
+    level: build.level ?? 1,
+    perkIds: build.perkIds || [],
+    loadoutItemIds: build.loadoutItemIds || [null, null, null],
+    weaponId: build.weaponId ?? 10,
+    secondaryWeaponId: build.secondaryWeaponId,
+    constraints: build.constraints,
+    objective: build.objective
+  };
+  return encodePayload('B', unifiedData, 2);
 }
 
 export function encodeResponder(responder: Responder): string {
-  return encodePayload('C', responder);
+  return encodeBuild({
+    name: responder.name,
+    level: responder.level,
+    perkIds: responder.perkIds,
+    loadoutItemIds: responder.loadoutItemIds,
+    weaponId: responder.loadouts?.[0]?.weaponId
+  });
 }
 
 export function encodeScenario(scenario: CombatScenario): string {
-  return encodePayload('S', scenario);
+  return encodePayload('S', scenario, 1);
 }
 
 export function encodeFullBackup(state: AppState): string {
-  return encodePayload('A', state);
+  return encodePayload('A', state, 1);
 }
 
 // Canonical Public Site URL
@@ -261,9 +338,9 @@ export const CANONICAL_SITE_ORIGIN = 'https://nmrih2-loadouts.site';
 export function createShareUrl(code: string): string {
   const prefix = code.slice(0, 4);
   let path = 'build';
-  if (prefix === 'N2B1') path = 'build';
-  else if (prefix === 'N2S1') path = 'scenario';
-  else if (prefix === 'N2C1') path = 'character';
+  if (prefix.startsWith('N2B')) path = 'build';
+  else if (prefix.startsWith('N2S')) path = 'scenario';
+  else if (prefix.startsWith('N2C')) path = 'character';
   else return `${CANONICAL_SITE_ORIGIN}/#${code}`;
 
   return `${CANONICAL_SITE_ORIGIN}/${path}/${encodeURIComponent(code)}`;
@@ -314,8 +391,17 @@ export function extractShareCode(input: string): string {
   return trimmed;
 }
 
-export function generateBuildShareUrl(loadout: Loadout): string {
-  return createShareUrl(encodeBuild(loadout));
+export function generateBuildShareUrl(build: {
+  name?: string;
+  level?: number;
+  perkIds?: number[];
+  loadoutItemIds?: [number | null, number | null, number | null];
+  weaponId?: number;
+  secondaryWeaponId?: number | null;
+  constraints?: OptimizerConstraints;
+  objective?: OptimizerObjective;
+}): string {
+  return createShareUrl(encodeBuild(build));
 }
 
 export function generateScenarioShareUrl(scenario: CombatScenario): string {
@@ -325,4 +411,3 @@ export function generateScenarioShareUrl(scenario: CombatScenario): string {
 export function generateResponderShareUrl(responder: Responder): string {
   return createShareUrl(encodeResponder(responder));
 }
-

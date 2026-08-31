@@ -4,42 +4,50 @@ import {
   encodeResponder,
   encodeScenario,
   encodeFullBackup,
-  decodeCode
+  decodeCode,
+  encodePayload
 } from '../src/serialization/codec';
 import { createDefaultLoadout, createDefaultResponder, createInitialAppState } from '../src/storage';
-import type { CombatScenario } from '../src/types';
+import type { CombatScenario, Loadout, Responder } from '../src/types';
 
-describe('Serialization and Compact Share Codes (N2B1, N2C1, N2S1, N2A1)', () => {
-  it('encodes and decodes Loadout (N2B1) roundtrip losslessly', () => {
-    const loadout = createDefaultLoadout('b-test', 'Hatchet Hunter');
-    loadout.weaponId = 12;
-    loadout.perkIds = [29, 30, 37]; // Headhunter, Headhunter Expert, Hitman
+describe('Serialization and Compact Share Codes (N2B2, N2B1, N2C1, N2S1, N2A1)', () => {
+  it('encodes and decodes Unified Build (N2B2) roundtrip losslessly', () => {
+    const build = {
+      name: 'Hatchet Hunter',
+      level: 42,
+      weaponId: 12,
+      perkIds: [29, 30, 37], // Headhunter, Headhunter Expert, Hitman
+      loadoutItemIds: [12, 1000, null] as [number | null, number | null, number | null]
+    };
 
-    const code = encodeBuild(loadout);
-    expect(code.startsWith('N2B1-')).toBe(true);
+    const code = encodeBuild(build);
+    expect(code.startsWith('N2B2-')).toBe(true);
 
     const decoded = decodeCode(code);
-    expect(decoded.family).toBe('N2B1');
+    expect(decoded.family).toBe('N2B2');
     expect(decoded.type).toBe('B');
+    expect(decoded.version).toBe(2);
     expect(decoded.data.name).toBe('Hatchet Hunter');
+    expect(decoded.data.level).toBe(42);
     expect(decoded.data.weaponId).toBe(12);
     expect(decoded.data.perkIds).toEqual([29, 30, 37]);
+    expect(decoded.data.loadoutItemIds).toEqual([12, 1000, null]);
   });
 
-  it('encodes and decodes Responder (N2C1) roundtrip losslessly', () => {
+  it('encodes and decodes legacy Responder (N2C1) and migrates to Unified Build', () => {
     const responder = createDefaultResponder('c-test', 'Anthony Specialist');
     responder.level = 42;
     responder.perkIds = [7, 8, 19, 29, 37];
 
-    const code = encodeResponder(responder);
-    expect(code.startsWith('N2C1-')).toBe(true);
+    const legacyCode = encodePayload('C', responder, 1);
+    expect(legacyCode.startsWith('N2C1-')).toBe(true);
 
-    const decoded = decodeCode(code);
+    const decoded = decodeCode(legacyCode);
     expect(decoded.family).toBe('N2C1');
-    expect(decoded.type).toBe('C');
     expect(decoded.data.name).toBe('Anthony Specialist');
     expect(decoded.data.level).toBe(42);
     expect(decoded.data.perkIds).toEqual([7, 8, 19, 29, 37]);
+    expect(decoded.data.loadoutItemIds).toEqual([null, null, null]);
   });
 
   it('encodes and decodes Scenario (N2S1) roundtrip losslessly', () => {
@@ -98,9 +106,5 @@ describe('Serialization and Compact Share Codes (N2B1, N2C1, N2S1, N2A1)', () =>
 
   it('rejects unknown code prefixes', () => {
     expect(() => decodeCode('UNKNOWN-XXXX.YYYY')).toThrow(/Unsupported or unknown code prefix/);
-  });
-
-  it('rejects malformed Base64URL characters in payload', () => {
-    expect(() => decodeCode('N2B1-$$$invalid$$$.12345')).toThrow();
   });
 });

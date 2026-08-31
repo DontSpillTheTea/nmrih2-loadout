@@ -1,0 +1,508 @@
+[
+  {
+    "id": 10,
+    "slug": "kitchen-knife",
+    "name": "Kitchen Knife",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 10
+  },
+  {
+    "id": 11,
+    "slug": "cleaver",
+    "name": "Cleaver",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 11
+  },
+  {
+    "id": 12,
+    "slug": "hatchet",
+    "name": "Hatchet",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 12
+  },
+  {
+    "id": 13,
+    "slug": "machete",
+    "name": "Machete",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 13
+  },
+  {
+    "id": 14,
+    "slug": "shovel",
+    "name": "Shovel",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 14
+  },
+  {
+    "id": 15,
+    "slug": "fire-axe",
+    "name": "Fire Axe",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 15
+  },
+  {
+    "id": 16,
+    "slug": "treetrimmer",
+    "name": "Treetrimmer",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 16
+  },
+  {
+    "id": 17,
+    "slug": "claw-hammer",
+    "name": "Claw Hammer",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 17
+  },
+  {
+    "id": 18,
+    "slug": "pipe-small",
+    "name": "Pipe (Small)",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 18
+  },
+  {
+    "id": 19,
+    "slug": "wrench-small",
+    "name": "Wrench (Small)",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 19
+  },
+  {
+    "id": 20,
+    "slug": "tire-iron",
+    "name": "Tire Iron",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 20
+  },
+  {
+    "id": 21,
+    "slug": "mallet",
+    "name": "Mallet",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 21
+  },
+  {
+    "id": 22,
+    "slug": "crowbar",
+    "name": "Crowbar",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 22
+  },
+  {
+    "id": 23,
+    "slug": "rebar",
+    "name": "Rebar",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 23
+  },
+  {
+    "id": 24,
+    "slug": "wrench-large",
+    "name": "Wrench (Large)",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 24
+  },
+  {
+    "id": 25,
+    "slug": "baseball-bat",
+    "name": "Baseball Bat",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 25
+  },
+  {
+    "id": 26,
+    "slug": "pipe-large",
+    "name": "Pipe (Large)",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 26
+  },
+  {
+    "id": 27,
+    "slug": "sledge-hammer",
+    "name": "Sledge Hammer",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 27
+  },
+  {
+    "id": 28,
+    "slug": "hockey-stick",
+    "name": "Hockey Stick",
+    "category": "Weapon (Melee)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 28
+  },
+  {
+    "id": 101,
+    "slug": "double-barrel-shotgun",
+    "name": "Double Barrel Shotgun (DT11)",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 101
+  },
+  {
+    "id": 102,
+    "slug": "m590a1",
+    "name": "M590A1",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 102
+  },
+  {
+    "id": 103,
+    "slug": "x12-super",
+    "name": "X12 Super",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 103
+  },
+  {
+    "id": 104,
+    "slug": "m9a3",
+    "name": "M9A3",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 104
+  },
+  {
+    "id": 105,
+    "slug": "model-13",
+    "name": "Model 13",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 105
+  },
+  {
+    "id": 106,
+    "slug": "m1911",
+    "name": "M1911",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 106
+  },
+  {
+    "id": 107,
+    "slug": "gruber-mkvii",
+    "name": "Gruber MKVII",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 107
+  },
+  {
+    "id": 108,
+    "slug": "mp5a4",
+    "name": "MP5A4",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 108
+  },
+  {
+    "id": 109,
+    "slug": "mc15",
+    "name": "MC15",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 109
+  },
+  {
+    "id": 110,
+    "slug": "gruber-ranch-rifle",
+    "name": "Gruber Ranch Rifle",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 110
+  },
+  {
+    "id": 111,
+    "slug": "m7a1",
+    "name": "M7A1",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 111
+  },
+  {
+    "id": 112,
+    "slug": "gruber-922",
+    "name": "Gruber 922",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 112
+  },
+  {
+    "id": 113,
+    "slug": "rochester-1873",
+    "name": "Rochester 1873",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 113
+  },
+  {
+    "id": 114,
+    "slug": "hunter-85",
+    "name": "Hunter 85",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 114
+  },
+  {
+    "id": 115,
+    "slug": "m14-battle-rifle",
+    "name": "M14 Battle Rifle",
+    "category": "Weapon (Firearm)",
+    "unlockAccountLevel": 1,
+    "isWeapon": true,
+    "weaponId": 115
+  },
+  {
+    "id": 1000,
+    "slug": "bandages",
+    "name": "Bandages",
+    "category": "Medical",
+    "unlockAccountLevel": 6,
+    "description": "Stops bleeding and heals minor health"
+  },
+  {
+    "id": 1001,
+    "slug": "phalanx-pills",
+    "name": "Phalanx Pills",
+    "category": "Medical",
+    "unlockAccountLevel": 31,
+    "description": "Cures / suppresses infection symptoms"
+  },
+  {
+    "id": 1002,
+    "slug": "medkit",
+    "name": "First Aid Kit / Medkit",
+    "category": "Medical",
+    "unlockAccountLevel": 41,
+    "description": "Restores large amount of health"
+  },
+  {
+    "id": 1003,
+    "slug": "revive-syringe",
+    "name": "Revive Syringe",
+    "category": "Medical",
+    "unlockAccountLevel": 51,
+    "description": "Revives a downed or incapacitated responder"
+  },
+  {
+    "id": 1004,
+    "slug": "rescue-beacon",
+    "name": "Rescue Beacon",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 1,
+    "description": "Signals extraction or distress call"
+  },
+  {
+    "id": 1005,
+    "slug": "flashlight-battery",
+    "name": "Flashlight Battery",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 5,
+    "description": "Replacement power cell for standard flashlight"
+  },
+  {
+    "id": 1006,
+    "slug": "barricades",
+    "name": "Barricade Stack (x5)",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 8,
+    "description": "Boards to reinforce doorways and windows"
+  },
+  {
+    "id": 1007,
+    "slug": "deployable-worklight",
+    "name": "Deployable Worklight",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 28,
+    "description": "Illuminates dark areas"
+  },
+  {
+    "id": 1008,
+    "slug": "nailer",
+    "name": "Pneumatic Nailer",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 33,
+    "description": "Rapidly fastens barricade boards"
+  },
+  {
+    "id": 1009,
+    "slug": "deployable-radio",
+    "name": "Deployable Radio",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 47,
+    "description": "Establishes field communication"
+  },
+  {
+    "id": 1010,
+    "slug": "satchel",
+    "name": "Satchel",
+    "category": "Tools & Gear",
+    "unlockAccountLevel": 59,
+    "description": "Expands inventory carry capacity"
+  },
+  {
+    "id": 1011,
+    "slug": "m67-frag",
+    "name": "M67 Frag Grenade",
+    "category": "Explosives",
+    "unlockAccountLevel": 1,
+    "description": "High-explosive fragmentation grenade"
+  },
+  {
+    "id": 1012,
+    "slug": "proximity-ied",
+    "name": "Proximity IED",
+    "category": "Explosives",
+    "unlockAccountLevel": 19,
+    "description": "Motion-detonated improvised explosive"
+  },
+  {
+    "id": 1013,
+    "slug": "molotov",
+    "name": "Molotov Cocktail",
+    "category": "Explosives",
+    "unlockAccountLevel": 24,
+    "description": "Incendiary area-denial fire bomb"
+  },
+  {
+    "id": 1014,
+    "slug": "pipe-bomb",
+    "name": "Pipe Bomb",
+    "category": "Explosives",
+    "unlockAccountLevel": 34,
+    "description": "Attracts zombies before exploding"
+  },
+  {
+    "id": 1015,
+    "slug": "flare-gun",
+    "name": "Flare Gun",
+    "category": "Explosives",
+    "unlockAccountLevel": 37,
+    "description": "Fires high-intensity illumination / burn flares"
+  },
+  {
+    "id": 1016,
+    "slug": "landmine",
+    "name": "Directional Landmine",
+    "category": "Explosives",
+    "unlockAccountLevel": 50,
+    "description": "Command / pressure trip explosive"
+  },
+  {
+    "id": 1017,
+    "slug": "ammo-22lr",
+    "name": ".22 LR Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 2,
+    "description": "Ammunition box for .22 caliber firearms"
+  },
+  {
+    "id": 1018,
+    "slug": "ammo-9mm",
+    "name": "9mm Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 4,
+    "description": "Ammunition box for 9mm pistols and submachine guns"
+  },
+  {
+    "id": 1019,
+    "slug": "ammo-12ga",
+    "name": "12GA Shotgun Shells (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 7,
+    "description": "12-gauge buckshot shells for shotguns"
+  },
+  {
+    "id": 1020,
+    "slug": "ammo-45acp",
+    "name": ".45 ACP Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 9,
+    "description": "Heavy pistol ammunition for 1911 and MC15"
+  },
+  {
+    "id": 1021,
+    "slug": "ammo-357mag",
+    "name": ".357 Magnum Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 11,
+    "description": "High-stopping-power revolver ammunition"
+  },
+  {
+    "id": 1022,
+    "slug": "ammo-308win",
+    "name": ".308 WIN Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 12,
+    "description": "Rifle ammunition for Hunter 85 and M14"
+  },
+  {
+    "id": 1023,
+    "slug": "ammo-556nato",
+    "name": "5.56 NATO Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 13,
+    "description": "Intermediate rifle cartridges for M7A1"
+  },
+  {
+    "id": 1024,
+    "slug": "ammo-68x51",
+    "name": "6.8x51mm Ammo (x20)",
+    "category": "Ammunition",
+    "unlockAccountLevel": 15,
+    "description": "Military-grade battle rifle ammunition"
+  }
+]

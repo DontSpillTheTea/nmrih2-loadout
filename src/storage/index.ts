@@ -10,6 +10,7 @@ export function createDefaultLoadout(id: string = 'loadout-1', name: string = 'C
     name,
     weaponId: 11, // Cleaver
     secondaryWeaponId: undefined,
+    loadoutItemIds: [11, 1000, null], // Cleaver, Bandages, Empty
     perkIds: [31, 39], // Headhunter (31), Hitman (39)
     constraints: {
       requireFirstInterrupt: true,
@@ -35,6 +36,7 @@ export function createDefaultResponder(id: string = 'resp-1', name: string = 'Le
     name,
     level: 25,
     perkIds: [31, 39, 7], // Headhunter, Hitman, Athlete
+    loadoutItemIds: [11, 1000, null],
     loadouts: [defaultLoadout],
     activeLoadoutId: defaultLoadout.id,
     notes: 'Default Responder profile for general melee runs.',
@@ -49,10 +51,12 @@ export function createInitialAppState(): AppState {
     version: 1,
     activeGameVersion: CURRENT_GAME_VERSION,
     activeResponderId: defaultResp.id,
+    myAccountLevel: null,
     responders: [defaultResp],
     settings: {
       enableAnalytics: false,
-      defaultObjective: 'fastest_kill'
+      defaultObjective: 'fastest_kill',
+      myAccountLevel: null
     }
   };
 }
@@ -67,6 +71,21 @@ export function loadAppState(): AppState {
     if (!parsed || !Array.isArray(parsed.responders) || parsed.responders.length === 0) {
       return createInitialAppState();
     }
+    // Ensure all responders have loadoutItemIds tuple
+    parsed.responders = parsed.responders.map((r: any) => ({
+      ...r,
+      loadoutItemIds: Array.isArray(r.loadoutItemIds) && r.loadoutItemIds.length === 3
+        ? r.loadoutItemIds
+        : [null, null, null],
+      loadouts: Array.isArray(r.loadouts)
+        ? r.loadouts.map((l: any) => ({
+            ...l,
+            loadoutItemIds: Array.isArray(l.loadoutItemIds) && l.loadoutItemIds.length === 3
+              ? l.loadoutItemIds
+              : [null, null, null]
+          }))
+        : []
+    }));
     return parsed as AppState;
   } catch (e) {
     console.warn('Failed to parse local application state, initializing defaults:', e);

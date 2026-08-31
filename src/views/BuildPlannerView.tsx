@@ -1,21 +1,25 @@
 import React, { useState, useMemo } from 'react';
 import type { Responder, Loadout } from '../types';
-import { weapons, perks, mechanics, getPerkById } from '../data/loader';
+import { weapons, perks, mechanics, getPerkById, loadoutItems } from '../data/loader';
 import { createDefaultLoadout, createDefaultResponder } from '../storage';
 
 interface BuildPlannerViewProps {
   responders: Responder[];
   activeResponderId: string;
+  myAccountLevel?: number | null;
+  onUpdateMyAccountLevel: (level: number | null) => void;
   onSelectResponder: (id: string) => void;
   onUpdateResponder: (responder: Responder) => void;
   onCreateResponder: (responder: Responder) => void;
   onDeleteResponder: (id: string) => void;
-  onOpenExport: (mode: 'export_build' | 'export_responder') => void;
+  onOpenExport: (mode: 'export_build') => void;
 }
 
 export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
   responders,
   activeResponderId,
+  myAccountLevel,
+  onUpdateMyAccountLevel,
   onSelectResponder,
   onUpdateResponder,
   onCreateResponder,
@@ -41,6 +45,16 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
     return activeResponder.perkIds.map(id => getPerkById(id)).filter(Boolean);
   }, [activeResponder]);
 
+  const groupedLoadoutItems = useMemo(() => {
+    const groups: Record<string, typeof loadoutItems> = {};
+    for (const item of loadoutItems) {
+      const cat = item.category || 'General';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(item);
+    }
+    return groups;
+  }, []);
+
   const handleAddPerk = (perkId: number) => {
     if (!activeResponder) return;
     if (activeResponder.perkIds.length >= maxSlots) {
@@ -50,9 +64,11 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
     if (activeResponder.perkIds.includes(perkId)) {
       return;
     }
+    const newPerkIds = [...activeResponder.perkIds, perkId];
     const updated: Responder = {
       ...activeResponder,
-      perkIds: [...activeResponder.perkIds, perkId],
+      perkIds: newPerkIds,
+      loadouts: activeResponder.loadouts.map(l => (l.id === activeResponder.activeLoadoutId ? { ...l, perkIds: newPerkIds } : l)),
       updatedAt: new Date().toISOString()
     };
     onUpdateResponder(updated);
@@ -60,9 +76,29 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
 
   const handleRemovePerk = (perkId: number) => {
     if (!activeResponder) return;
+    const newPerkIds = activeResponder.perkIds.filter(id => id !== perkId);
     const updated: Responder = {
       ...activeResponder,
-      perkIds: activeResponder.perkIds.filter(id => id !== perkId),
+      perkIds: newPerkIds,
+      loadouts: activeResponder.loadouts.map(l => (l.id === activeResponder.activeLoadoutId ? { ...l, perkIds: newPerkIds } : l)),
+      updatedAt: new Date().toISOString()
+    };
+    onUpdateResponder(updated);
+  };
+
+  const handleUpdateLoadoutSlot = (slotIndex: 0 | 1 | 2, itemId: number | null) => {
+    if (!activeResponder) return;
+    const currentSlots: [number | null, number | null, number | null] = [
+      activeResponder.loadoutItemIds?.[0] ?? null,
+      activeResponder.loadoutItemIds?.[1] ?? null,
+      activeResponder.loadoutItemIds?.[2] ?? null
+    ];
+    currentSlots[slotIndex] = itemId;
+
+    const updated: Responder = {
+      ...activeResponder,
+      loadoutItemIds: currentSlots,
+      loadouts: activeResponder.loadouts.map(l => (l.id === activeResponder.activeLoadoutId ? { ...l, loadoutItemIds: currentSlots } : l)),
       updatedAt: new Date().toISOString()
     };
     onUpdateResponder(updated);
@@ -137,19 +173,41 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
               />
             </div>
 
-            <div className="form-group">
-              <label className="form-label">Level</label>
-              <input
-                type="number"
-                className="form-input"
-                value={activeResponder.level}
-                onChange={e => onUpdateResponder({ ...activeResponder, level: Number(e.target.value) })}
-              />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div className="form-group">
+                <label className="form-label">Character Level</label>
+                <input
+                  type="number"
+                  min={1}
+                  max={100}
+                  className="form-input"
+                  value={activeResponder.level}
+                  onChange={e => onUpdateResponder({ ...activeResponder, level: Number(e.target.value) })}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label" title="Your account level for unlock requirement checks (local preference only)">
+                  My Account Level
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={100}
+                  placeholder="Not Set"
+                  className="form-input"
+                  value={myAccountLevel ?? ''}
+                  onChange={e => {
+                    const val = e.target.value === '' ? null : Math.max(1, Math.min(100, Number(e.target.value)));
+                    onUpdateMyAccountLevel(val);
+                  }}
+                />
+              </div>
             </div>
 
             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-              <button className="btn btn-sm" onClick={() => onOpenExport('export_responder')}>
-                📤 Share Character (N2C1)
+              <button className="btn btn-primary" onClick={() => onOpenExport('export_build')}>
+                📤 Share Build
               </button>
               {responders.length > 1 && (
                 <button className="btn btn-sm btn-danger" onClick={() => onDeleteResponder(activeResponder.id)}>
@@ -159,13 +217,55 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
             </div>
           </div>
 
-          {/* Active Weapon for Build */}
+          {/* Starting Loadout (3 Slots) */}
           <div className="card">
             <div className="card-title">
-              <span>Equipped Loadout Weapon</span>
-              <button className="btn btn-sm" onClick={() => onOpenExport('export_build')}>
-                📤 Share Build (N2B1)
-              </button>
+              <span>Starting Deployment Loadout (3 Slots)</span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {([0, 1, 2] as const).map(slotIdx => {
+                const selectedItemId = activeResponder.loadoutItemIds?.[slotIdx] ?? null;
+                const item = selectedItemId ? loadoutItems.find(it => it.id === selectedItemId) : null;
+                const isUnderLevel = myAccountLevel !== null && myAccountLevel !== undefined && item && item.unlockAccountLevel > myAccountLevel;
+
+                return (
+                  <div key={slotIdx} className="form-group" style={{ marginBottom: 0 }}>
+                    <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span>Slot #{slotIdx + 1}</span>
+                      {item && item.unlockAccountLevel > 1 && (
+                        <span style={{ fontSize: '0.75rem', color: isUnderLevel ? '#f59e0b' : 'var(--text-muted)' }}>
+                          {isUnderLevel ? '⚠️ Requires Acc Lv ' : 'Acc Lv '}{item.unlockAccountLevel}
+                        </span>
+                      )}
+                    </label>
+                    <select
+                      className="form-select"
+                      value={selectedItemId ?? ''}
+                      onChange={e => handleUpdateLoadoutSlot(slotIdx, e.target.value ? Number(e.target.value) : null)}
+                      style={isUnderLevel ? { borderColor: '#f59e0b' } : undefined}
+                    >
+                      <option value="">(Empty Slot)</option>
+                      {Object.entries(groupedLoadoutItems).map(([category, items]) => (
+                        <optgroup key={category} label={category}>
+                          {items.map(it => (
+                            <option key={it.id} value={it.id}>
+                              {it.name} {it.unlockAccountLevel > 1 ? `(Lv ${it.unlockAccountLevel})` : ''}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                    </select>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Active Weapon for Analysis */}
+          <div className="card">
+            <div className="card-title">
+              <span>Primary Combat Analysis Weapon</span>
             </div>
 
             {activeLoadout && (
@@ -215,8 +315,13 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
                           </span>
                           <span style={{ fontWeight: 600, color: '#fff' }}>{perk.name}</span>
                           <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginLeft: '0.4rem' }}>
-                            ({perk.tier})
+                            ({perk.tier === 'expert' ? `Expert • Lv ${perk.unlockAccountLevel}` : perk.tier})
                           </span>
+                          {perk.tier === 'expert' && myAccountLevel !== null && myAccountLevel !== undefined && myAccountLevel < perk.unlockAccountLevel && (
+                            <span style={{ fontSize: '0.75rem', color: '#f59e0b', marginLeft: '0.4rem' }}>
+                              ⚠️ Req Lv {perk.unlockAccountLevel}
+                            </span>
+                          )}
                         </div>
                         <button
                           className="btn btn-sm btn-danger"
@@ -275,6 +380,8 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '0.75rem', maxHeight: '700px', overflowY: 'auto' }}>
               {filteredPerks.map(perk => {
                 const isEquipped = activeResponder.perkIds.includes(perk.id);
+                const isUnderLevel = perk.tier === 'expert' && myAccountLevel !== null && myAccountLevel !== undefined && myAccountLevel < perk.unlockAccountLevel;
+
                 return (
                   <div
                     key={perk.id}
@@ -291,9 +398,16 @@ export const BuildPlannerView: React.FC<BuildPlannerViewProps> = ({
                     <div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
                         <strong style={{ color: '#fff' }}>{perk.name}</strong>
-                        <span className={`badge ${perk.tier === 'expert' ? 'badge-community' : 'badge-official'}`}>
-                          {perk.tier}
-                        </span>
+                        <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                          {isUnderLevel && (
+                            <span style={{ fontSize: '0.7rem', color: '#f59e0b' }} title="Your account level is below requirement">
+                              ⚠️
+                            </span>
+                          )}
+                          <span className={`badge ${perk.tier === 'expert' ? 'badge-community' : 'badge-official'}`}>
+                            {perk.tier === 'expert' ? `Expert · Lv ${perk.unlockAccountLevel}` : perk.tier}
+                          </span>
+                        </div>
                       </div>
                       <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', whiteSpace: 'pre-line', marginBottom: '0.5rem' }}>
                         {perk.description}

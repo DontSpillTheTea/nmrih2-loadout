@@ -27,17 +27,32 @@ function getInitialAppStateAndTab(): {
     if (parsed.code && parsed.type) {
       try {
         const decoded = decodeCode(parsed.code);
-        if (decoded.type === parsed.type) {
-          if (decoded.type === 'B') {
-            const loadout = decoded.data as Loadout;
+        if (decoded.type === parsed.type || (parsed.type === 'B' && decoded.type === 'B')) {
+          if (decoded.type === 'B' || decoded.type === 'C') {
+            const b = decoded.data;
+            const newPerkIds = b.perkIds ?? [];
+            const newLoadoutItems: [number | null, number | null, number | null] = b.loadoutItemIds ?? [null, null, null];
             state = {
               ...state,
               responders: state.responders.map(r => {
                 if (r.id === state.activeResponderId) {
+                  const activeL = r.loadouts.find(l => l.id === r.activeLoadoutId) || r.loadouts[0];
+                  const updatedL: Loadout = {
+                    ...activeL,
+                    weaponId: b.weaponId ?? activeL.weaponId,
+                    secondaryWeaponId: b.secondaryWeaponId ?? activeL.secondaryWeaponId,
+                    loadoutItemIds: newLoadoutItems,
+                    perkIds: newPerkIds,
+                    constraints: b.constraints ?? activeL.constraints,
+                    objective: b.objective ?? activeL.objective
+                  };
                   return {
                     ...r,
-                    loadouts: [...r.loadouts.filter(l => l.id !== loadout.id), loadout],
-                    activeLoadoutId: loadout.id,
+                    name: b.name || r.name,
+                    level: b.level ?? r.level,
+                    perkIds: newPerkIds,
+                    loadoutItemIds: newLoadoutItems,
+                    loadouts: r.loadouts.map(l => (l.id === updatedL.id ? updatedL : l)),
                     updatedAt: new Date().toISOString()
                   };
                 }
@@ -64,7 +79,7 @@ function getInitialAppStateAndTab(): {
                   return {
                     ...r,
                     perkIds: scenario.perkIds,
-                    loadouts: r.loadouts.map(l => l.id === updatedL.id ? updatedL : l),
+                    loadouts: r.loadouts.map(l => (l.id === updatedL.id ? updatedL : l)),
                     updatedAt: new Date().toISOString()
                   };
                 }
@@ -72,14 +87,6 @@ function getInitialAppStateAndTab(): {
               })
             };
             initialTab = 'optimize';
-          } else if (decoded.type === 'C') {
-            const newResp = decoded.data as Responder;
-            state = {
-              ...state,
-              responders: [...state.responders.filter(r => r.id !== newResp.id), newResp],
-              activeResponderId: newResp.id
-            };
-            initialTab = 'builds';
           }
         }
       } catch (e) {
@@ -224,20 +231,31 @@ export const App: React.FC = () => {
   };
 
   const handleImportSuccess = (decoded: any) => {
-    if (decoded.type === 'B') {
-      const newLoadout = decoded.data as Loadout;
-      const updated: Responder = {
+    if (decoded.type === 'B' || decoded.type === 'C') {
+      const b = decoded.data;
+      const newPerkIds = b.perkIds ?? [];
+      const newLoadoutItems: [number | null, number | null, number | null] = b.loadoutItemIds ?? [null, null, null];
+      const updatedLoadout: Loadout = {
+        ...activeLoadout,
+        weaponId: b.weaponId ?? activeLoadout.weaponId,
+        secondaryWeaponId: b.secondaryWeaponId ?? activeLoadout.secondaryWeaponId,
+        loadoutItemIds: newLoadoutItems,
+        perkIds: newPerkIds,
+        constraints: b.constraints ?? activeLoadout.constraints,
+        objective: b.objective ?? activeLoadout.objective
+      };
+      const updatedResp: Responder = {
         ...activeResponder,
-        loadouts: [...activeResponder.loadouts.filter(l => l.id !== newLoadout.id), newLoadout],
-        activeLoadoutId: newLoadout.id,
+        name: b.name || activeResponder.name,
+        level: b.level ?? activeResponder.level,
+        perkIds: newPerkIds,
+        loadoutItemIds: newLoadoutItems,
+        loadouts: activeResponder.loadouts.map(l => (l.id === activeLoadout.id ? updatedLoadout : l)),
         updatedAt: new Date().toISOString()
       };
-      handleUpdateResponder(updated);
-      alert(`Imported build "${newLoadout.name}" successfully!`);
-    } else if (decoded.type === 'C') {
-      const newResp = decoded.data as Responder;
-      handleCreateResponder(newResp);
-      alert(`Imported Responder profile "${newResp.name}" successfully!`);
+      handleUpdateResponder(updatedResp);
+      setMainTab('builds');
+      alert(`Imported build "${b.name || 'Shared Build'}" successfully!`);
     } else if (decoded.type === 'S') {
       const scenario = decoded.data as CombatScenario;
       setActiveEnemyId(scenario.enemyId);
@@ -251,7 +269,7 @@ export const App: React.FC = () => {
       const updatedResp: Responder = {
         ...activeResponder,
         perkIds: scenario.perkIds,
-        loadouts: activeResponder.loadouts.map(l => l.id === updatedLoadout.id ? updatedLoadout : l),
+        loadouts: activeResponder.loadouts.map(l => (l.id === updatedLoadout.id ? updatedLoadout : l)),
         updatedAt: new Date().toISOString()
       };
       handleUpdateResponder(updatedResp);
@@ -306,6 +324,8 @@ export const App: React.FC = () => {
           <BuildPlannerView
             responders={appState.responders}
             activeResponderId={appState.activeResponderId}
+            myAccountLevel={appState.myAccountLevel}
+            onUpdateMyAccountLevel={lvl => setAppState(prev => ({ ...prev, myAccountLevel: lvl }))}
             onSelectResponder={handleSelectResponder}
             onUpdateResponder={handleUpdateResponder}
             onCreateResponder={handleCreateResponder}
