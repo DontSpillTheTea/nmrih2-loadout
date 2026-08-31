@@ -107,6 +107,13 @@ export const App: React.FC = () => {
   const [compareFilter, setCompareFilter] = useState<'all' | 'melee' | 'firearms'>(() => initialSetup.initialState.compareWeaponFilter ?? 'all');
   const [isDataMethodologyOpen, setIsDataMethodologyOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isLoadingShortLink, setIsLoadingShortLink] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.pathname) {
+      const parsed = parseShareUrlOrPath(window.location.pathname);
+      return parsed.type === 'short_build' && Boolean(parsed.shortId);
+    }
+    return false;
+  });
   const [importExportModal, setImportExportModal] = useState<{
     isOpen: boolean;
     mode: 'import' | 'export_build' | 'export_responder' | 'export_scenario';
@@ -115,14 +122,76 @@ export const App: React.FC = () => {
     mode: 'import'
   });
 
+  // Resolve short build link on mount if URL is /b/<id>
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.pathname) {
+      const parsed = parseShareUrlOrPath(window.location.pathname);
+      if (parsed.type === 'short_build' && parsed.shortId) {
+        fetch(`/api/builds/${parsed.shortId}`)
+          .then(res => {
+            if (!res.ok) {
+              throw new Error(res.status === 404 ? 'Short build link not found or expired.' : `HTTP ${res.status}`);
+            }
+            return res.json();
+          })
+          .then(data => {
+            if (data?.code) {
+              const decoded = decodeCode(data.code);
+              if (decoded.type === 'B' || decoded.type === 'C') {
+                const b = decoded.data;
+                const newPerkIds = b.perkIds ?? [];
+                const newLoadoutItems: [number | null, number | null, number | null] = b.loadoutItemIds ?? [null, null, null];
+                setAppState(prevState => ({
+                  ...prevState,
+                  responders: prevState.responders.map(r => {
+                    if (r.id === prevState.activeResponderId) {
+                      const activeL = r.loadouts.find(l => l.id === r.activeLoadoutId) || r.loadouts[0];
+                      const updatedL: Loadout = {
+                        ...activeL,
+                        weaponId: b.weaponId ?? activeL.weaponId,
+                        secondaryWeaponId: b.secondaryWeaponId ?? activeL.secondaryWeaponId,
+                        loadoutItemIds: newLoadoutItems,
+                        perkIds: newPerkIds,
+                        constraints: b.constraints ?? activeL.constraints,
+                        objective: b.objective ?? activeL.objective
+                      };
+                      return {
+                        ...r,
+                        name: b.name || r.name,
+                        level: b.level ?? r.level,
+                        perkIds: newPerkIds,
+                        loadoutItemIds: newLoadoutItems,
+                        loadouts: r.loadouts.map(l => (l.id === updatedL.id ? updatedL : l)),
+                        updatedAt: new Date().toISOString()
+                      };
+                    }
+                    return r;
+                  })
+                }));
+                setMainTab('builds');
+              }
+            }
+          })
+          .catch(err => {
+            console.warn('Failed to resolve short build link:', err);
+          })
+          .finally(() => {
+            setIsLoadingShortLink(false);
+          });
+      }
+    }
+  }, []);
+
   // Sync to localStorage
   useEffect(() => {
-    saveAppState({
-      ...appState,
-      activeEnemyId,
-      compareWeaponFilter: compareFilter
-    });
-  }, [appState, activeEnemyId, compareFilter]);
+    if (!isLoadingShortLink) {
+      saveAppState({
+        ...appState,
+        activeEnemyId,
+        compareWeaponFilter: compareFilter
+      });
+    }
+  }, [appState, activeEnemyId, compareFilter, isLoadingShortLink]);
 
   const activeResponder = appState.responders.find(r => r.id === appState.activeResponderId) || appState.responders[0];
   const activeLoadout = activeResponder.loadouts.find(l => l.id === activeResponder.activeLoadoutId) || activeResponder.loadouts[0];
@@ -293,7 +362,14 @@ export const App: React.FC = () => {
       />
 
       <main>
-        <div style={{ display: mainTab === 'optimize' ? 'block' : 'none' }}>
+        {isLoadingShortLink && (
+          <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'var(--text-secondary)' }}>
+            <div style={{ fontSize: '1.25rem', color: '#fff', marginBottom: '0.5rem' }}>⏳ Loading Shared Build...</div>
+            <div style={{ fontSize: '0.85rem' }}>Retrieving build configuration from D1 storage</div>
+          </div>
+        )}
+
+        <div style={{ display: !isLoadingShortLink && mainTab === 'optimize' ? 'block' : 'none' }}>
           <OptimizerView
             selectedWeaponId={activeLoadout.weaponId}
             onSelectWeaponId={handleSelectWeaponId}
@@ -308,7 +384,7 @@ export const App: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: mainTab === 'compare' ? 'block' : 'none' }}>
+        <div style={{ display: !isLoadingShortLink && mainTab === 'compare' ? 'block' : 'none' }}>
           <CompareMatrixView
             weaponTypeFilter={compareFilter}
             onSelectWeaponTypeFilter={setCompareFilter}
@@ -320,7 +396,7 @@ export const App: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: mainTab === 'builds' ? 'block' : 'none' }}>
+        <div style={{ display: !isLoadingShortLink && mainTab === 'builds' ? 'block' : 'none' }}>
           <BuildPlannerView
             responders={appState.responders}
             activeResponderId={appState.activeResponderId}

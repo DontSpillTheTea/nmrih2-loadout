@@ -346,7 +346,15 @@ export function createShareUrl(code: string): string {
   return `${CANONICAL_SITE_ORIGIN}/${path}/${encodeURIComponent(code)}`;
 }
 
-export function parseShareUrlOrPath(urlOrPath: string): { type: 'B' | 'C' | 'S' | null; code: string | null } {
+export function createShortBuildUrl(id: string): string {
+  return `${CANONICAL_SITE_ORIGIN}/b/${id}`;
+}
+
+export function parseShareUrlOrPath(urlOrPath: string): {
+  type: 'B' | 'C' | 'S' | 'short_build' | null;
+  code: string | null;
+  shortId?: string;
+} {
   if (!urlOrPath) return { type: null, code: null };
   let input = urlOrPath.trim();
 
@@ -358,6 +366,12 @@ export function parseShareUrlOrPath(urlOrPath: string): { type: 'B' | 'C' | 'S' 
     } catch {
       // Fallback
     }
+  }
+
+  // Handle short build route /b/<shortId>
+  const matchShort = input.match(/^\/?b\/([A-Za-z0-9_-]{8,32})/i);
+  if (matchShort) {
+    return { type: 'short_build', code: null, shortId: matchShort[1] };
   }
 
   // Handle /build/<codeOrPayload>, /scenario/<codeOrPayload>, /character/<codeOrPayload>

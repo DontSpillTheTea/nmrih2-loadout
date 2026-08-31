@@ -1,5 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { decodeCode, encodeBuild, encodeScenario, createShareUrl, extractShareCode } from '../serialization/codec';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  decodeCode,
+  encodeBuild,
+  encodeScenario,
+  createShareUrl,
+  createShortBuildUrl,
+  extractShareCode,
+  parseShareUrlOrPath
+} from '../serialization/codec';
 import type { Loadout, Responder, CombatScenario, AppState } from '../types';
 
 interface ImportExportModalProps {
@@ -25,11 +33,12 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
   const [importCode, setImportCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [warning, setWarning] = useState<string | null>(null);
-  const [copiedType, setCopiedType] = useState<'link' | 'code' | null>(null);
+  const [copiedType, setCopiedType] = useState<'link' | 'portable' | 'code' | null>(null);
   const [clipboardBlocked, setClipboardBlocked] = useState(false);
+  const [shortUrl, setShortUrl] = useState<string | null>(null);
+  const [isShortening, setIsShortening] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  if (!isOpen) return null;
 
   let exportCode = '';
   if ((mode === 'export_build' || mode === 'export_responder') && (activeResponder || activeLoadout)) {
@@ -47,14 +56,59 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
     exportCode = encodeScenario(activeScenario);
   }
 
-  const exportUrl = exportCode ? createShareUrl(exportCode) : '';
+  const portableUrl = exportCode ? createShareUrl(exportCode) : '';
 
-  const handleCopyLink = async () => {
+  // Request short D1-backed URL when opening build export
+  useEffect(() => {
+    if (!isOpen) {
+      setShortUrl(null);
+      setIsShortening(false);
+      setCopiedType(null);
+      setClipboardBlocked(false);
+      return;
+    }
+
+    if (mode === 'export_build' && exportCode) {
+      let mounted = true;
+      setIsShortening(true);
+
+      fetch('/api/builds', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: exportCode })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(data => {
+          if (mounted && data?.url) {
+            setShortUrl(data.url);
+          }
+        })
+        .catch(err => {
+          console.warn('Could not generate short link, using portable link fallback:', err);
+        })
+        .finally(() => {
+          if (mounted) setIsShortening(false);
+        });
+
+      return () => {
+        mounted = false;
+      };
+    }
+  }, [isOpen, mode, exportCode]);
+
+  if (!isOpen) return null;
+
+  const displayUrl = shortUrl || portableUrl;
+
+  const copyToClipboard = async (text: string, type: 'link' | 'portable' | 'code') => {
     setClipboardBlocked(false);
     try {
       if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(exportUrl);
-        setCopiedType('link');
+        await navigator.clipboard.writeText(text);
+        setCopiedType(type);
         setTimeout(() => setCopiedType(null), 2500);
       } else {
         throw new Error('Clipboard API unavailable');
@@ -68,30 +122,32 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
     }
   };
 
-  const handleCopyCode = async () => {
-    setClipboardBlocked(false);
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(exportCode);
-        setCopiedType('code');
-        setTimeout(() => setCopiedType(null), 2500);
-      } else {
-        throw new Error('Clipboard API unavailable');
-      }
-    } catch {
-      setClipboardBlocked(true);
-      if (inputRef.current) {
-        inputRef.current.focus();
-        inputRef.current.select();
-      }
-    }
-  };
-
-  const handleImport = () => {
+  const handleImport = async () => {
     setError(null);
     setWarning(null);
+    setIsImporting(true);
+
     try {
-      const codeToDecode = extractShareCode(importCode);
+      const trimmed = importCode.trim();
+      const parsedPath = parseShareUrlOrPath(trimmed);
+
+      let codeToDecode = trimmed;
+
+      // Handle short link import: /b/<id> or https://nmrih2-loadouts.site/b/<id>
+      if (parsedPath.type === 'short_build' && parsedPath.shortId) {
+        const res = await fetch(`/api/builds/${parsedPath.shortId}`);
+        if (!res.ok) {
+          throw new Error(res.status === 404 ? 'Short build link not found or expired.' : `Failed to lookup build: HTTP ${res.status}`);
+        }
+        const data = await res.json();
+        if (!data?.code) {
+          throw new Error('Invalid response from build lookup API.');
+        }
+        codeToDecode = data.code;
+      } else {
+        codeToDecode = extractShareCode(trimmed);
+      }
+
       const decoded = decodeCode(codeToDecode);
       if (decoded.warning) {
         setWarning(decoded.warning);
@@ -100,6 +156,8 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
       onClose();
     } catch (e: any) {
       setError(e.message || 'Failed to decode import code.');
+    } finally {
+      setIsImporting(false);
     }
   };
 
@@ -115,45 +173,79 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
 
         {mode !== 'import' ? (
           <div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
-              Share this direct link. Anyone opening it will instantly load your exact build (responder, perks, and 3 loadout items):
-            </p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
+                {shortUrl
+                  ? 'Short durable link (D1-backed):'
+                  : isShortening
+                  ? 'Generating short share link...'
+                  : 'Self-contained portable link:'}
+              </p>
+              {shortUrl && (
+                <span className="badge badge-official" style={{ fontSize: '0.7rem' }}>
+                  Short URL
+                </span>
+              )}
+            </div>
+
             <input
               ref={inputRef}
               className="form-input"
               readOnly
-              value={exportUrl}
+              value={displayUrl}
               style={{ fontFamily: 'monospace', fontSize: '0.8rem', marginBottom: '0.75rem' }}
               onClick={e => (e.target as HTMLInputElement).select()}
             />
+
             {clipboardBlocked && (
               <div style={{ color: 'var(--accent-amber)', fontSize: '0.8rem', marginBottom: '0.75rem' }}>
                 ⚠️ Clipboard blocked by browser/extension — press Ctrl+C to copy link.
               </div>
             )}
+
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <button className="btn btn-primary" onClick={handleCopyLink}>
+              <button
+                className="btn btn-primary"
+                onClick={() => copyToClipboard(displayUrl, 'link')}
+              >
                 {copiedType === 'link' ? '✅ Link Copied!' : '🔗 Copy Share Link'}
               </button>
+
               <a
                 className="btn"
-                href={exportUrl}
+                href={displayUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Open share link directly"
               >
                 ↗️ Open Link
               </a>
-              <button className="btn" onClick={handleCopyCode} title="Copy raw compressed code">
+
+              {shortUrl && (
+                <button
+                  className="btn"
+                  onClick={() => copyToClipboard(portableUrl, 'portable')}
+                  title="Copy full self-contained URL without D1 dependency"
+                >
+                  {copiedType === 'portable' ? '✅ Portable Link Copied!' : '📦 Copy Portable Link'}
+                </button>
+              )}
+
+              <button
+                className="btn"
+                onClick={() => copyToClipboard(exportCode, 'code')}
+                title="Copy raw compressed code"
+              >
                 {copiedType === 'code' ? '✅ Code Copied!' : '📋 Copy Raw Code'}
               </button>
+
               <button className="btn" onClick={onClose}>Close</button>
             </div>
           </div>
         ) : (
           <div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.75rem' }}>
-              Paste a share link (e.g. <code>https://nmrih2-loadouts.site/build/...</code>) or code (<code>N2B2-...</code>, <code>N2B1-...</code>, <code>N2C1-...</code>, <code>N2S1-...</code>, <code>N2A1-...</code>):
+              Paste a short link (<code>/b/...</code>), portable link (<code>/build/...</code>), or code (<code>N2B2-...</code>, <code>N2B1-...</code>, <code>N2C1-...</code>, <code>N2S1-...</code>, <code>N2A1-...</code>):
             </p>
             <textarea
               className="form-input"
@@ -177,8 +269,8 @@ export const ImportExportModal: React.FC<ImportExportModalProps> = ({
             )}
 
             <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
-              <button className="btn btn-primary" onClick={handleImport}>
-                📥 Import Configuration
+              <button className="btn btn-primary" onClick={handleImport} disabled={isImporting}>
+                {isImporting ? '⏳ Resolving...' : '📥 Import Configuration'}
               </button>
               <button className="btn" onClick={onClose}>Cancel</button>
             </div>
